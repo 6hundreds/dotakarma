@@ -17,5 +17,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".features.steamid.GetSteamIdActivity" />
+
     </application>
 </manifest>

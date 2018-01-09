@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid
 
 import android.app.Activity
 import android.app.Application
+import com.smedialink.tokenplussteamid.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -20,11 +21,11 @@ class MyApp : Application(), HasActivityInjector {
             Timber.plant(Timber.DebugTree())
         }
 
-//        DaggerAppComponent
-//                .builder()
-//                .context(this)
-//                .build()
-//                .inject(this)
+        DaggerAppComponent
+                .builder()
+                .context(this)
+                .build()
+                .inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector

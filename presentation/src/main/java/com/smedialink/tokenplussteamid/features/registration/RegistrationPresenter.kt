@@ -1,0 +1,3 @@
+package com.smedialink.tokenplussteamid.features.registration
+
+class RegistrationPresenter

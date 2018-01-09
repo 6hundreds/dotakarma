@@ -58,6 +58,7 @@ ext {
     presentationDependencies = [
             appCompat            : "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION",
             constraintLayout     : "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT_VERSION",
+            design               : "com.android.support:design:$SUPPORT_LIBRARY_VERSION",
             rxJava               : "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION",
             rxKotlin             : "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN_VERSION",
             rxAndroid            : "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION",

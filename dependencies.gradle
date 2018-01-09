@@ -1,0 +1,85 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    // Android
+    final SUPPORT_LIBRARY_VERSION = "27.0.2"
+    final CONSTRAINT_LAYOUT_VERSION = "1.1.0-beta4"
+
+    // Rx
+    final RX_JAVA_VERSION = "2.1.8"
+    final RX_KOTLIN_VERSION = "2.2.0"
+    final RX_ANDROID_VERSION = "2.0.1"
+
+    // Core
+    final DAGGER_VERSION = "2.14.1"
+    final MOXY_VERSION = "1.5.3"
+    final CICERONE_VERSION = "3.0.0"
+    final RETROFIT_VERSION = "2.3.0"
+    final MOSHI_VERSION = "1.5.0"
+
+    // Testing
+    final ESPRESSO_VERSION = "3.0.2-alpha1"
+    final RUNNER_VERSION = "1.0.1"
+    final JUNIT_VERSION = "4.12"
+
+    // Development tools
+    final TIMBER_VERSION = "4.6.0"
+
+    domainDependencies = [
+            dagger        : "com.google.dagger:dagger:$DAGGER_VERSION",
+            daggerCompiler: "com.google.dagger:dagger-compiler:$DAGGER_VERSION",
+            rxJava        : "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION"
+    ]
+
+    domainTestDependencies = [
+            junit: "junit:junit:$JUNIT_VERSION",
+    ]
+
+    dataDependencies = [
+            rxJava                : "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION",
+            rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN_VERSION",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION",
+            dagger                : "com.google.dagger:dagger:$DAGGER_VERSION",
+            daggerCompiler        : "com.google.dagger:dagger-compiler:$DAGGER_VERSION",
+            moshi                 : "com.squareup.moshi:moshi:$MOSHI_VERSION",
+            retrofit              : "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION",
+            retrofitRxAdapter     : "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION",
+            retrofitMoshiConverter: "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION",
+    ]
+
+    dataTestDependencies = [
+            junit: "junit:junit:$JUNIT_VERSION",
+    ]
+
+    presentationDependencies = [
+            appCompat            : "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION",
+            constraintLayout     : "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT_VERSION",
+            rxJava               : "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION",
+            rxKotlin             : "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN_VERSION",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION",
+            dagger               : "com.google.dagger:dagger:$DAGGER_VERSION",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:$DAGGER_VERSION",
+            daggerAndroid        : "com.google.dagger:dagger-android:$DAGGER_VERSION",
+            daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:$DAGGER_VERSION",
+            daggerAndroidSupport : "com.google.dagger:dagger-android-support:$DAGGER_VERSION",
+            moxy                 : "com.arello-mobile:moxy:$MOXY_VERSION",
+            moxyCompiler         : "com.arello-mobile:moxy-compiler:$MOXY_VERSION",
+            moxyAndroid          : "com.arello-mobile:moxy-android:$MOXY_VERSION",
+            moxyAppCompat        : "com.arello-mobile:moxy-app-compat:$MOXY_VERSION",
+            cicerone             : "ru.terrakok.cicerone:cicerone:$CICERONE_VERSION",
+    ]
+
+    presentationTestDependencies = [
+            junit   : "junit:junit:$JUNIT_VERSION",
+            espresso: "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION",
+            runner  : "com.android.support.test:runner:$RUNNER_VERSION",
+    ]
+
+    developmentDependencies = [
+            timber: "com.jakewharton.timber:timber:$TIMBER_VERSION",
+    ]
+}

@@ -1,8 +1,18 @@
 apply plugin: 'java-library'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
+apply plugin: 'kotlin'
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
+
+    implementation domainDependencies.dagger
+    implementation domainDependencies.rxJava
+
+    kapt domainDependencies.daggerCompiler
+
+    testImplementation domainTestDependencies.junit
+}

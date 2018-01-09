@@ -1,15 +1,20 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'kotlin-android'
+
 android {
-    compileSdkVersion 26
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compileSdkVersion"]
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion globalConfiguration["minSdkVersion"]
+        targetSdkVersion globalConfiguration["targetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
 
     }
 
@@ -19,14 +24,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.rxKotlin
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.dagger
+    implementation dataDependencies.moshi
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.retrofitRxAdapter
+    implementation dataDependencies.retrofitMoshiConverter
+
+    kapt dataDependencies.daggerCompiler
+
+    testImplementation dataTestDependencies.junit
 }

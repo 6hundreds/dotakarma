@@ -23,10 +23,33 @@ android {
 }
 
 dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation presentationDependencies.appCompat
+    implementation presentationDependencies.constraintLayout
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxKotlin
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.daggerAndroid
+    implementation presentationDependencies.daggerAndroidSupport
+    implementation presentationDependencies.moxy
+    implementation presentationDependencies.moxyAndroid
+    implementation presentationDependencies.moxyAppCompat
+    implementation presentationDependencies.cicerone
+
+    implementation developmentDependencies.timber
+
+    kapt presentationDependencies.daggerCompiler
+    kapt presentationDependencies.daggerAndroidCompiler
+    kapt presentationDependencies.moxyCompiler
+
+    testImplementation presentationTestDependencies.junit
+    androidTestImplementation presentationTestDependencies.espresso
+    androidTestImplementation presentationTestDependencies.runner
 }

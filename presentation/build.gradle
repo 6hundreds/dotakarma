@@ -24,6 +24,10 @@ android {
     }
 }
 
+android.defaultConfig.manifestPlaceholders = [
+        'appAuthRedirectScheme': 'com.smedialink.tokenplussteamid'
+]
+
 dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
@@ -48,6 +52,7 @@ dependencies {
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat
     implementation presentationDependencies.cicerone
+    implementation presentationDependencies.openIdAuth
 
     implementation developmentDependencies.timber
 

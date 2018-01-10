@@ -21,6 +21,7 @@ ext {
     final RETROFIT_VERSION = "2.3.0"
     final MOSHI_VERSION = "1.5.0"
     final JAVAX_INJECT_VERSION = "1"
+    final OPEN_ID_AUTH_VERSION = "0.7.0"
 
     // Testing
     final ESPRESSO_VERSION = "3.0.2-alpha1"
@@ -75,6 +76,7 @@ ext {
             moxyAndroid          : "com.arello-mobile:moxy-android:$MOXY_VERSION",
             moxyAppCompat        : "com.arello-mobile:moxy-app-compat:$MOXY_VERSION",
             cicerone             : "ru.terrakok.cicerone:cicerone:$CICERONE_VERSION",
+            openIdAuth           : "net.openid:appauth:$OPEN_ID_AUTH_VERSION"
     ]
 
     presentationTestDependencies = [

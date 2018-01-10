@@ -35,13 +35,11 @@ dependencies {
     implementation dataDependencies.rxJava
     implementation dataDependencies.rxKotlin
     implementation dataDependencies.rxAndroid
-    implementation dataDependencies.dagger
     implementation dataDependencies.moshi
     implementation dataDependencies.retrofit
     implementation dataDependencies.retrofitRxAdapter
     implementation dataDependencies.retrofitMoshiConverter
-
-    kapt dataDependencies.daggerCompiler
+    implementation dataDependencies.javaxInject
 
     testImplementation dataTestDependencies.junit
 }

@@ -24,11 +24,11 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun onPause() {
         super.onPause()
-        navigatorHolder.setNavigator(navigator)
+        navigatorHolder.removeNavigator()
     }
 
     override fun onResume() {
         super.onResume()
-        navigatorHolder.removeNavigator()
+        navigatorHolder.setNavigator(navigator)
     }
 }

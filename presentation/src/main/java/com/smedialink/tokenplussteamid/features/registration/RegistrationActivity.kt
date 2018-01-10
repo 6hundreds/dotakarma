@@ -1,13 +1,18 @@
 package com.smedialink.tokenplussteamid.features.registration
 
+import android.content.Context
+import android.content.Intent
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseActivity
-import ru.terrakok.cicerone.Navigator
 import javax.inject.Inject
 
 class RegistrationActivity : BaseActivity(), RegistrationView {
+
+    companion object {
+        fun getIntent(ctx: Context) = Intent(ctx, RegistrationActivity::class.java)
+    }
 
     override val layoutId: Int
         get() = R.layout.activity_registration
@@ -18,7 +23,4 @@ class RegistrationActivity : BaseActivity(), RegistrationView {
 
     @ProvidePresenter
     fun providePresenter() = presenter
-
-    @Inject
-    lateinit var navigator: Navigator
 }

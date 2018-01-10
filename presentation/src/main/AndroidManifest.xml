@@ -10,16 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".features.mainactivity.MainActivity">
+        <activity android:name=".features.homescreen.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".features.steamid.GetSteamIdActivity" />
-        <activity android:name=".features.homescreen.HomeActivity" />
-        <activity android:name=".features.registration.RegistrationActivity" />
+        <activity android:name=".features.authorization.AuthActivity" />
 
     </application>
 </manifest>

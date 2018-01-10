@@ -1,5 +1,7 @@
-package com.smedialink.tokenplussteamid.features.mainactivity
+package com.smedialink.tokenplussteamid.features.authorization
 
+import android.content.Context
+import android.content.Intent
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
@@ -7,20 +9,24 @@ import com.smedialink.tokenplussteamid.base.BaseActivity
 import ru.terrakok.cicerone.Navigator
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainView {
+class AuthActivity : BaseActivity(), AuthView {
+
+    companion object {
+        fun getIntent(ctx: Context) = Intent(ctx, AuthActivity::class.java)
+    }
+
+    override val layoutId: Int
+        get() = R.layout.activity_auth
 
     @Inject
     lateinit var navigator: Navigator
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: AuthPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter
-
-    override val layoutId: Int
-        get() = R.layout.activity_main
 
     override fun onPause() {
         super.onPause()

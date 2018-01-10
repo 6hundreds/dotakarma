@@ -4,4 +4,7 @@
     <string name="edit_text_login_hint">Enter your login…</string>
     <string name="edit_text_password_hint">Enter your password…</string>
     <string name="main_activity">Main Activity</string>
+    <string name="btn_authorization">Authorization</string>
+    <string name="msg_registration_completed">Registration completed.</string>
+    <string name="msg_browser">Authorization with browser</string>
 </resources>

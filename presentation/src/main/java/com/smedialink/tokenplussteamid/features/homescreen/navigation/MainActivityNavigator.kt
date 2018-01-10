@@ -1,12 +1,11 @@
-package com.smedialink.tokenplussteamid.features.mainactivity
+package com.smedialink.tokenplussteamid.features.homescreen.navigation
 
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
-import com.smedialink.tokenplussteamid.features.MyAppScreens
-import com.smedialink.tokenplussteamid.features.homescreen.HomeActivity
-import com.smedialink.tokenplussteamid.features.registration.RegistrationActivity
-import com.smedialink.tokenplussteamid.features.steamid.GetSteamIdActivity
+import com.smedialink.tokenplussteamid.features.AppScreens
+import com.smedialink.tokenplussteamid.features.authorization.AuthActivity
+import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
@@ -16,9 +15,7 @@ class MainActivityNavigator @Inject constructor(
 
     override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? =
             when (screenKey) {
-                MyAppScreens.REGISTRATION_SCREEN -> RegistrationActivity.getIntent(activity)
-                MyAppScreens.STEAM_AUTH_SCREEN -> GetSteamIdActivity.getIntent(activity)
-                MyAppScreens.HOME_SCREEN -> HomeActivity.getIntent(activity)
+                AppScreens.AUTH_SCREEN -> AuthActivity.getIntent(activity)
                 else -> null
             }
 

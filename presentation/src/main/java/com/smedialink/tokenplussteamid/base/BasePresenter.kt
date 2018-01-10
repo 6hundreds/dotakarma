@@ -17,7 +17,7 @@ abstract class BasePresenter<View : MvpView> : MvpPresenter<View>() {
 
     override fun detachView(view: View?) {
         super.detachView(view)
-        disposables.dispose()
+        disposables.clear()
     }
 
     protected fun unsubscribeOnDestroy(@NonNull disposable: Disposable) {

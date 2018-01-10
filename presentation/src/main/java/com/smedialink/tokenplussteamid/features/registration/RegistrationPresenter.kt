@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.features.registration
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
-import com.smedialink.tokenplussteamid.features.MyAppScreens
+import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.interactor.RegistrationInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -24,7 +24,7 @@ class RegistrationPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     Timber.i("Registration completed.")
-                    router.navigateTo(MyAppScreens.STEAM_AUTH_SCREEN)
+                    router.newRootScreen(AppScreens.EMPTY_STEP_SCREEN)
                 }, { throwable ->
                     Timber.e("Registration error: ${throwable.message}")
                 })

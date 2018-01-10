@@ -1,8 +1,8 @@
-package com.smedialink.tokenplussteamid.features.mainactivity.di
+package com.smedialink.tokenplussteamid.features.homescreen.di
 
 import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
-import com.smedialink.tokenplussteamid.features.mainactivity.MainActivity
-import com.smedialink.tokenplussteamid.features.mainactivity.MainActivityNavigator
+import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
+import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivityNavigator
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Navigator

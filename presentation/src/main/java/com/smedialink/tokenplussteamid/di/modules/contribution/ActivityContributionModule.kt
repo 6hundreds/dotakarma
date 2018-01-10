@@ -3,6 +3,8 @@ package com.smedialink.tokenplussteamid.di.modules.contribution
 import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.features.homescreen.HomeActivity
 import com.smedialink.tokenplussteamid.features.homescreen.di.HomeActivityModule
+import com.smedialink.tokenplussteamid.features.mainactivity.MainActivity
+import com.smedialink.tokenplussteamid.features.mainactivity.di.MainActivityModule
 import com.smedialink.tokenplussteamid.features.registration.RegistrationActivity
 import com.smedialink.tokenplussteamid.features.registration.di.RegistrationActivityModule
 import com.smedialink.tokenplussteamid.features.steamid.GetSteamIdActivity
@@ -15,8 +17,12 @@ import dagger.android.support.AndroidSupportInjectionModule
 interface ActivityContributionModule {
 
     @ActivityScope
+    @ContributesAndroidInjector(modules = [(MainActivityModule::class)])
+    fun mainActivityInjector(): MainActivity
+
+    @ActivityScope
     @ContributesAndroidInjector(modules = [(RegistrationActivityModule::class)])
-    fun mainActivityInjector(): RegistrationActivity
+    fun registrationActivityInjector(): RegistrationActivity
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [(GetSteamIdActivityModule::class)])

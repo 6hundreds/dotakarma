@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".features.registration.RegistrationActivity">
+        <activity android:name=".features.mainactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,6 +19,7 @@
 
         <activity android:name=".features.steamid.GetSteamIdActivity" />
         <activity android:name=".features.homescreen.HomeActivity" />
+        <activity android:name=".features.registration.RegistrationActivity" />
 
     </application>
 </manifest>

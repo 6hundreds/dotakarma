@@ -1,6 +1,8 @@
 package com.smedialink.tokenplussteamid.di.modules.contribution
 
 import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
+import com.smedialink.tokenplussteamid.features.homescreen.HomeActivity
+import com.smedialink.tokenplussteamid.features.homescreen.di.HomeActivityModule
 import com.smedialink.tokenplussteamid.features.registration.RegistrationActivity
 import com.smedialink.tokenplussteamid.features.registration.di.RegistrationActivityModule
 import com.smedialink.tokenplussteamid.features.steamid.GetSteamIdActivity
@@ -19,4 +21,8 @@ interface ActivityContributionModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [(GetSteamIdActivityModule::class)])
     fun steamActivityInjector(): GetSteamIdActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [(HomeActivityModule::class)])
+    fun homeActivityInjector(): HomeActivity
 }

@@ -25,5 +25,5 @@ class SettingsManager @Inject constructor(
 
     fun isTokenReceived(): Boolean = getSavedToken().isNotEmpty()
 
-    fun isSteamUdReceived(): Boolean = getSavedSteamId().isNotEmpty()
+    fun isSteamIdReceived(): Boolean = getSavedSteamId().isNotEmpty()
 }

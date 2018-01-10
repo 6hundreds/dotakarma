@@ -3,4 +3,5 @@
     <string name="btn_register">Register</string>
     <string name="edit_text_login_hint">Enter your login…</string>
     <string name="edit_text_password_hint">Enter your password…</string>
+    <string name="main_activity">Main Activity</string>
 </resources>

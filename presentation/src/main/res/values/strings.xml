@@ -3,8 +3,18 @@
     <string name="btn_register">Register</string>
     <string name="edit_text_login_hint">Enter your login…</string>
     <string name="edit_text_password_hint">Enter your password…</string>
-    <string name="main_activity">Main Activity</string>
     <string name="btn_authorization">Authorization</string>
     <string name="msg_registration_completed">Registration completed.</string>
-    <string name="msg_browser">Authorization with browser</string>
+
+    <!-- Predefined string constants -->
+    <string name="constant_steam_auth_url">
+        https://steamcommunity.com/openid/login?
+        openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&amp;
+        openid.identity=http://specs.openid.net/auth/2.0/identifier_select&amp;
+        openid.mode=checkid_setup&amp;
+        openid.ns=http://specs.openid.net/auth/2.0&amp;
+        openid.realm=https://%1$s&amp;
+        openid.return_to=https://%1$s
+    </string>
+
 </resources>

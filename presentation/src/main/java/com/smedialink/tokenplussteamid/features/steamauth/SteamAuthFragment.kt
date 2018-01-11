@@ -11,6 +11,7 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_steam_auth_step.*
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 
@@ -31,13 +32,8 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
         get() = R.layout.fragment_steam_auth_step
 
     private val steamAuthUrl: String by lazy {
-        "https://steamcommunity.com/openid/login?" +
-                "openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&" +
-                "openid.identity=http://specs.openid.net/auth/2.0/identifier_select&" +
-                "openid.mode=checkid_setup&" +
-                "openid.ns=http://specs.openid.net/auth/2.0&" +
-                "openid.realm=https://$APP_NAME&" +
-                "openid.return_to=https://$APP_NAME"
+        val urlTemplate = resources.getString(R.string.constant_steam_auth_url)
+        String.format(Locale.getDefault(), urlTemplate, APP_NAME)
     }
 
     @Inject

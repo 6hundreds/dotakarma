@@ -24,7 +24,7 @@ class RegistrationPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     Timber.i("Registration completed.")
-                    router.newRootScreen(AppScreens.EMPTY_STEP_SCREEN)
+                    router.newRootScreen(AppScreens.STEAM_AUTH_SCREEN)
                 }, { throwable ->
                     Timber.e("Registration error: ${throwable.message}")
                 })

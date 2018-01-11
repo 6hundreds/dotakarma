@@ -18,9 +18,9 @@ class AuthPresenter @Inject constructor(
 
         if (settingsManager.isTokenReceived()) {
             if (settingsManager.isSteamIdReceived()) {
-                // TODO() Go to main screen
+                // TODO() No authorization needed, return to main screen
             } else {
-                router.navigateTo(AppScreens.EMPTY_STEP_SCREEN)
+                router.newRootScreen(AppScreens.STEAM_AUTH_SCREEN)
             }
         } else {
             router.newRootScreen(AppScreens.REGISTRATION_SCREEN)

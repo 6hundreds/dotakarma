@@ -1,5 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.smedialink.tokenplussteamid">
 
     <application
@@ -18,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.authorization.AuthActivity"/>
+        <activity android:name=".features.authorization.AuthActivity" />
 
     </application>
 </manifest>

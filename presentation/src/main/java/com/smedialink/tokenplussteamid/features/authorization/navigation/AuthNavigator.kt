@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.authorization.AuthActivity
-import com.smedialink.tokenplussteamid.features.steam.SteamAuthFragment
+import com.smedialink.tokenplussteamid.features.steamauth.SteamAuthFragment
 import com.smedialink.tokenplussteamid.features.registration.RegistrationFragment
 import com.smedialink.tokenplussteamid.features.registrationcomplete.RegistrationCompletedFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -20,7 +20,7 @@ class AuthNavigator @Inject constructor(
 
     override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
         AppScreens.REGISTRATION_SCREEN -> RegistrationFragment.getNewInstance()
-        AppScreens.EMPTY_STEP_SCREEN -> SteamAuthFragment.getNewInstance()
+        AppScreens.STEAM_AUTH_SCREEN -> SteamAuthFragment.getNewInstance()
         AppScreens.REGISTRATION_SUCCESS_SCREEN -> RegistrationCompletedFragment.getNewInstance()
         else -> null
     }

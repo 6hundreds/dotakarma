@@ -70,7 +70,7 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
                     webview_auth_steam?.stopLoading()
                     presenter.navigateToRegistrationCompletedPage()
-
+                    presenter.saveDetectedSteamUserId(steamUserId)
                     Timber.d("DETECTED STEAM USER ID: $steamUserId")
                 }
             }

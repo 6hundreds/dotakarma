@@ -23,7 +23,7 @@ class AuthPresenter @Inject constructor(
                 router.navigateTo(AppScreens.EMPTY_STEP_SCREEN)
             }
         } else {
-            router.navigateTo(AppScreens.REGISTRATION_SCREEN)
+            router.newRootScreen(AppScreens.REGISTRATION_SCREEN)
         }
     }
 }

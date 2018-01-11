@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.emptystep
+package com.smedialink.tokenplussteamid.features.steam
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
@@ -6,6 +6,6 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class EmptyPresenter @Inject constructor(
+class SteamAuthPresenter @Inject constructor(
         private val router: Router
-) : BasePresenter<EmptyView>()
+) : BasePresenter<SteamAuthView>()

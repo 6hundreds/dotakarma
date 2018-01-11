@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.emptystep
+package com.smedialink.tokenplussteamid.features.steam
 
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -6,10 +6,10 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseFragment
 import javax.inject.Inject
 
-class EmptyFragment : BaseFragment(), EmptyView {
+class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
     companion object {
-        fun getNewInstance() = EmptyFragment()
+        fun getNewInstance() = SteamAuthFragment()
     }
 
     override val layoutId: Int
@@ -17,7 +17,7 @@ class EmptyFragment : BaseFragment(), EmptyView {
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: EmptyPresenter
+    lateinit var presenter: SteamAuthPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter

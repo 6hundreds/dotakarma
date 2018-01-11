@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.di.modules.contribution
 
 import com.smedialink.tokenplussteamid.di.scopes.FragmentScope
-import com.smedialink.tokenplussteamid.features.emptystep.EmptyFragment
-import com.smedialink.tokenplussteamid.features.emptystep.di.EmptyFragmentModule
+import com.smedialink.tokenplussteamid.features.steam.SteamAuthFragment
+import com.smedialink.tokenplussteamid.features.steam.di.SteamAuthFragmentModule
 import com.smedialink.tokenplussteamid.features.registration.RegistrationFragment
 import com.smedialink.tokenplussteamid.features.registration.di.RegistrationFragmentModule
 import com.smedialink.tokenplussteamid.features.registrationcomplete.RegistrationCompletedFragment
@@ -19,8 +19,8 @@ interface FragmentContributionModule {
     fun registrationFragmentInjector(): RegistrationFragment
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [(EmptyFragmentModule::class)])
-    fun emptyFragmentInjector(): EmptyFragment
+    @ContributesAndroidInjector(modules = [(SteamAuthFragmentModule::class)])
+    fun steamFragmentInjector(): SteamAuthFragment
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [(RegistrationCompletedFragmentModule::class)])

@@ -52,7 +52,6 @@ dependencies {
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat
     implementation presentationDependencies.cicerone
-    implementation presentationDependencies.openIdAuth
 
     implementation developmentDependencies.timber
 

@@ -13,8 +13,8 @@
         openid.identity=http://specs.openid.net/auth/2.0/identifier_select&amp;
         openid.mode=checkid_setup&amp;
         openid.ns=http://specs.openid.net/auth/2.0&amp;
-        openid.realm=https://%1$s&amp;
-        openid.return_to=https://%1$s
+        openid.realm=%1$s&amp;
+        openid.return_to=%1$s
     </string>
 
 </resources>

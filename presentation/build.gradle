@@ -50,12 +50,15 @@ dependencies {
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat
     implementation presentationDependencies.cicerone
+    implementation presentationDependencies.objectBoxAndroid
+    implementation presentationDependencies.objectBoxKotlin
 
     implementation developmentDependencies.timber
 
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.daggerAndroidCompiler
     kapt presentationDependencies.moxyCompiler
+    kapt presentationDependencies.objectBoxCompiler
 
     testImplementation presentationTestDependencies.junit
     androidTestImplementation presentationTestDependencies.espresso

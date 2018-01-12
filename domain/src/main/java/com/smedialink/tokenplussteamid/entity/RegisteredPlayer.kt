@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.entity
 
 class RegisteredPlayer(
-        val steamId: String,
+        val steamId: Long,
         val visibilityState: Int,
         val profileState: Int,
         val personName: String,

@@ -9,10 +9,6 @@
       "name": "RegisteredPlayerEntity",
       "properties": [
         {
-          "id": "1:6044815394027459480",
-          "name": "id"
-        },
-        {
           "id": "2:2390809553556618890",
           "name": "steamid"
         },
@@ -92,7 +88,9 @@
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    6044815394027459480
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

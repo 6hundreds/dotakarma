@@ -4,5 +4,5 @@ import io.reactivex.Completable
 
 interface RegistrationService {
 
-    fun performRegistration(login: String, password: String): Completable?
+    fun performRegistration(login: String, password: String): Completable
 }

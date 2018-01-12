@@ -85,6 +85,9 @@ ext {
             moxyAndroid          : "com.arello-mobile:moxy-android:$MOXY_VERSION",
             moxyAppCompat        : "com.arello-mobile:moxy-app-compat:$MOXY_VERSION",
             cicerone             : "ru.terrakok.cicerone:cicerone:$CICERONE_VERSION",
+            objectBoxAndroid     : "io.objectbox:objectbox-android:$OBJECT_BOX_VERSION",
+            objectBoxKotlin      : "io.objectbox:objectbox-kotlin:$OBJECT_BOX_VERSION",
+            objectBoxCompiler    : "io.objectbox:objectbox-processor:$OBJECT_BOX_VERSION",
     ]
 
     presentationTestDependencies = [

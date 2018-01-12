@@ -1,9 +1,9 @@
 package com.smedialink.tokenplussteamid.network
 
-import com.smedialink.tokenplussteamid.entity.RegisteredUser
+import com.smedialink.tokenplussteamid.entity.RegisteredPlayerEntity
 import io.reactivex.Single
 
 interface ServerApi {
 
-    fun sendRegistrationRequest(login: String, password: String): Single<RegisteredUser>
+    fun sendRegistrationCompleRequest(login: String, password: String): Single<RegisteredPlayerEntity>
 }

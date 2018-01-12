@@ -24,8 +24,8 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     companion object {
         fun getNewInstance() = SteamAuthFragment()
 
-        private const val REDIRECT_URL = "https://f95156dc.ngrok.io/users/info"
-        private const val REDIRECT_SUCCESS_AUTHORITY_MARKER = "ngrok.io"
+        private const val REDIRECT_URL = "APPNAME"
+        private const val REDIRECT_SUCCESS_AUTHORITY_MARKER = "APPNAME"
     }
 
     override val layoutId: Int

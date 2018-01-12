@@ -20,14 +20,14 @@ class RegistrationPresenter @Inject constructor(
 
         interactor
                 .performRegistration(login, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe({
                     Timber.i("Registration completed.")
                     router.newRootScreen(AppScreens.STEAM_AUTH_SCREEN)
                 }, { throwable ->
                     Timber.e("Registration error: ${throwable.message}")
                 })
-                .also { disposable -> unsubscribeOnDestroy(disposable) }
+                ?.also { disposable -> unsubscribeOnDestroy(disposable) }
     }
 }

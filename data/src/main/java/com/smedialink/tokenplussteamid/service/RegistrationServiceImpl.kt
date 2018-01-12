@@ -10,10 +10,9 @@ class RegistrationServiceImpl @Inject constructor(
         private val settingsManager: SettingsManager
 ) : RegistrationService {
 
-    override fun performRegistration(login: String, password: String): Completable =
+    override fun performRegistration(login: String, password: String): Completable? =
             serverApi
-                    .sendRegistrationRequest(login, password)
-                    .map { response -> response.token }
-                    .doOnSuccess { token -> settingsManager.saveToken(token) }
+                    .sendRegistrationCompleRequest(login, password)
+                    .doOnSuccess {  }
                     .toCompletable()
 }

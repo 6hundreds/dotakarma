@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 android {
 
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -40,6 +42,10 @@ dependencies {
     implementation dataDependencies.retrofitRxAdapter
     implementation dataDependencies.retrofitMoshiConverter
     implementation dataDependencies.javaxInject
+    implementation dataDependencies.objectBoxAndroid
+    implementation dataDependencies.objectBoxKotlin
+
+    kapt dataDependencies.objectBoxCompiler
 
     testImplementation dataTestDependencies.junit
 }

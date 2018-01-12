@@ -38,7 +38,7 @@ dependencies {
     implementation dataDependencies.rxJava
     implementation dataDependencies.rxKotlin
     implementation dataDependencies.rxAndroid
-    implementation dataDependencies.moshi
+    implementation dataDependencies.gson
     implementation dataDependencies.retrofit
     implementation dataDependencies.retrofitRxAdapter
     implementation dataDependencies.retrofitMoshiConverter
@@ -47,6 +47,8 @@ dependencies {
     implementation dataDependencies.objectBoxKotlin
 
     kapt dataDependencies.objectBoxCompiler
+
+    implementation developmentDependencies.timber
 
     testImplementation dataTestDependencies.junit
 }

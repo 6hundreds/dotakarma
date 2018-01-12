@@ -14,7 +14,6 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
-
 // TEST ACCOUNT:
 // smltest;02720272qQ
 
@@ -25,7 +24,8 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     companion object {
         fun getNewInstance() = SteamAuthFragment()
 
-        private const val APP_NAME = "TokenPlusSteamId"
+        private const val REDIRECT_URL = "https://f95156dc.ngrok.io/users/info"
+        private const val REDIRECT_SUCCESS_AUTHORITY_MARKER = "ngrok.io"
     }
 
     override val layoutId: Int
@@ -33,7 +33,7 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
     private val steamAuthUrl: String by lazy {
         val urlTemplate = resources.getString(R.string.constant_steam_auth_url)
-        String.format(Locale.getDefault(), urlTemplate, APP_NAME)
+        String.format(Locale.getDefault(), urlTemplate, REDIRECT_URL)
     }
 
     @Inject
@@ -50,12 +50,15 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initWebView() {
-        webview_auth_steam?.settings?.javaScriptEnabled = true
-        webview_auth_steam?.settings?.setAppCacheEnabled(false)
-        webview_auth_steam?.settings?.loadWithOverviewMode = true
-        webview_auth_steam?.settings?.useWideViewPort = true
-        webview_auth_steam?.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
-        webview_auth_steam?.isScrollbarFadingEnabled = false
+
+        webview_auth_steam?.apply {
+            settings?.javaScriptEnabled = true
+            settings?.setAppCacheEnabled(false)
+            settings?.loadWithOverviewMode = true
+            settings?.useWideViewPort = true
+            scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
+            isScrollbarFadingEnabled = false
+        }
 
         webview_auth_steam?.webViewClient = object : WebViewClient() {
 
@@ -63,7 +66,9 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
                 val parsedUrl = Uri.parse(url)
 
-                if (parsedUrl.authority == APP_NAME.toLowerCase()) {
+                if (parsedUrl.authority.contains(REDIRECT_SUCCESS_AUTHORITY_MARKER)) {
+
+                    Timber.d("Redirect completed, parsing user steamId...")
 
                     val userUrl = Uri.parse(parsedUrl.getQueryParameter("openid.identity"))
                     val steamUserId = userUrl.lastPathSegment
@@ -71,7 +76,8 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
                     webview_auth_steam?.stopLoading()
                     presenter.navigateToRegistrationCompletedPage()
                     presenter.saveDetectedSteamUserId(steamUserId)
-                    Timber.d("DETECTED STEAM USER ID: $steamUserId")
+
+                    Timber.d("Detected steamId: $steamUserId")
                 }
             }
         }
@@ -82,8 +88,10 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     }
 
     override fun clearWebView() {
-        webview_auth_steam?.clearHistory()
-        webview_auth_steam?.clearCache(true)
-        webview_auth_steam?.loadUrl("about:blank")
+        webview_auth_steam?.apply {
+            clearHistory()
+            clearCache(true)
+            loadUrl("about:blank")
+        }
     }
 }

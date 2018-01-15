@@ -12,8 +12,8 @@ class LocalDataStore @Inject constructor(
 
     override fun getPlayerProfile(): Single<RegisteredPlayerEntity> {
         val playerBox = boxStore.boxFor(RegisteredPlayerEntity::class.java)
-        val player = playerBox.all.first()
-        return Single.just(player)
+        val players = playerBox.query().build().find().first()
+        return Single.just(players)
     }
 
     override fun savePlayerProfile(player: RegisteredPlayerEntity): Completable =

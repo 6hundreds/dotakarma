@@ -7,7 +7,7 @@ import javax.inject.Inject
 class RegistrationInteractor @Inject constructor(
         private val registrationService: RegistrationService) {
 
-    fun performRegistration(login: String, password: String): Completable? =
+    fun performRegistration(login: String, password: String): Completable =
             registrationService
                     .performRegistration(login, password)
 }

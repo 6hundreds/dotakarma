@@ -17,4 +17,8 @@
         openid.return_to=%1$s
     </string>
 
+    <!-- Menus -->
+    <string name="action_feed">Feed</string>
+    <string name="action_profile">Profile</string>
+
 </resources>

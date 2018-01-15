@@ -11,7 +11,15 @@ class MainPresenter @Inject constructor(
         private val router: Router
 ) : BasePresenter<MainView>() {
 
-    fun performAuthorization() {
+    fun navigateToAuthScreen() {
         router.navigateTo(AppScreens.AUTH_SCREEN)
+    }
+
+    fun navigateToFeedScreen() {
+        router.replaceScreen(AppScreens.BOTTOM_FEED_SCREEN)
+    }
+
+    fun navigateToProfileScreen() {
+        router.replaceScreen(AppScreens.BOTTOM_PROFILE_SCREEN)
     }
 }

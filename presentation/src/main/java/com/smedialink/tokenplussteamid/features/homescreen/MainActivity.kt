@@ -8,9 +8,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseActivity
 import com.smedialink.tokenplussteamid.features.AppScreens
-import com.smedialink.tokenplussteamid.features.authorization.AuthActivity
-import com.smedialink.tokenplussteamid.features.homescreen.pages.feed.FeedFragment
-import com.smedialink.tokenplussteamid.features.homescreen.pages.profile.PlayerProfileFragment
+import com.smedialink.tokenplussteamid.features.feed.FeedFragment
+import com.smedialink.tokenplussteamid.features.playerprofile.PlayerProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.*
@@ -80,7 +79,7 @@ class MainActivity : BaseActivity(), MainView {
             }
             is Forward -> {
                 when (command.screenKey) {
-                    AppScreens.AUTH_SCREEN -> startActivity(AuthActivity.getIntent(MainActivity@ this))
+//                    AppScreens.AUTH_SCREEN -> startActivity(AuthActivity.getIntent(MainActivity@ this))
                 }
             }
         }

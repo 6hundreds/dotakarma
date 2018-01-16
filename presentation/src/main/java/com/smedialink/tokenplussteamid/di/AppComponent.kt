@@ -6,7 +6,6 @@ import com.smedialink.tokenplussteamid.di.modules.AppModule
 import com.smedialink.tokenplussteamid.di.modules.NavigationModule
 import com.smedialink.tokenplussteamid.di.modules.NetworkModule
 import com.smedialink.tokenplussteamid.di.modules.contribution.ActivityContributionModule
-import com.smedialink.tokenplussteamid.di.modules.contribution.FragmentContributionModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -14,7 +13,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     (ActivityContributionModule::class),
-    (FragmentContributionModule::class),
     (AppModule::class),
     (NavigationModule::class),
     (NetworkModule::class)]

@@ -17,12 +17,12 @@ class PlayerProfileRepositoryImpl @Inject constructor(
         return dataStoreFactory
             .create(strategy)
             .get()
-            .map { player -> dataMaper.transformFromEntity(player) }
+            .map { player -> dataMaper.transformFromDataModel(player) }
     }
 
     override fun saveUserProfile(player: Player, strategy: Long): Completable =
         Completable.create { emitter ->
-            val entity = dataMaper.transformToEntity(player)
+            val entity = dataMaper.transformToDataModel(player)
             val dataStore = dataStoreFactory.create(strategy)
             dataStore.put(entity)
             emitter.onComplete()

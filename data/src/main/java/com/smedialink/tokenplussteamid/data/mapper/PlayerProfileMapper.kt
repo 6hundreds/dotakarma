@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class PlayerProfileMapper @Inject constructor() {
 
-    fun transformFromEntity(player: PlayerDataModel): Player =
+    fun transformFromDataModel(player: PlayerDataModel): Player =
         Player(
             id = player.id,
             steamId = player.steamid,
@@ -19,7 +19,7 @@ class PlayerProfileMapper @Inject constructor() {
             realName = player.realname
         )
 
-    fun transformToEntity(player: Player): PlayerDataModel =
+    fun transformToDataModel(player: Player): PlayerDataModel =
         PlayerDataModel(
             id = player.id,
             steamid = player.steamId,

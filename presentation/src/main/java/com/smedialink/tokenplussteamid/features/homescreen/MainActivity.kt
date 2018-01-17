@@ -27,13 +27,12 @@ class MainActivity : BaseActivity(), MainView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    private var feedFragment: FeedFragment? = null
-    private var profileFragment: PlayerProfileFragment? = null
+    @Inject
+    lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initFragments()
         initViews()
     }
 
@@ -47,77 +46,15 @@ class MainActivity : BaseActivity(), MainView {
         navigatorHolder.setNavigator(navigator)
     }
 
-    private val navigator = Navigator { commands ->
-        commands.forEach { command -> applyCommand(command) }
-    }
-
-    private fun applyCommand(command: Command) {
-        when (command) {
-            is Back -> {
-                finish()
-            }
-            is SystemMessage -> {
-                Toast.makeText(MainActivity@ this, command.message, Toast.LENGTH_SHORT).show()
-            }
-            is Replace -> {
-                val fm = supportFragmentManager
-
-                when (command.screenKey) {
-                    AppScreens.BOTTOM_FEED_SCREEN -> {
-                        fm.beginTransaction()
-                                .detach(profileFragment)
-                                .attach(feedFragment)
-                                .commitNow()
-                    }
-                    AppScreens.BOTTOM_PROFILE_SCREEN -> {
-                        fm.beginTransaction()
-                                .detach(feedFragment)
-                                .attach(profileFragment)
-                                .commitNow()
-                    }
-                }
-            }
-            is Forward -> {
-                when (command.screenKey) {
-//                    AppScreens.AUTH_SCREEN -> startActivity(AuthActivity.getIntent(MainActivity@ this))
-                }
-            }
-        }
-    }
-
-    private fun initFragments() {
-        val fm = supportFragmentManager
-
-        feedFragment = fm.findFragmentByTag(FeedFragment.TAG) as FeedFragment?
-
-        if (feedFragment == null) {
-            feedFragment = FeedFragment.getNewInstance()
-            fm.beginTransaction()
-                    .add(R.id.home_tabs_container, feedFragment, FeedFragment.TAG)
-                    .detach(feedFragment)
-                    .commitNow()
-        }
-
-        profileFragment = fm.findFragmentByTag(PlayerProfileFragment.TAG) as PlayerProfileFragment?
-
-        if (profileFragment == null) {
-            profileFragment = PlayerProfileFragment.getNewInstance()
-            fm.beginTransaction()
-                    .add(R.id.home_tabs_container, profileFragment, PlayerProfileFragment.TAG)
-                    .detach(profileFragment)
-                    .commitNow()
-        }
-    }
-
     private fun initViews() {
         home_bottom_navigation.setOnNavigationItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.action_feed -> {
-                    presenter.navigateToFeedScreen()
+                    presenter.onFeedItemClicked()
                     true
                 }
                 R.id.action_profile -> {
-                    presenter.navigateToProfileScreen()
+                    presenter.onProfileItemClicked()
                     true
                 }
                 else -> true

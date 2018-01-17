@@ -2,13 +2,15 @@ package com.smedialink.tokenplussteamid.features.steamauth
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class SteamAuthPresenter @Inject constructor(
-        private val router: Router
-) : BasePresenter<SteamAuthView>() {
+class SteamAuthPresenter @Inject constructor() : BasePresenter<SteamAuthView>() {
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        performSteamAuth()
+    }
 
     override fun attachView(view: SteamAuthView?) {
         super.attachView(view)
@@ -20,8 +22,7 @@ class SteamAuthPresenter @Inject constructor(
         viewState.clearWebView()
     }
 
-    fun loadSteamAuthPage() {
+    private fun performSteamAuth() {
         viewState.displaySteamAuthWebsite()
     }
 }
-

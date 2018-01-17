@@ -7,8 +7,6 @@ class FeedFragment : BaseFragment(), FeedView {
 
     companion object {
         fun getNewInstance() = FeedFragment()
-
-        const val TAG = "FeedFragment"
     }
 
     override val layoutId: Int

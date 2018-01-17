@@ -7,8 +7,6 @@ class PlayerProfileFragment : BaseFragment(), PlayerProfileView {
 
     companion object {
         fun getNewInstance() = PlayerProfileFragment()
-
-        const val TAG = "PlayerProfileFragment"
     }
 
     override val layoutId: Int

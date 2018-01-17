@@ -13,16 +13,15 @@ class MainPresenter @Inject constructor(
         private val settingsManager: SettingsManager
 ) : BasePresenter<MainView>() {
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        navigateToFeedScreen()
-    }
-
-    fun navigateToFeedScreen() {
+    fun onFeedItemClicked() {
         router.replaceScreen(AppScreens.BOTTOM_FEED_SCREEN)
     }
 
-    fun navigateToProfileScreen() {
-        router.replaceScreen(AppScreens.BOTTOM_PROFILE_SCREEN)
+    fun onProfileItemClicked() {
+        if (settingsManager.isTokenReceived()) {
+            router.replaceScreen(AppScreens.BOTTOM_PROFILE_SCREEN)
+        } else {
+            router.replaceScreen(AppScreens.STEAM_AUTH_SCREEN)
+        }
     }
 }

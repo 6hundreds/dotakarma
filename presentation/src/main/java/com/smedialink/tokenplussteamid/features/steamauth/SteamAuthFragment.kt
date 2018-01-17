@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -43,6 +44,16 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
         }
 
         webview_auth_steam?.webViewClient = object : WebViewClient() {
+
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                loading_indicator.visibility = View.VISIBLE
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                loading_indicator.visibility = View.GONE
+            }
 
             override fun shouldOverrideUrlLoading(view: WebView?, url: String): Boolean {
                 if (url.contains(URL_MARKER)) {

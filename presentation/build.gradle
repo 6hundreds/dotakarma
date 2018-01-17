@@ -50,6 +50,7 @@ dependencies {
     implementation presentationDependencies.retrofit
     implementation presentationDependencies.retrofitRxAdapter
     implementation presentationDependencies.retrofitGsonConverter
+    implementation presentationDependencies.loginInterceptor
     implementation presentationDependencies.moxy
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat

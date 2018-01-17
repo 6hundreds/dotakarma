@@ -25,6 +25,7 @@ ext {
     final GSON_VERSION = "2.8.2"
     final JAVAX_INJECT_VERSION = "1"
     final OBJECT_BOX_VERSION = "1.4.0"
+    final OKHTTP_VERSION = "3.9.1"
 
     // Testing
     final ESPRESSO_VERSION = "3.0.2-alpha1"
@@ -82,6 +83,7 @@ ext {
             retrofit             : "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION",
             retrofitRxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION",
+            loginInterceptor     : "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION",
             moxy                 : "com.arello-mobile:moxy:$MOXY_VERSION",
             moxyCompiler         : "com.arello-mobile:moxy-compiler:$MOXY_VERSION",
             moxyAndroid          : "com.arello-mobile:moxy-android:$MOXY_VERSION",

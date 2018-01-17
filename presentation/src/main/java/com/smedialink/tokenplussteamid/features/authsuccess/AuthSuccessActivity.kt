@@ -27,6 +27,9 @@ class AuthSuccessActivity : BaseActivity(), AuthSuccessView {
             presenter.saveToken(text.substringAfter("="))
         }
 
-        button_ok.setOnClickListener { finish() }
+        button_ok.setOnClickListener {
+            //finish()
+            presenter.loadProfile()
+        }
     }
 }

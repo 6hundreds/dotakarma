@@ -16,11 +16,11 @@ class RemoteDataStore @Inject constructor(
         private const val TOKEN_HEADER_PARAM = "x-access-token"
     }
 
-    override fun getPlayerProfile(): Single<RegisteredPlayerEntity> {
-        val headers = mapOf(TOKEN_HEADER_PARAM to settingsManager.getSavedToken())
-        return serverApi
-                .loadPlayerProfile(headers)
-    }
+    override fun getPlayerProfile(): Single<RegisteredPlayerEntity> =
+            serverApi
+                    .loadPlayerProfile(
+                            headers = mapOf(TOKEN_HEADER_PARAM to settingsManager.getSavedToken())
+                    )
 
     override fun savePlayerProfile(player: RegisteredPlayerEntity): Completable =
             Completable.complete()

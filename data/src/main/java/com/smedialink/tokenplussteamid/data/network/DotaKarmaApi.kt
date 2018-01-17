@@ -7,7 +7,7 @@ import retrofit2.http.HeaderMap
 
 interface DotaKarmaApi {
 
-    @GET("/users/me")
+    @GET("users/me")
     fun loadPlayerProfile(
             @HeaderMap headers: Map<String, String>
     ): Single<RegisteredPlayerEntity>

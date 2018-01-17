@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:6561176008973011264",
-      "lastPropertyId": "18:3506845246101872455",
+      "lastPropertyId": "25:4922078539373765604",
       "name": "RegisteredPlayerEntity",
       "properties": [
         {
@@ -15,6 +15,34 @@
         {
           "id": "8:7009740176372956166",
           "name": "avatar"
+        },
+        {
+          "id": "19:5354361645189058639",
+          "name": "id"
+        },
+        {
+          "id": "20:9117526845930035909",
+          "name": "karma"
+        },
+        {
+          "id": "21:1043522408965556856",
+          "name": "personaname"
+        },
+        {
+          "id": "22:1133086623159940547",
+          "name": "avatarmedium"
+        },
+        {
+          "id": "23:6049149408893091289",
+          "name": "avatarfull"
+        },
+        {
+          "id": "24:8966925731773857236",
+          "name": "personastate"
+        },
+        {
+          "id": "25:4922078539373765604",
+          "name": "realname"
         }
       ],
       "relations": []

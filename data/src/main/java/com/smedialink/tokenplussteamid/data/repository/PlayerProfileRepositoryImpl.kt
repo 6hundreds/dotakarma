@@ -1,17 +1,17 @@
 package com.smedialink.tokenplussteamid.data.repository
 
-import com.smedialink.tokenplussteamid.data.entity.mapper.RegisteredPlayerMapper
+import com.smedialink.tokenplussteamid.data.entity.mapper.PlayerProfileMapper
 import com.smedialink.tokenplussteamid.data.repository.datasource.DataStoreFactory
 import com.smedialink.tokenplussteamid.entity.RegisteredPlayer
-import com.smedialink.tokenplussteamid.repository.RegisteredPlayerRepository
+import com.smedialink.tokenplussteamid.repository.PlayerProfileRepository
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class RegisteredPlayerRepositoryImpl @Inject constructor(
+class PlayerProfileRepositoryImpl @Inject constructor(
         private val dataStoreFactory: DataStoreFactory,
-        private val dataMaper: RegisteredPlayerMapper
-) : RegisteredPlayerRepository {
+        private val dataMaper: PlayerProfileMapper
+) : PlayerProfileRepository {
 
     override fun loadUserProfile(strategy: Long): Single<RegisteredPlayer> {
 

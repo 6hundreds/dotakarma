@@ -4,7 +4,7 @@ import com.smedialink.tokenplussteamid.entity.RegisteredPlayer
 import io.reactivex.Completable
 import io.reactivex.Single
 
-interface RegisteredPlayerRepository {
+interface PlayerProfileRepository {
 
     fun loadUserProfile(strategy: Long): Single<RegisteredPlayer>
 

@@ -2,9 +2,10 @@ package com.smedialink.tokenplussteamid.data.manager
 
 import android.content.SharedPreferences
 import javax.inject.Inject
-//todo rename to SessionManager
-class SettingsManager @Inject constructor(
-        private val preferences: SharedPreferences) {
+
+class SessionManager @Inject constructor(
+    private val preferences: SharedPreferences
+) {
 
     companion object {
         private const val PREF_TOKEN_KEY = "pref_token"

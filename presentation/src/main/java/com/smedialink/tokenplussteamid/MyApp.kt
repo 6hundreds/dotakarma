@@ -22,10 +22,10 @@ class MyApp : Application(), HasActivityInjector {
         }
 
         DaggerAppComponent
-                .builder()
-                .context(this)
-                .build()
-                .inject(this)
+            .builder()
+            .context(this)
+            .build()
+            .inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector

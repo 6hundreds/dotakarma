@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:6561176008973011264",
-      "lastPropertyId": "18:3506845246101872455",
+      "lastPropertyId": "25:4922078539373765604",
       "name": "RegisteredPlayerEntity",
       "properties": [
         {
@@ -15,12 +15,84 @@
         {
           "id": "8:7009740176372956166",
           "name": "avatar"
+        },
+        {
+          "id": "19:5354361645189058639",
+          "name": "id"
+        },
+        {
+          "id": "20:9117526845930035909",
+          "name": "karma"
+        },
+        {
+          "id": "21:1043522408965556856",
+          "name": "personaname"
+        },
+        {
+          "id": "22:1133086623159940547",
+          "name": "avatarmedium"
+        },
+        {
+          "id": "23:6049149408893091289",
+          "name": "avatarfull"
+        },
+        {
+          "id": "24:8966925731773857236",
+          "name": "personastate"
+        },
+        {
+          "id": "25:4922078539373765604",
+          "name": "realname"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:874937903212397861",
+      "lastPropertyId": "9:8353773088866762948",
+      "name": "PlayerDataModel",
+      "properties": [
+        {
+          "id": "1:8773197529688479080",
+          "name": "id"
+        },
+        {
+          "id": "2:1834278758230422633",
+          "name": "steamid"
+        },
+        {
+          "id": "3:7445758043949634504",
+          "name": "karma"
+        },
+        {
+          "id": "4:3123653080473839260",
+          "name": "personaname"
+        },
+        {
+          "id": "5:1486378538759151324",
+          "name": "avatar"
+        },
+        {
+          "id": "6:5880520259937137283",
+          "name": "avatarmedium"
+        },
+        {
+          "id": "7:4436374729192223874",
+          "name": "avatarfull"
+        },
+        {
+          "id": "8:652018790250482420",
+          "name": "personastate"
+        },
+        {
+          "id": "9:8353773088866762948",
+          "name": "realname"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:6561176008973011264",
+  "lastEntityId": "2:874937903212397861",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

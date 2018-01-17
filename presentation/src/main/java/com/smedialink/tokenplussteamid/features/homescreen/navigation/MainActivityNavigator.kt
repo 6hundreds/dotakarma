@@ -13,10 +13,11 @@ import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
 class MainActivityNavigator @Inject constructor(
-        private val activity: MainActivity
+    private val activity: MainActivity
 ) : SupportAppNavigator(activity, activity.supportFragmentManager, R.id.home_tabs_container) {
 
-    override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? = null
+    override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? =
+        null
 
     override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
         AppScreens.BOTTOM_FEED_SCREEN -> FeedFragment.getNewInstance()

@@ -11,11 +11,12 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    (ActivityContributionModule::class),
-    (AppModule::class),
-    (NavigationModule::class),
-    (NetworkModule::class)]
+@Component(
+    modules = [
+        (ActivityContributionModule::class),
+        (AppModule::class),
+        (NavigationModule::class),
+        (NetworkModule::class)]
 )
 interface AppComponent {
 

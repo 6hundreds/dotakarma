@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 interface DataStore<T> {
 
-    fun get() : Single<T>
+    fun get(): Single<T>
 
-    fun put(t : T) : Completable
+    fun put(t: T): Completable
 }

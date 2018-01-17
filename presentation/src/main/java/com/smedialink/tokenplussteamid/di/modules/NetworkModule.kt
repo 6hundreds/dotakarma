@@ -1,6 +1,8 @@
 package com.smedialink.tokenplussteamid.di.modules
 
+import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
+import com.smedialink.tokenplussteamid.network.interceptors.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -19,19 +21,20 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideClient(): OkHttpClient =
-            OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build()
+    fun provideClient(settingsManager: SessionManager): OkHttpClient =
+        OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(AuthInterceptor(settingsManager))
+            .build()
 
     @Provides
     @Singleton
     fun provideDotaKarmaApi(client: OkHttpClient): DotaKarmaApi =
-            Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(client)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                    .create(DotaKarmaApi::class.java)
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(DotaKarmaApi::class.java)
 }

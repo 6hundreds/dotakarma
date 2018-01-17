@@ -6,7 +6,7 @@ allprojects {
 
 ext {
     // Kotlin
-    final KOTLIN_VERSION = "1.2.10"
+    final KOTLIN_VERSION = "1.2.20"
 
     // Android
     final SUPPORT_LIBRARY_VERSION = "27.0.2"

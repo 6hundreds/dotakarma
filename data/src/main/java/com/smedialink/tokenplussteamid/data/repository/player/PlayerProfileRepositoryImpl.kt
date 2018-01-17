@@ -1,7 +1,6 @@
-package com.smedialink.tokenplussteamid.data.repository
+package com.smedialink.tokenplussteamid.data.repository.player
 
 import com.smedialink.tokenplussteamid.data.entity.mapper.PlayerProfileMapper
-import com.smedialink.tokenplussteamid.data.repository.datasource.DataStoreFactory
 import com.smedialink.tokenplussteamid.entity.RegisteredPlayer
 import com.smedialink.tokenplussteamid.repository.PlayerProfileRepository
 import io.reactivex.Completable
@@ -9,16 +8,15 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class PlayerProfileRepositoryImpl @Inject constructor(
-        private val dataStoreFactory: DataStoreFactory,
+        private val dataStoreFactory: PlayerDataStoreFactory,
         private val dataMaper: PlayerProfileMapper
 ) : PlayerProfileRepository {
 
     override fun loadUserProfile(strategy: Long): Single<RegisteredPlayer> {
 
-        val dataStore = dataStoreFactory.create(strategy)
-
-        return dataStore
-                .getPlayerProfile()
+        return dataStoreFactory
+                .create(strategy)
+                .get()
                 .map { player -> dataMaper.transformFromEntity(player) }
     }
 
@@ -26,7 +24,7 @@ class PlayerProfileRepositoryImpl @Inject constructor(
             Completable.create { emitter ->
                 val entity = dataMaper.transformToEntity(player)
                 val dataStore = dataStoreFactory.create(strategy)
-                dataStore.savePlayerProfile(entity)
+                dataStore.put(entity)
                 emitter.onComplete()
             }
 }

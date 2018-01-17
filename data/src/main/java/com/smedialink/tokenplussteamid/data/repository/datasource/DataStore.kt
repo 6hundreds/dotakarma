@@ -1,12 +1,11 @@
 package com.smedialink.tokenplussteamid.data.repository.datasource
 
-import com.smedialink.tokenplussteamid.data.entity.RegisteredPlayerEntity
 import io.reactivex.Completable
 import io.reactivex.Single
 
-interface DataStore {
+interface DataStore<T> {
 
-    fun getPlayerProfile(): Single<RegisteredPlayerEntity>
+    fun get() : Single<T>
 
-    fun savePlayerProfile(player: RegisteredPlayerEntity): Completable
+    fun put(t : T) : Completable
 }

@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.data.entity
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 
+//TODO() Refactor name (PlayerDataModel / Player )
 @Entity
 data class RegisteredPlayerEntity(
         @Id(assignable = true) var id: Long,

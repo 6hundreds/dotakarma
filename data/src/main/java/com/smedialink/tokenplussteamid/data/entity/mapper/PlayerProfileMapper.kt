@@ -3,9 +3,9 @@ package com.smedialink.tokenplussteamid.data.entity.mapper
 import com.smedialink.tokenplussteamid.data.entity.RegisteredPlayerEntity
 import com.smedialink.tokenplussteamid.entity.RegisteredPlayer
 import javax.inject.Inject
-
+//todo move in upper level.
 class PlayerProfileMapper @Inject constructor() {
-
+    //todo delete unused method
     fun transformFromEntity(player: RegisteredPlayerEntity): RegisteredPlayer =
             RegisteredPlayer(
                     id = player.id,

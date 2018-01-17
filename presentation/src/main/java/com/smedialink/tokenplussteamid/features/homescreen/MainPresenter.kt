@@ -18,7 +18,7 @@ class MainPresenter @Inject constructor(
     }
 
     fun onProfileItemClicked() {
-        if (settingsManager.isTokenReceived()) {
+        if (settingsManager.isSessionOpened()) {
             router.replaceScreen(AppScreens.BOTTOM_PROFILE_SCREEN)
         } else {
             router.replaceScreen(AppScreens.STEAM_AUTH_SCREEN)

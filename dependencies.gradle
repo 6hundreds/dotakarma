@@ -47,20 +47,18 @@ ext {
     ]
 
     dataDependencies = [
-            kotlinJre             : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION",
-            rxJava                : "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION",
-            rxKotlin              : "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN_VERSION",
-            rxAndroid             : "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION",
-            dagger                : "com.google.dagger:dagger:$DAGGER_VERSION",
-            daggerCompiler        : "com.google.dagger:dagger-compiler:$DAGGER_VERSION",
-            gson                  : "com.google.code.gson:gson:$GSON_VERSION",
-            retrofit              : "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION",
-            retrofitRxAdapter     : "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION",
-            retrofitMoshiConverter: "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION",
-            javaxInject           : "javax.inject:javax.inject:$JAVAX_INJECT_VERSION",
-            objectBoxAndroid      : "io.objectbox:objectbox-android:$OBJECT_BOX_VERSION",
-            objectBoxKotlin       : "io.objectbox:objectbox-kotlin:$OBJECT_BOX_VERSION",
-            objectBoxCompiler     : "io.objectbox:objectbox-processor:$OBJECT_BOX_VERSION",
+            kotlinJre            : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION",
+            rxJava               : "io.reactivex.rxjava2:rxjava:$RX_JAVA_VERSION",
+            rxKotlin             : "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN_VERSION",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION",
+            dagger               : "com.google.dagger:dagger:$DAGGER_VERSION",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:$DAGGER_VERSION",
+            gson                 : "com.google.code.gson:gson:$GSON_VERSION",
+            retrofit             : "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION",
+            javaxInject          : "javax.inject:javax.inject:$JAVAX_INJECT_VERSION",
+            objectBoxAndroid     : "io.objectbox:objectbox-android:$OBJECT_BOX_VERSION",
+            objectBoxKotlin      : "io.objectbox:objectbox-kotlin:$OBJECT_BOX_VERSION",
+            objectBoxCompiler    : "io.objectbox:objectbox-processor:$OBJECT_BOX_VERSION",
     ]
 
     dataTestDependencies = [
@@ -80,6 +78,10 @@ ext {
             daggerAndroid        : "com.google.dagger:dagger-android:$DAGGER_VERSION",
             daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:$DAGGER_VERSION",
             daggerAndroidSupport : "com.google.dagger:dagger-android-support:$DAGGER_VERSION",
+            gson                 : "com.google.code.gson:gson:$GSON_VERSION",
+            retrofit             : "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION",
+            retrofitRxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION",
             moxy                 : "com.arello-mobile:moxy:$MOXY_VERSION",
             moxyCompiler         : "com.arello-mobile:moxy-compiler:$MOXY_VERSION",
             moxyAndroid          : "com.arello-mobile:moxy-android:$MOXY_VERSION",

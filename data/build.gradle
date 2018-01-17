@@ -40,8 +40,6 @@ dependencies {
     implementation dataDependencies.rxAndroid
     implementation dataDependencies.gson
     implementation dataDependencies.retrofit
-    implementation dataDependencies.retrofitRxAdapter
-    implementation dataDependencies.retrofitMoshiConverter
     implementation dataDependencies.javaxInject
     implementation dataDependencies.objectBoxAndroid
     implementation dataDependencies.objectBoxKotlin

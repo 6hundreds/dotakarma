@@ -46,6 +46,10 @@ dependencies {
     implementation presentationDependencies.dagger
     implementation presentationDependencies.daggerAndroid
     implementation presentationDependencies.daggerAndroidSupport
+    implementation presentationDependencies.gson
+    implementation presentationDependencies.retrofit
+    implementation presentationDependencies.retrofitRxAdapter
+    implementation presentationDependencies.retrofitGsonConverter
     implementation presentationDependencies.moxy
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat

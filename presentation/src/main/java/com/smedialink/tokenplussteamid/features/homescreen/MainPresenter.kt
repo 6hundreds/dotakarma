@@ -17,6 +17,10 @@ class MainPresenter @Inject constructor(
         router.replaceScreen(AppScreens.BOTTOM_FEED_SCREEN)
     }
 
+    fun onMatchesItemSelected() {
+        router.replaceScreen(AppScreens.BOTTOM_MATCHES_SCREEN)
+    }
+
     fun onProfileItemClicked() {
         if (settingsManager.isSessionOpened()) {
             router.replaceScreen(AppScreens.BOTTOM_PROFILE_SCREEN)

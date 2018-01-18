@@ -1,9 +1,10 @@
 package com.smedialink.tokenplussteamid.features.homescreen
 
 import android.os.Bundle
-import android.view.MenuItem
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -11,6 +12,12 @@ import ru.terrakok.cicerone.Navigator
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainView {
+
+    companion object {
+        private const val TAB_FEED = 0
+        private const val TAB_PROFILE = 1
+        private const val TAB_MATCHES = 2
+    }
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -24,6 +31,10 @@ class MainActivity : BaseActivity(), MainView {
 
     @Inject
     lateinit var navigator: Navigator
+
+    private lateinit var tabItemFeed: AHBottomNavigationItem
+    private lateinit var tabItemProfile: AHBottomNavigationItem
+    private lateinit var tabItemPMatches: AHBottomNavigationItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,18 +53,47 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     private fun initViews() {
-        home_bottom_navigation.setOnNavigationItemSelectedListener { item: MenuItem ->
-            when (item.itemId) {
-                R.id.action_feed -> {
+
+        tabItemFeed = AHBottomNavigationItem(
+            R.string.action_feed,
+            R.drawable.ic_comment,
+            R.color.colorFeed
+        )
+        tabItemProfile = AHBottomNavigationItem(
+            R.string.action_profile,
+            R.drawable.ic_person,
+            R.color.colorProfile
+        )
+        tabItemPMatches = AHBottomNavigationItem(
+            R.string.action_matches,
+            R.drawable.ic_star,
+            R.color.colorMatches
+        )
+
+        home_bottom_navigation.addItems(listOf(tabItemFeed, tabItemProfile, tabItemPMatches))
+        home_bottom_navigation.titleState = AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE
+        home_bottom_navigation.isTranslucentNavigationEnabled = true
+        home_bottom_navigation.isColored = true
+
+        home_bottom_navigation.setOnTabSelectedListener { position, _ ->
+            when (position) {
+                TAB_FEED -> {
                     presenter.onFeedItemClicked()
                     true
                 }
-                R.id.action_profile -> {
+                TAB_PROFILE -> {
                     presenter.onProfileItemClicked()
                     true
                 }
-                else -> true
+                TAB_MATCHES -> {
+                    presenter.onMatchesItemSelected()
+                    true
+                }
+                else -> false
             }
         }
+
+        // Force first tab loading on onCreate
+        home_bottom_navigation.currentItem = 0
     }
 }

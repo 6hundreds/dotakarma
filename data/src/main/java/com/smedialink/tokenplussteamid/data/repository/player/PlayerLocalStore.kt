@@ -7,18 +7,21 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class PlayerLocalStore @Inject constructor(private val boxStore: BoxStore) :
-    DataStore<PlayerDataModel> {
+class PlayerLocalStore @Inject constructor(
+    private val boxStore: BoxStore
+) : DataStore<PlayerDataModel> {
 
-    override fun get(): Single<PlayerDataModel> {
-        val playerBox = boxStore.boxFor(PlayerDataModel::class.java)
-        val players = playerBox.query().build().find().first()
-        return Single.just(players)
+    override fun get(): Single<PlayerDataModel> = Single.fromCallable {
+        boxStore
+            .boxFor(PlayerDataModel::class.java)
+            .query()
+            .build()
+            .find()
+            .first()
     }
 
     override fun put(t: PlayerDataModel): Completable =
         Completable.fromAction({
-            val playerBox = boxStore.boxFor(PlayerDataModel::class.java)
-            playerBox.put(t)
+            boxStore.boxFor(PlayerDataModel::class.java).put(t)
         })
 }

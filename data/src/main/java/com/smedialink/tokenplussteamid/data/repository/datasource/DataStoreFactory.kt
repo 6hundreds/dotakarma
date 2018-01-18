@@ -3,7 +3,7 @@ package com.smedialink.tokenplussteamid.data.repository.datasource
 import com.smedialink.tokenplussteamid.repository.DataStoreStrategy
 import javax.inject.Inject
 
-abstract class DataStoreFactory<T> @Inject constructor(
+open class DataStoreFactory<T> @Inject constructor(
     private val localDataStore: DataStore<T>,
     private val remoteDataStore: DataStore<T>
 ) {

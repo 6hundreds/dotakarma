@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.di.modules.contribution
 
 import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
-import com.smedialink.tokenplussteamid.features.authorization.AuthActivity
-import com.smedialink.tokenplussteamid.features.authorization.di.AuthActivityModule
+import com.smedialink.tokenplussteamid.features.authsuccess.AuthSuccessActivity
+import com.smedialink.tokenplussteamid.features.authsuccess.di.AuthSuccessActivityModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.homescreen.di.MainActivityModule
 import dagger.Module
@@ -17,6 +17,6 @@ interface ActivityContributionModule {
     fun mainActivityInjector(): MainActivity
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = [(AuthActivityModule::class)])
-    fun authActivityInjector(): AuthActivity
+    @ContributesAndroidInjector(modules = [(AuthSuccessActivityModule::class)])
+    fun successAuthActivityInjector(): AuthSuccessActivity
 }

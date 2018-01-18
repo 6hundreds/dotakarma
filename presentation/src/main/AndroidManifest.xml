@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smedialink.tokenplussteamid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -17,7 +19,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.authorization.AuthActivity" />
+        <activity android:name=".features.authsuccess.AuthSuccessActivity">
+            <intent-filter android:label="filter_view_http_gizmos">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="auth_success"
+                    android:scheme="dotakarma" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+
+        </activity>
 
     </application>
 </manifest>

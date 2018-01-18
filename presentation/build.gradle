@@ -46,16 +46,24 @@ dependencies {
     implementation presentationDependencies.dagger
     implementation presentationDependencies.daggerAndroid
     implementation presentationDependencies.daggerAndroidSupport
+    implementation presentationDependencies.gson
+    implementation presentationDependencies.retrofit
+    implementation presentationDependencies.retrofitRxAdapter
+    implementation presentationDependencies.retrofitGsonConverter
+    implementation presentationDependencies.loginInterceptor
     implementation presentationDependencies.moxy
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat
     implementation presentationDependencies.cicerone
+    implementation presentationDependencies.objectBoxAndroid
+    implementation presentationDependencies.objectBoxKotlin
 
     implementation developmentDependencies.timber
 
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.daggerAndroidCompiler
     kapt presentationDependencies.moxyCompiler
+    kapt presentationDependencies.objectBoxCompiler
 
     testImplementation presentationTestDependencies.junit
     androidTestImplementation presentationTestDependencies.espresso

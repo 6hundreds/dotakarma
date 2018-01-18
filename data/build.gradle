@@ -38,15 +38,15 @@ dependencies {
     implementation dataDependencies.rxJava
     implementation dataDependencies.rxKotlin
     implementation dataDependencies.rxAndroid
-    implementation dataDependencies.moshi
+    implementation dataDependencies.gson
     implementation dataDependencies.retrofit
-    implementation dataDependencies.retrofitRxAdapter
-    implementation dataDependencies.retrofitMoshiConverter
     implementation dataDependencies.javaxInject
     implementation dataDependencies.objectBoxAndroid
     implementation dataDependencies.objectBoxKotlin
 
     kapt dataDependencies.objectBoxCompiler
+
+    implementation developmentDependencies.timber
 
     testImplementation dataTestDependencies.junit
 }

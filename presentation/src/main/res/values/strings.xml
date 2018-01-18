@@ -13,8 +13,17 @@
         openid.identity=http://specs.openid.net/auth/2.0/identifier_select&amp;
         openid.mode=checkid_setup&amp;
         openid.ns=http://specs.openid.net/auth/2.0&amp;
-        openid.realm=https://f95156dc.ngrok.io/users/info&amp;
-        openid.return_to=https://f95156dc.ngrok.io/users/info
+        openid.realm=%1$s&amp;
+        openid.return_to=%1$s
     </string>
+
+    <!-- Menus -->
+    <string name="action_feed">Feed</string>
+    <string name="action_profile">Profile</string>
+    <string name="msg_success_auth">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="btn_ok">OK</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.features.homescreen
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
@@ -15,19 +16,19 @@ class MainActivity : BaseActivity(), MainView {
         get() = R.layout.activity_main
 
     @Inject
-    lateinit var navigator: Navigator
-
-    @Inject
     @InjectPresenter
     lateinit var presenter: MainPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter
 
+    @Inject
+    lateinit var navigator: Navigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        button_auth.setOnClickListener { presenter.performAuthorization() }
+        initViews()
     }
 
     override fun onPause() {
@@ -38,5 +39,21 @@ class MainActivity : BaseActivity(), MainView {
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
+    }
+
+    private fun initViews() {
+        home_bottom_navigation.setOnNavigationItemSelectedListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.action_feed -> {
+                    presenter.onFeedItemClicked()
+                    true
+                }
+                R.id.action_profile -> {
+                    presenter.onProfileItemClicked()
+                    true
+                }
+                else -> true
+            }
+        }
     }
 }

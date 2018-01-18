@@ -1,40 +1,31 @@
 package com.smedialink.tokenplussteamid.features.steamauth
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.view.View
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_steam_auth_step.*
-import timber.log.Timber
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_steam_auth.*
 import javax.inject.Inject
-
-// TEST ACCOUNT:
-// smltest;02720272qQ
-
-// Steam UserId: 76561198804763988
 
 class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
     companion object {
         fun getNewInstance() = SteamAuthFragment()
 
-        private const val REDIRECT_URL = "https://f95156dc.ngrok.io/users/info"
-        private const val REDIRECT_SUCCESS_AUTHORITY_MARKER = "ngrok.io"
+        private const val AUTH_URL = "https://945841cd.ngrok.io/api/steam"
+        private const val URL_MARKER = "dotakarma"
     }
 
     override val layoutId: Int
-        get() = R.layout.fragment_steam_auth_step
-
-    private val steamAuthUrl: String by lazy {
-        val urlTemplate = resources.getString(R.string.constant_steam_auth_url)
-        String.format(Locale.getDefault(), urlTemplate, REDIRECT_URL)
-    }
+        get() = R.layout.fragment_steam_auth
 
     @Inject
     @InjectPresenter
@@ -43,52 +34,46 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    override fun onResume() {
-        super.onResume()
-        presenter.loadSteamAuthPage()
-    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initWebView() {
 
-        webview_auth_steam?.apply {
-            settings?.javaScriptEnabled = true
-            settings?.setAppCacheEnabled(false)
-            settings?.loadWithOverviewMode = true
-            settings?.useWideViewPort = true
-            scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
-            isScrollbarFadingEnabled = false
+        with(webview_auth_steam.settings) {
+            javaScriptEnabled = true
+            cacheMode = WebSettings.LOAD_NO_CACHE
         }
 
         webview_auth_steam?.webViewClient = object : WebViewClient() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                loading_indicator.visibility = View.VISIBLE
+            }
 
-                val parsedUrl = Uri.parse(url)
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                loading_indicator.visibility = View.GONE
+            }
 
-                if (parsedUrl.authority.contains(REDIRECT_SUCCESS_AUTHORITY_MARKER)) {
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String): Boolean {
+                if (url.contains(URL_MARKER)) {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(url)
+                    startActivity(intent)
 
-                    Timber.d("Redirect completed, parsing user steamId...")
-
-                    val userUrl = Uri.parse(parsedUrl.getQueryParameter("openid.identity"))
-                    val steamUserId = userUrl.lastPathSegment
-
-                    webview_auth_steam?.stopLoading()
-                    presenter.navigateToRegistrationCompletedPage()
-                    presenter.saveDetectedSteamUserId(steamUserId)
-
-                    Timber.d("Detected steamId: $steamUserId")
+                    return true
                 }
+                return false
             }
         }
     }
 
     override fun displaySteamAuthWebsite() {
-        webview_auth_steam?.loadUrl(steamAuthUrl)
+        webview_auth_steam.loadUrl(AUTH_URL)
     }
 
     override fun clearWebView() {
-        webview_auth_steam?.apply {
+        with(webview_auth_steam) {
             clearHistory()
             clearCache(true)
             loadUrl("about:blank")

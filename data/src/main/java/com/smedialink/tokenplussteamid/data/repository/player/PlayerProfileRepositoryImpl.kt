@@ -9,22 +9,19 @@ import javax.inject.Inject
 
 class PlayerProfileRepositoryImpl @Inject constructor(
     private val dataStoreFactory: PlayerDataStoreFactory,
-    private val dataMaper: PlayerProfileMapper
+    private val dataMapper: PlayerProfileMapper
 ) : PlayerProfileRepository {
 
     override fun getUserProfile(strategy: Long): Single<Player> {
-
         return dataStoreFactory
             .create(strategy)
             .get()
-            .map { player -> dataMaper.transformFromDataModel(player) }
+            .map { player -> dataMapper.transformFromDataModel(player) }
     }
 
-    override fun saveUserProfile(player: Player, strategy: Long): Completable =
-        Completable.create { emitter ->
-            val entity = dataMaper.transformToDataModel(player)
-            val dataStore = dataStoreFactory.create(strategy)
-            dataStore.put(entity)
-            emitter.onComplete()
-        }
+    override fun saveUserProfile(player: Player, strategy: Long): Completable {
+        val entity = dataMapper.transformToDataModel(player)
+        return dataStoreFactory.create(strategy).put(entity)
+    }
+
 }

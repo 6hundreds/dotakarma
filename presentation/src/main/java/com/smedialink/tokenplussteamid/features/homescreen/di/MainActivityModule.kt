@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.features.homescreen.di
 import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.di.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
+import com.smedialink.tokenplussteamid.features.feed.di.FeedFragmentModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivityNavigator
 import com.smedialink.tokenplussteamid.features.matches.MatchesFragment
@@ -31,7 +32,7 @@ abstract class MainActivityModule {
     abstract fun profileFragmentInjector(): PlayerProfileFragment
 
     @FragmentScope
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [(FeedFragmentModule::class)])
     abstract fun feedFragmentInjector(): FeedFragment
 
     @FragmentScope

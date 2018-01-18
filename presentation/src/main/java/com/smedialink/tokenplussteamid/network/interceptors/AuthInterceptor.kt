@@ -12,7 +12,7 @@ class AuthInterceptor @Inject constructor(private val settingsManager: SessionMa
         val original = chain.request()
         var builder = original.newBuilder()
             .header("Accept", "application/json")
-            .header("Content-type", "application/json");
+            .header("Content-type", "application/json")
 
         if (settingsManager.isSessionOpened()) {
             builder = builder.header(

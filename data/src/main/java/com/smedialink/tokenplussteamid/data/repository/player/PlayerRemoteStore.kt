@@ -7,8 +7,9 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class PlayerRemoteStore @Inject constructor(private val api: DotaKarmaApi) :
-    DataStore<PlayerDataModel> {
+class PlayerRemoteStore @Inject constructor(
+    private val api: DotaKarmaApi
+) : DataStore<PlayerDataModel> {
 
     override fun get(): Single<PlayerDataModel> = api.fetchPlayerProfile()
 

@@ -23,7 +23,7 @@ class NetworkModule {
     @Singleton
     fun provideClient(settingsManager: SessionManager): OkHttpClient =
         OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
             .addInterceptor(AuthInterceptor(settingsManager))
             .build()
 

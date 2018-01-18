@@ -1,13 +1,10 @@
 package com.smedialink.tokenplussteamid.di
 
-import android.content.Context
 import com.smedialink.tokenplussteamid.MyApp
-import com.smedialink.tokenplussteamid.di.modules.AppModule
-import com.smedialink.tokenplussteamid.di.modules.NavigationModule
-import com.smedialink.tokenplussteamid.di.modules.NetworkModule
+import com.smedialink.tokenplussteamid.di.modules.*
 import com.smedialink.tokenplussteamid.di.modules.contribution.ActivityContributionModule
-import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
@@ -15,19 +12,13 @@ import javax.inject.Singleton
     modules = [
         (ActivityContributionModule::class),
         (AppModule::class),
+        (DbModule::class),
         (NavigationModule::class),
-        (NetworkModule::class)]
+        (NetworkModule::class),
+        (SessionManagerModule::class)]
 )
-interface AppComponent {
+interface AppComponent : AndroidInjector<MyApp> {
 
     @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun context(context: Context): Builder
-
-        fun build(): AppComponent
-    }
-
-    fun inject(app: MyApp)
+    abstract class Builder : AndroidInjector.Builder<MyApp>()
 }

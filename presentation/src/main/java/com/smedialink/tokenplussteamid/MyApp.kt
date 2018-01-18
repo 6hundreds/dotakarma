@@ -21,11 +21,7 @@ class MyApp : Application(), HasActivityInjector {
             Timber.plant(Timber.DebugTree())
         }
 
-        DaggerAppComponent
-            .builder()
-            .context(this)
-            .build()
-            .inject(this)
+        DaggerAppComponent.builder().create(this).inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector

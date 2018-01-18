@@ -57,6 +57,7 @@ dependencies {
     implementation presentationDependencies.cicerone
     implementation presentationDependencies.objectBoxAndroid
     implementation presentationDependencies.objectBoxKotlin
+    implementation presentationDependencies.bottomNavigation
 
     implementation developmentDependencies.timber
 

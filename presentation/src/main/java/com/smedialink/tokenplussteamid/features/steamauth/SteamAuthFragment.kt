@@ -20,7 +20,7 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     companion object {
         fun getNewInstance() = SteamAuthFragment()
 
-        private const val AUTH_URL = "https://945841cd.ngrok.io/api/steam"
+        private const val AUTH_URL = "https://8a91e8af.ngrok.io/api/steam"
         private const val URL_MARKER = "dotakarma"
     }
 

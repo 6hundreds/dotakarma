@@ -72,7 +72,6 @@ class MainActivity : BaseActivity(), MainView {
 
         home_bottom_navigation.addItems(listOf(tabItemFeed, tabItemProfile, tabItemPMatches))
         home_bottom_navigation.titleState = AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE
-        home_bottom_navigation.isTranslucentNavigationEnabled = true
         home_bottom_navigation.isColored = true
 
         home_bottom_navigation.setOnTabSelectedListener { position, _ ->

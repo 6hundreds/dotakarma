@@ -14,7 +14,7 @@ interface DotaKarmaApi {
 
     @GET("comments")
     fun fetchCommentsFeed(
-        @Query("limit") limit: Int? = null,
+        @Query("limit") limit: Int,
         @Query("after") after: Int? = null
     ): Observable<List<FeedCommentModel>>
 }

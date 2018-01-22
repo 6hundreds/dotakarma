@@ -38,6 +38,7 @@ dependencies {
 
     implementation presentationDependencies.kotlinJre
     implementation presentationDependencies.appCompat
+    implementation presentationDependencies.cardView
     implementation presentationDependencies.constraintLayout
     implementation presentationDependencies.design
     implementation presentationDependencies.rxJava

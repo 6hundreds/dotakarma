@@ -19,13 +19,14 @@ class FeedPresenter @Inject constructor(
         super.onFirstViewAttach()
 
         getCommentsFeedUseCase
-            .execute(GetCommentsFeed.Params(limit = 10, after = 1))
+            .execute(GetCommentsFeed.Params(limit = 5))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ comments ->
                 Timber.d("Loaded comments: $comments")
                 latestCommentId = comments.first().id
                 Timber.d("Newest comment id: $latestCommentId")
+                viewState.appendFeedContent(comments)
             }, { error ->
                 Timber.e("Loading error: ${error.message}")
             })

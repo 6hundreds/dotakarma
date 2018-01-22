@@ -14,5 +14,5 @@ class GetCommentsFeed @Inject constructor(
         repository
             .getCommentsFeed(parameter.limit, parameter.after)
 
-    class Params(val limit: Int, val after: Int)
+    class Params(val limit: Int = 10, val after: Int? = null)
 }

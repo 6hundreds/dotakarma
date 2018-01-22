@@ -5,5 +5,5 @@ import io.reactivex.Observable
 
 interface FeedRepository {
 
-    fun getCommentsFeed(limit: Int, after: Int): Observable<List<FeedComment>>
+    fun getCommentsFeed(limit: Int, after: Int?): Observable<List<FeedComment>>
 }

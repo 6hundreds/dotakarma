@@ -4,8 +4,7 @@ import android.content.SharedPreferences
 import javax.inject.Inject
 
 class SessionManager @Inject constructor(
-    private val preferences: SharedPreferences
-) {
+    private val preferences: SharedPreferences) {
 
     companion object {
         private const val PREF_TOKEN_KEY = "pref_token"

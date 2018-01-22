@@ -12,8 +12,8 @@ class FeedRepositoryImpl @Inject constructor(
     private val mapper: FeedCommentMapper
 ) : FeedRepository {
 
-    override fun getCommentsFeed(limit: Int, after: Int): Observable<List<FeedComment>> =
+    override fun getCommentsFeed(limit: Int, after: Int?): Observable<List<FeedComment>> =
         api
-            .fetchCommentsFeed()
+            .fetchCommentsFeed(limit, after)
             .map { comment -> mapper.transform(comment) }
 }

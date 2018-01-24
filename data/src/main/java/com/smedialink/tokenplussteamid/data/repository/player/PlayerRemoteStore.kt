@@ -1,6 +1,6 @@
 package com.smedialink.tokenplussteamid.data.repository.player
 
-import com.smedialink.tokenplussteamid.data.entity.PlayerDataModel
+import com.smedialink.tokenplussteamid.data.entities.UserModel
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.data.repository.datasource.DataStore
 import io.reactivex.Completable
@@ -9,11 +9,11 @@ import javax.inject.Inject
 
 class PlayerRemoteStore @Inject constructor(
     private val api: DotaKarmaApi
-) : DataStore<PlayerDataModel> {
+) : DataStore<UserModel> {
 
-    override fun get(): Single<PlayerDataModel> = api.fetchPlayerProfile()
+    override fun get(): Single<UserModel> = api.fetchUserProfile()
 
-    override fun put(t: PlayerDataModel): Completable {
+    override fun put(t: UserModel): Completable {
         return Completable.error(UnsupportedOperationException())
     }
 }

@@ -4,13 +4,13 @@ import com.smedialink.tokenplussteamid.repository.DataStoreStrategy
 import javax.inject.Inject
 
 open class DataStoreFactory<T> @Inject constructor(
-    private val localDataStore: DataStore<T>,
-    private val remoteDataStore: DataStore<T>
+        private val localDataStore: DataStore<T>,
+        private val remoteDataStore: DataStore<T>
 ) {
 
-    fun create(strategy: Long): DataStore<T> =
-        when (strategy) {
-            DataStoreStrategy.LOCAL -> localDataStore
-            else -> remoteDataStore
-        }
+    fun create(strategy: DataStoreStrategy): DataStore<T> =
+            when (strategy) {
+                DataStoreStrategy.LOCAL -> localDataStore
+                DataStoreStrategy.REMOTE -> remoteDataStore
+            }
 }

@@ -41,10 +41,10 @@ dependencies {
     implementation dataDependencies.gson
     implementation dataDependencies.retrofit
     implementation dataDependencies.javaxInject
-    implementation dataDependencies.objectBoxAndroid
-    implementation dataDependencies.objectBoxKotlin
+    implementation dataDependencies.room
+    implementation dataDependencies.roomRx
 
-    kapt dataDependencies.objectBoxCompiler
+    kapt dataDependencies.roomCompiler
 
     implementation developmentDependencies.timber
 

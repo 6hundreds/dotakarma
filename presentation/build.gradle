@@ -6,8 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'io.objectbox'
-
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -56,8 +54,8 @@ dependencies {
     implementation presentationDependencies.moxyAndroid
     implementation presentationDependencies.moxyAppCompat
     implementation presentationDependencies.cicerone
-    implementation presentationDependencies.objectBoxAndroid
-    implementation presentationDependencies.objectBoxKotlin
+    implementation presentationDependencies.room
+    implementation presentationDependencies.roomRx
     implementation presentationDependencies.bottomNavigation
 
     implementation developmentDependencies.timber
@@ -65,7 +63,7 @@ dependencies {
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.daggerAndroidCompiler
     kapt presentationDependencies.moxyCompiler
-    kapt presentationDependencies.objectBoxCompiler
+    kapt presentationDependencies.roomCompiler
 
     testImplementation presentationTestDependencies.junit
     androidTestImplementation presentationTestDependencies.espresso

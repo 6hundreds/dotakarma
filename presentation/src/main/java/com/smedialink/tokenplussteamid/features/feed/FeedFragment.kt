@@ -7,7 +7,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.BaseFragment
-import com.smedialink.tokenplussteamid.entity.FeedComment
+import com.smedialink.tokenplussteamid.entity.Comment
 import com.smedialink.tokenplussteamid.features.feed.adapter.FeedAdapter
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
@@ -43,7 +43,7 @@ class FeedFragment : BaseFragment(), FeedView {
         }
     }
 
-    override fun appendFeedContent(comments: List<FeedComment>) {
+    override fun appendFeedContent(comments: List<Comment>) {
         feedAdapter.addFeedComments(comments)
     }
 

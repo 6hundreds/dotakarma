@@ -1,6 +1,6 @@
 package com.smedialink.tokenplussteamid.entity
 
-data class FeedComment(
+data class Comment(
     val id: Int,
     val content: String,
     val rating: Int,

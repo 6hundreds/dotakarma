@@ -3,18 +3,15 @@ package com.smedialink.tokenplussteamid.data.manager
 import android.content.SharedPreferences
 import javax.inject.Inject
 
-class SessionManager @Inject constructor(
-    private val preferences: SharedPreferences) {
+class SessionManager @Inject constructor(private val preferences: SharedPreferences) {
 
     companion object {
-        private const val PREF_TOKEN_KEY = "pref_token"
+        private const val ACCESS_TOKEN_KEY = "pref_token"
     }
 
-    fun saveToken(token: String) {
-        preferences.edit().putString(PREF_TOKEN_KEY, token).apply()
-    }
+    fun openSession(token: String) = preferences.edit().putString(ACCESS_TOKEN_KEY, token).apply()
 
-    fun getAccessToken(): String = preferences.getString(PREF_TOKEN_KEY, "")
+    fun getAccessToken(): String = preferences.getString(ACCESS_TOKEN_KEY, "")
 
     fun isSessionOpened(): Boolean = getAccessToken().isNotEmpty()
 }

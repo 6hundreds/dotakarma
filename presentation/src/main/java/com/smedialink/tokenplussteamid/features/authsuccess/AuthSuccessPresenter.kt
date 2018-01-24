@@ -19,7 +19,7 @@ class AuthSuccessPresenter @Inject constructor(
 ) : BasePresenter<AuthSuccessView>() {
 
     fun saveToken(token: String) {
-        sessionManager.saveToken(token)
+        sessionManager.openSession(token)
     }
 
     override fun onFirstViewAttach() {
@@ -35,7 +35,7 @@ class AuthSuccessPresenter @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Timber.d("Player profile obtained successfully.")
+                Timber.d("User profile obtained successfully.")
             }, { error ->
                 Timber.e("Error: ${error.message}")
             })

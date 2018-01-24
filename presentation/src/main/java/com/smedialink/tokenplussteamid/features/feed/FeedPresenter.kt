@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.features.feed
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
-import com.smedialink.tokenplussteamid.interactor.feed.GetCommentsFeed
+import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class FeedPresenter @Inject constructor(
-    private val getCommentsFeedUseCase: GetCommentsFeed
+    private val getCommentsUseCaseUseCase: GetCommentsUseCase
 ) : BasePresenter<FeedView>() {
 
     private var latestCommentId = -1
@@ -18,8 +18,8 @@ class FeedPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getCommentsFeedUseCase
-            .execute(GetCommentsFeed.Params(limit = 5))
+        getCommentsUseCaseUseCase
+            .execute(GetCommentsUseCase.Params(limit = 5))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ comments ->

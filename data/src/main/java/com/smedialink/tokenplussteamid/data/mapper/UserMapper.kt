@@ -1,6 +1,6 @@
 package com.smedialink.tokenplussteamid.data.mapper
 
-import com.smedialink.tokenplussteamid.data.entities.UserModel
+import com.smedialink.tokenplussteamid.data.entity.UserModel
 import com.smedialink.tokenplussteamid.entity.User
 import javax.inject.Inject
 

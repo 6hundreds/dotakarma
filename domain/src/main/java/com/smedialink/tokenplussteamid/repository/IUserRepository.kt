@@ -1,7 +1,7 @@
-package com.smedialink.tokenplussteamid.repository.player
+package com.smedialink.tokenplussteamid.repository
 
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.repository.CachePolicy
+import com.smedialink.tokenplussteamid.CachePolicy
 import io.reactivex.Completable
 import io.reactivex.Single
 

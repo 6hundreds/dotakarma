@@ -4,9 +4,8 @@ import com.smedialink.tokenplussteamid.data.dao.CommentDao
 import com.smedialink.tokenplussteamid.data.mapper.CommentMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.Comment
-import com.smedialink.tokenplussteamid.repository.CachePolicy
-import com.smedialink.tokenplussteamid.repository.feed.ICommentRepository
-import io.reactivex.Observable
+import com.smedialink.tokenplussteamid.CachePolicy
+import com.smedialink.tokenplussteamid.repository.ICommentRepository
 import io.reactivex.Single
 import javax.inject.Inject
 

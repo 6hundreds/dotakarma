@@ -23,7 +23,6 @@ abstract class BaseActivity : MvpAppCompatActivity(), HasSupportFragmentInjector
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-
         setContentView(layoutId)
     }
 

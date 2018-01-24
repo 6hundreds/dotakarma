@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.features.playerprofile
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
-import com.smedialink.tokenplussteamid.interactor.player.GetLocalPlayerProfile
+import com.smedialink.tokenplussteamid.usecase.user.GetLocalPlayerProfile
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

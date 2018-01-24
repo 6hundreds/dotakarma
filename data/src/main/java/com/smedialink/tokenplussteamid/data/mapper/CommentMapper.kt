@@ -1,8 +1,7 @@
 package com.smedialink.tokenplussteamid.data.mapper
 
-import com.smedialink.tokenplussteamid.data.entities.CommentModel
+import com.smedialink.tokenplussteamid.data.entity.CommentModel
 import com.smedialink.tokenplussteamid.entity.Comment
-import io.reactivex.functions.Function
 import javax.inject.Inject
 
 class CommentMapper @Inject constructor()

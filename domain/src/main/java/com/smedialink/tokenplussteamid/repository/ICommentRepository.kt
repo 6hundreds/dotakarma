@@ -1,7 +1,7 @@
-package com.smedialink.tokenplussteamid.repository.feed
+package com.smedialink.tokenplussteamid.repository
 
 import com.smedialink.tokenplussteamid.entity.Comment
-import com.smedialink.tokenplussteamid.repository.CachePolicy
+import com.smedialink.tokenplussteamid.CachePolicy
 import io.reactivex.Single
 
 interface ICommentRepository {

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.interactor
+package com.smedialink.tokenplussteamid.usecase
 
 import io.reactivex.Completable
 

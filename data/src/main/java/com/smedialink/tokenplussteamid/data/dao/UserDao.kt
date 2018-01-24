@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.data.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
-import com.smedialink.tokenplussteamid.data.entities.UserModel
+import com.smedialink.tokenplussteamid.data.entity.UserModel
 import io.reactivex.Single
 
 /**

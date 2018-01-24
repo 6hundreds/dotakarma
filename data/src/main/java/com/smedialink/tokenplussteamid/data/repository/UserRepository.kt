@@ -4,8 +4,8 @@ import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.repository.CachePolicy
-import com.smedialink.tokenplussteamid.repository.player.IUserRepository
+import com.smedialink.tokenplussteamid.CachePolicy
+import com.smedialink.tokenplussteamid.repository.IUserRepository
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject

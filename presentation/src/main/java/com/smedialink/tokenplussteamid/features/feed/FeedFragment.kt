@@ -15,7 +15,7 @@ import javax.inject.Inject
 class FeedFragment : BaseFragment(), FeedView {
 
     companion object {
-        fun getNewInstance() = FeedFragment()
+        fun newInstance() = FeedFragment()
     }
 
     @Inject
@@ -25,8 +25,7 @@ class FeedFragment : BaseFragment(), FeedView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    override val layoutId: Int
-        get() = R.layout.fragment_feed
+    override val layoutId: Int = R.layout.fragment_feed
 
     lateinit var feedAdapter: FeedAdapter
 

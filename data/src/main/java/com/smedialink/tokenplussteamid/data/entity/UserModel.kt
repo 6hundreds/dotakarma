@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.data.entities
+package com.smedialink.tokenplussteamid.data.entity
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

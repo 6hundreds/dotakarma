@@ -1,8 +1,7 @@
 package com.smedialink.tokenplussteamid.data.network
 
-import com.smedialink.tokenplussteamid.data.entities.CommentModel
-import com.smedialink.tokenplussteamid.data.entities.UserModel
-import io.reactivex.Observable
+import com.smedialink.tokenplussteamid.data.entity.CommentModel
+import com.smedialink.tokenplussteamid.data.entity.UserModel
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

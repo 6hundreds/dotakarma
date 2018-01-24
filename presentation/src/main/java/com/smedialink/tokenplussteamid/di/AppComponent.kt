@@ -1,6 +1,6 @@
 package com.smedialink.tokenplussteamid.di
 
-import com.smedialink.tokenplussteamid.MyApp
+import com.smedialink.tokenplussteamid.DotaKarma
 import com.smedialink.tokenplussteamid.di.modules.*
 import com.smedialink.tokenplussteamid.di.modules.contribution.ActivityContributionModule
 import dagger.Component
@@ -17,8 +17,8 @@ import javax.inject.Singleton
         (NetworkModule::class),
         (SessionManagerModule::class)]
 )
-interface AppComponent : AndroidInjector<MyApp> {
+interface AppComponent : AndroidInjector<DotaKarma> {
 
     @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<MyApp>()
+    abstract class Builder : AndroidInjector.Builder<DotaKarma>()
 }

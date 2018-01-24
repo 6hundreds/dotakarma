@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.features.playerprofile.di
 
 import com.smedialink.tokenplussteamid.data.repository.UserRepository
 import com.smedialink.tokenplussteamid.di.scopes.FragmentScope
-import com.smedialink.tokenplussteamid.repository.player.IUserRepository
+import com.smedialink.tokenplussteamid.repository.IUserRepository
 import dagger.Binds
 import dagger.Module
 

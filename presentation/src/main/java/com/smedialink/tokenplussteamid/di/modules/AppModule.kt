@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.di.modules
 
 import android.app.Application
 import android.content.Context
-import com.smedialink.tokenplussteamid.MyApp
+import com.smedialink.tokenplussteamid.DotaKarma
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -19,9 +19,9 @@ abstract class AppModule {
         @Singleton
         @Provides
         @JvmStatic
-        fun provideContext(app: MyApp): Context = app
+        fun provideContext(app: DotaKarma): Context = app
     }
 
     @Binds
-    abstract fun application(app: MyApp): Application
+    abstract fun application(app: DotaKarma): Application
 }

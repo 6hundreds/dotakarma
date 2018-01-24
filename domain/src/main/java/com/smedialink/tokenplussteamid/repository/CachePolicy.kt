@@ -1,5 +1,5 @@
 package com.smedialink.tokenplussteamid.repository
 
-enum class DataStoreStrategy {
+enum class CachePolicy {
     LOCAL, REMOTE
 }

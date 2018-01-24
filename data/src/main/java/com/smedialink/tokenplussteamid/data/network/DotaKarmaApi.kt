@@ -15,6 +15,6 @@ interface DotaKarmaApi {
     @GET("comments")
     fun fetchComments(
             @Query("limit") limit: Int? = null,
-            @Query("afterId") afterId: Int? = null
+            @Query("afterId") after: Int? = null
     ): Single<List<CommentModel>>
 }

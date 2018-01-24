@@ -12,7 +12,7 @@ class GetCommentsFeed @Inject constructor(
 
     override fun execute(parameter: Params): Observable<List<Comment>> =
         repository
-            .getCommentsFeed(parameter.limit, parameter.after)
+            .getComments(parameter.limit, parameter.after)
 
     class Params(val limit: Int = 10, val after: Int? = null)
 }

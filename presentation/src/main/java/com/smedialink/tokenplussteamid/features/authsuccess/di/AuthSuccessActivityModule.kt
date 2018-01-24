@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.features.authsuccess.di
 
-import com.smedialink.tokenplussteamid.data.repository.player.PlayerProfileRepositoryImpl
+import com.smedialink.tokenplussteamid.data.repository.UserRepository
 import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
-import com.smedialink.tokenplussteamid.repository.player.PlayerProfileRepository
+import com.smedialink.tokenplussteamid.repository.player.IUserRepository
 import dagger.Binds
 import dagger.Module
 
@@ -11,5 +11,5 @@ interface AuthSuccessActivityModule {
 
     @Binds
     @ActivityScope
-    fun providePlayerRepository(repo: PlayerProfileRepositoryImpl): PlayerProfileRepository
+    fun providePlayerRepository(repo: UserRepository): IUserRepository
 }

@@ -18,4 +18,5 @@ class CommentRepository @Inject constructor(
     override fun getComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>> =
             api.fetchComments(limit, after)
                     .map { mapper.mapToDomain(it) }
+
 }

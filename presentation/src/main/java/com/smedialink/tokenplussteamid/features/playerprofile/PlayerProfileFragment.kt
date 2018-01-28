@@ -3,7 +3,7 @@ package com.smedialink.tokenplussteamid.features.playerprofile
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.base.BaseFragment
+import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.entity.User
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject

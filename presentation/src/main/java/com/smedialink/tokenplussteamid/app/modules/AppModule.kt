@@ -1,8 +1,8 @@
-package com.smedialink.tokenplussteamid.di.modules
+package com.smedialink.tokenplussteamid.app.modules
 
 import android.app.Application
 import android.content.Context
-import com.smedialink.tokenplussteamid.DotaKarma
+import com.smedialink.tokenplussteamid.app.DotaKarma
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

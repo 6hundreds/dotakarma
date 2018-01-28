@@ -1,6 +1,6 @@
-package com.smedialink.tokenplussteamid.di.modules.contribution
+package com.smedialink.tokenplussteamid.app.modules.contribution
 
-import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
+import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.features.authsuccess.AuthSuccessActivity
 import com.smedialink.tokenplussteamid.features.authsuccess.di.AuthSuccessActivityModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity

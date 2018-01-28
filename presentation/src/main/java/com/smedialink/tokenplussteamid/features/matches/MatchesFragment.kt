@@ -3,7 +3,7 @@ package com.smedialink.tokenplussteamid.features.matches
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.base.BaseFragment
+import com.smedialink.tokenplussteamid.basic.BaseFragment
 import javax.inject.Inject
 
 class MatchesFragment : BaseFragment(), MatchesView {

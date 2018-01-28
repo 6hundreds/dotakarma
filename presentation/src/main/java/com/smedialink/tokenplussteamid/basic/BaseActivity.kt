@@ -1,8 +1,9 @@
-package com.smedialink.tokenplussteamid.base
+package com.smedialink.tokenplussteamid.basic
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
+import com.smedialink.tokenplussteamid.app.Layout
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -10,7 +11,9 @@ import dagger.android.support.HasSupportFragmentInjector
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 
-abstract class BaseActivity : MvpAppCompatActivity(), HasSupportFragmentInjector {
+abstract class BaseActivity :
+        MvpAppCompatActivity(),
+        HasSupportFragmentInjector {
 
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
@@ -18,13 +21,18 @@ abstract class BaseActivity : MvpAppCompatActivity(), HasSupportFragmentInjector
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    protected abstract val layoutId: Int
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(layoutId)
+        val clazz = javaClass
+        if (!clazz.isAnnotationPresent(Layout::class.java)) {
+            throw IllegalArgumentException("Please specify LayoutRes for activity in @Layout annotation")
+        }
+        val layout = clazz.getAnnotation(Layout::class.java).value
+        setContentView(layout)
     }
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
+
+
 }

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.base
+package com.smedialink.tokenplussteamid.basic
 
 import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView

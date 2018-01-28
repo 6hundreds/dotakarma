@@ -57,6 +57,7 @@ dependencies {
     implementation presentationDependencies.room
     implementation presentationDependencies.roomRx
     implementation presentationDependencies.bottomNavigation
+    implementation presentationDependencies.adapterDelegates
 
     implementation developmentDependencies.timber
 

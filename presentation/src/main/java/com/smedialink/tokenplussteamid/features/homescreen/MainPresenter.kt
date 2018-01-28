@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.features.homescreen
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.features.AppScreens
 import ru.terrakok.cicerone.Router

@@ -6,7 +6,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.base.BaseActivity
+import com.smedialink.tokenplussteamid.basic.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import javax.inject.Inject

@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.features.authsuccess.di
 
 import com.smedialink.tokenplussteamid.data.repository.UserRepository
-import com.smedialink.tokenplussteamid.di.scopes.ActivityScope
+import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.repository.IUserRepository
 import dagger.Binds
 import dagger.Module

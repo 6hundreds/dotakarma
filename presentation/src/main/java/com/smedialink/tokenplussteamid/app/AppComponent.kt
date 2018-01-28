@@ -1,8 +1,7 @@
-package com.smedialink.tokenplussteamid.di
+package com.smedialink.tokenplussteamid.app
 
-import com.smedialink.tokenplussteamid.DotaKarma
-import com.smedialink.tokenplussteamid.di.modules.*
-import com.smedialink.tokenplussteamid.di.modules.contribution.ActivityContributionModule
+import com.smedialink.tokenplussteamid.app.modules.*
+import com.smedialink.tokenplussteamid.app.modules.contribution.ActivityContributionModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import javax.inject.Singleton

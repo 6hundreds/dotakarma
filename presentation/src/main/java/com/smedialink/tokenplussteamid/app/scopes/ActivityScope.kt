@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.di.scopes
+package com.smedialink.tokenplussteamid.app.scopes
 
 import javax.inject.Scope
 

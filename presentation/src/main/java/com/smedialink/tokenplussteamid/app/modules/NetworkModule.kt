@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.di.modules
+package com.smedialink.tokenplussteamid.app.modules
 
 import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi

@@ -1,8 +1,8 @@
-package com.smedialink.tokenplussteamid
+package com.smedialink.tokenplussteamid.app
 
 import android.app.Activity
 import android.app.Application
-import com.smedialink.tokenplussteamid.di.DaggerAppComponent
+import com.smedialink.tokenplussteamid.BuildConfig
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector

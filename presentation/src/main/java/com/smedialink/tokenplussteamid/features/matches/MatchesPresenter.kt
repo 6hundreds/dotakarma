@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.features.matches
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.basic.BasePresenter
 import javax.inject.Inject
 
 @InjectViewState

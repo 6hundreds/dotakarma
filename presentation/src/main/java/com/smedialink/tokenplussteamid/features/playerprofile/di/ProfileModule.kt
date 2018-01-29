@@ -1,15 +1,18 @@
 package com.smedialink.tokenplussteamid.features.playerprofile.di
 
-import com.smedialink.tokenplussteamid.data.repository.UserRepository
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
+import com.smedialink.tokenplussteamid.data.repository.UserRepository
 import com.smedialink.tokenplussteamid.repository.IUserRepository
 import dagger.Binds
 import dagger.Module
 
 @Module
-interface PlayerProfileFragmentModule {
+interface ProfileModule {
+
 
     @Binds
     @FragmentScope
-    fun providePlayerRepository(repo: UserRepository): IUserRepository
+    fun provideUserRepository(repo: UserRepository): IUserRepository
+
+
 }

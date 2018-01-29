@@ -2,14 +2,16 @@ package com.smedialink.tokenplussteamid.features.homescreen.di
 
 import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
+import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivityNavigator
 import com.smedialink.tokenplussteamid.features.matches.MatchesFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.PlayerProfileFragment
-import com.smedialink.tokenplussteamid.features.playerprofile.di.PlayerProfileFragmentModule
+import com.smedialink.tokenplussteamid.features.playerprofile.di.ProfileModule
 import com.smedialink.tokenplussteamid.features.steamauth.SteamAuthFragment
+import com.smedialink.tokenplussteamid.persistence.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -28,11 +30,11 @@ abstract class MainActivityModule {
     }
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [(PlayerProfileFragmentModule::class)])
+    @ContributesAndroidInjector(modules = [ProfileModule::class])
     abstract fun profileFragmentInjector(): PlayerProfileFragment
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [(FeedModule::class)])
+    @ContributesAndroidInjector(modules = [FeedModule::class])
     abstract fun feedFragmentInjector(): FeedFragment
 
     @FragmentScope

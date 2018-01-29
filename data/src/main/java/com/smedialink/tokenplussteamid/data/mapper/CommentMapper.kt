@@ -4,8 +4,7 @@ import com.smedialink.tokenplussteamid.data.entity.CommentModel
 import com.smedialink.tokenplussteamid.entity.Comment
 import javax.inject.Inject
 
-class CommentMapper @Inject constructor()
-    : DataMapper<List<CommentModel>, List<Comment>> {
+class CommentMapper @Inject constructor() : DataMapper<List<CommentModel>, List<Comment>> {
 
     override fun mapToData(input: List<Comment>): List<CommentModel> {
         throw UnsupportedOperationException()

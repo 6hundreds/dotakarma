@@ -7,11 +7,11 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "users")
 data class UserModel(
         @PrimaryKey
-        var id: Long,
+        var id: Long = 0,
         @SerializedName("steamid")
         var steamId: Long = 0,
         @SerializedName("karma")
-        val karma: Int = 0,
+        var karma: Int = 0,
         @SerializedName("personaname")
         var personaName: String = "",
         @SerializedName("avatar")

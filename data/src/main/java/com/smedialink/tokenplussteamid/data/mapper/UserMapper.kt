@@ -4,8 +4,7 @@ import com.smedialink.tokenplussteamid.data.entity.UserModel
 import com.smedialink.tokenplussteamid.entity.User
 import javax.inject.Inject
 
-class UserMapper @Inject constructor()
-    : DataMapper<UserModel, User> {
+class UserMapper @Inject constructor() : DataMapper<UserModel, User> {
 
     override fun mapToData(input: User): UserModel =
             UserModel(

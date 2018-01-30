@@ -27,10 +27,11 @@ class FeedFragment
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    lateinit var feedAdapter : FeedAdapter
+    lateinit var feedAdapter: FeedAdapter
 
     override fun updateFeed(comments: List<FeedItem>) {
         feedAdapter.insertItems(comments)
+
     }
 
     override fun initUi() {

@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.inflate
-import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
-import kotlinx.android.synthetic.main.item_feed_comment.view.*
+import com.smedialink.tokenplussteamid.features.feed.FeedPaginator
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.item_feed_load_more.view.*
 
 /**
  * Created by six_hundreds on 30.01.18.
  */
-class LoadMoreFeedDelegate() :
+class LoadMoreFeedDelegate(private val paginator: FeedPaginator) :
         AbsListItemAdapterDelegate<LoadMoreFooter, FeedItem, LoadMoreFeedDelegate.LoadMoreViewHolder>() {
 
     override fun onBindViewHolder(item: LoadMoreFooter, viewHolder: LoadMoreViewHolder, payloads: MutableList<Any>) {
@@ -26,14 +28,23 @@ class LoadMoreFeedDelegate() :
     override fun isForViewType(item: FeedItem, items: MutableList<FeedItem>, position: Int): Boolean =
             item is LoadMoreFooter
 
-    class LoadMoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class LoadMoreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(commentUiModel: CommentUiModel) {
-            with(itemView) {
-                comment_author.text = String.format("%s about ", commentUiModel.authorId.toString())
-                commented_user.text = commentUiModel.userId.toString()
-                comment_date.text = commentUiModel.createdAt
-                comment_content.text = commentUiModel.content
+        init {
+            itemView.setOnClickListener {
+                paginator.onLoadMore(5)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe {
+                            itemView.loader.visibility = View.VISIBLE
+                            itemView.text_load_more.visibility = View.INVISIBLE
+                        }
+                        .doFinally {
+                            itemView.loader.visibility = View.INVISIBLE
+                            itemView.text_load_more.visibility = View.VISIBLE
+                        }
+                        .subscribe({ items -> paginator.onSuccess(items) },
+                                { e -> paginator.onError(e) })
             }
         }
     }

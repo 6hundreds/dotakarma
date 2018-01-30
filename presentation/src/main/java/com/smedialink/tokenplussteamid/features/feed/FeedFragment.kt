@@ -9,13 +9,12 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.features.feed.adapter.FeedAdapter
 import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
-import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_feed)
 class FeedFragment
-    : BaseFragment(), FeedView, OnLoadedMoreListener {
+    : BaseFragment(), FeedView {
 
     companion object {
         fun newInstance() = FeedFragment()
@@ -28,25 +27,22 @@ class FeedFragment
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    private val feedAdapter = FeedAdapter()
+    lateinit var feedAdapter : FeedAdapter
 
-    override fun updateFeed(comments: List<CommentUiModel>) {
+    override fun updateFeed(comments: List<FeedItem>) {
         feedAdapter.insertItems(comments)
     }
 
     override fun initUi() {
+        feedAdapter = FeedAdapter(paginator = presenter).apply { setHasStableIds(true) }
         with(list_feed) {
-            adapter = feedAdapter.apply { setHasStableIds(true) }
+            adapter = feedAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
     }
 
-    override fun onSuccess(items: List<FeedItem>) {
-        feedAdapter.insertItems(items)
-    }
-
-    override fun onError() {
-        Toast.makeText(context, "Error on loading more items...", Toast.LENGTH_SHORT).show()
+    override fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 }

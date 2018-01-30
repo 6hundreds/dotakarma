@@ -25,5 +25,6 @@ class PlayerProfilePresenter @Inject constructor(private val getLocalPlayerProfi
                 }, { error ->
                     Timber.d("Error: ${error.message}")
                 })
+
     }
 }

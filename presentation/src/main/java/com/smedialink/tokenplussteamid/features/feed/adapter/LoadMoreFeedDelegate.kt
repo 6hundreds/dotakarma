@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.inflate
+import com.smedialink.tokenplussteamid.common.setVisible
 import com.smedialink.tokenplussteamid.features.feed.FeedPaginator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -43,8 +44,8 @@ class LoadMoreFeedDelegate(private val paginator: FeedPaginator) :
         }
 
         private fun showLoading(show: Boolean) {
-            itemView.loader.visibility = if (show) View.VISIBLE else View.INVISIBLE
-            itemView.text_load_more.visibility = if (show) View.INVISIBLE else View.VISIBLE
+            itemView.loader.setVisible(show)
+            itemView.text_load_more.setVisible(!show)
         }
     }
 }

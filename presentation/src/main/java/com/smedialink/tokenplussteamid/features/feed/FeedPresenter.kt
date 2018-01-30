@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.feed
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
 import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentMapper
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsUseCase
@@ -27,18 +28,20 @@ class FeedPresenter @Inject constructor(private val useCase: GetCommentsUseCase,
                 .map(commentMapper)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { viewState.showLoading(true) }
+                .doFinally { viewState.showLoading(false) }
                 .subscribe({ comments -> viewState.updateFeed(comments) },
                         { error -> Timber.e("Loading error: ${error.message}") })
                 .addTo(disposables)
     }
 
-    override fun onLoadMore(limit: Int): Single<List<CommentUiModel>> =
+    override fun onLoadMore(limit: Int): Single<List<FeedItem>> =
             useCase.execute(GetCommentsUseCase.Params(limit, latestCommentId))
                     .doOnSuccess { comments -> latestCommentId = comments.last().id }
                     .map(commentMapper)
 
 
-    override fun onSuccess(items: List<CommentUiModel>) {
+    override fun onSuccess(items: List<FeedItem>) {
         viewState.updateFeed(items)
     }
 

@@ -1,6 +1,6 @@
 package com.smedialink.tokenplussteamid.features.feed
 
-import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
+import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
 import io.reactivex.Single
 
 /**
@@ -8,9 +8,9 @@ import io.reactivex.Single
  */
 interface FeedPaginator {
 
-    fun onLoadMore(limit : Int): Single<List<CommentUiModel>>
+    fun onLoadMore(limit : Int): Single<List<FeedItem>>
 
-    fun onSuccess(items : List<CommentUiModel>)
+    fun onSuccess(items : List<FeedItem>)
 
     fun onError(throwable: Throwable)
 

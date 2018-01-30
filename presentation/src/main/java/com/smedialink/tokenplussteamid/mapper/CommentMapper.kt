@@ -13,6 +13,7 @@ class CommentMapper @Inject constructor() : Function<List<Comment>, List<Comment
     override fun apply(input: List<Comment>): List<CommentUiModel> =
             input.map { comment ->
                 CommentUiModel(
+                        comment.id,
                         comment.content,
                         comment.rating,
                         comment.createdAt,

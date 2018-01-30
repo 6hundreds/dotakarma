@@ -35,17 +35,16 @@ class LoadMoreFeedDelegate(private val paginator: FeedPaginator) :
                 paginator.onLoadMore(5)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnSubscribe {
-                            itemView.loader.visibility = View.VISIBLE
-                            itemView.text_load_more.visibility = View.INVISIBLE
-                        }
-                        .doFinally {
-                            itemView.loader.visibility = View.INVISIBLE
-                            itemView.text_load_more.visibility = View.VISIBLE
-                        }
+                        .doOnSubscribe { showLoading(true) }
+                        .doFinally { showLoading(false) }
                         .subscribe({ items -> paginator.onSuccess(items) },
                                 { e -> paginator.onError(e) })
             }
+        }
+
+        private fun showLoading(show: Boolean) {
+            itemView.loader.visibility = if (show) View.VISIBLE else View.INVISIBLE
+            itemView.text_load_more.visibility = if (show) View.INVISIBLE else View.VISIBLE
         }
     }
 }

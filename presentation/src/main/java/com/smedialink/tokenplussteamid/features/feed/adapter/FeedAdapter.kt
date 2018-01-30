@@ -15,7 +15,6 @@ class FeedAdapter(paginator: FeedPaginator) : ListDelegationAdapter<MutableList<
     fun insertItems(newData: List<FeedItem>) {
         val oldSize = items.size
         items.addAll(oldSize - 1, newData)
-        notifyItemRangeInserted(oldSize - 1, newData.size)
         if (oldSize == 1) {
             notifyDataSetChanged()
         } else {

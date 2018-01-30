@@ -27,15 +27,14 @@ class FeedFragment
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    lateinit var feedAdapter: FeedAdapter
+    private lateinit var feedAdapter: FeedAdapter
 
     override fun updateFeed(comments: List<FeedItem>) {
         feedAdapter.insertItems(comments)
-
     }
 
     override fun initUi() {
-        feedAdapter = FeedAdapter(paginator = presenter).apply { setHasStableIds(true) }
+        feedAdapter = FeedAdapter(presenter).apply { setHasStableIds(true) }
         with(list_feed) {
             adapter = feedAdapter
             layoutManager = LinearLayoutManager(context)

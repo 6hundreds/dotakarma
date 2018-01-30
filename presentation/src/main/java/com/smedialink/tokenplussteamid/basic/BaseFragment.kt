@@ -34,8 +34,12 @@ abstract class BaseFragment
             throw IllegalArgumentException("Please specify LayoutRes for fragment in @Layout annotation")
         }
         val layout = clazz.getAnnotation(Layout::class.java).value
-        initUi()
         return inflater.inflate(layout, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUi()
     }
 
     abstract fun initUi()

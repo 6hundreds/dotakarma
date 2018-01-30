@@ -2,7 +2,8 @@ package com.smedialink.tokenplussteamid.features.feed.adapter
 
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 
-class FeedAdapter(val data: MutableList<FeedItem>) : ListDelegationAdapter<List<FeedItem>>() {
+class FeedAdapter(private val data: MutableList<FeedItem> = ArrayList())
+    : ListDelegationAdapter<List<FeedItem>>() {
 
     init {
         delegatesManager.addDelegate(CommentFeedDelegate())
@@ -10,8 +11,12 @@ class FeedAdapter(val data: MutableList<FeedItem>) : ListDelegationAdapter<List<
     }
 
     fun insertItems(newData: List<FeedItem>) {
+        val oldSize = data.size
         data.addAll(newData)
-        notifyItemRangeInserted(data.size, newData.size)
+        if (oldSize == 0) {
+            notifyDataSetChanged()
+        } else {
+            notifyItemRangeInserted(oldSize, newData.size)
+        }
     }
-
 }

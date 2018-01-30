@@ -24,7 +24,6 @@ class PlayerProfileFragment : BaseFragment(), PlayerProfileView {
     fun providePresenter() = presenter
 
     override fun initUi() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun displayProfile(user: User) {

@@ -22,9 +22,9 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     companion object {
 
         fun getNewInstance() = SteamAuthFragment()
-        private const val AUTH_URL = "https://8a91e8af.ngrok.io/api/steam"
 
-        private const val URL_MARKER = "dotakarma"
+        private const val AUTH_URL = "https://40d64ce7.ngrok.io/api/steam"
+        private const val DEEPLINK_SCHEME = "dotakarma"
     }
     @Inject
     @InjectPresenter
@@ -54,7 +54,7 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, url: String): Boolean {
-                if (url.contains(URL_MARKER)) {
+                if (url.contains(DEEPLINK_SCHEME)) {
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(url)
                     startActivity(intent)
@@ -72,7 +72,6 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     }
 
     override fun initUi() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun clearWebView() {

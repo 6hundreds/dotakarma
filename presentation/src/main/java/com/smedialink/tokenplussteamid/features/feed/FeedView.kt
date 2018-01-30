@@ -6,7 +6,6 @@ import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
 
-@StateStrategyType(SkipStrategy::class)
 interface FeedView : MvpView {
 
     @StateStrategyType(AddToEndStrategy::class)

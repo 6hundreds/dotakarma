@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.di.modules
+package com.smedialink.tokenplussteamid.app.modules
 
 import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = "https://8a91e8af.ngrok.io/api/"
+        private const val BASE_URL = "https://40d64ce7.ngrok.io/api/"
     }
 
     @Provides

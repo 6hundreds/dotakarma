@@ -11,29 +11,27 @@ import android.webkit.WebViewClient
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.base.BaseFragment
+import com.smedialink.tokenplussteamid.app.Layout
+import com.smedialink.tokenplussteamid.basic.BaseFragment
 import kotlinx.android.synthetic.main.fragment_steam_auth.*
 import javax.inject.Inject
 
+@Layout(R.layout.fragment_steam_auth)
 class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
     companion object {
+
         fun getNewInstance() = SteamAuthFragment()
 
-        private const val AUTH_URL = "https://8a91e8af.ngrok.io/api/steam"
-        private const val URL_MARKER = "dotakarma"
+        private const val AUTH_URL = "https://40d64ce7.ngrok.io/api/steam"
+        private const val DEEPLINK_SCHEME = "dotakarma"
     }
-
-    override val layoutId: Int
-        get() = R.layout.fragment_steam_auth
-
     @Inject
     @InjectPresenter
     lateinit var presenter: SteamAuthPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter
-
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initWebView() {
@@ -56,7 +54,7 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, url: String): Boolean {
-                if (url.contains(URL_MARKER)) {
+                if (url.contains(DEEPLINK_SCHEME)) {
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = Uri.parse(url)
                     startActivity(intent)
@@ -68,8 +66,12 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
         }
     }
 
+
     override fun displaySteamAuthWebsite() {
         webview_auth_steam.loadUrl(AUTH_URL)
+    }
+
+    override fun initUi() {
     }
 
     override fun clearWebView() {

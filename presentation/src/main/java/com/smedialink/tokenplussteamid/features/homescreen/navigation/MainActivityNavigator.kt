@@ -21,7 +21,7 @@ class MainActivityNavigator @Inject constructor(
         null
 
     override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
-        AppScreens.BOTTOM_FEED_SCREEN -> FeedFragment.getNewInstance()
+        AppScreens.BOTTOM_FEED_SCREEN -> FeedFragment.newInstance()
         AppScreens.BOTTOM_PROFILE_SCREEN -> PlayerProfileFragment.getNewInstance()
         AppScreens.BOTTOM_MATCHES_SCREEN -> MatchesFragment.getNewInstance()
         AppScreens.STEAM_AUTH_SCREEN -> SteamAuthFragment.getNewInstance()

@@ -1,8 +1,7 @@
 package com.smedialink.tokenplussteamid.data.network
 
-import com.smedialink.tokenplussteamid.data.entity.FeedCommentModel
-import com.smedialink.tokenplussteamid.data.entity.PlayerDataModel
-import io.reactivex.Observable
+import com.smedialink.tokenplussteamid.data.entity.CommentModel
+import com.smedialink.tokenplussteamid.data.entity.UserModel
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,11 +9,11 @@ import retrofit2.http.Query
 interface DotaKarmaApi {
 
     @GET("users/me")
-    fun fetchPlayerProfile(): Single<PlayerDataModel>
+    fun fetchUserProfile(): Single<UserModel>
 
     @GET("comments")
-    fun fetchCommentsFeed(
-        @Query("limit") limit: Int,
-        @Query("after") after: Int? = null
-    ): Observable<List<FeedCommentModel>>
+    fun fetchComments(
+            @Query("limit") limit: Int? = null,
+            @Query("after") after: Int? = null
+    ): Single<List<CommentModel>>
 }

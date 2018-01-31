@@ -1,34 +1,49 @@
 package com.smedialink.tokenplussteamid.features.feed
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.base.BasePresenter
-import com.smedialink.tokenplussteamid.interactor.feed.GetCommentsFeed
+import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
+import com.smedialink.tokenplussteamid.mapper.CommentMapper
+import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsUseCase
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class FeedPresenter @Inject constructor(
-    private val getCommentsFeedUseCase: GetCommentsFeed
-) : BasePresenter<FeedView>() {
+class FeedPresenter @Inject constructor(private val useCase: GetCommentsUseCase,
+                                        private val commentMapper: CommentMapper)
+    : BasePresenter<FeedView>(), FeedPaginator {
 
     private var latestCommentId = -1
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getCommentsFeedUseCase
-            .execute(GetCommentsFeed.Params(limit = 5))
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ comments ->
-                Timber.d("Loaded comments: $comments")
-                latestCommentId = comments.first().id
-                Timber.d("Newest comment id: $latestCommentId")
-                viewState.appendFeedContent(comments)
-            }, { error ->
-                Timber.e("Loading error: ${error.message}")
-            })
+        useCase.execute(GetCommentsUseCase.Params(5))
+                .doOnSuccess { comments -> latestCommentId = comments.last().id }
+                .map(commentMapper)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { viewState.showLoading(true) }
+                .doFinally { viewState.showLoading(false) }
+                .subscribe({ comments -> viewState.updateFeed(comments) },
+                        { error -> viewState.showError(error.localizedMessage) })
+                .addTo(disposables)
+    }
+
+    override fun onLoadMore(limit: Int): Single<List<FeedItem>> =
+            useCase.execute(GetCommentsUseCase.Params(limit, latestCommentId))
+                    .doOnSuccess { comments -> latestCommentId = comments.last().id }
+                    .map(commentMapper)
+
+
+    override fun onSuccess(items: List<FeedItem>) {
+        viewState.updateFeed(items)
+    }
+
+    override fun onError(error: Throwable) {
+        viewState.showError(error.localizedMessage)
     }
 }

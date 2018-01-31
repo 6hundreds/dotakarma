@@ -3,14 +3,12 @@ package com.smedialink.tokenplussteamid.features.feed
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
-import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentMapper
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -31,7 +29,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetCommentsUseCase,
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ comments -> viewState.updateFeed(comments) },
-                        { error -> Timber.e("Loading error: ${error.message}") })
+                        { error -> viewState.showError(error.localizedMessage) })
                 .addTo(disposables)
     }
 
@@ -45,7 +43,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetCommentsUseCase,
         viewState.updateFeed(items)
     }
 
-    override fun onError(throwable: Throwable) {
-        viewState.showError(throwable.localizedMessage)
+    override fun onError(error: Throwable) {
+        viewState.showError(error.localizedMessage)
     }
 }

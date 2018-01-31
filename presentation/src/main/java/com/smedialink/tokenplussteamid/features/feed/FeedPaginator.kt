@@ -12,6 +12,6 @@ interface FeedPaginator {
 
     fun onSuccess(items : List<FeedItem>)
 
-    fun onError(throwable: Throwable)
+    fun onError(error: Throwable)
 
 }

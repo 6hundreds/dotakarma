@@ -16,4 +16,7 @@ interface DotaKarmaApi {
             @Query("limit") limit: Int? = null,
             @Query("after") after: Int? = null
     ): Single<List<CommentModel>>
+
+    @GET("matches")
+    fun fetchMatches(): Single<List<CommentModel>>
 }

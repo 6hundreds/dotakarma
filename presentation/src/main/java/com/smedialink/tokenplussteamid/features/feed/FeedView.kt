@@ -5,7 +5,7 @@ import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
 
 interface FeedView : MvpView {
 
-    fun updateFeed(comments: List<FeedItem>)
+    fun updateFeed(items: List<FeedItem>)
 
     fun showError(error: String)
 

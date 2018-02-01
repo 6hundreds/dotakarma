@@ -1,7 +1,8 @@
 package com.smedialink.tokenplussteamid.data.repository
 
 import com.smedialink.tokenplussteamid.data.dao.HeroImageDao
-import com.smedialink.tokenplussteamid.data.mapper.HeroImageDtoMapper
+import com.smedialink.tokenplussteamid.data.entity.HeroImageDto
+import com.smedialink.tokenplussteamid.data.entity.HeroImageModel
 import com.smedialink.tokenplussteamid.data.mapper.HeroImageMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.HeroImage
@@ -16,13 +17,16 @@ import javax.inject.Inject
 class HeroImageRepository @Inject constructor(
         private val dao: HeroImageDao,
         private val api: DotaKarmaApi,
-        private val domainMapper: HeroImageMapper,
-        private val dataMapper: HeroImageDtoMapper
+        private val mapper: HeroImageMapper
 ) : IHeroImageRepository {
+
+    companion object {
+        private const val IMAGE_URL_PATTERN = "http://cdn.dota2.com/apps/dota2/images/heroes/%s_lg.png"
+    }
 
     override fun prefetchHeroImages(): Completable =
             api.fetchHeroes()
-                    .map(dataMapper)
+                    .map { transform(it) }
                     .doOnSuccess { dao.insert(it) }
                     .toCompletable()
 
@@ -30,10 +34,16 @@ class HeroImageRepository @Inject constructor(
         return dao.getById(heroId)
                 .onErrorResumeNext {
                     api.fetchHeroes()
-                            .map(dataMapper)
+                            .map { transform(it) }
                             .doOnSuccess { dao.insert(it) }
                             .flatMap { dao.getById(heroId) }
                 }
-                .map(domainMapper)
+                .map(mapper)
     }
+
+    private fun transform(input: List<HeroImageDto>): List<HeroImageModel> =
+            input.map { dto ->
+                val heroName = dto.name.removePrefix("npc_dota_hero_")
+                HeroImageModel(dto.id, String.format(IMAGE_URL_PATTERN, heroName))
+            }
 }

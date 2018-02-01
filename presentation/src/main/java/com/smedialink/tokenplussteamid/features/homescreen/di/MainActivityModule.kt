@@ -9,6 +9,7 @@ import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivi
 import com.smedialink.tokenplussteamid.features.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.PlayerProfileFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.di.ProfileModule
+import com.smedialink.tokenplussteamid.features.recentmatches.di.MatchesModule
 import com.smedialink.tokenplussteamid.features.steamauth.SteamAuthFragment
 import dagger.Module
 import dagger.Provides
@@ -40,6 +41,6 @@ abstract class MainActivityModule {
     abstract fun steamAuthFragmentInjector(): SteamAuthFragment
 
     @FragmentScope
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [MatchesModule::class])
     abstract fun matchesFragmentInjector(): RecentMatchesFragment
 }

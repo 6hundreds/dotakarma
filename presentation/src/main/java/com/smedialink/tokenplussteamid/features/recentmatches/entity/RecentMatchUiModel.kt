@@ -10,5 +10,5 @@ data class RecentMatchUiModel(
         val radiantScore: Int,
         val direScore: Int,
         val radiantWin: Boolean,
-        val heroes: List<Int>
+        val heroes: Map<Int, Int>
 ) : MatchesItem

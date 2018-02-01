@@ -1,8 +1,6 @@
 package com.smedialink.tokenplussteamid.data.network
 
-import com.smedialink.tokenplussteamid.data.entity.CommentModel
-import com.smedialink.tokenplussteamid.data.entity.HeroImageDto
-import com.smedialink.tokenplussteamid.data.entity.UserModel
+import com.smedialink.tokenplussteamid.data.entity.*
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,9 +16,9 @@ interface DotaKarmaApi {
             @Query("after") after: Int? = null
     ): Single<List<CommentModel>>
 
-    @GET("matches")
-    fun fetchMatches(): Single<List<CommentModel>>
+    @GET("dota/matches")
+    fun fetchMatches(): Single<List<MatchModel>>
 
-    @GET("heroes")
+    @GET("dota/heroes")
     fun fetchHeroes(): Single<List<HeroImageDto>>
 }

@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.data.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
+import android.support.annotation.MainThread
 import com.smedialink.tokenplussteamid.data.entity.HeroImageModel
 import io.reactivex.Single
 
@@ -13,4 +14,8 @@ interface HeroImageDao : BaseDao<HeroImageModel> {
 
     @Query("SELECT * FROM heroes_images WHERE id = :arg0")
     fun getById(heroId: Int): Single<HeroImageModel>
+
+    @Query("SELECT * FROM heroes_images")
+    fun getAll(): Single<List<HeroImageModel>>
+
 }

@@ -30,8 +30,8 @@ class FeedFragment
 
     private lateinit var feedAdapter: FeedAdapter
 
-    override fun updateFeed(comments: List<FeedItem>) {
-        feedAdapter.insertItems(comments)
+    override fun updateFeed(items: List<FeedItem>) {
+        feedAdapter.insertItems(items)
     }
 
     override fun initUi() {

@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.data.dao;
 
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface BaseDao<T> {
     @Insert
     void insert(T entity);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(List<T> entity);
 }

@@ -41,6 +41,7 @@ ext {
 
     // Development tools
     final TIMBER_VERSION = "4.6.0"
+    final STETHO_VERSION = "1.5.0"
 
     domainDependencies = [
             kotlinJre     : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$KOTLIN_VERSION",
@@ -115,5 +116,7 @@ ext {
 
     developmentDependencies = [
             timber: "com.jakewharton.timber:timber:$TIMBER_VERSION",
+            stetho: "com.facebook.stetho:stetho:$STETHO_VERSION"
+
     ]
 }

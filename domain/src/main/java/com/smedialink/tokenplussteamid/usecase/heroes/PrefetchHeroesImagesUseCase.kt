@@ -16,12 +16,19 @@ class PrefetchHeroesImagesUseCase @Inject constructor(
 ) : CompletableUseCase {
 
     override fun execute(): Completable =
-            Completable.fromAction {
-                if (!prefsManager.getBoolean(KEY_HEROES_FETCHED)) {
-                    repository.prefetchHeroImages()
-                            .doOnComplete { prefsManager.putBoolean(KEY_HEROES_FETCHED, true) }
-                } else {
-                    Completable.complete()
-                }
+            if (!prefsManager.getBoolean(KEY_HEROES_FETCHED)) {
+                repository.prefetchHeroImages()
+                        .doOnComplete { prefsManager.putBoolean(KEY_HEROES_FETCHED, true) }
+
+            } else {
+                Completable.complete()
             }
+//        Completable.fromAction {
+//            if (!prefsManager.getBoolean(KEY_HEROES_FETCHED)) {
+//                repository.prefetchHeroImages()
+//                        .doOnComplete { prefsManager.putBoolean(KEY_HEROES_FETCHED, true) }
+//            } else {
+//                Completable.complete()
+//            }
+//        }
 }

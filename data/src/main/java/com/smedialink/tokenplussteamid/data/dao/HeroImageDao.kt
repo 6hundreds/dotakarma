@@ -15,7 +15,4 @@ interface HeroImageDao : BaseDao<HeroImageModel> {
     @Query("SELECT * FROM heroes_images WHERE id = :arg0")
     fun getById(heroId: Int): Single<HeroImageModel>
 
-    @Query("SELECT * FROM heroes_images")
-    fun getAll(): Single<List<HeroImageModel>>
-
 }

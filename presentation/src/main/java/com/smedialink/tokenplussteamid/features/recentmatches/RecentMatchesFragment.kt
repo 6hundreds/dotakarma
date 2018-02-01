@@ -41,7 +41,6 @@ class RecentMatchesFragment : BaseFragment(), RecentMatchesView {
         }
     }
 
-
     override fun showError(error: String) {
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }

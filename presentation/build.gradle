@@ -61,6 +61,7 @@ dependencies {
     implementation presentationDependencies.glide
 
     implementation developmentDependencies.timber
+    implementation developmentDependencies.stetho
 
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.daggerAndroidCompiler

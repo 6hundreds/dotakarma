@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.app
 
 import android.app.Activity
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.smedialink.tokenplussteamid.BuildConfig
 import com.smedialink.tokenplussteamid.di.DaggerAppComponent
 import dagger.android.AndroidInjector
@@ -20,6 +21,7 @@ class DotaKarma : Application(), HasActivityInjector {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+            Stetho.initializeWithDefaults(this)
         }
 
         DaggerAppComponent.builder().create(this).inject(this)

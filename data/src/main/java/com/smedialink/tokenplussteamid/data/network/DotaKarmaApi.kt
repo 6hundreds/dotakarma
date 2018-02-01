@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.data.network
 
 import com.smedialink.tokenplussteamid.data.entity.CommentModel
+import com.smedialink.tokenplussteamid.data.entity.HeroImageDto
 import com.smedialink.tokenplussteamid.data.entity.UserModel
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -19,4 +20,7 @@ interface DotaKarmaApi {
 
     @GET("matches")
     fun fetchMatches(): Single<List<CommentModel>>
+
+    @GET("heroes")
+    fun fetchHeroes(): Single<List<HeroImageDto>>
 }

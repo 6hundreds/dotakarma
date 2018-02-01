@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
 import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
@@ -13,12 +14,11 @@ import com.smedialink.tokenplussteamid.features.steamauth.SteamAuthFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
-class MainActivityNavigator @Inject constructor(
-    private val activity: MainActivity
-) : SupportAppNavigator(activity, activity.supportFragmentManager, R.id.home_tabs_container) {
+class MainActivityNavigator @Inject constructor(activity: MainActivity)
+    : SupportAppNavigator(activity, activity.supportFragmentManager, R.id.home_tabs_container) {
 
     override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? =
-        null
+            null
 
     override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
         AppScreens.BOTTOM_FEED_SCREEN -> FeedFragment.newInstance()

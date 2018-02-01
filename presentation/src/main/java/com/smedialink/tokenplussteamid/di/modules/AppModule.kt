@@ -6,6 +6,10 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.smedialink.tokenplussteamid.app.DotaKarma
 import com.smedialink.tokenplussteamid.data.manager.SessionManager
+import com.smedialink.tokenplussteamid.data.manager.SharedPrefsManager
+import com.smedialink.tokenplussteamid.data.repository.HeroImageRepository
+import com.smedialink.tokenplussteamid.manager.IPrefsManager
+import com.smedialink.tokenplussteamid.repository.IHeroImageRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -29,12 +33,12 @@ abstract class AppModule {
         @JvmStatic
         fun provideSharedPrefs(context: Context): SharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(context)
-
-        @Provides
-        @Singleton
-        @JvmStatic
-        fun provideSessionManager(prefs: SharedPreferences): SessionManager = SessionManager(prefs)
     }
+
+    @Binds
+    @Singleton
+    abstract fun providePrefsManager(manager : SharedPrefsManager): IPrefsManager
+
 
     @Binds
     abstract fun application(app: DotaKarma): Application

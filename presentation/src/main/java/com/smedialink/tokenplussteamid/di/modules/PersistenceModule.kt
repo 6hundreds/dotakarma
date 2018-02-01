@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.app.modules
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.smedialink.tokenplussteamid.data.dao.CommentDao
+import com.smedialink.tokenplussteamid.data.dao.HeroImageDao
 import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.persistence.AppDatabase
 import dagger.Module
@@ -26,5 +27,8 @@ class PersistenceModule {
 
     @Provides
     fun provideCommentDao(db: AppDatabase): CommentDao = db.commentDao()
+
+    @Provides
+    fun provideHeroImageDao(db: AppDatabase): HeroImageDao = db.heroImageDao()
 
 }

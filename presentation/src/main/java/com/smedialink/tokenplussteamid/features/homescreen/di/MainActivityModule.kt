@@ -2,7 +2,6 @@ package com.smedialink.tokenplussteamid.features.homescreen.di
 
 import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
-import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
@@ -11,7 +10,6 @@ import com.smedialink.tokenplussteamid.features.matches.MatchesFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.PlayerProfileFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.di.ProfileModule
 import com.smedialink.tokenplussteamid.features.steamauth.SteamAuthFragment
-import com.smedialink.tokenplussteamid.persistence.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

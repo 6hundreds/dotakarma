@@ -11,5 +11,5 @@ interface AuthSuccessActivityModule {
 
     @Binds
     @ActivityScope
-    fun providePlayerRepository(repo: UserRepository): IUserRepository
+    fun provideUserRepository(repo: UserRepository): IUserRepository
 }

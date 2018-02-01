@@ -6,7 +6,7 @@ import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivityNavigator
-import com.smedialink.tokenplussteamid.features.matches.MatchesFragment
+import com.smedialink.tokenplussteamid.features.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.PlayerProfileFragment
 import com.smedialink.tokenplussteamid.features.playerprofile.di.ProfileModule
 import com.smedialink.tokenplussteamid.features.steamauth.SteamAuthFragment
@@ -41,5 +41,5 @@ abstract class MainActivityModule {
 
     @FragmentScope
     @ContributesAndroidInjector()
-    abstract fun matchesFragmentInjector(): MatchesFragment
+    abstract fun matchesFragmentInjector(): RecentMatchesFragment
 }

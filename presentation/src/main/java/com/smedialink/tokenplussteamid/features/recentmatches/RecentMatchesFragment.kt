@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.matches
+package com.smedialink.tokenplussteamid.features.recentmatches
 
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -8,19 +8,18 @@ import com.smedialink.tokenplussteamid.basic.BaseFragment
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_matches)
-class MatchesFragment : BaseFragment(), MatchesView {
+class RecentMatchesFragment : BaseFragment(), RecentMatchesView {
 
     companion object {
-        fun getNewInstance() = MatchesFragment()
+        fun getNewInstance() = RecentMatchesFragment()
     }
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: MatchesPresenter
-
+    lateinit var presenterRecent: RecentMatchesPresenter
 
     @ProvidePresenter
-    fun providePresenter() = presenter
+    fun providePresenter() = presenterRecent
 
     override fun initUi() {
     }

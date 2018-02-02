@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface BaseDao<T> {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(T entity);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

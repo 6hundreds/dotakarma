@@ -11,6 +11,8 @@ import android.arch.persistence.room.PrimaryKey
 data class HeroImageModel(
         @PrimaryKey
         var id: Int = 0,
+        @ColumnInfo(name = "name")
+        var name: String = "",
         @ColumnInfo(name = "image_url")
         var imageUrl: String = ""
 )

@@ -8,14 +8,18 @@ import com.google.gson.annotations.SerializedName
 data class MatchModel(
         @SerializedName("match_id")
         val matchId: Long,
+        @SerializedName("hero_id")
+        val heroId: Int,
         @SerializedName("duration")
         val duration: Int,
+        @SerializedName("start_time")
+        val startTime: Long,
+        @SerializedName("is_win")
+        val isWin: Boolean,
         @SerializedName("radiant_score")
         val radiantScore: Int,
         @SerializedName("dire_score")
         val direScore: Int,
-        @SerializedName("radiant_win")
-        val radiantWin: Boolean,
         @SerializedName("players")
         val players: List<MatchPlayerModel>
 
@@ -29,7 +33,9 @@ data class MatchModel(
             val playerSlot: Int,
             @SerializedName("kda")
             val kda: String,
+            @SerializedName("leaver_status")
+            val leaverStatus: Boolean,
             @SerializedName("personaname")
-            val personaname: String
+            val personaName: String
     )
 }

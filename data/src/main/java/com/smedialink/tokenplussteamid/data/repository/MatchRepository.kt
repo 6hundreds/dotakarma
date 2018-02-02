@@ -17,5 +17,4 @@ class MatchRepository @Inject constructor(private val api: DotaKarmaApi,
     override fun getRecentMatches(): Single<List<Match>> =
             api.fetchMatches()
                     .map(mapper)
-
 }

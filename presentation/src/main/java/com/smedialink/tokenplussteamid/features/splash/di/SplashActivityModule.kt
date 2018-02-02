@@ -1,10 +1,10 @@
 package com.smedialink.tokenplussteamid.features.splash.di
 
 import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
-import com.smedialink.tokenplussteamid.data.repository.HeroImageRepository
+import com.smedialink.tokenplussteamid.data.repository.HeroRepository
 import com.smedialink.tokenplussteamid.features.splash.SplashActivity
 import com.smedialink.tokenplussteamid.features.splash.navigation.SplashActivityNavigator
-import com.smedialink.tokenplussteamid.repository.IHeroImageRepository
+import com.smedialink.tokenplussteamid.repository.IHeroRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -27,6 +27,6 @@ abstract class SplashActivityModule {
 
     @Binds
     @ActivityScope
-    abstract fun provideHeroImageRepository(repo: HeroImageRepository): IHeroImageRepository
+    abstract fun provideHeroImageRepository(repo: HeroRepository): IHeroRepository
 
 }

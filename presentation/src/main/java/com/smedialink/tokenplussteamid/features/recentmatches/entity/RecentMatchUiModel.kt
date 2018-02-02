@@ -6,9 +6,10 @@ import com.smedialink.tokenplussteamid.features.recentmatches.adapter.MatchesIte
  * Created by six_hundreds on 01.02.18.
  */
 data class RecentMatchUiModel(
+        val startTime : Long,
+        val heroId : Int,
+        val isWin : Boolean,
         val duration: Int,
         val radiantScore: Int,
-        val direScore: Int,
-        val radiantWin: Boolean,
-        val heroes: Map<Int, Int>
+        val direScore: Int
 ) : MatchesItem

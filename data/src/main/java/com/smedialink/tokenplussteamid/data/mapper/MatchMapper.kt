@@ -13,16 +13,19 @@ class MatchMapper @Inject constructor() : Function<List<MatchModel>, List<Match>
     override fun apply(input: List<MatchModel>): List<Match> =
             input.map {
                 Match(it.matchId,
+                        it.heroId,
                         it.duration,
+                        it.startTime,
+                        it.isWin,
                         it.radiantScore,
                         it.direScore,
-                        it.radiantWin,
                         it.players.map { player ->
                             Match.MatchPlayer(player.accountId,
                                     player.heroId,
                                     player.playerSlot,
                                     player.kda,
-                                    player.personaname)
+                                    player.leaverStatus,
+                                    player.personaName)
                         }
                 )
             }

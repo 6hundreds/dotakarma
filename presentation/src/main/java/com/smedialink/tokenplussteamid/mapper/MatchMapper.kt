@@ -13,11 +13,13 @@ class MatchMapper @Inject constructor() : Function<List<Match>, List<RecentMatch
     override fun apply(input: List<Match>): List<RecentMatchUiModel> =
             input.map {
                 RecentMatchUiModel(
+                        it.startTime * 1000,
+                        it.heroId,
+                        it.isWin,
                         it.duration,
                         it.radiantScore,
-                        it.direScore,
-                        it.radiantWin,
-                        it.players.associateBy({ it.playerSlot }, { it.heroId })
+                        it.direScore
+//                        it.players.associateBy({ it.playerSlot }, { it.heroId })
                 )
             }
 }

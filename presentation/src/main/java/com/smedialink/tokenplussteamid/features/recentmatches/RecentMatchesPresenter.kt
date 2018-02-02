@@ -2,8 +2,9 @@ package com.smedialink.tokenplussteamid.features.recentmatches
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.mapper.MatchMapper
-import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroImageUseCase
+import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
 import com.smedialink.tokenplussteamid.usecase.matches.GetRecentMatchesUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,10 +13,10 @@ import javax.inject.Inject
 
 @InjectViewState
 class RecentMatchesPresenter @Inject constructor(
-        private val getHeroImageUseCase: GetHeroImageUseCase,
+        private val getHeroUseCase: GetHeroUseCase,
         private val getRecentMatchesUseCase: GetRecentMatchesUseCase,
         private val mapper: MatchMapper)
-    : BasePresenter<RecentMatchesView>(), HeroImagesFactory {
+    : BasePresenter<RecentMatchesView>(), HeroFactory {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -29,6 +30,5 @@ class RecentMatchesPresenter @Inject constructor(
                         { viewState.showError(it.localizedMessage) })
     }
 
-    override fun getImage(heroId: Int): Single<String> =
-            getHeroImageUseCase.execute(heroId)
+    override fun getHero(heroId: Int): Single<Hero> = getHeroUseCase.execute(heroId)
 }

@@ -1,148 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:cardBackgroundColor="@android:color/darker_gray"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="32dp"
-    app:cardCornerRadius="0dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardElevation="8dp">
+    android:padding="16dp">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="32dp"
+        tools:text="@tools:sample/date/mmddyy" />
 
-        <ImageView
-            android:id="@+id/hero_slot0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot1"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot1"
-            app:srcCompat="@mipmap/ic_launcher" />
+    <ImageView
+        android:id="@+id/image_hero"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        tools:src="@tools:sample/avatars" />
 
-        <ImageView
-            android:id="@+id/hero_slot1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot0"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot2"
-            app:srcCompat="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/text_hero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        tools:text="@tools:sample/last_names" />
 
-        <ImageView
-            android:id="@+id/hero_slot2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot1"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot3"
-            app:srcCompat="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        tools:text="Win" />
 
-        <ImageView
-            android:id="@+id/hero_slot3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot2"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot4"
-            app:srcCompat="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/text_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        tools:text="@tools:sample/date/hhmm" />
 
-        <ImageView
-            android:id="@+id/hero_slot4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/radiant_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toStartOf="@+id/dire_score"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dire_score"
-            tools:text="TextView" />
-
-        <TextView
-            android:id="@+id/dire_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/hero_slot132"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/radiant_score"
-            app:layout_constraintTop_toBottomOf="@+id/hero_slot4"
-            tools:text="TextView" />
-
-        <ImageView
-            android:id="@+id/hero_slot128"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot129"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot129"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-
-        <ImageView
-            android:id="@+id/hero_slot129"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot130"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot128"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot130"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-
-        <ImageView
-            android:id="@+id/hero_slot130"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot131"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot129"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot131"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-
-        <ImageView
-            android:id="@+id/hero_slot131"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/hero_slot132"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot130"
-            app:layout_constraintTop_toTopOf="@+id/hero_slot132"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-
-        <ImageView
-            android:id="@+id/hero_slot132"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hero_slot131"
-            app:srcCompat="@mipmap/ic_launcher_round" />
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+</LinearLayout>

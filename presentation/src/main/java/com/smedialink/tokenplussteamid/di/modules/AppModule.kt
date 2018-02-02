@@ -5,15 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.smedialink.tokenplussteamid.app.DotaKarma
-import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.data.manager.SharedPrefsManager
-import com.smedialink.tokenplussteamid.data.repository.HeroImageRepository
 import com.smedialink.tokenplussteamid.manager.IPrefsManager
-import com.smedialink.tokenplussteamid.repository.IHeroImageRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 

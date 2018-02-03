@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.playerprofile
+package com.smedialink.tokenplussteamid.features.profile
 
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -10,15 +10,15 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_profile)
-class PlayerProfileFragment : BaseFragment(), PlayerProfileView {
+class ProfileFragment : BaseFragment(), ProfileView {
 
     companion object {
-        fun getNewInstance() = PlayerProfileFragment()
+        fun getNewInstance() = ProfileFragment()
     }
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: PlayerProfilePresenter
+    lateinit var presenter: ProfilePresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter

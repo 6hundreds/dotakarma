@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.playerprofile.di
+package com.smedialink.tokenplussteamid.features.profile.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.data.repository.UserRepository

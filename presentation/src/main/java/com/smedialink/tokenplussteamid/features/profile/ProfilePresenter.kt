@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.playerprofile
+package com.smedialink.tokenplussteamid.features.profile
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.CachePolicy
@@ -10,14 +10,13 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class PlayerProfilePresenter @Inject constructor(private val getLocalPlayerProfileUseCase: GetUserUseCase)
-    : BasePresenter<PlayerProfileView>() {
+class ProfilePresenter @Inject constructor(private val getUserUseCase: GetUserUseCase)
+    : BasePresenter<ProfileView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getLocalPlayerProfileUseCase
-                .execute(CachePolicy.LOCAL)
+        getUserUseCase.execute(CachePolicy.LOCAL)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ player ->

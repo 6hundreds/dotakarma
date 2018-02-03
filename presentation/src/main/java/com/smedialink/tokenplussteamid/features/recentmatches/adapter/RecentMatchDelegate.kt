@@ -1,7 +1,9 @@
 package com.smedialink.tokenplussteamid.features.recentmatches.adapter
 
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.ColorUtils
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.DividerItemDecoration.VERTICAL
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +15,7 @@ import com.smedialink.tokenplussteamid.features.recentmatches.HeroFactory
 import com.smedialink.tokenplussteamid.features.recentmatches.entity.RecentMatchUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.item_matches_recent_match_constraint.view.*
-import java.text.DateFormat
+import kotlinx.android.synthetic.main.item_matches_recent_match.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,8 +27,7 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
     : AbsListItemAdapterDelegate<RecentMatchUiModel, MatchesItem, RecentMatchDelegate.RecentMatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecentMatchViewHolder {
-//        val view = parent.inflate(R.layout.item_matches_recent_match)
-        val view = parent.inflate(R.layout.item_matches_recent_match_constraint)
+        val view = parent.inflate(R.layout.item_matches_recent_match)
         return RecentMatchViewHolder(view)
     }
 
@@ -44,11 +44,21 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
 
         private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
 
-        init {
-            itemView.setOnClickListener {
-                with(itemView.match_details) {
-                    if (isExpanded) collapse() else expand()
+        private val playersAdapter = MatchPlayersAdapter(heroFactory, glide)
 
+        init {
+            with(itemView) {
+                setOnClickListener {
+                    with(match_details) {
+                        if (isExpanded) collapse() else expand()
+                    }
+                }
+
+                list_match_details.apply {
+                    adapter = playersAdapter
+                    layoutManager = LinearLayoutManager(context)
+                    addItemDecoration(DividerItemDecoration(context, VERTICAL))
+                    setHasFixedSize(true)
                 }
             }
         }
@@ -65,8 +75,12 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
 
                 text_result.apply {
                     isActivated = match.isWin
-                    text = if (match.isWin) "Win" else "Lose"
+                    text = if (match.isWin)
+                        resources.getString(R.string.match_status_win)
+                    else resources.getString(R.string.match_status_lose)
                 }
+
+                playersAdapter.items = match.players
 
                 heroFactory.getHero(match.heroId)
                         .subscribeOn(Schedulers.io())
@@ -77,7 +91,6 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
                         })
 
             }
-
         }
     }
 }

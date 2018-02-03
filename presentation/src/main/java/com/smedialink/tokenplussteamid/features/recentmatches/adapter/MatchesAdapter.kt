@@ -12,7 +12,6 @@ class MatchesAdapter(heroFactory: HeroFactory,
 
     init {
         delegatesManager.addDelegate(RecentMatchDelegate(heroFactory, glide))
-        setItems(listOf())
     }
 
     override fun setItems(items: List<MatchesItem>) {

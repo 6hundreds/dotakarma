@@ -27,4 +27,7 @@
         laboris nisi ut aliquip ex ea commodo consequat. </string>
     <string name="btn_ok">OK</string>
 
+    <string name="match_status_win">Win</string>
+    <string name="match_status_lose">Lose</string>
+
 </resources>

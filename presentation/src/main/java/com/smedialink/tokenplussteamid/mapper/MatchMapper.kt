@@ -18,8 +18,16 @@ class MatchMapper @Inject constructor() : Function<List<Match>, List<RecentMatch
                         it.isWin,
                         it.duration,
                         it.radiantScore,
-                        it.direScore
-//                        it.players.associateBy({ it.playerSlot }, { it.heroId })
-                )
+                        it.direScore,
+                        it.players.map { player ->
+                            RecentMatchUiModel.MatchPlayerUiModel(
+                                    player.accountId,
+                                    player.heroId,
+                                    player.kda,
+                                    player.leaverStatus,
+                                    player.personaName
+                            )
+                        })
             }
+
 }

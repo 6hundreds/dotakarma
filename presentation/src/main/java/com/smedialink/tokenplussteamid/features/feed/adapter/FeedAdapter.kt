@@ -12,15 +12,15 @@ class FeedAdapter(paginator: FeedPaginator) : ListDelegationAdapter<MutableList<
     }
 
 
-    fun insertItems(newData: List<FeedItem>) {
+    fun insertItems(newItems: List<FeedItem>) {
         val oldSize = items.size
         if (oldSize == 0) {
-            items.addAll(0, newData)
+            items.addAll(0, newItems)
             items.add(LoadMoreFooter())
             notifyDataSetChanged()
         } else {
-            items.addAll(oldSize - 1, newData)
-            notifyItemRangeInserted(oldSize - 1, newData.size)
+            items.addAll(oldSize - 1, newItems)
+            notifyItemRangeInserted(oldSize - 1, newItems.size)
         }
     }
 }

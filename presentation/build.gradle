@@ -58,13 +58,18 @@ dependencies {
     implementation presentationDependencies.roomRx
     implementation presentationDependencies.bottomNavigation
     implementation presentationDependencies.adapterDelegates
+    implementation presentationDependencies.glide
+    implementation presentationDependencies.expandableLayout
 
     implementation developmentDependencies.timber
+    implementation developmentDependencies.stetho
 
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.daggerAndroidCompiler
     kapt presentationDependencies.moxyCompiler
     kapt presentationDependencies.roomCompiler
+    kapt presentationDependencies.glideCompiler
+
 
     testImplementation presentationTestDependencies.junit
     androidTestImplementation presentationTestDependencies.espresso

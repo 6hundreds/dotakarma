@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorFeed">@color/colorAccent</color>
-    <color name="colorProfile">@color/colorPrimary</color>
-    <color name="colorMatches">#de6902</color>
+    <color name="colorTest">#2e3658</color>
+    <color name="colorTest2">#3a4268</color>
+
+    <color name="colorWinMatch">#92A525</color>
+    <color name="colorLoseMatch">#C23C2A</color>
 </resources>

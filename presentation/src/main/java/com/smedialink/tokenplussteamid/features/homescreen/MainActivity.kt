@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.features.homescreen
 
+import android.graphics.Color
 import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -53,25 +54,14 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun initViews() {
 
-        tabItemFeed = AHBottomNavigationItem(
-            R.string.action_feed,
-            R.drawable.ic_comment,
-            R.color.colorFeed
-        )
-        tabItemProfile = AHBottomNavigationItem(
-            R.string.action_profile,
-            R.drawable.ic_person,
-            R.color.colorProfile
-        )
-        tabItemPMatches = AHBottomNavigationItem(
-            R.string.action_matches,
-            R.drawable.ic_star,
-            R.color.colorMatches
-        )
+        home_bottom_navigation.setDefaultBackgroundResource(R.drawable.bg_purple_gradient)
+
+        tabItemFeed = AHBottomNavigationItem(getString(R.string.action_feed),R.drawable.ic_comment)
+        tabItemProfile = AHBottomNavigationItem(getString(R.string.action_profile), R.drawable.ic_person)
+        tabItemPMatches = AHBottomNavigationItem(getString(R.string.action_matches), R.drawable.ic_star)
 
         home_bottom_navigation.addItems(listOf(tabItemFeed, tabItemProfile, tabItemPMatches))
         home_bottom_navigation.titleState = AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE
-        home_bottom_navigation.isColored = true
 
         home_bottom_navigation.setOnTabSelectedListener { position, _ ->
             when (position) {

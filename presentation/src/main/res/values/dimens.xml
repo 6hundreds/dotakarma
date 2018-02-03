@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common Size Kit -->
+    <dimen name="padding_common_tiny">4dp</dimen>
+    <dimen name="padding_common_small">8dp</dimen>
+    <dimen name="padding_common_reduced">12dp</dimen>
+    <dimen name="padding_common_normal">16dp</dimen>
+    <dimen name="padding_common_extended">24dp</dimen>
+    <dimen name="padding_common_large">32dp</dimen>
+    <dimen name="padding_common_xlarge">48dp</dimen>
+    <dimen name="padding_common_xxlarge">56dp</dimen>
+
+</resources>

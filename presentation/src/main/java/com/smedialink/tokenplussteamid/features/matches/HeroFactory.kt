@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.recentmatches
+package com.smedialink.tokenplussteamid.features.matches
 
 import com.smedialink.tokenplussteamid.entity.Hero
 import io.reactivex.Single

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.recentmatches.adapter
+package com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,8 +7,8 @@ import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.inflate
-import com.smedialink.tokenplussteamid.features.recentmatches.HeroFactory
-import com.smedialink.tokenplussteamid.features.recentmatches.entity.RecentMatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.HeroFactory
+import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_match_player.view.*
@@ -18,8 +18,8 @@ import kotlinx.android.synthetic.main.item_match_player.view.*
  */
 class PlayerDelegate(private val heroFactory: HeroFactory,
                      private val glide: RequestManager)
-    : AbsListItemAdapterDelegate<RecentMatchUiModel.MatchPlayerUiModel,
-        RecentMatchUiModel.MatchPlayerUiModel,
+    : AbsListItemAdapterDelegate<MatchUiModel.MatchPlayerUiModel,
+        MatchDetailsItem,
         PlayerDelegate.PlayerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): PlayerViewHolder {
@@ -27,13 +27,13 @@ class PlayerDelegate(private val heroFactory: HeroFactory,
         return PlayerViewHolder(view)
     }
 
-    override fun isForViewType(item: RecentMatchUiModel.MatchPlayerUiModel,
-                               items: MutableList<RecentMatchUiModel.MatchPlayerUiModel>,
+    override fun isForViewType(item: MatchDetailsItem,
+                               items: MutableList<MatchDetailsItem>,
                                position: Int): Boolean =
-            true
+            item is MatchUiModel.MatchPlayerUiModel
 
 
-    override fun onBindViewHolder(item: RecentMatchUiModel.MatchPlayerUiModel,
+    override fun onBindViewHolder(item: MatchUiModel.MatchPlayerUiModel,
                                   viewHolder: PlayerViewHolder,
                                   payloads: MutableList<Any>) =
             viewHolder.bind(item)
@@ -41,7 +41,7 @@ class PlayerDelegate(private val heroFactory: HeroFactory,
 
     inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(player: RecentMatchUiModel.MatchPlayerUiModel) {
+        fun bind(player: MatchUiModel.MatchPlayerUiModel) {
             with(itemView) {
                 text_personaname.text = player.personaName
                 text_kda.text = player.kda

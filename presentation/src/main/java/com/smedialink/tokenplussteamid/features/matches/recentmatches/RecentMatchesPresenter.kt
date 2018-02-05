@@ -1,8 +1,9 @@
-package com.smedialink.tokenplussteamid.features.recentmatches
+package com.smedialink.tokenplussteamid.features.matches.recentmatches
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.entity.Hero
+import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
 import com.smedialink.tokenplussteamid.usecase.matches.GetRecentMatchesUseCase

@@ -1,8 +1,8 @@
-package com.smedialink.tokenplussteamid.features.recentmatches.adapter
+package com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter
 
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import com.smedialink.tokenplussteamid.features.recentmatches.HeroFactory
+import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 
 /**
  * Created by six_hundreds on 01.02.18.

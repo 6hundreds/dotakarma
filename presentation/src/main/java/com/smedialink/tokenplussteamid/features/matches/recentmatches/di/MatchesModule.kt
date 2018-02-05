@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.recentmatches.di
+package com.smedialink.tokenplussteamid.features.matches.recentmatches.di
 
 import com.smedialink.tokenplussteamid.data.repository.HeroRepository
 import com.smedialink.tokenplussteamid.data.repository.MatchRepository

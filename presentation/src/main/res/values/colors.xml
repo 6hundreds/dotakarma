@@ -7,6 +7,6 @@
     <color name="colorTest">#2e3658</color>
     <color name="colorTest2">#3a4268</color>
 
-    <color name="colorWinMatch">#92A525</color>
-    <color name="colorLoseMatch">#C23C2A</color>
+    <color name="colorRadiantGreen">#92A525</color>
+    <color name="colorDireRed">#C23C2A</color>
 </resources>

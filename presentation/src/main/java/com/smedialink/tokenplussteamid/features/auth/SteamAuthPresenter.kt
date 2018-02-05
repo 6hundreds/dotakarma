@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.steamauth
+package com.smedialink.tokenplussteamid.features.auth
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter

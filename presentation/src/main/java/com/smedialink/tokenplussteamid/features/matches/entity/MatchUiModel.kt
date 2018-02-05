@@ -1,14 +1,17 @@
-package com.smedialink.tokenplussteamid.features.recentmatches.entity
+package com.smedialink.tokenplussteamid.features.matches.entity
 
-import com.smedialink.tokenplussteamid.features.recentmatches.adapter.MatchesItem
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesItem
 
 /**
  * Created by six_hundreds on 01.02.18.
  */
-data class RecentMatchUiModel(
+data class MatchUiModel(
+        val matchId: Long,
         val startTime: Long,
         val heroId: Int,
         val isWin: Boolean,
+        val radiantWin: Boolean,
         val duration: Int,
         val radiantScore: Int,
         val direScore: Int,
@@ -18,8 +21,9 @@ data class RecentMatchUiModel(
     data class MatchPlayerUiModel(
             val accountId: Long,
             val heroId: Int,
+            val isRadiant : Boolean,
             val kda: String,
             val leaverStatus: Boolean,
             val personaName: String
-    )
+    ) : MatchDetailsItem
 }

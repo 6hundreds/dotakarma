@@ -1,0 +1,85 @@
+package com.smedialink.tokenplussteamid.features.matches.matchdetails
+
+import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.widget.Toast
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.bumptech.glide.Glide
+import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.Team
+import com.smedialink.tokenplussteamid.app.Layout
+import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.TeamHeader
+import kotlinx.android.synthetic.main.fragment_match_details.*
+import javax.inject.Inject
+
+/**
+ * Created by six_hundreds on 05.02.18.
+ */
+@Layout(R.layout.fragment_match_details)
+class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
+    private lateinit var adapter: MatchPlayersAdapter
+
+    companion object {
+
+        private const val MATCH_ID_KEY = "match_id"
+
+        fun newInstance(matchId: Long) = MatchDetailsFragment().apply {
+            arguments = Bundle().apply {
+                putLong(MATCH_ID_KEY, matchId)
+            }
+        }
+    }
+
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: MatchDetailsPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
+
+    override fun showMatchDetails(match: MatchUiModel) {
+        toolbar.title = if (match.radiantWin) "Radiant win" else "Dire win"
+        val items = mutableListOf<MatchDetailsItem>()
+        items.add(TeamHeader(Team.RADIANT))
+        match.players
+                .forEach { if (it.isRadiant) items.add(it) }
+        items.add(TeamHeader(Team.DIRE))
+        match.players
+                .forEach { if (!it.isRadiant) items.add(it) }
+        adapter.items = match.players
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val matchId = arguments?.getLong(MATCH_ID_KEY, -1)
+        if (matchId != -1L) {
+            //todo presenter.blahblah
+        }
+    }
+
+    override fun initUi() {
+        val glide = Glide.with(this)
+        adapter = MatchPlayersAdapter(presenter, glide)
+        with(list_match_details) {
+            adapter = adapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
+    }
+
+    override fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showLoading(show: Boolean) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+
+}

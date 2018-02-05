@@ -15,15 +15,13 @@ class ProfilePresenter @Inject constructor(private val getUserUseCase: GetUserUs
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
         getUserUseCase.execute(CachePolicy.LOCAL)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ player ->
-                    viewState.displayProfile(player)
-                }, { error ->
-                    Timber.d("Error: ${error.message}")
-                })
+                .doOnSubscribe { viewState.showLoading(true) }
+                .doFinally { viewState.showLoading(false) }
+                .subscribe({ viewState.showProfile(it) },
+                        { viewState.showError(it.localizedMessage) })
 
     }
 }

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.recentmatches
+package com.smedialink.tokenplussteamid.features.matches.recentmatches
 
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
@@ -9,8 +9,8 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.setVisible
-import com.smedialink.tokenplussteamid.features.recentmatches.adapter.MatchesAdapter
-import com.smedialink.tokenplussteamid.features.recentmatches.adapter.MatchesItem
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesItem
 import kotlinx.android.synthetic.main.fragment_matches.*
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class RecentMatchesFragment : BaseFragment(), RecentMatchesView {
 
     companion object {
 
-        fun getNewInstance() = RecentMatchesFragment()
+        fun newInstance() = RecentMatchesFragment()
     }
 
     @Inject

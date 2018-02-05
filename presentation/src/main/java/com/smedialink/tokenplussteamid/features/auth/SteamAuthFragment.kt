@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.steamauth
+package com.smedialink.tokenplussteamid.features.auth
 
 import android.annotation.SuppressLint
 import android.content.Intent

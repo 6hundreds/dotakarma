@@ -1,23 +1,23 @@
-package com.smedialink.tokenplussteamid.features.recentmatches.adapter
+package com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter
 
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import com.smedialink.tokenplussteamid.features.recentmatches.HeroFactory
-import com.smedialink.tokenplussteamid.features.recentmatches.entity.RecentMatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 
 /**
  * Created by six_hundreds on 02.02.18.
  */
 class MatchPlayersAdapter(heroFactory: HeroFactory,
                           glide: RequestManager)
-    : ListDelegationAdapter<List<RecentMatchUiModel.MatchPlayerUiModel>>() {
+    : ListDelegationAdapter<List<MatchDetailsItem>>() {
 
     init {
         delegatesManager.addDelegate(PlayerDelegate(heroFactory, glide))
+        delegatesManager.addDelegate(TeamHeaderDelegate())
         setHasStableIds(true)
     }
 
-    override fun setItems(items: List<RecentMatchUiModel.MatchPlayerUiModel>?) {
+    override fun setItems(items: List<MatchDetailsItem>) {
         super.setItems(items)
         notifyDataSetChanged()
     }

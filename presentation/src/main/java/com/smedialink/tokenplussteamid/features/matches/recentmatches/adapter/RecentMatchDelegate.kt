@@ -1,9 +1,6 @@
-package com.smedialink.tokenplussteamid.features.recentmatches.adapter
+package com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter
 
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.DividerItemDecoration.VERTICAL
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +8,8 @@ import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.inflate
-import com.smedialink.tokenplussteamid.features.recentmatches.HeroFactory
-import com.smedialink.tokenplussteamid.features.recentmatches.entity.RecentMatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.HeroFactory
+import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_matches_recent_match.view.*
@@ -24,7 +21,7 @@ import java.util.*
  */
 class RecentMatchDelegate(private val heroFactory: HeroFactory,
                           private val glide: RequestManager)
-    : AbsListItemAdapterDelegate<RecentMatchUiModel, MatchesItem, RecentMatchDelegate.RecentMatchViewHolder>() {
+    : AbsListItemAdapterDelegate<MatchUiModel, MatchesItem, RecentMatchDelegate.RecentMatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecentMatchViewHolder {
         val view = parent.inflate(R.layout.item_matches_recent_match)
@@ -32,9 +29,9 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
     }
 
     override fun isForViewType(item: MatchesItem, items: MutableList<MatchesItem>, position: Int): Boolean =
-            item is RecentMatchUiModel
+            item is MatchUiModel
 
-    override fun onBindViewHolder(item: RecentMatchUiModel,
+    override fun onBindViewHolder(item: MatchUiModel,
                                   viewHolder: RecentMatchViewHolder,
                                   payloads: MutableList<Any>) =
             viewHolder.bind(item)
@@ -44,26 +41,7 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
 
         private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
 
-        private val playersAdapter = MatchPlayersAdapter(heroFactory, glide)
-
-        init {
-            with(itemView) {
-                setOnClickListener {
-                    with(match_details) {
-                        if (isExpanded) collapse() else expand()
-                    }
-                }
-
-                list_match_details.apply {
-                    adapter = playersAdapter
-                    layoutManager = LinearLayoutManager(context)
-                    addItemDecoration(DividerItemDecoration(context, VERTICAL))
-                    setHasFixedSize(true)
-                }
-            }
-        }
-
-        fun bind(match: RecentMatchUiModel) {
+        fun bind(match: MatchUiModel) {
 
             with(itemView) {
                 itemView.setBackgroundColor(
@@ -79,8 +57,6 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
                         resources.getString(R.string.match_status_win)
                     else resources.getString(R.string.match_status_lose)
                 }
-
-                playersAdapter.items = match.players
 
                 heroFactory.getHero(match.heroId)
                         .subscribeOn(Schedulers.io())

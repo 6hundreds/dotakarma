@@ -3,21 +3,23 @@ package com.smedialink.tokenplussteamid.features.matches.recentmatches
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.entity.Hero
+import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
-import com.smedialink.tokenplussteamid.mapper.MatchItemMapper
-import com.smedialink.tokenplussteamid.mapper.MatchMapper
+import com.smedialink.tokenplussteamid.mapper.MatchListMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
 import com.smedialink.tokenplussteamid.usecase.matches.GetRecentMatchesUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class RecentMatchesPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getRecentMatchesUseCase: GetRecentMatchesUseCase,
-        private val mapper: MatchItemMapper)
+        private val mapper: MatchListMapper,
+        private val router: Router)
     : BasePresenter<RecentMatchesView>(), HeroFactory {
 
     override fun onFirstViewAttach() {
@@ -33,4 +35,8 @@ class RecentMatchesPresenter @Inject constructor(
     }
 
     override fun getHero(heroId: Int): Single<Hero> = getHeroUseCase.execute(heroId)
+
+    fun openMatchDetails(matchId: Long) {
+        router.navigateTo(AppScreens.MATCH_DETAILS_SCREEN, matchId)
+    }
 }

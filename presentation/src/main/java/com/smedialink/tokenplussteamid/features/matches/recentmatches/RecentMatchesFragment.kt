@@ -10,14 +10,15 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.OnMatchClickListener
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel
 import kotlinx.android.synthetic.main.fragment_matches.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_matches)
-class RecentMatchesFragment : BaseFragment(), RecentMatchesView {
+class RecentMatchesFragment : BaseFragment(), RecentMatchesView, OnMatchClickListener {
 
     companion object {
-
         fun newInstance() = RecentMatchesFragment()
     }
 
@@ -32,7 +33,7 @@ class RecentMatchesFragment : BaseFragment(), RecentMatchesView {
 
     override fun initUi() {
         val glide = Glide.with(this)
-        matchesAdapter = MatchesAdapter(presenter, glide)
+        matchesAdapter = MatchesAdapter(presenter, glide, this)
         with(list_matches) {
             adapter = matchesAdapter
             layoutManager = LinearLayoutManager(context)
@@ -48,7 +49,11 @@ class RecentMatchesFragment : BaseFragment(), RecentMatchesView {
         loader.setVisible(show)
     }
 
-    override fun updateMatches(items: List<MatchesItem>) {
+    override fun updateMatches(items: List<MatchItemUiModel>) {
         matchesAdapter.items = items
+    }
+
+    override fun onMatchClick(matchId: Long) {
+        presenter.openMatchDetails(matchId)
     }
 }

@@ -1,11 +1,15 @@
 package com.smedialink.tokenplussteamid.data.entity
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
  * Created by six_hundreds on 01.02.18.
  */
+@Entity(tableName = "matches")
 data class MatchModel(
+        @PrimaryKey
         @SerializedName("match_id")
         val matchId: Long,
         @SerializedName("hero_id")

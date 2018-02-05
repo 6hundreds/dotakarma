@@ -20,7 +20,8 @@ import java.util.*
  * Created by six_hundreds on 01.02.18.
  */
 class RecentMatchDelegate(private val heroFactory: HeroFactory,
-                          private val glide: RequestManager)
+                          private val glide: RequestManager,
+                          private val listener: OnMatchClickListener)
     : AbsListItemAdapterDelegate<MatchItemUiModel, MatchItemUiModel, RecentMatchDelegate.RecentMatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecentMatchViewHolder {
@@ -46,10 +47,6 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
         fun bind(match: MatchItemUiModel) {
 
             with(itemView) {
-                itemView.setBackgroundColor(
-                        if (adapterPosition % 2 == 0)
-                            ContextCompat.getColor(context, R.color.colorTest)
-                        else ContextCompat.getColor(context, R.color.colorTest2))
 
                 text_date.text = dateFormat.format(Date(match.startTime))
 
@@ -59,6 +56,8 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
                         resources.getString(R.string.match_status_win)
                     else resources.getString(R.string.match_status_lose)
                 }
+
+                itemView.setOnClickListener { listener.onMatchClick(match.matchId) }
 
                 heroFactory.getHero(match.heroId)
                         .subscribeOn(Schedulers.io())

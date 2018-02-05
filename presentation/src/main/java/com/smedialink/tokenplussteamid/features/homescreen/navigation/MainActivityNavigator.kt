@@ -10,6 +10,7 @@ import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.features.profile.ProfileFragment
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 
@@ -23,7 +24,8 @@ class MainActivityNavigator @Inject constructor(activity: MainActivity)
         AppScreens.BOTTOM_FEED_SCREEN -> FeedFragment.newInstance()
         AppScreens.BOTTOM_PROFILE_SCREEN -> ProfileFragment.newInstance()
         AppScreens.BOTTOM_MATCHES_SCREEN -> RecentMatchesFragment.newInstance()
-        AppScreens.STEAM_AUTH_SCREEN -> SteamAuthFragment.getNewInstance()
+        AppScreens.STEAM_AUTH_SCREEN -> SteamAuthFragment.newInstance()
+        AppScreens.MATCH_DETAILS_SCREEN -> MatchDetailsFragment.newInstance(data as Long)
         else -> null
     }
 }

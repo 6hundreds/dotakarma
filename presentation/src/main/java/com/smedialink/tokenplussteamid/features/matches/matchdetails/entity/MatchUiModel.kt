@@ -8,19 +8,16 @@ import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.Mat
 data class MatchUiModel(
         val matchId: Long,
         val startTime: Long,
-        val heroId: Int,
-        val isWin: Boolean,
         val radiantWin: Boolean,
         val duration: Int,
         val radiantScore: Int,
         val direScore: Int,
         val players: List<MatchPlayerUiModel>
 ) {
-
     data class MatchPlayerUiModel(
             val accountId: Long,
             val heroId: Int,
-            val isRadiant : Boolean,
+            val isRadiant: Boolean,
             val kda: String,
             val leaverStatus: Boolean,
             val personaName: String

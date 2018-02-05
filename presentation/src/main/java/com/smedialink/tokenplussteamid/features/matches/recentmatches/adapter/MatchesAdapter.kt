@@ -9,10 +9,11 @@ import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.Mat
  * Created by six_hundreds on 01.02.18.
  */
 class MatchesAdapter(heroFactory: HeroFactory,
-                     glide: RequestManager) : ListDelegationAdapter<List<MatchItemUiModel>>() {
+                     glide: RequestManager,
+                     listener: OnMatchClickListener) : ListDelegationAdapter<List<MatchItemUiModel>>() {
 
     init {
-        delegatesManager.addDelegate(RecentMatchDelegate(heroFactory, glide))
+        delegatesManager.addDelegate(RecentMatchDelegate(heroFactory, glide, listener))
     }
 
     override fun setItems(items: List<MatchItemUiModel>) {

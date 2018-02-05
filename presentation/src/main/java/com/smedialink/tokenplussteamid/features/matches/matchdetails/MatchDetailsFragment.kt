@@ -26,7 +26,6 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
     private lateinit var adapter: MatchPlayersAdapter
 
     companion object {
-
         private const val MATCH_ID_KEY = "match_id"
 
         fun newInstance(matchId: Long) = MatchDetailsFragment().apply {
@@ -44,7 +43,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
     fun providePresenter() = presenter
 
     override fun showMatchDetails(match: MatchUiModel) {
-        toolbar.title = if (match.radiantWin) "Radiant win" else "Dire win"
+        toolbar.title = if (match.radiantWin) "Radiant win" else "Dire win" //todo stub!
         val items = mutableListOf<MatchDetailsItem>()
         items.add(TeamHeader(Team.RADIANT))
         match.players
@@ -57,9 +56,10 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val matchId = arguments?.getLong(MATCH_ID_KEY, -1L) ?: throw  IllegalArgumentException("matchId must be provided")
+        val matchId = arguments?.getLong(MATCH_ID_KEY, -1L)
+                ?: throw  IllegalArgumentException("matchId must be provided")
         if (matchId != -1L) {
-            //todo presenter.blahblah
+            presenter.getMatchDetails(matchId)
         }
     }
 

@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.mapper
 
 import com.smedialink.tokenplussteamid.entity.Match
-import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import io.reactivex.functions.Function
 import javax.inject.Inject
 

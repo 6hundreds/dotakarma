@@ -1,7 +1,6 @@
-package com.smedialink.tokenplussteamid.features.matches.entity
+package com.smedialink.tokenplussteamid.features.matches.matchdetails.entity
 
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesItem
 
 /**
  * Created by six_hundreds on 01.02.18.
@@ -16,7 +15,7 @@ data class MatchUiModel(
         val radiantScore: Int,
         val direScore: Int,
         val players: List<MatchPlayerUiModel>
-) : MatchesItem {
+) {
 
     data class MatchPlayerUiModel(
             val accountId: Long,

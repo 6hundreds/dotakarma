@@ -11,7 +11,7 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.Team
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.TeamHeader
@@ -57,7 +57,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val matchId = arguments?.getLong(MATCH_ID_KEY, -1)
+        val matchId = arguments?.getLong(MATCH_ID_KEY, -1L) ?: throw  IllegalArgumentException("matchId must be provided")
         if (matchId != -1L) {
             //todo presenter.blahblah
         }

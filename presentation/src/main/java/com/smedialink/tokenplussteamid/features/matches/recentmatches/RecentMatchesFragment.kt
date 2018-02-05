@@ -10,7 +10,6 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesItem
 import kotlinx.android.synthetic.main.fragment_matches.*
 import javax.inject.Inject
 

@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
+import com.smedialink.tokenplussteamid.mapper.MatchItemMapper
 import com.smedialink.tokenplussteamid.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
 import com.smedialink.tokenplussteamid.usecase.matches.GetRecentMatchesUseCase
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class RecentMatchesPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getRecentMatchesUseCase: GetRecentMatchesUseCase,
-        private val mapper: MatchMapper)
+        private val mapper: MatchItemMapper)
     : BasePresenter<RecentMatchesView>(), HeroFactory {
 
     override fun onFirstViewAttach() {

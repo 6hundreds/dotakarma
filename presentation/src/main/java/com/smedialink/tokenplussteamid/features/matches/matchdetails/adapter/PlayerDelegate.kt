@@ -8,7 +8,7 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.inflate
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
-import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_match_player.view.*

@@ -9,7 +9,7 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.inflate
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
-import com.smedialink.tokenplussteamid.features.matches.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_matches_recent_match.view.*
@@ -21,17 +21,19 @@ import java.util.*
  */
 class RecentMatchDelegate(private val heroFactory: HeroFactory,
                           private val glide: RequestManager)
-    : AbsListItemAdapterDelegate<MatchUiModel, MatchesItem, RecentMatchDelegate.RecentMatchViewHolder>() {
+    : AbsListItemAdapterDelegate<MatchItemUiModel, MatchItemUiModel, RecentMatchDelegate.RecentMatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecentMatchViewHolder {
         val view = parent.inflate(R.layout.item_matches_recent_match)
         return RecentMatchViewHolder(view)
     }
 
-    override fun isForViewType(item: MatchesItem, items: MutableList<MatchesItem>, position: Int): Boolean =
-            item is MatchUiModel
+    override fun isForViewType(item: MatchItemUiModel,
+                               items: MutableList<MatchItemUiModel>,
+                               position: Int): Boolean =
+            true
 
-    override fun onBindViewHolder(item: MatchUiModel,
+    override fun onBindViewHolder(item: MatchItemUiModel,
                                   viewHolder: RecentMatchViewHolder,
                                   payloads: MutableList<Any>) =
             viewHolder.bind(item)
@@ -41,7 +43,7 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
 
         private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
 
-        fun bind(match: MatchUiModel) {
+        fun bind(match: MatchItemUiModel) {
 
             with(itemView) {
                 itemView.setBackgroundColor(

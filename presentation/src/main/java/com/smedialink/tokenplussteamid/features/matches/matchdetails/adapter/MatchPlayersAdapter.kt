@@ -12,9 +12,8 @@ class MatchPlayersAdapter(heroFactory: HeroFactory,
     : ListDelegationAdapter<List<MatchDetailsItem>>() {
 
     init {
-        delegatesManager.addDelegate(PlayerDelegate(heroFactory, glide))
         delegatesManager.addDelegate(TeamHeaderDelegate())
-        setHasStableIds(true)
+        delegatesManager.addDelegate(PlayerDelegate(heroFactory, glide))
     }
 
     override fun setItems(items: List<MatchDetailsItem>) {

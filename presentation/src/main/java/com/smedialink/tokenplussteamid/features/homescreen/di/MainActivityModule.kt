@@ -2,15 +2,17 @@ package com.smedialink.tokenplussteamid.features.homescreen.di
 
 import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
+import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
 import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivityNavigator
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.di.MatchDetailsModule
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.di.MatchesModule
 import com.smedialink.tokenplussteamid.features.profile.ProfileFragment
 import com.smedialink.tokenplussteamid.features.profile.di.ProfileModule
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.di.MatchesModule
-import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -21,7 +23,6 @@ abstract class MainActivityModule {
 
     @Module
     companion object {
-
         @ActivityScope
         @Provides
         @JvmStatic
@@ -43,4 +44,8 @@ abstract class MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [MatchesModule::class])
     abstract fun matchesFragmentInjector(): RecentMatchesFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [MatchDetailsModule::class])
+    abstract fun matchDetailsFragmentInjector(): MatchDetailsFragment
 }

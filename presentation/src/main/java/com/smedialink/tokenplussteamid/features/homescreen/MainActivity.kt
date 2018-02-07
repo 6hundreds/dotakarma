@@ -38,7 +38,6 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initViews()
     }
 
@@ -47,8 +46,8 @@ class MainActivity : BaseActivity(), MainView {
         navigatorHolder.removeNavigator()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
         navigatorHolder.setNavigator(navigator)
     }
 
@@ -56,7 +55,7 @@ class MainActivity : BaseActivity(), MainView {
 
         home_bottom_navigation.setDefaultBackgroundResource(R.drawable.bg_purple_gradient)
 
-        tabItemFeed = AHBottomNavigationItem(getString(R.string.action_feed),R.drawable.ic_comment)
+        tabItemFeed = AHBottomNavigationItem(getString(R.string.action_feed), R.drawable.ic_comment)
         tabItemProfile = AHBottomNavigationItem(getString(R.string.action_profile), R.drawable.ic_person)
         tabItemPMatches = AHBottomNavigationItem(getString(R.string.action_matches), R.drawable.ic_star)
 

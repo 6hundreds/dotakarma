@@ -11,7 +11,7 @@ import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.item_match_player.view.*
+import kotlinx.android.synthetic.main.item_matches_player.view.*
 
 /**
  * Created by six_hundreds on 03.02.18.
@@ -23,7 +23,7 @@ class PlayerDelegate(private val heroFactory: HeroFactory,
         PlayerDelegate.PlayerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): PlayerViewHolder {
-        val view = parent.inflate(R.layout.item_match_player)
+        val view = parent.inflate(R.layout.item_matches_player)
         return PlayerViewHolder(view)
     }
 

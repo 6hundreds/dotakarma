@@ -1,45 +1,51 @@
 package com.smedialink.tokenplussteamid.data.entity
 
+import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.smedialink.tokenplussteamid.data.converter.MatchPlayerConverter
 
 /**
  * Created by six_hundreds on 01.02.18.
  */
 @Entity(tableName = "matches")
+@TypeConverters(MatchPlayerConverter::class)
 data class MatchModel(
         @PrimaryKey
         @SerializedName("match_id")
-        val matchId: Long,
+        @ColumnInfo(name = "match_id")
+        var matchId: Long = 0,
         @SerializedName("hero_id")
-        val heroId: Int,
+        var heroId: Int = 0,
         @SerializedName("duration")
-        val duration: Int,
+        var duration: Int = 0,
         @SerializedName("start_time")
-        val startTime: Long,
+        var startTime: Long = 0,
         @SerializedName("is_win")
-        val isWin: Boolean,
+        var isWin: Boolean = false,
         @SerializedName("radiant_score")
-        val radiantScore: Int,
+        var radiantScore: Int = 0,
         @SerializedName("dire_score")
-        val direScore: Int,
+        var direScore: Int = 0,
         @SerializedName("players")
-        val players: List<MatchPlayerModel>
+        var players: List<MatchPlayerModel> = ArrayList()
 
 ) {
-    data class MatchPlayerModel(
-            @SerializedName("account_id")
-            val accountId: Long,
-            @SerializedName("hero_id")
-            val heroId: Int,
-            @SerializedName("player_slot")
-            val playerSlot: Int,
-            @SerializedName("kda")
-            val kda: String,
-            @SerializedName("leaver_status")
-            val leaverStatus: Boolean,
-            @SerializedName("personaname")
-            val personaName: String
-    )
+
+        data class MatchPlayerModel(
+                @SerializedName("account_id")
+                var accountId: Long = 0,
+                @SerializedName("hero_id")
+                var heroId: Int = 0,
+                @SerializedName("player_slot")
+                var playerSlot: Int = 0,
+                @SerializedName("kda")
+                var kda: String = "",
+                @SerializedName("leaver_status")
+                var leaverStatus: Boolean = false,
+                @SerializedName("personaname")
+                var personaName: String = ""
+        )
 }

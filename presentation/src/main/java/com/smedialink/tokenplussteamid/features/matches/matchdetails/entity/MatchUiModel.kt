@@ -13,7 +13,7 @@ data class MatchUiModel(
         val radiantScore: Int,
         val direScore: Int,
         val players: List<MatchPlayerUiModel>
-) {
+){
     data class MatchPlayerUiModel(
             val accountId: Long,
             val heroId: Int,

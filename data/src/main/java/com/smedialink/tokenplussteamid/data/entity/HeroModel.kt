@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
  * Created by six_hundreds on 31.01.18.
  */
 @Entity(tableName = "heroes_images")
-data class HeroImageModel(
+data class HeroModel(
         @PrimaryKey
         var id: Int = 0,
         @ColumnInfo(name = "name")

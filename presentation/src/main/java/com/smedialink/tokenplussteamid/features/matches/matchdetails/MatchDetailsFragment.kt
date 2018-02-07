@@ -23,7 +23,8 @@ import javax.inject.Inject
  */
 @Layout(R.layout.fragment_match_details)
 class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
-    private lateinit var adapter: MatchPlayersAdapter
+
+    private lateinit var detailsAdapter: MatchPlayersAdapter
 
     companion object {
         private const val MATCH_ID_KEY = "match_id"
@@ -44,6 +45,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
 
     override fun showMatchDetails(match: MatchUiModel) {
         toolbar.title = if (match.radiantWin) "Radiant win" else "Dire win" //todo stub!
+
         val items = mutableListOf<MatchDetailsItem>()
         items.add(TeamHeader(Team.RADIANT))
         match.players
@@ -51,7 +53,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
         items.add(TeamHeader(Team.DIRE))
         match.players
                 .forEach { if (!it.isRadiant) items.add(it) }
-        adapter.items = match.players
+        detailsAdapter.items = items
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,12 +67,13 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
 
     override fun initUi() {
         val glide = Glide.with(this)
-        adapter = MatchPlayersAdapter(presenter, glide)
+        detailsAdapter = MatchPlayersAdapter(presenter, glide)
         with(list_match_details) {
-            adapter = adapter
+            adapter = detailsAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
     }
 
     override fun showError(error: String) {
@@ -78,8 +81,5 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
     }
 
     override fun showLoading(show: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-
 }

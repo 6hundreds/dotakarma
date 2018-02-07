@@ -7,7 +7,7 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.Team
 import com.smedialink.tokenplussteamid.common.inflate
-import kotlinx.android.synthetic.main.item_team_header.view.*
+import kotlinx.android.synthetic.main.item_matches_team_header.view.*
 
 /**
  * Created by six_hundreds on 05.02.18.
@@ -16,7 +16,7 @@ class TeamHeaderDelegate
     : AbsListItemAdapterDelegate<TeamHeader, MatchDetailsItem, TeamHeaderDelegate.TeamHeaderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): TeamHeaderViewHolder {
-        val view = parent.inflate(R.layout.item_team_header)
+        val view = parent.inflate(R.layout.item_matches_team_header)
         return TeamHeaderViewHolder(view)
     }
 
@@ -42,7 +42,7 @@ class TeamHeaderDelegate
                             isActivated = true
                         }
                         Team.DIRE -> {
-                            text = resources.getString(R.string.team_radiant)
+                            text = resources.getString(R.string.team_dire)
                         }
                     }
                 }

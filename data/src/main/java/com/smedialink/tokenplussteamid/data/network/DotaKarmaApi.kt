@@ -20,5 +20,5 @@ interface DotaKarmaApi {
     fun fetchMatches(): Single<List<MatchModel>>
 
     @GET("dota/heroes")
-    fun fetchHeroes(): Single<List<HeroImageDto>>
+    fun fetchHeroes(): Single<List<HeroDto>>
 }

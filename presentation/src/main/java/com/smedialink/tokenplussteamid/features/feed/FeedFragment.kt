@@ -16,8 +16,8 @@ import javax.inject.Inject
 @Layout(R.layout.fragment_feed)
 class FeedFragment
     : BaseFragment(), FeedView {
-    companion object {
 
+    companion object {
         fun newInstance() = FeedFragment()
     }
 

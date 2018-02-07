@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.fragment_matches.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_matches)
-class RecentMatchesFragment : BaseFragment(), RecentMatchesView, OnMatchClickListener {
+class RecentMatchesFragment
+    : BaseFragment(), RecentMatchesView, OnMatchClickListener {
 
     companion object {
         fun newInstance() = RecentMatchesFragment()

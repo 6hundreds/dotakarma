@@ -9,6 +9,7 @@ data class Match(
         val duration: Int,
         val startTime: Long,
         val isWin: Boolean,
+        val radiantWin: Boolean,
         val radiantScore: Int,
         val direScore: Int,
         val players: List<MatchPlayer>

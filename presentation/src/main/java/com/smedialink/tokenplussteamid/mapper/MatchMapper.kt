@@ -16,7 +16,7 @@ class MatchMapper @Inject constructor() : Function<Match, MatchUiModel> {
             MatchUiModel(
                     input.matchId,
                     input.startTime * 1000,
-                    true, //todo stub!
+                    input.radiantWin,
                     input.duration,
                     input.radiantScore,
                     input.direScore,

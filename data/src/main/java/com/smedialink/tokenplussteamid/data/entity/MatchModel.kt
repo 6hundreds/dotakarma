@@ -25,6 +25,8 @@ data class MatchModel(
         var startTime: Long = 0,
         @SerializedName("is_win")
         var isWin: Boolean = false,
+        @SerializedName("radiant_win")
+        var radiantWin: Boolean = false,
         @SerializedName("radiant_score")
         var radiantScore: Int = 0,
         @SerializedName("dire_score")
@@ -34,18 +36,18 @@ data class MatchModel(
 
 ) {
 
-        data class MatchPlayerModel(
-                @SerializedName("account_id")
-                var accountId: Long = 0,
-                @SerializedName("hero_id")
-                var heroId: Int = 0,
-                @SerializedName("player_slot")
-                var playerSlot: Int = 0,
-                @SerializedName("kda")
-                var kda: String = "",
-                @SerializedName("leaver_status")
-                var leaverStatus: Boolean = false,
-                @SerializedName("personaname")
-                var personaName: String = ""
-        )
+    data class MatchPlayerModel(
+            @SerializedName("account_id")
+            var accountId: Long = 0,
+            @SerializedName("hero_id")
+            var heroId: Int = 0,
+            @SerializedName("player_slot")
+            var playerSlot: Int = 0,
+            @SerializedName("kda")
+            var kda: String = "",
+            @SerializedName("leaver_status")
+            var leaverStatus: Boolean = false,
+            @SerializedName("personaname")
+            var personaName: String = ""
+    )
 }

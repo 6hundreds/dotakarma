@@ -16,6 +16,7 @@ class MatchMapper @Inject constructor() : Function<MatchModel, Match> {
                     input.duration,
                     input.startTime,
                     input.isWin,
+                    input.radiantWin,
                     input.radiantScore,
                     input.direScore,
                     input.players.map { player ->

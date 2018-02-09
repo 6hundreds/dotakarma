@@ -1,13 +1,12 @@
 package com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter
 
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.common.inflate
+import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers

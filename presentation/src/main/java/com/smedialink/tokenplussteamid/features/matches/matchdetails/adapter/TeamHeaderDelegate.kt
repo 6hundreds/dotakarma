@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.Team
-import com.smedialink.tokenplussteamid.common.inflate
+import com.smedialink.tokenplussteamid.common.ext.inflate
 import kotlinx.android.synthetic.main.item_matches_team_header.view.*
 
 /**

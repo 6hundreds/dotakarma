@@ -25,11 +25,6 @@ class AuthSuccessPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        fetchPlayerProfile()
-
-    }
-
-    private fun fetchPlayerProfile() {
         getRemoteProfileUseCase
                 .execute(CachePolicy.REMOTE)
                 .flatMapCompletable { player -> saveAsLocalProfileUseCase.execute(player) }

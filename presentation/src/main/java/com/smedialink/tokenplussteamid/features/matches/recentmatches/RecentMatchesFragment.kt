@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.common.setVisible
+import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.OnMatchClickListener
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel

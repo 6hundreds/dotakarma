@@ -59,7 +59,6 @@ dependencies {
     implementation presentationDependencies.bottomNavigation
     implementation presentationDependencies.adapterDelegates
     implementation presentationDependencies.glide
-    implementation presentationDependencies.expandableLayout
     implementation presentationDependencies.glideTransformations
 
     implementation developmentDependencies.timber

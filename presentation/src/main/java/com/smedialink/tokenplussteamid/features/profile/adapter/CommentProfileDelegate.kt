@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.feed.adapter
+package com.smedialink.tokenplussteamid.features.profile.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,39 +7,41 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.inflate
-import com.smedialink.tokenplussteamid.features.feed.entity.CommentFeedUiModel
+import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
 import kotlinx.android.synthetic.main.item_feed_comment.view.*
 
 /**
- * Created by six_hundreds on 28.01.18.
+ * Created by six_hundreds on 08.02.18.
  */
-class CommentFeedDelegate
-    : AbsListItemAdapterDelegate<CommentFeedUiModel, HeterogeneousItem, CommentFeedDelegate.CommentViewHolder>() {
+class CommentProfileDelegate
+    : AbsListItemAdapterDelegate<CommentProfileUiModel,
+        HeterogeneousItem,
+        CommentProfileDelegate.CommentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): CommentViewHolder {
-        val view = parent.inflate(R.layout.item_feed_comment)
+        val view = parent.inflate(R.layout.item_profile_comment)
         return CommentViewHolder(view)
     }
 
     override fun isForViewType(item: HeterogeneousItem,
                                items: MutableList<HeterogeneousItem>,
                                position: Int): Boolean =
-            item is CommentFeedUiModel
+            item is CommentProfileUiModel
 
-    override fun onBindViewHolder(item: CommentFeedUiModel,
+    override fun onBindViewHolder(item: CommentProfileUiModel,
                                   viewHolder: CommentViewHolder,
                                   payloads: MutableList<Any>) =
             viewHolder.bind(item)
 
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(commentFeedUiModel: CommentFeedUiModel) {
+        fun bind(comment: CommentProfileUiModel) {
             with(itemView) {
-                comment_author.text = String.format("%s about ", commentFeedUiModel.authorId.toString())
-                commented_user.text = commentFeedUiModel.userId.toString()
-                comment_date.text = commentFeedUiModel.createdAt
-                comment_content.text = commentFeedUiModel.content
+                comment_author.text = comment.authorId.toString()
+                comment_date.text = comment.createdAt
+                comment_content.text = comment.content
             }
         }
     }
+
 }

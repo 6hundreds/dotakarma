@@ -5,7 +5,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseActivity
-import com.smedialink.tokenplussteamid.common.setVisible
+import com.smedialink.tokenplussteamid.common.ext.setVisible
 import kotlinx.android.synthetic.main.activity_splash.*
 import ru.terrakok.cicerone.Navigator
 import javax.inject.Inject

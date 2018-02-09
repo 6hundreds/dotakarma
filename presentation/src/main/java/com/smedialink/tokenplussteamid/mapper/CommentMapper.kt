@@ -1,18 +1,18 @@
 package com.smedialink.tokenplussteamid.mapper
 
 import com.smedialink.tokenplussteamid.entity.Comment
-import com.smedialink.tokenplussteamid.features.feed.entity.CommentUiModel
+import com.smedialink.tokenplussteamid.features.feed.entity.CommentFeedUiModel
 import io.reactivex.functions.Function
 import javax.inject.Inject
 
 /**
  * Created by six_hundreds on 29.01.18.
  */
-class CommentMapper @Inject constructor() : Function<List<Comment>, List<CommentUiModel>> {
+class CommentMapper @Inject constructor() : Function<List<Comment>, List<CommentFeedUiModel>> {
 
-    override fun apply(input: List<Comment>): List<CommentUiModel> =
+    override fun apply(input: List<Comment>): List<CommentFeedUiModel> =
             input.map { comment ->
-                CommentUiModel(
+                CommentFeedUiModel(
                         comment.id,
                         comment.content,
                         comment.rating,

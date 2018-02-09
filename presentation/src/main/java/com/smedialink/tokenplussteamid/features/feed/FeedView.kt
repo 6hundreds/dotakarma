@@ -1,13 +1,16 @@
 package com.smedialink.tokenplussteamid.features.feed
 
 import com.arellomobile.mvp.MvpView
-import com.smedialink.tokenplussteamid.features.feed.adapter.FeedItem
+import com.smedialink.tokenplussteamid.basic.CanShowError
+import com.smedialink.tokenplussteamid.basic.CanShowLoading
+import com.smedialink.tokenplussteamid.common.HeterogeneousItem
 
-interface FeedView : MvpView {
+interface FeedView : MvpView, CanShowError, CanShowLoading {
 
-    fun updateFeed(items: List<FeedItem>)
+    fun refreshFeed(items: List<HeterogeneousItem>)
 
-    fun showError(error: String)
+    fun appendFeed(items: List<HeterogeneousItem>)
 
-    fun showLoading(show : Boolean)
+    fun hideRefresh()
+
 }

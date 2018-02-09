@@ -12,7 +12,7 @@ class GetCommentsUseCase @Inject constructor(
 ) : SingleUseCaseWithParameter<GetCommentsUseCase.Params, List<Comment>> {
 
     override fun execute(parameter: Params): Single<List<Comment>> =
-            repository.getComments(CachePolicy.REMOTE, parameter.limit, parameter.after)
+            repository.getAllComments(CachePolicy.REMOTE, parameter.limit, parameter.after)
 
     class Params(val limit: Int = 10, val after: Int? = null)
 }

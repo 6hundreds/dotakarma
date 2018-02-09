@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.common.inflate
+import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers

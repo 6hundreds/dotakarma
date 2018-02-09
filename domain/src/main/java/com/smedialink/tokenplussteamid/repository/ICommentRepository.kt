@@ -6,5 +6,7 @@ import io.reactivex.Single
 
 interface ICommentRepository {
 
-    fun getComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>>
+    fun getAllComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>>
+
+    fun getCommentsForUser(userId: Long, limit: Int, after: Int?): Single<List<Comment>>
 }

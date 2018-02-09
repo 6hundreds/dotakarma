@@ -14,8 +14,11 @@ class CommentRepository @Inject constructor(
         private val dao: CommentDao,
         private val mapper: CommentMapper
 ) : ICommentRepository {
+    override fun getCommentsForUser(userId: Long, limit: Int, after: Int?): Single<List<Comment>> {
+        return Single.error(Throwable())
+    }
 
-    override fun getComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>> =
+    override fun getAllComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>> =
             api.fetchComments(limit, after)
                     .map { mapper.mapToDomain(it) }
 

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.common
+package com.smedialink.tokenplussteamid.common.ext
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater

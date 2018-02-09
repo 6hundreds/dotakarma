@@ -8,4 +8,4 @@ import com.google.gson.annotations.SerializedName
 data class HeroDto(var id: Int,
                    var name: String,
                    @SerializedName("localized_name")
-                        var localizedName: String)
+                   var localizedName: String)

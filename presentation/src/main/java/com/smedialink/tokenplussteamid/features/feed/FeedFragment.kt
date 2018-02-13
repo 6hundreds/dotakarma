@@ -31,14 +31,6 @@ class FeedFragment
 
     private lateinit var feedAdapter: FeedAdapter
 
-    override fun appendFeed(items: List<HeterogeneousItem>) {
-        feedAdapter.appendItems(items)
-    }
-
-    override fun showFeed(items: List<HeterogeneousItem>) {
-        feedAdapter.refreshItems(items)
-    }
-
     override fun initUi() {
         feedAdapter = FeedAdapter(presenter)
         with(list_feed) {
@@ -47,6 +39,14 @@ class FeedFragment
             setHasFixedSize(true)
         }
         layout_refresh.setOnRefreshListener(this)
+    }
+
+    override fun appendFeed(items: List<HeterogeneousItem>) {
+        feedAdapter.appendItems(items)
+    }
+
+    override fun showFeed(items: List<HeterogeneousItem>) {
+        feedAdapter.refreshItems(items)
     }
 
     override fun showError(error: String) {

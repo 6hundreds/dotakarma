@@ -41,8 +41,7 @@ class LoadMoreDelegate(private val paginator: Paginator<HeterogeneousItem>) :
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnSubscribe { showLoading(true) }
                         .doFinally { showLoading(false) }
-                        .subscribe({ items -> paginator.onSuccess(items) },
-                                { e -> paginator.onError(e) })
+                        .subscribe({ items -> paginator.onSuccess(items) }, { e -> paginator.onError(e) })
             }
         }
 

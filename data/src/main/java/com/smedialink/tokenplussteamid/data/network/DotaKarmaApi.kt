@@ -8,13 +8,16 @@ import retrofit2.http.Query
 interface DotaKarmaApi {
 
     @GET("users/me")
-    fun fetchUserProfile(): Single<UserModel>
+    fun fetchMyProfile(): Single<UserModel>
+
+    @GET("users/me/comments")
+    fun fetchMyComments(@Query("limit") limit: Int?,
+                        @Query("after") after: Int?): Single<List<CommentModel>>
 
     @GET("comments")
-    fun fetchComments(
-            @Query("limit") limit: Int? = null,
-            @Query("after") after: Int? = null
-    ): Single<List<CommentModel>>
+    fun fetchComments(@Query("limit") limit: Int?,
+                      @Query("after") after: Int?,
+                      @Query("user_id") id: Int?): Single<List<CommentModel>>
 
     @GET("dota/matches")
     fun fetchMatches(): Single<List<MatchModel>>

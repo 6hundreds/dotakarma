@@ -1,6 +1,6 @@
 package com.smedialink.tokenplussteamid.features.profile.entity
 
-import com.smedialink.tokenplussteamid.common.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 
 /**
  * Created by six_hundreds on 08.02.18.

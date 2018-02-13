@@ -3,7 +3,6 @@ package com.smedialink.tokenplussteamid.usecase.heroes
 import com.smedialink.tokenplussteamid.PrefsKeys.KEY_HEROES_FETCHED
 import com.smedialink.tokenplussteamid.manager.IPrefsManager
 import com.smedialink.tokenplussteamid.repository.IHeroRepository
-import com.smedialink.tokenplussteamid.usecase.CompletableUseCase
 import io.reactivex.Completable
 import javax.inject.Inject
 
@@ -13,9 +12,9 @@ import javax.inject.Inject
 class PrefetchHeroesImagesUseCase @Inject constructor(
         private val repository: IHeroRepository,
         private val prefsManager: IPrefsManager
-) : CompletableUseCase {
+) {
 
-    override fun execute(): Completable =
+    fun prefetchHeroes(): Completable =
             if (prefsManager.getBoolean(KEY_HEROES_FETCHED)) {
                 Completable.complete()
             } else {

@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.features.profile
 
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -11,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.common.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.features.profile.adapter.ProfileAdapter
@@ -19,12 +20,13 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_profile)
-class ProfileFragment : BaseFragment(), ProfileView {
+class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var glide: RequestManager
 
     private lateinit var profileAdapter: ProfileAdapter
 
     companion object {
+
         fun newInstance() = ProfileFragment()
     }
 
@@ -35,9 +37,8 @@ class ProfileFragment : BaseFragment(), ProfileView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    override fun updateComments(items: List<HeterogeneousItem>, tail: Boolean) {
-//        if (tail) profileAdapter.appendItems(items)
-//        else profileAdapter.addItems(items)
+    override fun showComments(items: List<HeterogeneousItem>) {
+        profileAdapter.refreshItems(items)
     }
 
     override fun initUi() {
@@ -48,13 +49,26 @@ class ProfileFragment : BaseFragment(), ProfileView {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
+        layout_refresh.setOnRefreshListener(this)
+    }
+
+    override fun appendComments(items: List<HeterogeneousItem>) {
+        profileAdapter.appendItems(items)
+    }
+
+    override fun hideRefreshing() {
+        layout_refresh.isRefreshing = false
+    }
+
+    override fun onRefresh() {
+        presenter.refreshProfile()
     }
 
     override fun showProfile(user: User) {
         glide.load(user.avatarFull)
                 .apply(bitmapTransform(RoundedCorners(20)))
                 .into(image_avatar)
-        text_karma.text = "Karma ${user.karma}" //todo temporary
+        text_karma.text = "Karma ${user.karma}"
         text_personaname.text = user.personaName
     }
 

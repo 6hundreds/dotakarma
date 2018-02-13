@@ -23,7 +23,7 @@ class MatchDetailsPresenter @Inject constructor(
     : BasePresenter<MatchDetailsView>(), HeroFactory {
 
     fun getMatchDetails(matchId: Long) {
-        getMatchDetailsUseCase.execute(matchId)
+        getMatchDetailsUseCase.getMatchDetails(matchId)
                 .map(mapper)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,6 +34,6 @@ class MatchDetailsPresenter @Inject constructor(
     }
 
     override fun getHero(heroId: Int): Single<Hero> =
-            getHeroUseCase.execute(heroId)
+            getHeroUseCase.getHero(heroId)
 
 }

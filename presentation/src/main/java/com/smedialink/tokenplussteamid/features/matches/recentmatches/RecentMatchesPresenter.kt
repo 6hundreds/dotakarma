@@ -24,7 +24,7 @@ class RecentMatchesPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        getRecentMatchesUseCase.execute()
+        getRecentMatchesUseCase.getRecentMatches()
                 .map(mapper)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,7 +34,7 @@ class RecentMatchesPresenter @Inject constructor(
                         { viewState.showError(it.localizedMessage) })
     }
 
-    override fun getHero(heroId: Int): Single<Hero> = getHeroUseCase.execute(heroId)
+    override fun getHero(heroId: Int): Single<Hero> = getHeroUseCase.getHero(heroId)
 
     fun openMatchDetails(matchId: Long) {
         router.navigateTo(AppScreens.MATCH_DETAILS_SCREEN, matchId)

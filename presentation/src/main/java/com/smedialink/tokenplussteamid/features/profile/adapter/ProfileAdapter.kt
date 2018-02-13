@@ -1,11 +1,11 @@
 package com.smedialink.tokenplussteamid.features.profile.adapter
 
-import android.support.v7.util.DiffUtil
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import com.smedialink.tokenplussteamid.common.HeterogeneousItem
-import com.smedialink.tokenplussteamid.common.LoadMoreDelegate
-import com.smedialink.tokenplussteamid.common.LoadMoreFooter
-import com.smedialink.tokenplussteamid.common.Paginator
+import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
+import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
+import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
 
 /**
@@ -16,35 +16,30 @@ class ProfileAdapter(paginator: Paginator<HeterogeneousItem>)
 
     init {
         delegatesManager.addDelegate(CommentProfileDelegate())
-//        delegatesManager.addDelegate(LoadMoreDelegate(paginator))
+        delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())
+        setHasStableIds(true)
     }
 
+    fun appendItems(newItems: List<HeterogeneousItem>) {
+        val oldSize = items.size
+        items.addAll(oldSize - 1, newItems)
+        notifyItemRangeInserted(oldSize - 1, newItems.size)
+    }
 
-//    fun addItems(newItems: List<HeterogeneousItem>) {
-//        if (items.size == newItems.size) return
-//        items.addAll(0, newItems)
-//        notifyItemRangeChanged(0, newItems.size)
-//    }
-//
-//    fun appendItems(newItems: List<HeterogeneousItem>) {
-//        val oldSize = items.size
-//        if (oldSize == 0) {
-//            items.addAll(0, newItems)
-//            items.add(LoadMoreFooter())
-//            notifyDataSetChanged()
-//        } else {
-//            items.addAll(oldSize - 1, newItems)
-//            notifyItemRangeInserted(oldSize - 1, newItems.size)
-//        }
-//    }
+    fun refreshItems(newItems: List<HeterogeneousItem>) {
+        items.clear()
+        items.addAll(newItems)
+        items.add(LoadMoreFooter())
+        notifyDataSetChanged()
+    }
 
-//    fun addItems (newItems : List<HeterogeneousItem>) {
-//        val oldSize = items.size
-//        if (oldSize == 0) {
-//            items.addAll(0, newItems)
-//            items.add(LoadMoreFooter())
-//    }
-//
-//
+    override fun getItemId(position: Int): Long {
+        val item = items[position]
+        return when (item) {
+            is CommentProfileUiModel -> item.id.toLong()
+            is LoadMoreFooter -> R.layout.item_feed_load_more.toLong()
+            else -> -1L
+        }
+    }
 }

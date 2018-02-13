@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.common
+package com.smedialink.tokenplussteamid.common.lists
 
 /**
  * Created by six_hundreds on 30.01.18.

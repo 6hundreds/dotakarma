@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.common
+package com.smedialink.tokenplussteamid.common.lists
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

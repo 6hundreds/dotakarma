@@ -13,5 +13,8 @@ interface IPrefsManager {
 
     fun getBoolean(key: String): Boolean
 
+    fun getInt(key: String): Int
+
+    fun putInt(key: String, value: Int)
     fun clear()
 }

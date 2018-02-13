@@ -2,10 +2,10 @@ package com.smedialink.tokenplussteamid.features.feed.adapter
 
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.common.HeterogeneousItem
-import com.smedialink.tokenplussteamid.common.LoadMoreDelegate
-import com.smedialink.tokenplussteamid.common.LoadMoreFooter
-import com.smedialink.tokenplussteamid.common.Paginator
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
+import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
+import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.features.feed.entity.CommentFeedUiModel
 
 class FeedAdapter(paginator: Paginator<HeterogeneousItem>)
@@ -14,8 +14,8 @@ class FeedAdapter(paginator: Paginator<HeterogeneousItem>)
     init {
         delegatesManager.addDelegate(CommentFeedDelegate())
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
-        setHasStableIds(true)
         setItems(mutableListOf())
+        setHasStableIds(true)
     }
 
     fun appendItems(newItems: List<HeterogeneousItem>) {

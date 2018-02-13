@@ -12,6 +12,5 @@ import io.reactivex.Single
 interface CommentDao : BaseDao<CommentModel> {
 
     @Query("SELECT * FROM comments WHERE id > :arg0 LIMIT :arg1")
-    fun getComments(fromId: Int, limit: Int): Single<List<CommentModel>>
-
+    fun getAllComments(fromId: Int, limit: Int): Single<List<CommentModel>>
 }

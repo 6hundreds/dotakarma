@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by six_hundreds on 29.01.18.
  */
-class CommentMapper @Inject constructor() : Function<List<Comment>, List<CommentFeedUiModel>> {
+class CommentFeedMapper @Inject constructor() : Function<List<Comment>, List<CommentFeedUiModel>> {
 
     override fun apply(input: List<Comment>): List<CommentFeedUiModel> =
             input.map { comment ->

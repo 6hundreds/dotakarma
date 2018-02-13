@@ -1,16 +1,17 @@
 package com.smedialink.tokenplussteamid.features.profile
 
 import com.arellomobile.mvp.MvpView
-import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import com.smedialink.tokenplussteamid.basic.CanHideRefreshing
 import com.smedialink.tokenplussteamid.basic.CanShowError
 import com.smedialink.tokenplussteamid.basic.CanShowLoading
-import com.smedialink.tokenplussteamid.common.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.User
 
-interface ProfileView : MvpView, CanShowError, CanShowLoading {
+interface ProfileView : MvpView, CanShowError, CanShowLoading, CanHideRefreshing {
 
     fun showProfile(user: User)
 
-    fun updateComments(items: List<HeterogeneousItem>, tail: Boolean = false)
+    fun showComments(items: List<HeterogeneousItem>)
+
+    fun appendComments(items: List<HeterogeneousItem>)
 }

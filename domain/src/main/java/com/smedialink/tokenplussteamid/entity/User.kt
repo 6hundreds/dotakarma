@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.entity
 
 data class User(
-        val id: Long,
+        val id: Int,
         val steamId: Long,
         val karma: Int,
         val personaName: String,

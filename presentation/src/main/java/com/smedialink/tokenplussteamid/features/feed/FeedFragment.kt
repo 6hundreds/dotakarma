@@ -8,7 +8,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.common.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.feed.adapter.FeedAdapter
 import kotlinx.android.synthetic.main.fragment_feed.*
@@ -35,7 +35,7 @@ class FeedFragment
         feedAdapter.appendItems(items)
     }
 
-    override fun refreshFeed(items: List<HeterogeneousItem>) {
+    override fun showFeed(items: List<HeterogeneousItem>) {
         feedAdapter.refreshItems(items)
     }
 
@@ -47,7 +47,6 @@ class FeedFragment
             setHasFixedSize(true)
         }
         layout_refresh.setOnRefreshListener(this)
-
     }
 
     override fun showError(error: String) {
@@ -62,7 +61,7 @@ class FeedFragment
         presenter.refreshFeed()
     }
 
-    override fun hideRefresh() {
+    override fun hideRefreshing() {
         layout_refresh.isRefreshing = false
     }
 }

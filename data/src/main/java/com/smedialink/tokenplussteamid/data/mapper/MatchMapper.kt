@@ -8,26 +8,25 @@ import javax.inject.Inject
 /**
  * Created by six_hundreds on 01.02.18.
  */
-class MatchMapper @Inject constructor() : Function<List<MatchModel>, List<Match>> {
+class MatchMapper @Inject constructor() : Function<MatchModel, Match> {
 
-    override fun apply(input: List<MatchModel>): List<Match> =
-            input.map {
-                Match(it.matchId,
-                        it.heroId,
-                        it.duration,
-                        it.startTime,
-                        it.isWin,
-                        it.radiantScore,
-                        it.direScore,
-                        it.players.map { player ->
-                            Match.MatchPlayer(player.accountId,
-                                    player.heroId,
-                                    player.playerSlot,
-                                    player.kda,
-                                    player.leaverStatus,
-                                    player.personaName)
-                        }
-                )
-            }
+    override fun apply(input: MatchModel): Match =
+            Match(input.matchId,
+                    input.heroId,
+                    input.duration,
+                    input.startTime,
+                    input.isWin,
+                    input.radiantWin,
+                    input.radiantScore,
+                    input.direScore,
+                    input.players.map { player ->
+                        Match.MatchPlayer(player.accountId,
+                                player.heroId,
+                                player.playerSlot,
+                                player.kda,
+                                player.leaverStatus,
+                                player.personaName)
+                    }
+            )
 
 }

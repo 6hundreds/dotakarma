@@ -30,4 +30,7 @@
     <string name="match_status_win">Win</string>
     <string name="match_status_lose">Lose</string>
 
+    <string name="team_dire">Dire</string>
+    <string name="team_radiant">Radiant</string>
+
 </resources>

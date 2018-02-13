@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "users")
 data class UserModel(
         @PrimaryKey
-        var id: Long = 0,
+        var id: Int = 0,
         @ColumnInfo(name = "steam_id")
         @SerializedName("steamid")
         var steamId: Long = 0,
@@ -19,10 +19,10 @@ data class UserModel(
         var personaName: String = "",
         @SerializedName("avatar")
         var avatar: String = "",
-        @ColumnInfo(name = "persona_medium")
+        @ColumnInfo(name = "avatar_medium")
         @SerializedName("avatarmedium")
         var avatarMedium: String = "",
-        @ColumnInfo(name = "persona_full")
+        @ColumnInfo(name = "avatar_full")
         @SerializedName("avatarfull")
         var avatarFull: String = "",
         @ColumnInfo(name = "persona_state")

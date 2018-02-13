@@ -5,7 +5,6 @@ import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.CachePolicy
-import com.smedialink.tokenplussteamid.data.entity.UserModel
 import com.smedialink.tokenplussteamid.repository.IUserRepository
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -19,7 +18,7 @@ class UserRepository @Inject constructor(
 
     override fun getUser(policy: CachePolicy): Single<User> =
             when (policy) {
-                CachePolicy.LOCAL -> api.fetchUserProfile()
+                CachePolicy.LOCAL -> api.fetchMyProfile()
                 CachePolicy.REMOTE -> dao.getUser()
             }.map { mapper.mapToDomain(it) }
 

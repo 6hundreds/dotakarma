@@ -9,4 +9,6 @@ import io.reactivex.Single
 interface IMatchRepository {
 
     fun getRecentMatches(): Single<List<Match>>
+
+    fun getMatchById(matchId: Long): Single<Match>
 }

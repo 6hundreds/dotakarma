@@ -30,6 +30,16 @@ class SharedPrefsManager @Inject constructor(private val preferences: SharedPref
     override fun getBoolean(key: String): Boolean =
             preferences.getBoolean(key, false)
 
+    override fun putInt(key: String, value: Int) {
+        preferences
+                .edit()
+                .putInt(key, value)
+                .apply()
+    }
+
+    override fun getInt(key: String): Int =
+            preferences.getInt(key, -1)
+
 
     override fun clear() {
         preferences

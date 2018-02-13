@@ -21,7 +21,7 @@ class SplashPresenter @Inject constructor(private val useCase: PrefetchHeroesIma
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        useCase.execute()
+        useCase.prefetchHeroes()
                 .delay(1000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

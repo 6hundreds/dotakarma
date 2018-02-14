@@ -1,11 +1,11 @@
-package com.smedialink.tokenplussteamid.features.profile
+package com.smedialink.tokenplussteamid.features.myprofile
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.usecase.me.GetMyProfileUseCase
 import io.reactivex.Single
@@ -16,10 +16,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @InjectViewState
-class ProfilePresenter @Inject constructor(
+class MyProfilePresenter @Inject constructor(
         private val getMyProfileUseCase: GetMyProfileUseCase,
         private val mapper: CommentProfileMapper
-) : BasePresenter<ProfileView>(), Paginator<HeterogeneousItem> {
+) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
 
     private var latestCommentId = -1
 

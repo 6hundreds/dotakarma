@@ -7,6 +7,7 @@ import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
 import com.smedialink.tokenplussteamid.features.homescreen.di.MainActivityModule
 import com.smedialink.tokenplussteamid.features.splash.SplashActivity
 import com.smedialink.tokenplussteamid.features.splash.di.SplashActivityModule
+import com.smedialink.tokenplussteamid.features.userprofile.UserProfileActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -24,4 +25,8 @@ interface ActivityBinderModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [SplashActivityModule::class])
     fun splashActivityInjector(): SplashActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [])
+    fun userProfileActivityInjector(): UserProfileActivity
 }

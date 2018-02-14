@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.mapper
 
 import com.smedialink.tokenplussteamid.entity.Comment
-import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import io.reactivex.functions.Function
 import javax.inject.Inject
 

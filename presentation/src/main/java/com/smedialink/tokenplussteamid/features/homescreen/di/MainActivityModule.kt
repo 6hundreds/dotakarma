@@ -11,8 +11,8 @@ import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetail
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.di.MatchDetailsModule
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.di.MatchesModule
-import com.smedialink.tokenplussteamid.features.profile.ProfileFragment
-import com.smedialink.tokenplussteamid.features.profile.di.ProfileModule
+import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
+import com.smedialink.tokenplussteamid.features.myprofile.di.ProfileModule
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -31,7 +31,7 @@ abstract class MainActivityModule {
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [ProfileModule::class])
-    abstract fun profileFragmentInjector(): ProfileFragment
+    abstract fun profileFragmentInjector(): MyProfileFragment
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [FeedModule::class])

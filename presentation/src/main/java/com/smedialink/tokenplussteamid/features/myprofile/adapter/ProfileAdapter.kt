@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.profile.adapter
+package com.smedialink.tokenplussteamid.features.myprofile.adapter
 
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.smedialink.tokenplussteamid.R
@@ -6,7 +6,7 @@ import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
 import com.smedialink.tokenplussteamid.common.lists.Paginator
-import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 
 /**
  * Created by six_hundreds on 08.02.18.

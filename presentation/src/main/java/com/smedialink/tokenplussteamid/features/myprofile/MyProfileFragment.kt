@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.profile
+package com.smedialink.tokenplussteamid.features.myprofile
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -15,24 +15,24 @@ import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.features.profile.adapter.ProfileAdapter
+import com.smedialink.tokenplussteamid.features.myprofile.adapter.ProfileAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_profile)
-class ProfileFragment : BaseFragment(), ProfileView, SwipeRefreshLayout.OnRefreshListener {
+class MyProfileFragment : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var glide: RequestManager
 
     private lateinit var profileAdapter: ProfileAdapter
 
     companion object {
 
-        fun newInstance() = ProfileFragment()
+        fun newInstance() = MyProfileFragment()
     }
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: ProfilePresenter
+    lateinit var presenter: MyProfilePresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.profile.adapter
+package com.smedialink.tokenplussteamid.features.myprofile.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,7 +7,7 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.inflate
-import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import kotlinx.android.synthetic.main.item_feed_comment.view.*
 
 /**

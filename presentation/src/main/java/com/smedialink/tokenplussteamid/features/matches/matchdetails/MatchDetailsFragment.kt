@@ -14,6 +14,7 @@ import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.OnPlayerClickListener
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.TeamHeader
 import kotlinx.android.synthetic.main.fragment_match_details.*
 import javax.inject.Inject
@@ -22,7 +23,7 @@ import javax.inject.Inject
  * Created by six_hundreds on 05.02.18.
  */
 @Layout(R.layout.fragment_match_details)
-class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
+class MatchDetailsFragment : BaseFragment(), MatchDetailsView, OnPlayerClickListener {
 
     private lateinit var detailsAdapter: MatchPlayersAdapter
 
@@ -34,8 +35,8 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
                 putLong(MATCH_ID_KEY, matchId)
             }
         }
-    }
 
+    }
     @Inject
     @InjectPresenter
     lateinit var presenter: MatchDetailsPresenter
@@ -67,7 +68,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
 
     override fun initUi() {
         val glide = Glide.with(this)
-        detailsAdapter = MatchPlayersAdapter(presenter, glide)
+        detailsAdapter = MatchPlayersAdapter(this, presenter, glide)
         with(list_match_details) {
             adapter = detailsAdapter
             layoutManager = LinearLayoutManager(context)
@@ -78,6 +79,10 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView {
 
     override fun showError(error: String) {
         Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPlayerClick(id: Long) {
+        presenter.showPlayerProfile(id)
     }
 
     override fun showLoading(show: Boolean) {

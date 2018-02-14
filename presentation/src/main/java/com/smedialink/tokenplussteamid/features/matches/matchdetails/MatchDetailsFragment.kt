@@ -60,7 +60,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, OnPlayerClickList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val matchId = arguments?.getLong(MATCH_ID_KEY, -1L)
-                ?: throw  IllegalArgumentException("matchId must be provided")
+                ?: throw  IllegalArgumentException("matchId must be provided via arguments")
         if (matchId != -1L) {
             presenter.getMatchDetails(matchId)
         }

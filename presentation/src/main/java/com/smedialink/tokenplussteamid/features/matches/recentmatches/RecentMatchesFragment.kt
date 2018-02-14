@@ -10,14 +10,13 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.OnMatchClickListener
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel
 import kotlinx.android.synthetic.main.fragment_matches.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_matches)
 class RecentMatchesFragment
-    : BaseFragment(), RecentMatchesView, OnMatchClickListener {
+    : BaseFragment(), RecentMatchesView, MatchesAdapter.OnMatchClickListener {
 
     companion object {
         fun newInstance() = RecentMatchesFragment()

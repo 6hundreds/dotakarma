@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.app.modules
 
+import com.smedialink.tokenplussteamid.subnavigation.LocalNavigatorHolder
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Cicerone
@@ -19,4 +20,8 @@ class NavigationModule {
     @Provides
     @Singleton
     fun navHolder(): NavigatorHolder = cicerone.navigatorHolder
+
+    @Provides
+    @Singleton
+    fun localNavHolder(): LocalNavigatorHolder = LocalNavigatorHolder()
 }

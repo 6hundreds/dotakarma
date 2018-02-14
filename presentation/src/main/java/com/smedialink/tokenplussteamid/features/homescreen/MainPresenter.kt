@@ -13,15 +13,15 @@ class MainPresenter @Inject constructor(
     private val settingsManager: SessionManager
 ) : BasePresenter<MainView>() {
 
-    fun onFeedItemClicked() {
+    fun onFeedTabClicked() {
         router.replaceScreen(AppScreens.BOTTOM_FEED_SCREEN)
     }
 
-    fun onMatchesItemSelected() {
+    fun onMatchesTabClicked() {
         router.replaceScreen(AppScreens.BOTTOM_MATCHES_SCREEN)
     }
 
-    fun onProfileItemClicked() {
+    fun onProfileTabClicked() {
         if (settingsManager.isSessionOpened()) {
             router.replaceScreen(AppScreens.BOTTOM_PROFILE_SCREEN)
         } else {

@@ -19,14 +19,14 @@ abstract class SplashActivityModule {
     @Module
     companion object {
 
-        @Provides
         @ActivityScope
+        @Provides
         @JvmStatic
         fun provideNavigator(activity: SplashActivity): Navigator = SplashActivityNavigator(activity)
     }
 
     @Binds
     @ActivityScope
-    abstract fun provideHeroImageRepository(repo: HeroRepository): IHeroRepository
+    abstract fun provideHeroRepository(repo: HeroRepository): IHeroRepository
 
 }

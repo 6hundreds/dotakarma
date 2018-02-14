@@ -1,33 +1,18 @@
 package com.smedialink.tokenplussteamid.features.homescreen.di
 
-import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
-import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
-import com.smedialink.tokenplussteamid.features.homescreen.navigation.MainActivityNavigator
-import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
-import com.smedialink.tokenplussteamid.features.matches.matchdetails.di.MatchDetailsModule
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.di.MatchesModule
+import com.smedialink.tokenplussteamid.features.matches.MatchesContainerFragment
+import com.smedialink.tokenplussteamid.features.matches.di.MatchesTabModule
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
 import com.smedialink.tokenplussteamid.features.myprofile.di.ProfileModule
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import ru.terrakok.cicerone.Navigator
 
 @Module
 abstract class MainActivityModule {
-
-    @Module
-    companion object {
-        @ActivityScope
-        @Provides
-        @JvmStatic
-        fun provideNavigator(activity: MainActivity): Navigator = MainActivityNavigator(activity)
-    }
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [ProfileModule::class])
@@ -42,10 +27,6 @@ abstract class MainActivityModule {
     abstract fun steamAuthFragmentInjector(): SteamAuthFragment
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [MatchesModule::class])
-    abstract fun matchesFragmentInjector(): RecentMatchesFragment
-
-    @FragmentScope
-    @ContributesAndroidInjector(modules = [MatchDetailsModule::class])
-    abstract fun matchDetailsFragmentInjector(): MatchDetailsFragment
+    @ContributesAndroidInjector(modules = [MatchesTabModule::class])
+    abstract fun matchesTabInjector(): MatchesContainerFragment
 }

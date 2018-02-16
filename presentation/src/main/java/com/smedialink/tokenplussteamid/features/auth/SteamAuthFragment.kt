@@ -23,7 +23,7 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
         fun newInstance() = SteamAuthFragment()
 
-        private const val AUTH_URL = "https://686a7dca.ngrok.io/api/steam"
+        private const val AUTH_URL = "https://510841d0.ngrok.io/api/steam"
         private const val DEEPLINK_SCHEME = "dotakarma"
     }
     @Inject

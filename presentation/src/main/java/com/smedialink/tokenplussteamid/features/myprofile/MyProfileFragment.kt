@@ -26,7 +26,6 @@ class MyProfileFragment : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRe
     private lateinit var profileAdapter: ProfileAdapter
 
     companion object {
-
         fun newInstance() = MyProfileFragment()
     }
 

@@ -17,14 +17,15 @@ abstract class TabContainerFragment : BaseFragment() {
     @Inject
     lateinit var navigatorHolder: LocalNavigatorHolder
 
+    @Inject
+    lateinit var localNavigator : Navigator
+
     private val containerTag: String
         get() = arguments?.getString(CONTAINER_TAG_KEY)
                 ?: throw IllegalArgumentException("ContainerNavigator tag must be provided via arguments")
 
     private val cicerone: Cicerone<Router>
         get() = navigatorHolder.getCicerone(containerTag)
-
-    abstract protected val localNavigator: Navigator
 
     protected companion object {
         const val CONTAINER_TAG_KEY = "container_tag"

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.homescreen
+package com.smedialink.tokenplussteamid.features.main
 
 import android.os.Bundle
 import android.widget.Toast
@@ -11,8 +11,8 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseActivity
 import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
-import com.smedialink.tokenplussteamid.features.matches.MatchesContainerFragment
-import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
+import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Back
@@ -32,7 +32,7 @@ class MainActivity : BaseActivity(), MainView {
 
     lateinit var matchContainer: MatchesContainerFragment
     lateinit var feedContainer: FeedFragment
-    lateinit var profileContainer: MyProfileFragment
+    lateinit var profileContainer: ProfileContainerFragment
 
     @Inject
     @InjectPresenter
@@ -55,17 +55,17 @@ class MainActivity : BaseActivity(), MainView {
                     val fm = supportFragmentManager
 
                     when (command.screenKey) {
-                        AppScreens.BOTTOM_FEED_SCREEN -> fm.beginTransaction()
+                        AppScreens.FEED_TAB_SCREEN -> fm.beginTransaction()
                                 .detach(matchContainer)
                                 .detach(profileContainer)
                                 .attach(feedContainer)
                                 .commitNow()
-                        AppScreens.BOTTOM_MATCHES_SCREEN -> fm.beginTransaction()
+                        AppScreens.MATCHES_TAB_SCREEN -> fm.beginTransaction()
                                 .detach(profileContainer)
                                 .detach(feedContainer)
                                 .attach(matchContainer)
                                 .commitNow()
-                        AppScreens.BOTTOM_PROFILE_SCREEN -> fm.beginTransaction()
+                        AppScreens.PROFILE_TAB_SCREEN -> fm.beginTransaction()
                                 .detach(matchContainer)
                                 .detach(feedContainer)
                                 .attach(profileContainer)
@@ -104,8 +104,8 @@ class MainActivity : BaseActivity(), MainView {
                     .detach(feedContainer)
                     .commitNow()
 
-            profileContainer = findFragmentByTag("profile_container") as MyProfileFragment?
-                    ?: MyProfileFragment.newInstance() //todo temporary
+            profileContainer = findFragmentByTag("profile_container") as ProfileContainerFragment?
+                    ?: ProfileContainerFragment.newInstance("profile_container")
             beginTransaction()
                     .add(R.id.home_tabs_container, profileContainer, "profile_container")
                     .detach(profileContainer)

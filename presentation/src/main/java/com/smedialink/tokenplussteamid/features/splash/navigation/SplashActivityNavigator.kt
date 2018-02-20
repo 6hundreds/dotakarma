@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
 import com.smedialink.tokenplussteamid.features.AppScreens.MAIN_SCREEN
-import com.smedialink.tokenplussteamid.features.homescreen.MainActivity
+import com.smedialink.tokenplussteamid.features.main.MainActivity
 import com.smedialink.tokenplussteamid.features.splash.SplashActivity
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject

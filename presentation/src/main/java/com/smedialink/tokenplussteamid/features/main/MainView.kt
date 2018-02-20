@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.homescreen
+package com.smedialink.tokenplussteamid.features.main
 
 import com.arellomobile.mvp.MvpView
 

@@ -40,7 +40,8 @@ class MatchesContainerNavigator @Inject constructor(fragment: MatchesContainerFr
                                                    currentFragment: Fragment?,
                                                    nextFragment: Fragment?,
                                                    fragmentTransaction: FragmentTransaction?) {
-        if (nextFragment is MatchDetailsFragment) {
+        if (nextFragment is MatchDetailsFragment &&
+                currentFragment is RecentMatchesFragment) {
             fragmentTransaction?.setCustomAnimations(
                     R.anim.enter_from_right,
                     R.anim.exit_from_right,

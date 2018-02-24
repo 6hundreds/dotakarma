@@ -46,7 +46,7 @@ abstract class BaseFragment
         initUi()
     }
 
-    abstract fun initUi()
-
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
+
+    abstract fun initUi()
 }

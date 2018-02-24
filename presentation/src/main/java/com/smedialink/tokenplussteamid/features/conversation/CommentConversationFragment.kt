@@ -28,6 +28,13 @@ class CommentConversationFragment : BaseFragment(), CommentConversationView {
         }
     }
 
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: CommentConversationPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val commentId = arguments?.getInt(COMMENT_ID_KEY, -1)
@@ -36,13 +43,6 @@ class CommentConversationFragment : BaseFragment(), CommentConversationView {
             presenter.getCommentConversation(commentId)
         }
     }
-
-    @Inject
-    @InjectPresenter
-    lateinit var presenter: CommentConversationPresenter
-
-    @ProvidePresenter
-    fun providePresenter() = presenter
 
     override fun showError(error: String) {
         errorDelegate.showError(error)
@@ -59,7 +59,6 @@ class CommentConversationFragment : BaseFragment(), CommentConversationView {
     override fun initUi() {
         toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
         toolbar.title = getString(R.string.title_send_comment)
-
         field_comment.clickAction = { comment -> presenter.sendComment(comment) }
     }
 }

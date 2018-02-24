@@ -36,6 +36,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapt
         }
 
     }
+
     @Inject
     @InjectPresenter
     lateinit var presenter: MatchDetailsPresenter

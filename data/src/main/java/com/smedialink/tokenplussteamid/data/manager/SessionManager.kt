@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class SessionManager @Inject constructor(private val preferences: SharedPrefsManager) {
 
-    private val subject = PublishSubject.create<Int>()
+    private val subject = PublishSubject.create<State>()
 
     companion object {
         private const val ACCESS_TOKEN_KEY = "access_token"
@@ -22,10 +22,10 @@ class SessionManager @Inject constructor(private val preferences: SharedPrefsMan
 
     fun isSessionOpened(): Boolean = getAccessToken().isNotEmpty()
 
-    fun getSessionState(): Observable<Int> = subject
+    fun getSessionState(): Observable<State> = subject
 
-    object State {
-        const val OPENED = 0
-        const val CLOSED = 1
+    sealed class State {
+        object OPENED : State()
+        object CLOSED : State()
     }
 }

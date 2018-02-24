@@ -4,7 +4,9 @@ import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
+import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.User
+import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.usecase.me.GetMyProfileUseCase
@@ -13,12 +15,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class MyProfilePresenter @Inject constructor(
         private val getMyProfileUseCase: GetMyProfileUseCase,
-        private val mapper: CommentProfileMapper
+        private val mapper: CommentProfileMapper,
+        @LocalNavigation
+        private val router: Router
 ) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
 
     private var latestCommentId = -1
@@ -41,6 +46,10 @@ class MyProfilePresenter @Inject constructor(
                         { viewState.showError(it.localizedMessage) })
                 .addTo(disposables)
 
+    }
+
+    fun onCommentClicked(id: Int) {
+        router.navigateTo(AppScreens.COMMENT_CONVERSATION_SCREEN, id)
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =

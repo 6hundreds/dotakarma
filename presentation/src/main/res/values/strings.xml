@@ -33,4 +33,7 @@
     <string name="team_dire">Dire</string>
     <string name="team_radiant">Radiant</string>
 
+
+    <string name="title_send_comment">Send comment</string>
+
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding_common_small"
+    android:paddingEnd="@dimen/padding_common_normal"
+    android:paddingStart="@dimen/padding_common_normal"
+    android:paddingTop="@dimen/padding_common_small">
+
+    <EditText
+        android:id="@+id/field_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="@dimen/padding_common_normal"
+        android:layout_weight="1"
+        android:background="@drawable/bg_rounded_rectangle"
+        android:paddingBottom="@dimen/padding_common_tiny"
+        android:paddingEnd="@dimen/padding_common_small"
+        android:paddingStart="@dimen/padding_common_small"
+        android:paddingTop="@dimen/padding_common_tiny" />
+
+    <ImageButton
+        android:id="@+id/button_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:alpha=".5"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_send_message" />
+
+</LinearLayout>

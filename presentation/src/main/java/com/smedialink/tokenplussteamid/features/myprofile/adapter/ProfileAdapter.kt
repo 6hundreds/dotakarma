@@ -11,11 +11,12 @@ import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileU
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class ProfileAdapter(paginator: Paginator<HeterogeneousItem>)
+class ProfileAdapter(listener: OnCommentClickListener,
+                     paginator: Paginator<HeterogeneousItem>)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {
-        delegatesManager.addDelegate(CommentProfileDelegate())
+        delegatesManager.addDelegate(CommentProfileDelegate(listener))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())
         setHasStableIds(true)
@@ -41,5 +42,9 @@ class ProfileAdapter(paginator: Paginator<HeterogeneousItem>)
             is LoadMoreFooter -> R.layout.item_feed_load_more.toLong()
             else -> -1L
         }
+    }
+
+    interface OnCommentClickListener {
+        fun onCommentClick(id: Int)
     }
 }

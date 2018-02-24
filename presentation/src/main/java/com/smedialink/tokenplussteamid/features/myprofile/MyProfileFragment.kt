@@ -20,15 +20,16 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_profile)
-class MyProfileFragment : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener {
+class MyProfileFragment
+    : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener, ProfileAdapter.OnCommentClickListener {
     private lateinit var glide: RequestManager
 
     private lateinit var profileAdapter: ProfileAdapter
 
     companion object {
+
         fun newInstance() = MyProfileFragment()
     }
-
     @Inject
     @InjectPresenter
     lateinit var presenter: MyProfilePresenter
@@ -42,7 +43,7 @@ class MyProfileFragment : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRe
 
     override fun initUi() {
         glide = Glide.with(this)
-        profileAdapter = ProfileAdapter(presenter)
+        profileAdapter = ProfileAdapter(this, presenter)
         with(list_my_comments) {
             adapter = profileAdapter
             layoutManager = LinearLayoutManager(context)
@@ -61,6 +62,10 @@ class MyProfileFragment : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRe
 
     override fun onRefresh() {
         presenter.refreshProfile()
+    }
+
+    override fun onCommentClick(id: Int) {
+        presenter.onCommentClicked(id)
     }
 
     override fun showProfile(user: User) {

@@ -7,8 +7,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
+import com.smedialink.tokenplussteamid.common.ext.setVisible
 import kotlinx.android.synthetic.main.fragment_comment_conversation.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 /**
@@ -44,11 +45,11 @@ class CommentConversationFragment : BaseFragment(), CommentConversationView {
     fun providePresenter() = presenter
 
     override fun showError(error: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        errorDelegate.showError(error)
     }
 
     override fun showLoading(show: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        loader.setVisible(show)
     }
 
     override fun hideRefreshing() {

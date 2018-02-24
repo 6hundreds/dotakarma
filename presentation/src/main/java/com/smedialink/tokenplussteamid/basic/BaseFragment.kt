@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.smedialink.tokenplussteamid.app.Layout
+import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -20,6 +21,9 @@ abstract class BaseFragment
 
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+
+    @Inject
+    lateinit var errorDelegate: ErrorMessageDelegate
 
     override fun onAttach(context: Context?) {
         AndroidSupportInjection.inject(this)

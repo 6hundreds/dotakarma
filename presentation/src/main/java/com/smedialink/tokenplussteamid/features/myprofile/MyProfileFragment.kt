@@ -2,7 +2,6 @@ package com.smedialink.tokenplussteamid.features.myprofile
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
@@ -12,8 +11,8 @@ import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.setVisible
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.features.myprofile.adapter.ProfileAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -27,9 +26,9 @@ class MyProfileFragment
     private lateinit var profileAdapter: ProfileAdapter
 
     companion object {
-
         fun newInstance() = MyProfileFragment()
     }
+
     @Inject
     @InjectPresenter
     lateinit var presenter: MyProfilePresenter
@@ -77,7 +76,7 @@ class MyProfileFragment
     }
 
     override fun showError(error: String) {
-        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        errorDelegate.showError(error)
     }
 
     override fun showLoading(show: Boolean) {

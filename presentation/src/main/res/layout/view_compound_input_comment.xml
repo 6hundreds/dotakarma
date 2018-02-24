@@ -15,9 +15,11 @@
         android:layout_marginEnd="@dimen/padding_common_normal"
         android:layout_weight="1"
         android:background="@drawable/bg_rounded_rectangle"
+        android:hint="@string/hint_comment"
+        android:inputType="text"
         android:paddingBottom="@dimen/padding_common_tiny"
-        android:paddingEnd="@dimen/padding_common_small"
-        android:paddingStart="@dimen/padding_common_small"
+        android:paddingEnd="@dimen/padding_common_reduced"
+        android:paddingStart="@dimen/padding_common_reduced"
         android:paddingTop="@dimen/padding_common_tiny" />
 
     <ImageButton

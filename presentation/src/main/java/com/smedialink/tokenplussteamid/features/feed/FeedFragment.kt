@@ -50,7 +50,7 @@ class FeedFragment
     }
 
     override fun showError(error: String) {
-        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        errorDelegate.showError(error)
     }
 
     override fun showLoading(show: Boolean) {

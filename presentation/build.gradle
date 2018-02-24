@@ -60,6 +60,7 @@ dependencies {
     implementation presentationDependencies.adapterDelegates
     implementation presentationDependencies.glide
     implementation presentationDependencies.glideTransformations
+    implementation presentationDependencies.topSnackbar
 
     implementation developmentDependencies.timber
     implementation developmentDependencies.stetho

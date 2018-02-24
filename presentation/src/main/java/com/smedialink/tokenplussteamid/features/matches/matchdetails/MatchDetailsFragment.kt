@@ -3,7 +3,6 @@ package com.smedialink.tokenplussteamid.features.matches.matchdetails
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
@@ -11,11 +10,13 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.Team
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
-import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.TeamHeader
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import kotlinx.android.synthetic.main.fragment_match_details.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 /**
@@ -34,7 +35,6 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapt
                 putLong(MATCH_ID_KEY, matchId)
             }
         }
-
     }
 
     @Inject
@@ -45,7 +45,8 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapt
     fun providePresenter() = presenter
 
     override fun showMatchDetails(match: MatchUiModel) {
-        toolbar.title = if (match.radiantWin) "Radiant win" else "Dire win" //todo stub!
+        toolbar.title = if (match.radiantWin) getString(R.string.title_radiant_win)
+        else getString(R.string.title_dire_win)
 
         val items = mutableListOf<MatchDetailsItem>()
         items.add(TeamHeader(Team.RADIANT))
@@ -78,7 +79,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapt
     }
 
     override fun showError(error: String) {
-        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        errorDelegate.showError(error)
     }
 
     override fun onPlayerClick(id: Long) {
@@ -86,5 +87,6 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapt
     }
 
     override fun showLoading(show: Boolean) {
+        loader.setVisible(show)
     }
 }

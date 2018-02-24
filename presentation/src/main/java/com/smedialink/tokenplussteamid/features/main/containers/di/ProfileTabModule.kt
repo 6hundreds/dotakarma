@@ -2,10 +2,12 @@ package com.smedialink.tokenplussteamid.features.main.containers.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.data.manager.ProfileManager
+import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
-import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerNavigator
+import com.smedialink.tokenplussteamid.features.authsuccess.AuthSuccessActivity
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerNavigator
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
 import com.smedialink.tokenplussteamid.manager.IProfileManager
 import dagger.Binds
@@ -13,6 +15,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.Router
 
 /**
  * Created by Sergey Opivalov on 20/02/2018.
@@ -26,6 +29,12 @@ abstract class ProfileTabModule {
         @Provides
         @JvmStatic
         fun provideNavigator(fragment: ProfileContainerFragment): Navigator = ProfileContainerNavigator(fragment)
+
+        @FragmentScope
+        @Provides
+        @JvmStatic
+        @LocalNavigation
+        fun provideRouter(fragment: ProfileContainerFragment): Router = fragment.router
     }
 
     @Binds

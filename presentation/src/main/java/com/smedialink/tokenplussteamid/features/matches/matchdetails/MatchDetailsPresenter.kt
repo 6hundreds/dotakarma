@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.matches.matchdetails
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
@@ -21,7 +22,7 @@ import javax.inject.Inject
 class MatchDetailsPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getMatchDetailsUseCase: GetMatchDetailsUseCase,
-        private val router: Router,
+        @LocalNavigation private val router: Router,
         private val mapper: MatchMapper)
     : BasePresenter<MatchDetailsView>(), HeroFactory {
 
@@ -41,6 +42,10 @@ class MatchDetailsPresenter @Inject constructor(
 
     fun showPlayerProfile(id: Long) {
         router.navigateTo(AppScreens.USER_PROFILE_SCREEN, id)
+    }
+
+    fun onBackPressed() {
+        router.exit()
     }
 
 }

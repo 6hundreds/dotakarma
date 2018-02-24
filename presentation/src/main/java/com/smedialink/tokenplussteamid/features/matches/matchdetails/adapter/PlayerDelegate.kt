@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_matches_player.view.*
 /**
  * Created by six_hundreds on 03.02.18.
  */
-class PlayerDelegate(private val onPlayerClickListener: OnPlayerClickListener,
+class PlayerDelegate(private val onPlayerClickListener: MatchPlayersAdapter.OnPlayerClickListener,
                      private val heroFactory: HeroFactory,
                      private val glide: RequestManager)
     : AbsListItemAdapterDelegate<MatchUiModel.MatchPlayerUiModel,

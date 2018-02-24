@@ -1,6 +1,5 @@
 package com.smedialink.tokenplussteamid.features.auth
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -34,9 +33,11 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    @SuppressLint("SetJavaScriptEnabled")
-    override fun initWebView() {
+    override fun showSteamPage() {
+        webview_auth_steam.loadUrl(AUTH_URL)
+    }
 
+    override fun initUi() {
         with(webview_auth_steam.settings) {
             javaScriptEnabled = true
             cacheMode = WebSettings.LOAD_NO_CACHE
@@ -64,22 +65,6 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
                 }
                 return false
             }
-        }
-    }
-
-
-    override fun displaySteamAuthWebsite() {
-        webview_auth_steam.loadUrl(AUTH_URL)
-    }
-
-    override fun initUi() {
-    }
-
-    override fun clearWebView() {
-        with(webview_auth_steam) {
-            clearHistory()
-            clearCache(true)
-            loadUrl("about:blank")
         }
     }
 }

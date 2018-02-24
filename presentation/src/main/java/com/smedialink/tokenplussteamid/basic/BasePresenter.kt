@@ -8,8 +8,12 @@ abstract class BasePresenter<View : MvpView> : MvpPresenter<View>() {
 
     protected var disposables = CompositeDisposable()
 
+    override fun detachView(view: View?) {
+        super.detachView(view)
+        disposables.dispose()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        disposables.dispose()
     }
 }

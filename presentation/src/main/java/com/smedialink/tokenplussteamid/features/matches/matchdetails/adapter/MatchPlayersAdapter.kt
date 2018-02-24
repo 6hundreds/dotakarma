@@ -21,4 +21,9 @@ class MatchPlayersAdapter(onPlayerClickListener: OnPlayerClickListener,
         super.setItems(items)
         notifyDataSetChanged()
     }
+
+    interface OnPlayerClickListener {
+
+        fun onPlayerClick(id: Long)
+    }
 }

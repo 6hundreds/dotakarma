@@ -14,7 +14,6 @@ import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter
-import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.OnPlayerClickListener
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.TeamHeader
 import kotlinx.android.synthetic.main.fragment_match_details.*
 import javax.inject.Inject
@@ -23,7 +22,7 @@ import javax.inject.Inject
  * Created by six_hundreds on 05.02.18.
  */
 @Layout(R.layout.fragment_match_details)
-class MatchDetailsFragment : BaseFragment(), MatchDetailsView, OnPlayerClickListener {
+class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapter.OnPlayerClickListener {
 
     private lateinit var detailsAdapter: MatchPlayersAdapter
 
@@ -74,7 +73,7 @@ class MatchDetailsFragment : BaseFragment(), MatchDetailsView, OnPlayerClickList
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
-        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+        toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
     }
 
     override fun showError(error: String) {

@@ -31,9 +31,4 @@ class ProfileContainerFragment : TabContainerFragment(), ProfileContainerView {
 
     override fun initUi() {
     }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.init()
-    }
 }

@@ -32,10 +32,13 @@ class ProfileContainerPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        if (sessionManager.isSessionOpened()) {
-            router.newRootScreen(AppScreens.MY_PROFILE_SCREEN)
-        } else {
-            router.newRootScreen(AppScreens.STEAM_AUTH_SCREEN)
-        }
+        router.newRootScreen(AppScreens.MY_PROFILE_SCREEN)
+
+
+//        if (sessionManager.isSessionOpened()) {
+//            router.newRootScreen(AppScreens.MY_PROFILE_SCREEN)
+//        } else {
+//            router.newRootScreen(AppScreens.STEAM_AUTH_SCREEN)
+//        }
     }
 }

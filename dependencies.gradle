@@ -17,6 +17,7 @@ ext {
     final RX_JAVA_VERSION = "2.1.8"
     final RX_KOTLIN_VERSION = "2.2.0"
     final RX_ANDROID_VERSION = "2.0.1"
+    final RX_BINDINGS_VERSION = "2.1.1"
 
     // Core
     final DAGGER_VERSION = "2.14.1"
@@ -105,6 +106,7 @@ ext {
             bottomNavigation     : "com.aurelhubert:ahbottomnavigation:$BOTTOM_NAVIGATION_VERSION",
             glide                : "com.github.bumptech.glide:glide:$GLIDE_VERSION",
             glideCompiler        : "com.github.bumptech.glide:compiler:$GLIDE_VERSION",
+            rxBindings           : "com.jakewharton.rxbinding2:rxbinding-kotlin:$RX_BINDINGS_VERSION",
             glideTransformations : "jp.wasabeef:glide-transformations:3.1.0",
             adapterDelegates     : "com.hannesdorfmann:adapterdelegates3:3.0.1",
             topSnackbar          : "com.androidadvance:topsnackbar:1.1.1"

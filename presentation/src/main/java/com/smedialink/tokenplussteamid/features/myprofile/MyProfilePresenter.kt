@@ -49,7 +49,7 @@ class MyProfilePresenter @Inject constructor(
     }
 
     fun onCommentClicked(id: Int) {
-        router.navigateTo(AppScreens.COMMENT_CONVERSATION_SCREEN, id)
+        router.navigateTo(AppScreens.REPLY_TO_COMMENT_SCREEN, id)
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =

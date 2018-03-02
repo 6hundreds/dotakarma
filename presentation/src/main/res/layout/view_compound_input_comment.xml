@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/padding_common_small"
     android:paddingEnd="@dimen/padding_common_normal"
+    android:background="@color/colorPrimaryDark"
     android:paddingStart="@dimen/padding_common_normal"
     android:paddingTop="@dimen/padding_common_small">
 
@@ -16,7 +17,7 @@
         android:layout_weight="1"
         android:background="@drawable/bg_rounded_rectangle"
         android:hint="@string/hint_comment"
-        android:inputType="text"
+        android:inputType="textNoSuggestions|textMultiLine"
         android:paddingBottom="@dimen/padding_common_tiny"
         android:paddingEnd="@dimen/padding_common_reduced"
         android:paddingStart="@dimen/padding_common_reduced"

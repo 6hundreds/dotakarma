@@ -21,6 +21,7 @@ import javax.inject.Inject
 @Layout(R.layout.fragment_profile)
 class MyProfileFragment
     : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener, ProfileAdapter.OnCommentClickListener {
+
     private lateinit var glide: RequestManager
 
     private lateinit var profileAdapter: ProfileAdapter
@@ -48,6 +49,7 @@ class MyProfileFragment
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
+
         layout_refresh.setOnRefreshListener(this)
     }
 
@@ -64,7 +66,7 @@ class MyProfileFragment
     }
 
     override fun onCommentClick(id: Int) {
-        presenter.onCommentClicked(id)
+//        presenterReplyTo.onCommentClicked(id)
     }
 
     override fun showProfile(user: User) {

@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.conversation
+package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
@@ -10,10 +10,10 @@ import javax.inject.Inject
  * Created by six_hundreds on 24.02.18.
  */
 @InjectViewState
-class CommentConversationPresenter @Inject constructor(
+class ReplyToCommentPresenter @Inject constructor(
         @LocalNavigation
         private val router: Router)
-    : BasePresenter<CommentConversationView>() {
+    : BasePresenter<ReplyToCommentView>() {
 
     fun getCommentConversation(commentId: Int) {}
 

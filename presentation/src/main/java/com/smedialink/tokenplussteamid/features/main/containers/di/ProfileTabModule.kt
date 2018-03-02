@@ -5,8 +5,7 @@ import com.smedialink.tokenplussteamid.data.manager.ProfileManager
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
-import com.smedialink.tokenplussteamid.features.authsuccess.AuthSuccessActivity
-import com.smedialink.tokenplussteamid.features.conversation.CommentConversationFragment
+import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerNavigator
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
@@ -52,5 +51,5 @@ abstract class ProfileTabModule {
 
     @ChildFragmentScope
     @ContributesAndroidInjector()
-    abstract fun commentConversationInjector(): CommentConversationFragment
+    abstract fun commentConversationInjector(): ReplyToCommentFragment
 }

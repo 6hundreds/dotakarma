@@ -11,6 +11,7 @@ import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatc
 import com.smedialink.tokenplussteamid.features.userprofile.UserProfileActivity
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 /**
@@ -40,7 +41,8 @@ class MatchesContainerNavigator @Inject constructor(fragment: MatchesContainerFr
                                                    currentFragment: Fragment?,
                                                    nextFragment: Fragment?,
                                                    fragmentTransaction: FragmentTransaction?) {
-        if (nextFragment is MatchDetailsFragment &&
+        if (command is Forward &&
+                nextFragment is MatchDetailsFragment &&
                 currentFragment is RecentMatchesFragment) {
             fragmentTransaction?.setCustomAnimations(
                     R.anim.enter_from_right,

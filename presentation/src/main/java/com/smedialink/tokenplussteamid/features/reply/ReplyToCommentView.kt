@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.conversation
+package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.MvpView
 import com.smedialink.tokenplussteamid.basic.CanHideRefreshing
@@ -8,5 +8,5 @@ import com.smedialink.tokenplussteamid.basic.CanShowLoading
 /**
  * Created by six_hundreds on 24.02.18.
  */
-interface CommentConversationView : MvpView, CanShowError, CanShowLoading, CanHideRefreshing {
+interface ReplyToCommentView : MvpView, CanShowError, CanShowLoading, CanHideRefreshing {
 }

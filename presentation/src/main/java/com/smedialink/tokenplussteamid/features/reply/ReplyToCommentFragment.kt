@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.conversation
+package com.smedialink.tokenplussteamid.features.reply
 
 import android.os.Bundle
 import android.view.View
@@ -8,20 +8,20 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
-import kotlinx.android.synthetic.main.fragment_comment_conversation.*
+import kotlinx.android.synthetic.main.fragment_reply_to_comment.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 /**
  * Created by six_hundreds on 24.02.18.
  */
-@Layout(R.layout.fragment_comment_conversation)
-class CommentConversationFragment : BaseFragment(), CommentConversationView {
+@Layout(R.layout.fragment_reply_to_comment)
+class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
 
     companion object {
         private const val COMMENT_ID_KEY = "comment_id"
 
-        fun newInstance(id: Int) = CommentConversationFragment().apply {
+        fun newInstance(id: Int) = ReplyToCommentFragment().apply {
             arguments = Bundle().apply {
                 putInt(COMMENT_ID_KEY, id)
             }
@@ -30,17 +30,17 @@ class CommentConversationFragment : BaseFragment(), CommentConversationView {
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: CommentConversationPresenter
+    lateinit var presenterReplyTo: ReplyToCommentPresenter
 
     @ProvidePresenter
-    fun providePresenter() = presenter
+    fun providePresenter() = presenterReplyTo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val commentId = arguments?.getInt(COMMENT_ID_KEY, -1)
                 ?: throw  IllegalArgumentException("CommentId must be provided via arguments")
         if (commentId != -1) {
-            presenter.getCommentConversation(commentId)
+            presenterReplyTo.getCommentConversation(commentId)
         }
     }
 
@@ -57,8 +57,8 @@ class CommentConversationFragment : BaseFragment(), CommentConversationView {
     }
 
     override fun initUi() {
-        toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
+        toolbar.setNavigationOnClickListener { presenterReplyTo.onBackPressed() }
         toolbar.title = getString(R.string.title_send_comment)
-        field_comment.clickAction = { comment -> presenter.sendComment(comment) }
+        field_comment.clickAction = { comment -> presenterReplyTo.sendComment(comment) }
     }
 }

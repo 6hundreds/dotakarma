@@ -91,6 +91,7 @@ class MainActivity : BaseActivity(), MainView {
         with(supportFragmentManager) {
             matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment?
                     ?: MatchesContainerFragment.newInstance("matches_container")
+
             beginTransaction()
                     .add(R.id.home_tabs_container, matchContainer, "matches_container")
                     .detach(matchContainer)

@@ -30,37 +30,4 @@ class ProfileContainerNavigator @Inject constructor(fragment: ProfileContainerFr
         AppScreens.REPLY_TO_COMMENT_SCREEN -> ReplyToCommentFragment.newInstance(data as Int)
         else -> null
     }
-
-    override fun setupFragmentTransactionAnimation(command: Command,
-                                                   currentFragment: Fragment,
-                                                   nextFragment: Fragment,
-                                                   fragmentTransaction: FragmentTransaction) {
-
-        if (command is Forward &&
-                currentFragment is MyProfileFragment &&
-                nextFragment is ReplyToCommentFragment) {
-            setupSharedElementForReply(currentFragment, nextFragment, fragmentTransaction)
-        }
-    }
-
-    private fun setupSharedElementForReply(profileFragment: MyProfileFragment,
-                                           replyToCommentFragment: ReplyToCommentFragment,
-                                           fragmentTransaction: FragmentTransaction) {
-
-        val changeBounds = ChangeBounds()
-
-        replyToCommentFragment.apply {
-            sharedElementEnterTransition = changeBounds
-            sharedElementReturnTransition = changeBounds
-        }
-
-        profileFragment.apply {
-            sharedElementEnterTransition = changeBounds
-            sharedElementReturnTransition = changeBounds
-        }
-
-        fragmentTransaction.addSharedElement(, "")
-        replyToCommentFragment.
-
-    }
 }

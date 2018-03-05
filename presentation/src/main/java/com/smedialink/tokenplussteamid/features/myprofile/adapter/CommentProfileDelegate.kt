@@ -40,7 +40,7 @@ class CommentProfileDelegate(private val listener: ProfileAdapter.OnCommentClick
                 comment_author.text = comment.authorId.toString()
                 comment_date.text = comment.createdAt
                 comment_content.text = comment.content
-                setOnClickListener { listener.onCommentClick(comment.id) }
+                setOnClickListener { listener.onCommentClick(rootView, comment.id) }
             }
         }
     }

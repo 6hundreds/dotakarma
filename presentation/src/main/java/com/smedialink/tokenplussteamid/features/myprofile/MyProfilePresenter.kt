@@ -22,8 +22,7 @@ import javax.inject.Inject
 class MyProfilePresenter @Inject constructor(
         private val getMyProfileUseCase: GetMyProfileUseCase,
         private val mapper: CommentProfileMapper,
-        @LocalNavigation
-        private val router: Router
+        @LocalNavigation private val router: Router
 ) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
 
     private var latestCommentId = -1

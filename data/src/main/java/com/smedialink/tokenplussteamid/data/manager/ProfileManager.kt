@@ -4,7 +4,7 @@ import com.smedialink.tokenplussteamid.data.dao.CommentDao
 import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.data.entity.CommentModel
 import com.smedialink.tokenplussteamid.data.entity.UserModel
-import com.smedialink.tokenplussteamid.data.mapper.CommentMapper
+import com.smedialink.tokenplussteamid.data.mapper.CommentListMapper
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.Comment
@@ -21,22 +21,15 @@ class ProfileManager @Inject constructor(
         private val api: DotaKarmaApi,
         private val userDao: UserDao,
         private val commentsDao: CommentDao,
-        private val commentMapper: CommentMapper,
+        private val commentListMapper: CommentListMapper,
         private val userMapper: UserMapper,
         private val prefsManager: SharedPrefsManager) : IProfileManager {
 
-    val mock = arrayListOf<CommentModel>(
-            CommentModel(1, "Comment1", 1, "12.03.2018", "", 0,0),
-            CommentModel(2, "Comment2", 1, "12.03.2018", "", 0,0),
-            CommentModel(3, "Comment3", 1, "12.03.2018", "", 0,0),
-            CommentModel(4, "Comment4", 1, "12.03.2018", "", 0,0),
-            CommentModel(5, "Comment5", 1, "12.03.2018", "", 0,0),
-            CommentModel(6, "Comment6", 1, "12.03.2018", "", 0,0),
-            CommentModel(7, "Comment7", 1, "12.03.2018", "", 0,0),
-            CommentModel(8, "Comment8", 1, "12.03.2018", "", 0,0),
-            CommentModel(9, "Comment9", 1, "12.03.2018", "", 0,0),
-            CommentModel(10, "Comment10", 1, "12.03.2018", "", 0,0),
-            CommentModel(11, "Comment11", 1, "12.03.2018", "", 0,0)
+    val mock = arrayListOf(
+            CommentModel(1, "Comment1", 1, "12.03.2018", "", 0, 0),
+            CommentModel(2, "Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2Comment2", 1, "12.03.2018", "", 0, 0),
+            CommentModel(3, "Comment3", 1, "12.03.2018", "", 0, 0),
+            CommentModel(4, "Comment4", 1, "12.03.2018", "", 0, 0)
     )
 
 
@@ -53,10 +46,12 @@ class ProfileManager @Inject constructor(
 
 
     override fun getMyComments(limit: Int?, after: Int?): Single<List<Comment>> =
-//            Single.fromCallable { prefsManager.getInt(CURRENT_USER_ID_KEY) }
+            Single.fromCallable { prefsManager.getInt(CURRENT_USER_ID_KEY) }
 //                    .flatMap { api.fetchMyComments(limit, after) }
-//                    .map { commentMapper.mapToDomain(it) }
-            Single.just(commentMapper.mapToDomain(mock))
+                    .flatMap { Single.just(mock) }
+                    .doOnSuccess { commentsDao.insert(it) }
+                    .map { commentListMapper.mapToDomain(it) }
+//    Single.just(commentListMapper.mapToDomain(mock))
 
     override fun getMyProfile(): Single<User> =
             Single.just(UserModel())

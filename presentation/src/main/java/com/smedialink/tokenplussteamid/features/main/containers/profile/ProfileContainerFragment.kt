@@ -23,8 +23,6 @@ class ProfileContainerFragment : TabContainerFragment(), ProfileContainerView {
 
     companion object {
 
-        const val REPLY_TRANSITION = "reply_transition"
-
         fun newInstance(containerTag: String) = ProfileContainerFragment().apply {
             arguments = Bundle().apply {
                 putString(CONTAINER_TAG_KEY, containerTag)

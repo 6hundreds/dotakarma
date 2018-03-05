@@ -8,6 +8,7 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
+import com.smedialink.tokenplussteamid.entity.Comment
 import kotlinx.android.synthetic.main.fragment_reply_to_comment.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
@@ -17,15 +18,15 @@ import javax.inject.Inject
  */
 @Layout(R.layout.fragment_reply_to_comment)
 class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
-
     companion object {
-        private const val COMMENT_ID_KEY = "comment_id"
 
+        private const val COMMENT_ID_KEY = "comment_id"
         fun newInstance(id: Int) = ReplyToCommentFragment().apply {
             arguments = Bundle().apply {
                 putInt(COMMENT_ID_KEY, id)
             }
         }
+
     }
 
     @Inject
@@ -40,7 +41,7 @@ class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
         val commentId = arguments?.getInt(COMMENT_ID_KEY, -1)
                 ?: throw  IllegalArgumentException("CommentId must be provided via arguments")
         if (commentId != -1) {
-            presenterReplyTo.getCommentConversation(commentId)
+            presenterReplyTo.getCommentById(commentId)
         }
     }
 
@@ -49,11 +50,14 @@ class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
     }
 
     override fun showLoading(show: Boolean) {
-        loader.setVisible(show)
+//        loader.setVisible(show)
     }
 
-    override fun hideRefreshing() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    override fun showComment(comment: Comment) {
+        comment_author.text = comment.authorId.toString()
+        comment_content.text = comment.content
+        comment_date.text = comment.createdAt
     }
 
     override fun initUi() {

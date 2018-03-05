@@ -20,7 +20,7 @@ class InputCommentView(context: Context, attributeSet: AttributeSet)
 
     var clickAction: ((text: String) -> Unit)? = null
 
-    private val compositeDisposable = CompositeDisposable()
+    private val disposables = CompositeDisposable()
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_compound_input_comment, this)
@@ -40,11 +40,11 @@ class InputCommentView(context: Context, attributeSet: AttributeSet)
                         isEnabled = c.isNotEmpty()
                     }
                 })
-                .addTo(compositeDisposable)
+                .addTo(disposables)
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        compositeDisposable.clear()
+        disposables.clear()
     }
 }

@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.features.myprofile.adapter
 
+import android.view.View
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
@@ -45,6 +46,6 @@ class ProfileAdapter(listener: OnCommentClickListener,
     }
 
     interface OnCommentClickListener {
-        fun onCommentClick(id: Int)
+        fun onCommentClick(rootView: View, id: Int)
     }
 }

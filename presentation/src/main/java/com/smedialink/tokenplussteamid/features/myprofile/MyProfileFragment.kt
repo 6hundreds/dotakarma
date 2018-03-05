@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.myprofile
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
@@ -65,8 +66,8 @@ class MyProfileFragment
         presenter.refreshProfile()
     }
 
-    override fun onCommentClick(id: Int) {
-//        presenterReplyTo.onCommentClicked(id)
+    override fun onCommentClick(rootView: View, id: Int) {
+        presenter.onCommentClicked(id)
     }
 
     override fun showProfile(user: User) {

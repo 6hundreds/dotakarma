@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.main.containers.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.data.manager.ProfileManager
+import com.smedialink.tokenplussteamid.data.repository.CommentRepository
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
@@ -10,6 +11,7 @@ import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileC
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerNavigator
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
 import com.smedialink.tokenplussteamid.manager.IProfileManager
+import com.smedialink.tokenplussteamid.repository.ICommentRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -41,6 +43,10 @@ abstract class ProfileTabModule {
     @FragmentScope
     abstract fun provideProfileManager(manager: ProfileManager): IProfileManager
 
+    @Binds
+    @FragmentScope
+    abstract fun provideCommentRepository(repo: CommentRepository): ICommentRepository
+
     @ChildFragmentScope
     @ContributesAndroidInjector()
     abstract fun myProfileInjector(): MyProfileFragment
@@ -51,5 +57,5 @@ abstract class ProfileTabModule {
 
     @ChildFragmentScope
     @ContributesAndroidInjector()
-    abstract fun commentConversationInjector(): ReplyToCommentFragment
+    abstract fun replyToCommentInjector(): ReplyToCommentFragment
 }

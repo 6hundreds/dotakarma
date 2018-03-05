@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/padding_common_small"
     android:paddingEnd="@dimen/padding_common_normal"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorTest2"
     android:paddingStart="@dimen/padding_common_normal"
     android:paddingTop="@dimen/padding_common_small">
 

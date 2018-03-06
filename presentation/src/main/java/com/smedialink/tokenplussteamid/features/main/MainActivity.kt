@@ -30,9 +30,9 @@ class MainActivity : BaseActivity(), MainView {
         private const val TAB_MATCHES = 2
     }
 
-    var matchContainer: MatchesContainerFragment? = null
-    var feedContainer: FeedFragment? = null
-    var profileContainer: ProfileContainerFragment? = null
+    lateinit var matchContainer: MatchesContainerFragment
+    lateinit var feedContainer: FeedFragment
+    lateinit var profileContainer: ProfileContainerFragment
 
     @Inject
     @InjectPresenter
@@ -89,34 +89,33 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun initContainers() {
         with(supportFragmentManager) {
-            matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment?
-            if (matchContainer == null) {
-                matchContainer = MatchesContainerFragment.newInstance("matches_container")
-                beginTransaction()
-                        .add(R.id.home_tabs_container, matchContainer, "matches_container")
-                        .detach(matchContainer)
-                        .commitNow()
-            }
+            matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment? ?:
+                    MatchesContainerFragment.newInstance("matches_container").also {
+                        beginTransaction()
+                                .add(R.id.home_tabs_container, it, "matches_container")
+                                .detach(it)
+                                .commitNow()
+                    }
 
-            feedContainer = findFragmentByTag("feed_container") as FeedFragment?
-            if (feedContainer == null) {
-                feedContainer = FeedFragment.newInstance()
-                beginTransaction()
-                        .add(R.id.home_tabs_container, feedContainer, "feed_container")
-                        .detach(feedContainer)
-                        .commitNow()
-            }
 
-            profileContainer = findFragmentByTag("profile_container") as ProfileContainerFragment?
-            if (profileContainer == null) {
-                profileContainer = ProfileContainerFragment.newInstance("profile_container")
-                beginTransaction()
-                        .add(R.id.home_tabs_container, profileContainer, "profile_container")
-                        .detach(profileContainer)
-                        .commitNow()
-            }
+            feedContainer = findFragmentByTag("feed_container") as FeedFragment? ?:
+                    FeedFragment.newInstance().also {
+                        beginTransaction()
+                                .add(R.id.home_tabs_container, it, "feed_container")
+                                .detach(it)
+                                .commitNow()
+                    }
+
+            profileContainer = findFragmentByTag("profile_container") as ProfileContainerFragment? ?:
+                    ProfileContainerFragment.newInstance("profile_container").also {
+                        beginTransaction()
+                                .add(R.id.home_tabs_container, it, "profile_container")
+                                .detach(it)
+                                .commitNow()
+                    }
         }
     }
+
 
     override fun onPause() {
         super.onPause()

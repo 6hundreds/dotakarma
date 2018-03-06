@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentByIdUseCase
+import com.smedialink.tokenplussteamid.usecase.comments.SendReplyUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
@@ -14,7 +15,9 @@ import javax.inject.Inject
  */
 @InjectViewState
 class ReplyToCommentPresenter @Inject constructor(
+        private val sendReplyUseCase: SendReplyUseCase,
         private val getCommentByIdUseCase: GetCommentByIdUseCase,
+        private val currentCommentId: Int,
         @LocalNavigation private val router: Router)
     : BasePresenter<ReplyToCommentView>() {
 
@@ -28,8 +31,13 @@ class ReplyToCommentPresenter @Inject constructor(
     }
 
 
-    fun sendComment(comment: String) {
-
+    fun sendComment(content: String) {
+        sendReplyUseCase.sendReply(content, currentCommentId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { viewState.showLoading(true) }
+                .doFinally { viewState.showLoading(false) }
+                .subscribe({ router.exit() }, { viewState.showError(it.localizedMessage) })
     }
 
     fun onBackPressed() {

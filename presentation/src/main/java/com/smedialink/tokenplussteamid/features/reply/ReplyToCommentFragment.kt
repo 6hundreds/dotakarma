@@ -18,6 +18,7 @@ import javax.inject.Inject
  */
 @Layout(R.layout.fragment_reply_to_comment)
 class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
+
     companion object {
 
         private const val COMMENT_ID_KEY = "comment_id"
@@ -26,22 +27,25 @@ class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
                 putInt(COMMENT_ID_KEY, id)
             }
         }
-
     }
+
+    val currentCommentId: Int
+        get() = arguments?.getInt(COMMENT_ID_KEY)
+                ?: throw  IllegalArgumentException("CommentId must be provided via arguments")
 
     @Inject
     @InjectPresenter
-    lateinit var presenterReplyTo: ReplyToCommentPresenter
+    lateinit var presenter: ReplyToCommentPresenter
 
     @ProvidePresenter
-    fun providePresenter() = presenterReplyTo
+    fun providePresenter() = presenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val commentId = arguments?.getInt(COMMENT_ID_KEY, -1)
                 ?: throw  IllegalArgumentException("CommentId must be provided via arguments")
         if (commentId != -1) {
-            presenterReplyTo.getCommentById(commentId)
+            presenter.getCommentById(commentId)
         }
     }
 
@@ -50,9 +54,8 @@ class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
     }
 
     override fun showLoading(show: Boolean) {
-//        loader.setVisible(show)
+        loader.setVisible(show)
     }
-
 
     override fun showComment(comment: Comment) {
         comment_author.text = comment.authorId.toString()
@@ -61,8 +64,8 @@ class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
     }
 
     override fun initUi() {
-        toolbar.setNavigationOnClickListener { presenterReplyTo.onBackPressed() }
+        toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
         toolbar.title = getString(R.string.title_send_comment)
-        field_comment.clickAction = { comment -> presenterReplyTo.sendComment(comment) }
+        field_comment.clickAction = { comment -> presenter.sendComment(comment) }
     }
 }

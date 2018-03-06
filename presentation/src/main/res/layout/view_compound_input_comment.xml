@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorTest2"
     android:paddingBottom="@dimen/padding_common_small"
     android:paddingEnd="@dimen/padding_common_normal"
-    android:background="@color/colorTest2"
     android:paddingStart="@dimen/padding_common_normal"
     android:paddingTop="@dimen/padding_common_small">
 

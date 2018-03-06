@@ -6,10 +6,11 @@ import com.smedialink.tokenplussteamid.data.repository.CommentRepository
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
-import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerNavigator
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
+import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
+import com.smedialink.tokenplussteamid.features.reply.di.ReplyToCommentModule
 import com.smedialink.tokenplussteamid.manager.IProfileManager
 import com.smedialink.tokenplussteamid.repository.ICommentRepository
 import dagger.Binds
@@ -56,6 +57,6 @@ abstract class ProfileTabModule {
     abstract fun steamAuthInjector(): SteamAuthFragment
 
     @ChildFragmentScope
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [ReplyToCommentModule::class])
     abstract fun replyToCommentInjector(): ReplyToCommentFragment
 }

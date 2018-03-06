@@ -24,10 +24,15 @@ class InputCommentView(context: Context, attributeSet: AttributeSet)
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_compound_input_comment, this)
+    }
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
         button_send.isEnabled = false
         button_send.setOnClickListener {
             clickAction?.invoke(field_input.text.toString())
                     ?: throw IllegalArgumentException("Need to provide action for sending message")
+
         }
     }
 

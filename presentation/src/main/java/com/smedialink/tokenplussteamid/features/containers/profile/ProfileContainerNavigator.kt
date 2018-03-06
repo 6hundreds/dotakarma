@@ -1,17 +1,14 @@
-package com.smedialink.tokenplussteamid.features.main.containers.profile
+package com.smedialink.tokenplussteamid.features.containers.profile
 
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.features.AppScreens
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
 import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
-import ru.terrakok.cicerone.commands.Command
-import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 /**

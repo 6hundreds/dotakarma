@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.main.containers.matches
+package com.smedialink.tokenplussteamid.features.containers.matches
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.basic.BasePresenter

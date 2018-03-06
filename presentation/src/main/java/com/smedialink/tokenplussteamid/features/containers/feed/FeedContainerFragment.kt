@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.main.containers.profile
+package com.smedialink.tokenplussteamid.features.containers.feed
 
 import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -9,27 +9,25 @@ import com.smedialink.tokenplussteamid.subnavigation.TabContainerFragment
 import javax.inject.Inject
 
 /**
- * Created by Sergey Opivalov on 20/02/2018.
+ * Created by Sergey Opivalov on 06/03/2018.
  */
 @Layout(R.layout.fragment_tab_container)
-class ProfileContainerFragment : TabContainerFragment(), ProfileContainerView {
+class FeedContainerFragment : TabContainerFragment(), FeedContainerView {
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: ProfileContainerPresenter
+    lateinit var presenter: FeedContainerPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter
 
     companion object {
-
-        fun newInstance(containerTag: String) = ProfileContainerFragment().apply {
+        fun newInstance(containerTag: String) = FeedContainerFragment().apply {
             arguments = Bundle().apply {
                 putString(CONTAINER_TAG_KEY, containerTag)
             }
         }
     }
 
-    override fun initUi() {
-    }
+    override fun initUi() {}
 }

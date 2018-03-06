@@ -10,9 +10,9 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.basic.BaseActivity
 import com.smedialink.tokenplussteamid.features.AppScreens
-import com.smedialink.tokenplussteamid.features.feed.FeedFragment
-import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerFragment
-import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
+import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerFragment
+import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerFragment
+import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Back
@@ -31,7 +31,7 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     lateinit var matchContainer: MatchesContainerFragment
-    lateinit var feedContainer: FeedFragment
+    lateinit var feedContainer: FeedContainerFragment
     lateinit var profileContainer: ProfileContainerFragment
 
     @Inject
@@ -98,8 +98,8 @@ class MainActivity : BaseActivity(), MainView {
                     }
 
 
-            feedContainer = findFragmentByTag("feed_container") as FeedFragment? ?:
-                    FeedFragment.newInstance().also {
+            feedContainer = findFragmentByTag("feed_container") as FeedContainerFragment? ?:
+                    FeedContainerFragment.newInstance("feed_container").also {
                         beginTransaction()
                                 .add(R.id.home_tabs_container, it, "feed_container")
                                 .detach(it)

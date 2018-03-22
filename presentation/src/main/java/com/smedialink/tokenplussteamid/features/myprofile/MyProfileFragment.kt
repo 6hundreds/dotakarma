@@ -11,17 +11,18 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.features.myprofile.adapter.ProfileAdapter
+import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_profile)
 class MyProfileFragment
-    : BaseFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener, ProfileAdapter.OnCommentClickListener {
+    : TabNestedFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener, ProfileAdapter.OnCommentClickListener {
 
     private lateinit var glide: RequestManager
 

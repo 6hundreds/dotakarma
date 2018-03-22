@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.basic
+package com.smedialink.tokenplussteamid.base
 
 /**
  * Created by six_hundreds on 09.02.18.

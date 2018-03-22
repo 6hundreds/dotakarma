@@ -1,15 +1,12 @@
 package com.smedialink.tokenplussteamid.subnavigation
 
 import android.app.Activity
-import android.content.Context
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
-import dagger.android.AndroidInjection
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import dagger.android.support.AndroidSupportInjection
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router

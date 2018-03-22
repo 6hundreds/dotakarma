@@ -2,13 +2,15 @@ package com.smedialink.tokenplussteamid.features.reply
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.entity.Comment
+import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_reply_to_comment.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
@@ -17,7 +19,7 @@ import javax.inject.Inject
  * Created by six_hundreds on 24.02.18.
  */
 @Layout(R.layout.fragment_reply_to_comment)
-class ReplyToCommentFragment : BaseFragment(), ReplyToCommentView {
+class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView {
 
     companion object {
 

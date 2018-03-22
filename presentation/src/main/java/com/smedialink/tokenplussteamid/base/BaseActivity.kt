@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.basic
+package com.smedialink.tokenplussteamid.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

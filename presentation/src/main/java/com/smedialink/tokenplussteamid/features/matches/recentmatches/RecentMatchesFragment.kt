@@ -7,7 +7,7 @@ import javax.inject.Inject
 import com.smedialink.tokenplussteamid.app.Layout
 import com.bumptech.glide.Glide
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel

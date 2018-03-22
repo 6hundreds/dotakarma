@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.app.modules
 
 import com.smedialink.tokenplussteamid.subnavigation.LocalNavigatorHolder
+import com.smedialink.tokenplussteamid.subnavigation.LastTransactionHolder
 import dagger.Module
 import dagger.Provides
 import ru.terrakok.cicerone.Cicerone
@@ -24,4 +25,8 @@ class NavigationModule {
     @Provides
     @Singleton
     fun localNavHolder(): LocalNavigatorHolder = LocalNavigatorHolder()
+
+    @Provides
+    @Singleton
+    fun transactionHandler(): LastTransactionHolder = LastTransactionHolder()
 }

@@ -7,9 +7,9 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem
 import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseActivity
-import com.smedialink.tokenplussteamid.features.AppScreens
+import com.smedialink.tokenplussteamid.base.BaseActivity
 import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerFragment
 import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerFragment
 import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerFragment

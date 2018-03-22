@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentByIdUseCase
 import com.smedialink.tokenplussteamid.usecase.comments.SendReplyUseCase

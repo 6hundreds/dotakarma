@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.features.main
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.basic.BasePresenter
-import com.smedialink.tokenplussteamid.features.AppScreens
+import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.app.AppScreens
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 

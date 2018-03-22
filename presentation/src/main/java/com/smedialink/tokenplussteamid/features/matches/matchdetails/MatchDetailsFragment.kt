@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.Team
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter

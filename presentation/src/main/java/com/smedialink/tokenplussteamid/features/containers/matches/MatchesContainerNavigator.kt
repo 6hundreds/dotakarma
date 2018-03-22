@@ -5,7 +5,7 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.features.AppScreens
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.features.userprofile.UserProfileActivity

@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.MvpView
-import com.smedialink.tokenplussteamid.basic.CanShowError
-import com.smedialink.tokenplussteamid.basic.CanShowLoading
+import com.smedialink.tokenplussteamid.base.CanShowError
+import com.smedialink.tokenplussteamid.base.CanShowLoading
 import com.smedialink.tokenplussteamid.entity.Comment
 
 /**

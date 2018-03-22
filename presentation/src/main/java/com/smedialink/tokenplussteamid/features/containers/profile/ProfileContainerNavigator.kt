@@ -3,12 +3,17 @@ package com.smedialink.tokenplussteamid.features.containers.profile
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.features.AppScreens
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
+import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
+import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
 import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
+import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 /**
@@ -25,5 +30,21 @@ class ProfileContainerNavigator @Inject constructor(fragment: ProfileContainerFr
         AppScreens.STEAM_AUTH_SCREEN -> SteamAuthFragment.newInstance()
         AppScreens.REPLY_TO_COMMENT_SCREEN -> ReplyToCommentFragment.newInstance(data as Int)
         else -> null
+    }
+
+    override fun setupFragmentTransactionAnimation(command: Command?,
+                                                   currentFragment: Fragment?,
+                                                   nextFragment: Fragment?,
+                                                   fragmentTransaction: FragmentTransaction?) {
+        if (command is Forward &&
+                nextFragment is ReplyToCommentFragment &&
+                currentFragment is MyProfileFragment) {
+            fragmentTransaction?.setCustomAnimations(
+                    R.anim.enter_from_right,
+                    R.anim.exit_from_right,
+                    R.anim.enter_to_right,
+                    R.anim.exit_to_right
+            )
+        }
     }
 }

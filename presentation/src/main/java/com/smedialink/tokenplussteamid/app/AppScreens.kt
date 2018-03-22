@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features
+package com.smedialink.tokenplussteamid.app
 
 object AppScreens {
     const val MAIN_SCREEN = "MAIN_SCREEN"

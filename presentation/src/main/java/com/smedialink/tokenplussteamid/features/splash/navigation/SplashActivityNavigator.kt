@@ -3,7 +3,7 @@ package com.smedialink.tokenplussteamid.features.splash.navigation
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.Fragment
-import com.smedialink.tokenplussteamid.features.AppScreens.MAIN_SCREEN
+import com.smedialink.tokenplussteamid.app.AppScreens.MAIN_SCREEN
 import com.smedialink.tokenplussteamid.features.main.MainActivity
 import com.smedialink.tokenplussteamid.features.splash.SplashActivity
 import ru.terrakok.cicerone.android.SupportAppNavigator

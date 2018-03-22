@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.basic
+package com.smedialink.tokenplussteamid.base
 
 import android.content.Context
 import android.os.Bundle

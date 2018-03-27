@@ -26,7 +26,7 @@ abstract class BaseActivity :
         super.onCreate(savedInstanceState)
         val clazz = javaClass
         if (!clazz.isAnnotationPresent(Layout::class.java)) {
-            throw IllegalArgumentException("Please specify LayoutRes for activity in @Layout annotation")
+            throw IllegalArgumentException("Please specify LayoutRes for $this in @Layout annotation")
         }
         val layout = clazz.getAnnotation(Layout::class.java).value
         setContentView(layout)

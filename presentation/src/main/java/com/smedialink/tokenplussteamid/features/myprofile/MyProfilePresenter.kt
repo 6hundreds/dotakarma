@@ -1,12 +1,13 @@
 package com.smedialink.tokenplussteamid.features.myprofile
 
 import com.arellomobile.mvp.InjectViewState
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.common.ResultCode
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.usecase.me.GetMyProfileUseCase
@@ -26,6 +27,21 @@ class MyProfilePresenter @Inject constructor(
 ) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
 
     private var latestCommentId = -1
+
+    init {
+        router.setResultListener(ResultCode.REPLY_SUCCESS) {
+            getMyProfileUseCase.getComments()
+                    .doOnSuccess { latestCommentId = it.last().id }
+                    .map(mapper)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { viewState.showLoading(true) }
+                    .doFinally { viewState.showLoading(false) }
+                    .subscribe({ viewState.showComments(it) },
+                            { viewState.showError(it.localizedMessage) })
+                    .addTo(disposables)
+        }
+    }
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -62,6 +78,11 @@ class MyProfilePresenter @Inject constructor(
 
     override fun onError(error: Throwable) {
         viewState.showError(error.localizedMessage)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        router.removeResultListener(ResultCode.REPLY_SUCCESS)
     }
 
     fun refreshProfile() {

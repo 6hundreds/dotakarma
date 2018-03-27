@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.common.ResultCode
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentByIdUseCase
 import com.smedialink.tokenplussteamid.usecase.comments.SendReplyUseCase
@@ -30,14 +31,14 @@ class ReplyToCommentPresenter @Inject constructor(
                 .subscribe({ viewState.showComment(it) }, { viewState.showError(it.localizedMessage) })
     }
 
-
     fun sendComment(content: String) {
         sendReplyUseCase.sendReply(content, currentCommentId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ router.exit() }, { viewState.showError(it.localizedMessage) })
+                .subscribe({ router.exitWithResult(ResultCode.REPLY_SUCCESS, null) },
+                        { viewState.showError(it.localizedMessage) })
     }
 
     fun onBackPressed() {

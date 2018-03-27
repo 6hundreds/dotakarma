@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.repository
 
 import com.smedialink.tokenplussteamid.CachePolicy
 import com.smedialink.tokenplussteamid.entity.Comment
+import io.reactivex.Completable
 import io.reactivex.Single
 
 interface ICommentRepository {

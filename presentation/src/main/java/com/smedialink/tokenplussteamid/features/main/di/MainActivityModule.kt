@@ -5,14 +5,12 @@ import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
 import com.smedialink.tokenplussteamid.common.ext.weak
 import com.smedialink.tokenplussteamid.features.containers.di.FeedTabModule
-import com.smedialink.tokenplussteamid.features.feed.FeedFragment
-import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
-import com.smedialink.tokenplussteamid.features.main.MainActivity
 import com.smedialink.tokenplussteamid.features.containers.di.MatchesTabModule
 import com.smedialink.tokenplussteamid.features.containers.di.ProfileTabModule
 import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerFragment
 import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerFragment
 import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerFragment
+import com.smedialink.tokenplussteamid.features.main.MainActivity
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

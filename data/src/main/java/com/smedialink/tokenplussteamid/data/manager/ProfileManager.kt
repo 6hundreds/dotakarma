@@ -3,7 +3,6 @@ package com.smedialink.tokenplussteamid.data.manager
 import com.smedialink.tokenplussteamid.data.dao.CommentDao
 import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.data.entity.CommentModel
-import com.smedialink.tokenplussteamid.data.entity.UserModel
 import com.smedialink.tokenplussteamid.data.mapper.CommentListMapper
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
@@ -47,14 +46,17 @@ class ProfileManager @Inject constructor(
 
     override fun getMyComments(limit: Int?, after: Int?): Single<List<Comment>> =
             Single.fromCallable { prefsManager.getInt(CURRENT_USER_ID_KEY) }
-//                    .flatMap { api.fetchMyComments(limit, after) }
-                    .flatMap { Single.just(mock) }
+                    .flatMap { api.fetchMyComments(limit, after) }
                     .doOnSuccess { commentsDao.insert(it) }
                     .map { commentListMapper.mapToDomain(it) }
-//    Single.just(commentListMapper.mapToDomain(mock))
 
     override fun getMyProfile(): Single<User> =
-            Single.just(UserModel())
-//            api.fetchMyProfile()
+            api.fetchMyProfile()
                     .map { userMapper.mapToDomain(it) }
+
+    override fun addComment(content: String, commentId: Int): Completable =
+            Completable.fromAction {
+                mock.add(0, CommentModel(1, content, 1, "12.03.2018", "", 0, 0))
+            }
+
 }

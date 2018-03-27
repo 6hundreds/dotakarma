@@ -63,7 +63,8 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ hero ->
                             text_hero.text = hero.name
-                            glide.load(hero.imageUrl).into(image_hero)
+                            glide.load(hero.imageUrl)
+                                    .into(image_hero)
                         })
 
             }

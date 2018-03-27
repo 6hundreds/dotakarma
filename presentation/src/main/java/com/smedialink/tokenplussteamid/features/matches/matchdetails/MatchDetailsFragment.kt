@@ -9,12 +9,13 @@ import com.bumptech.glide.Glide
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.Team
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
+import com.smedialink.tokenplussteamid.common.ext.withArgs
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchDetailsItem
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.MatchPlayersAdapter
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.adapter.TeamHeader
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.entity.MatchUiModel
+import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_match_details.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
@@ -23,17 +24,16 @@ import javax.inject.Inject
  * Created by six_hundreds on 05.02.18.
  */
 @Layout(R.layout.fragment_match_details)
-class MatchDetailsFragment : BaseFragment(), MatchDetailsView, MatchPlayersAdapter.OnPlayerClickListener {
+class MatchDetailsFragment
+    : TabNestedFragment(), MatchDetailsView, MatchPlayersAdapter.OnPlayerClickListener {
 
     private lateinit var detailsAdapter: MatchPlayersAdapter
 
     companion object {
         private const val MATCH_ID_KEY = "match_id"
 
-        fun newInstance(matchId: Long) = MatchDetailsFragment().apply {
-            arguments = Bundle().apply {
-                putLong(MATCH_ID_KEY, matchId)
-            }
+        fun newInstance(matchId: Long) = MatchDetailsFragment().withArgs {
+            putLong(MATCH_ID_KEY, matchId)
         }
     }
 

@@ -17,7 +17,6 @@ class CommentRepository @Inject constructor(
         private val listMapper: CommentListMapper,
         private val mapper: CommentMapper
 ) : ICommentRepository {
-
     val mock = arrayListOf(
             CommentModel(1, "Comment1", 1, "12.03.2018", "", 0, 0),
             CommentModel(2, "Comment2", 1, "12.03.2018", "", 0, 0),
@@ -36,14 +35,12 @@ class CommentRepository @Inject constructor(
             dao.getById(commentId)
                     .map(mapper)
 
-
     override fun getCommentsForUser(userId: Long, limit: Int, after: Int?): Single<List<Comment>> {
         return Single.error(Throwable())
     }
 
-    override fun getAllComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>> =
-            Single.just(listMapper.mapToDomain(mock))
-//            api.fetchComments(limit, after, null)
-//                    .map { listMapper.mapToDomain(it) }
 
+    override fun getAllComments(policy: CachePolicy, limit: Int, after: Int?): Single<List<Comment>> =
+            api.fetchComments(limit, after, null)
+                    .map { listMapper.mapToDomain(it) }
 }

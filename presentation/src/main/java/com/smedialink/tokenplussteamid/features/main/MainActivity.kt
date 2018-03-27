@@ -10,6 +10,8 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.base.BaseActivity
+import com.smedialink.tokenplussteamid.common.ext.disableAnimations
+import com.smedialink.tokenplussteamid.common.ext.enableAnimations
 import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerFragment
 import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerFragment
 import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerFragment
@@ -52,24 +54,29 @@ class MainActivity : BaseActivity(), MainView {
                 is Back -> finish()
                 is SystemMessage -> Toast.makeText(this@MainActivity, command.message, Toast.LENGTH_SHORT).show()
                 is Replace -> {
-                    val fm = supportFragmentManager
+                    with(supportFragmentManager) {
 
-                    when (command.screenKey) {
-                        AppScreens.FEED_TAB_SCREEN -> fm.beginTransaction()
-                                .detach(matchContainer)
-                                .detach(profileContainer)
-                                .attach(feedContainer)
-                                .commitNow()
-                        AppScreens.MATCHES_TAB_SCREEN -> fm.beginTransaction()
-                                .detach(profileContainer)
-                                .detach(feedContainer)
-                                .attach(matchContainer)
-                                .commitNow()
-                        AppScreens.PROFILE_TAB_SCREEN -> fm.beginTransaction()
-                                .detach(matchContainer)
-                                .detach(feedContainer)
-                                .attach(profileContainer)
-                                .commitNow()
+                        disableAnimations()
+
+                        when (command.screenKey) {
+                            AppScreens.FEED_TAB_SCREEN -> beginTransaction()
+                                    .detach(matchContainer)
+                                    .detach(profileContainer)
+                                    .attach(feedContainer)
+                                    .commitNow()
+                            AppScreens.MATCHES_TAB_SCREEN -> beginTransaction()
+                                    .detach(profileContainer)
+                                    .detach(feedContainer)
+                                    .attach(matchContainer)
+                                    .commitNow()
+                            AppScreens.PROFILE_TAB_SCREEN -> beginTransaction()
+                                    .detach(matchContainer)
+                                    .detach(feedContainer)
+                                    .attach(profileContainer)
+                                    .commitNow()
+                        }
+
+                        enableAnimations()
                     }
                 }
             }
@@ -89,6 +96,7 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun initContainers() {
         with(supportFragmentManager) {
+
             matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment? ?:
                     MatchesContainerFragment.newInstance("matches_container").also {
                         beginTransaction()

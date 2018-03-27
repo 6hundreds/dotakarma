@@ -11,11 +11,12 @@ import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel
+import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_matches.*
 
 @Layout(R.layout.fragment_matches)
 class RecentMatchesFragment
-    : BaseFragment(), RecentMatchesView, MatchesAdapter.OnMatchClickListener {
+    : TabNestedFragment(), RecentMatchesView, MatchesAdapter.OnMatchClickListener {
 
     companion object {
         fun newInstance() = RecentMatchesFragment()
@@ -32,6 +33,7 @@ class RecentMatchesFragment
 
     override fun initUi() {
         val glide = Glide.with(this)
+                
         matchesAdapter = MatchesAdapter(presenter, glide, this)
         with(list_matches) {
             adapter = matchesAdapter

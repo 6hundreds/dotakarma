@@ -35,7 +35,7 @@ abstract class BaseFragment
                               savedInstanceState: Bundle?): View {
         val clazz = javaClass
         if (!clazz.isAnnotationPresent(Layout::class.java)) {
-            throw IllegalArgumentException("Please specify LayoutRes for fragment in @Layout annotation")
+            throw IllegalArgumentException("Please specify LayoutRes for $this in @Layout annotation")
         }
         val layout = clazz.getAnnotation(Layout::class.java).value
         return inflater.inflate(layout, container, false)

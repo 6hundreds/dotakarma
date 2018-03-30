@@ -11,6 +11,14 @@ import javax.inject.Inject
 class CommentMapper @Inject constructor() : Function<CommentModel, Comment> {
 
     override fun apply(t: CommentModel): Comment =
-            Comment(t.id, t.content, t.rating, t.createdAt, t.updatedAt, t.authorId, t.userId)
-
+            Comment(t.id,
+                    t.content,
+                    t.rating,
+                    t.createdAt,
+                    t.updatedAt,
+                    t.authorId,
+                    t.userId,
+                    t.replyTo?.let {
+                        Comment(it.id,it.content,it.rating,it.createdAt,it.updatedAt,it.authorId,it.userId,null)
+                    })
 }

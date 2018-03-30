@@ -3,18 +3,15 @@ package com.smedialink.tokenplussteamid.features.myprofile
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
-import com.smedialink.tokenplussteamid.common.ResultCode
+import com.smedialink.tokenplussteamid.common.OnResultCode
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
-import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.ProfileMapper
 import com.smedialink.tokenplussteamid.usecase.me.GetMyProfileUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
@@ -31,7 +28,7 @@ class MyProfilePresenter @Inject constructor(
     private var latestCommentId = -1
 
     init {
-        router.setResultListener(ResultCode.REPLY_SUCCESS) {
+        router.setResultListener(OnResultCode.REPLY_SUCCESS) {
             getMyProfileUseCase.getMyComments()
                     .doOnSuccess { latestCommentId = it.last().id }
                     .map(commentsMapper)
@@ -48,8 +45,8 @@ class MyProfilePresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         getMyProfileUseCase.getMyProfile()
+                .doOnSuccess { latestCommentId = it.second.last().id }
                 .map(profileMapper)
-                .doOnSuccess { latestCommentId = it.comments.last().id }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
@@ -82,13 +79,13 @@ class MyProfilePresenter @Inject constructor(
 
     override fun onDestroy() {
         super.onDestroy()
-        router.removeResultListener(ResultCode.REPLY_SUCCESS)
+        router.removeResultListener(OnResultCode.REPLY_SUCCESS)
     }
 
     fun refreshProfile() {
         getMyProfileUseCase.getMyProfile()
+                .doOnSuccess { latestCommentId = it.second.last().id }
                 .map(profileMapper)
-                .doOnSuccess { latestCommentId = it.comments.last().id }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }

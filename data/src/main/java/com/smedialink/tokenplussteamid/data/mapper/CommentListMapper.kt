@@ -19,7 +19,10 @@ class CommentListMapper @Inject constructor() : DataMapper<List<CommentModel>, L
                         createdAt = comment.createdAt,
                         updatedAt = comment.updatedAt,
                         authorId = comment.authorId,
-                        userId = comment.userId
+                        userId = comment.userId,
+                        replyTo = comment.replyTo?.let {
+                            Comment(it.id, it.content, it.rating, it.createdAt, it.updatedAt, it.authorId, it.userId)
+                        }
                 )
             }
 }

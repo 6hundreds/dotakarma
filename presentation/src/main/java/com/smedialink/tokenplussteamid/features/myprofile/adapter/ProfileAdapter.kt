@@ -8,6 +8,7 @@ import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.myprofile.entity.ReplyProfileUiModel
 
 /**
  * Created by six_hundreds on 08.02.18.
@@ -41,6 +42,7 @@ class ProfileAdapter(listener: OnCommentClickListener,
         val item = items[position]
         return when (item) {
             is CommentProfileUiModel -> item.id.toLong()
+            is ReplyProfileUiModel -> item.id.toLong()
             is LoadMoreFooter -> R.layout.item_feed_load_more.toLong()
             else -> -1L
         }

@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
-import com.smedialink.tokenplussteamid.common.ResultCode
+import com.smedialink.tokenplussteamid.common.OnResultCode
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentByIdUseCase
 import com.smedialink.tokenplussteamid.usecase.comments.ReplyUseCase
@@ -37,7 +37,7 @@ class ReplyToCommentPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ router.exitWithResult(ResultCode.REPLY_SUCCESS, null) },
+                .subscribe({ router.exitWithResult(OnResultCode.REPLY_SUCCESS, null) },
                         { viewState.showError(it.localizedMessage) })
     }
 

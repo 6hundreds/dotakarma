@@ -18,6 +18,7 @@ class ProfileAdapter(listener: OnCommentClickListener,
 
     init {
         delegatesManager.addDelegate(CommentProfileDelegate(listener))
+        delegatesManager.addDelegate(ReplyProfileDelegate(listener))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())
         setHasStableIds(true)

@@ -9,6 +9,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.common.ext.setVisible
+import com.smedialink.tokenplussteamid.common.ext.withArgs
 import com.smedialink.tokenplussteamid.entity.Comment
 import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_reply_to_comment.*
@@ -22,18 +23,11 @@ import javax.inject.Inject
 class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView {
 
     companion object {
-
         private const val COMMENT_ID_KEY = "comment_id"
-        fun newInstance(id: Int) = ReplyToCommentFragment().apply {
-            arguments = Bundle().apply {
-                putInt(COMMENT_ID_KEY, id)
-            }
+        fun newInstance(id: Int) = ReplyToCommentFragment().withArgs {
+            putInt(COMMENT_ID_KEY, id)
         }
     }
-
-    val currentCommentId: Int
-        get() = arguments?.getInt(COMMENT_ID_KEY)
-                ?: throw  IllegalArgumentException("CommentId must be provided via arguments")
 
     @Inject
     @InjectPresenter
@@ -42,10 +36,14 @@ class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
+    val currentCommentId: Int
+        get() = arguments?.getInt(COMMENT_ID_KEY)
+                ?: throw  IllegalArgumentException("CommentId must be provided via arguments for $this")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val commentId = arguments?.getInt(COMMENT_ID_KEY, -1)
-                ?: throw  IllegalArgumentException("CommentId must be provided via arguments")
+                ?: throw  IllegalArgumentException("CommentId must be provided via arguments for $this")
         if (commentId != -1) {
             presenter.getCommentById(commentId)
         }
@@ -68,6 +66,6 @@ class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView {
     override fun initUi() {
         toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
         toolbar.title = getString(R.string.title_send_comment)
-        field_comment.clickAction = { comment -> presenter.sendComment(comment) }
+        field_comment.clickAction = { comment -> presenter.replyToComment(comment) }
     }
 }

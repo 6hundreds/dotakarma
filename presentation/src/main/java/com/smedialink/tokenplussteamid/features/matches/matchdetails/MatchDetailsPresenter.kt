@@ -47,5 +47,4 @@ class MatchDetailsPresenter @Inject constructor(
     fun onBackPressed() {
         router.exit()
     }
-
 }

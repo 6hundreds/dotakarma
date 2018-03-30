@@ -12,4 +12,6 @@ interface ICommentRepository {
     fun getCommentsForUser(userId: Long, limit: Int = 5, after: Int? = null): Single<List<Comment>>
 
     fun getCommentById(commentId: Int): Single<Comment>
+
+    fun replyToComment(commentId: Int, content: String): Completable
 }

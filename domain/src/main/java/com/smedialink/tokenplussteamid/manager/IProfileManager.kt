@@ -15,6 +15,4 @@ interface IProfileManager {
     fun getMyProfile(): Single<User>
 
     fun getMyComments(limit: Int? = 5, after: Int? = null): Single<List<Comment>>
-
-    fun addComment(content : String, commentId: Int) : Completable //todo testing purpose
 }

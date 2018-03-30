@@ -10,6 +10,7 @@ import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
+import com.smedialink.tokenplussteamid.mapper.ProfileMapper
 import com.smedialink.tokenplussteamid.usecase.me.GetMyProfileUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,7 +23,8 @@ import javax.inject.Inject
 @InjectViewState
 class MyProfilePresenter @Inject constructor(
         private val getMyProfileUseCase: GetMyProfileUseCase,
-        private val mapper: CommentProfileMapper,
+        private val commentsMapper: CommentProfileMapper,
+        private val profileMapper: ProfileMapper,
         @LocalNavigation private val router: Router
 ) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
 
@@ -30,9 +32,9 @@ class MyProfilePresenter @Inject constructor(
 
     init {
         router.setResultListener(ResultCode.REPLY_SUCCESS) {
-            getMyProfileUseCase.getComments()
+            getMyProfileUseCase.getMyComments()
                     .doOnSuccess { latestCommentId = it.last().id }
-                    .map(mapper)
+                    .map(commentsMapper)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe { viewState.showLoading(true) }
@@ -45,18 +47,16 @@ class MyProfilePresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        Single.zip(getMyProfileUseCase.getProfile(),
-                getMyProfileUseCase.getComments()
-                        .doOnSuccess { latestCommentId = it.last().id }
-                        .map(mapper),
-                BiFunction { user: User, comments: List<CommentProfileUiModel> -> Pair(user, comments) })
+        getMyProfileUseCase.getMyProfile()
+                .map(profileMapper)
+                .doOnSuccess { latestCommentId = it.comments.last().id }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({
-                    viewState.showProfile(it.first)
-                    viewState.showComments(it.second)
+                    viewState.showProfile(it.user)
+                    viewState.showComments(it.comments)
                 },
                         { viewState.showError(it.localizedMessage) })
                 .addTo(disposables)
@@ -68,9 +68,9 @@ class MyProfilePresenter @Inject constructor(
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
-            getMyProfileUseCase.getComments(limit, latestCommentId)
+            getMyProfileUseCase.getMyComments(limit, latestCommentId)
                     .doOnSuccess { comments -> latestCommentId = comments.last().id }
-                    .map(mapper)
+                    .map(commentsMapper)
 
     override fun onSuccess(items: List<HeterogeneousItem>) {
         viewState.appendComments(items)
@@ -86,17 +86,15 @@ class MyProfilePresenter @Inject constructor(
     }
 
     fun refreshProfile() {
-        Single.zip(getMyProfileUseCase.getProfile(),
-                getMyProfileUseCase.getComments()
-                        .doOnSuccess { latestCommentId = it.last().id }
-                        .map(mapper),
-                BiFunction { user: User, comments: List<CommentProfileUiModel> -> Pair(user, comments) })
+        getMyProfileUseCase.getMyProfile()
+                .map(profileMapper)
+                .doOnSuccess { latestCommentId = it.comments.last().id }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
                 .subscribe({
-                    viewState.showProfile(it.first)
-                    viewState.showComments(it.second)
+                    viewState.showProfile(it.user)
+                    viewState.showComments(it.comments)
                 },
                         { viewState.showError(it.localizedMessage) })
                 .addTo(disposables)

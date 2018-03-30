@@ -1,10 +1,10 @@
 package com.smedialink.tokenplussteamid.features.containers.profile
 
-import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
+import com.smedialink.tokenplussteamid.common.ext.withArgs
 import com.smedialink.tokenplussteamid.subnavigation.TabContainerFragment
 import javax.inject.Inject
 
@@ -23,10 +23,8 @@ class ProfileContainerFragment : TabContainerFragment(), ProfileContainerView {
 
     companion object {
 
-        fun newInstance(containerTag: String) = ProfileContainerFragment().apply {
-            arguments = Bundle().apply {
-                putString(CONTAINER_TAG_KEY, containerTag)
-            }
+        fun newInstance(containerTag: String) = ProfileContainerFragment().withArgs {
+            putString(CONTAINER_TAG_KEY, containerTag)
         }
     }
 

@@ -10,10 +10,6 @@ abstract class BasePresenter<View : MvpView> : MvpPresenter<View>() {
 
     override fun detachView(view: View?) {
         super.detachView(view)
-        disposables.dispose()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+        disposables.clear()
     }
 }

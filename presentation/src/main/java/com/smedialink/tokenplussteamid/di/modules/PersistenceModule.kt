@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.app.modules
+package com.smedialink.tokenplussteamid.di.modules
 
 import android.arch.persistence.room.Room
 import android.content.Context

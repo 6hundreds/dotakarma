@@ -10,4 +10,6 @@
     <dimen name="padding_common_xlarge">48dp</dimen>
     <dimen name="padding_common_xxlarge">56dp</dimen>
 
+    <dimen name="corner_radius_common">10dp</dimen>
+
 </resources>

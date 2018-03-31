@@ -1,9 +1,10 @@
 package com.smedialink.tokenplussteamid.features.matches.recentmatches
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.Hero
-import com.smedialink.tokenplussteamid.features.AppScreens
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.mapper.MatchListMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
@@ -19,7 +20,7 @@ class RecentMatchesPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getRecentMatchesUseCase: GetRecentMatchesUseCase,
         private val mapper: MatchListMapper,
-        private val router: Router)
+        @LocalNavigation private val router: Router)
     : BasePresenter<RecentMatchesView>(), HeroFactory {
 
     override fun onFirstViewAttach() {

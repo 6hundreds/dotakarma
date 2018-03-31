@@ -1,8 +1,10 @@
 package com.smedialink.tokenplussteamid.features.matches.matchdetails
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.Hero
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
@@ -10,6 +12,7 @@ import com.smedialink.tokenplussteamid.usecase.matches.GetMatchDetailsUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 /**
@@ -19,6 +22,7 @@ import javax.inject.Inject
 class MatchDetailsPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getMatchDetailsUseCase: GetMatchDetailsUseCase,
+        @LocalNavigation private val router: Router,
         private val mapper: MatchMapper)
     : BasePresenter<MatchDetailsView>(), HeroFactory {
 
@@ -36,4 +40,11 @@ class MatchDetailsPresenter @Inject constructor(
     override fun getHero(heroId: Int): Single<Hero> =
             getHeroUseCase.getHero(heroId)
 
+    fun showPlayerProfile(id: Long) {
+        router.navigateTo(AppScreens.USER_PROFILE_SCREEN, id)
+    }
+
+    fun onBackPressed() {
+        router.exit()
+    }
 }

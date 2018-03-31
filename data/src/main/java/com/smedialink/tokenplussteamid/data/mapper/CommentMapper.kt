@@ -2,24 +2,23 @@ package com.smedialink.tokenplussteamid.data.mapper
 
 import com.smedialink.tokenplussteamid.data.entity.CommentModel
 import com.smedialink.tokenplussteamid.entity.Comment
+import io.reactivex.functions.Function
 import javax.inject.Inject
 
-class CommentMapper @Inject constructor() : DataMapper<List<CommentModel>, List<Comment>> {
+/**
+ * Created by six_hundreds on 05.03.18.
+ */
+class CommentMapper @Inject constructor() : Function<CommentModel, Comment> {
 
-    override fun mapToData(input: List<Comment>): List<CommentModel> {
-        throw UnsupportedOperationException()
-    }
-
-    override fun mapToDomain(input: List<CommentModel>): List<Comment> =
-            input.map { comment ->
-                Comment(
-                        id = comment.id,
-                        content = comment.content,
-                        rating = comment.rating,
-                        createdAt = comment.createdAt,
-                        updatedAt = comment.updatedAt,
-                        authorId = comment.authorId,
-                        userId = comment.userId
-                )
-            }
+    override fun apply(t: CommentModel): Comment =
+            Comment(t.id,
+                    t.content,
+                    t.rating,
+                    t.createdAt,
+                    t.updatedAt,
+                    t.authorId,
+                    t.userId,
+                    t.replyTo?.let {
+                        Comment(it.id,it.content,it.rating,it.createdAt,it.updatedAt,it.authorId,it.userId,null)
+                    })
 }

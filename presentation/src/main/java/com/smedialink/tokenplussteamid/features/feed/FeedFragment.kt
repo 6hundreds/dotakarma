@@ -2,21 +2,21 @@ package com.smedialink.tokenplussteamid.features.feed
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.feed.adapter.FeedAdapter
+import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_feed.*
 import javax.inject.Inject
 
 @Layout(R.layout.fragment_feed)
 class FeedFragment
-    : BaseFragment(), FeedView, SwipeRefreshLayout.OnRefreshListener {
+    : TabNestedFragment(), FeedView, SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         fun newInstance() = FeedFragment()
@@ -50,7 +50,7 @@ class FeedFragment
     }
 
     override fun showError(error: String) {
-        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        errorDelegate.showError(error)
     }
 
     override fun showLoading(show: Boolean) {

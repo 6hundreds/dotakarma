@@ -33,4 +33,10 @@
     <string name="team_dire">Dire</string>
     <string name="team_radiant">Radiant</string>
 
+
+    <string name="title_send_comment">Send comment</string>
+    <string name="hint_comment">Comment</string>
+    <string name="title_radiant_win">Radiant win</string>
+    <string name="title_dire_win">Dire win</string>
+
 </resources>

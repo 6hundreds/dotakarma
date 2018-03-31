@@ -1,23 +1,22 @@
 package com.smedialink.tokenplussteamid.features.matches.recentmatches
 
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import javax.inject.Inject
+import com.smedialink.tokenplussteamid.app.Layout
 import com.bumptech.glide.Glide
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.MatchesAdapter
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.adapter.OnMatchClickListener
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.MatchItemUiModel
+import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_matches.*
-import javax.inject.Inject
 
 @Layout(R.layout.fragment_matches)
 class RecentMatchesFragment
-    : BaseFragment(), RecentMatchesView, OnMatchClickListener {
+    : TabNestedFragment(), RecentMatchesView, MatchesAdapter.OnMatchClickListener {
 
     companion object {
         fun newInstance() = RecentMatchesFragment()
@@ -34,6 +33,7 @@ class RecentMatchesFragment
 
     override fun initUi() {
         val glide = Glide.with(this)
+                
         matchesAdapter = MatchesAdapter(presenter, glide, this)
         with(list_matches) {
             adapter = matchesAdapter
@@ -43,7 +43,7 @@ class RecentMatchesFragment
     }
 
     override fun showError(error: String) {
-        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+        errorDelegate.showError(error)
     }
 
     override fun showLoading(show: Boolean) {

@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.item_matches_player.view.*
 /**
  * Created by six_hundreds on 03.02.18.
  */
-class PlayerDelegate(private val heroFactory: HeroFactory,
+class PlayerDelegate(private val onPlayerClickListener: MatchPlayersAdapter.OnPlayerClickListener,
+                     private val heroFactory: HeroFactory,
                      private val glide: RequestManager)
     : AbsListItemAdapterDelegate<MatchUiModel.MatchPlayerUiModel,
         MatchDetailsItem,
@@ -41,10 +42,15 @@ class PlayerDelegate(private val heroFactory: HeroFactory,
 
     inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        init {
+        }
+
         fun bind(player: MatchUiModel.MatchPlayerUiModel) {
             with(itemView) {
                 text_personaname.text = player.personaName
                 text_kda.text = player.kda
+
+                itemView.setOnClickListener { onPlayerClickListener.onPlayerClick(player.accountId) }
 
                 heroFactory.getHero(player.heroId)
                         .subscribeOn(Schedulers.io())
@@ -54,6 +60,5 @@ class PlayerDelegate(private val heroFactory: HeroFactory,
                         })
             }
         }
-
     }
 }

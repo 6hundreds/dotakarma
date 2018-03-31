@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.features.feed
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.basic.BasePresenter
+import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.mapper.CommentFeedMapper

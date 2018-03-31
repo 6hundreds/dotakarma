@@ -20,4 +20,8 @@ class MatchesAdapter(heroFactory: HeroFactory,
         super.setItems(items)
         notifyDataSetChanged()
     }
+
+    interface OnMatchClickListener {
+        fun onMatchClick(matchId: Long)
+    }
 }

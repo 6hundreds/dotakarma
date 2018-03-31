@@ -20,7 +20,7 @@ import java.util.*
  */
 class RecentMatchDelegate(private val heroFactory: HeroFactory,
                           private val glide: RequestManager,
-                          private val listener: OnMatchClickListener)
+                          private val listener: MatchesAdapter.OnMatchClickListener)
     : AbsListItemAdapterDelegate<MatchItemUiModel, MatchItemUiModel, RecentMatchDelegate.RecentMatchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecentMatchViewHolder {
@@ -63,7 +63,8 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ hero ->
                             text_hero.text = hero.name
-                            glide.load(hero.imageUrl).into(image_hero)
+                            glide.load(hero.imageUrl)
+                                    .into(image_hero)
                         })
 
             }

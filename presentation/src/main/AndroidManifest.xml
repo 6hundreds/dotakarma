@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".features.homescreen.MainActivity">
+        <activity android:name=".features.main.MainActivity">
+
+        </activity>
+
+        <activity android:name=".features.userprofile.UserProfileActivity">
 
         </activity>
 

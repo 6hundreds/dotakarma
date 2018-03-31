@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.features.splash
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.basic.BasePresenter
-import com.smedialink.tokenplussteamid.features.AppScreens.MAIN_SCREEN
+import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.app.AppScreens.MAIN_SCREEN
 import com.smedialink.tokenplussteamid.usecase.heroes.PrefetchHeroesImagesUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

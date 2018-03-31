@@ -1,6 +1,5 @@
 package com.smedialink.tokenplussteamid.features.auth
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -12,7 +11,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.basic.BaseFragment
+import com.smedialink.tokenplussteamid.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_steam_auth.*
 import javax.inject.Inject
 
@@ -23,9 +22,10 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
 
         fun newInstance() = SteamAuthFragment()
 
-        private const val AUTH_URL = "https://686a7dca.ngrok.io/api/steam"
+        private const val AUTH_URL = "https://c51836d1.ngrok.io/api/steam"
         private const val DEEPLINK_SCHEME = "dotakarma"
     }
+
     @Inject
     @InjectPresenter
     lateinit var presenter: SteamAuthPresenter
@@ -33,9 +33,11 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    @SuppressLint("SetJavaScriptEnabled")
-    override fun initWebView() {
+    override fun showSteamPage() {
+        webview_auth_steam.loadUrl(AUTH_URL)
+    }
 
+    override fun initUi() {
         with(webview_auth_steam.settings) {
             javaScriptEnabled = true
             cacheMode = WebSettings.LOAD_NO_CACHE
@@ -63,22 +65,6 @@ class SteamAuthFragment : BaseFragment(), SteamAuthView {
                 }
                 return false
             }
-        }
-    }
-
-
-    override fun displaySteamAuthWebsite() {
-        webview_auth_steam.loadUrl(AUTH_URL)
-    }
-
-    override fun initUi() {
-    }
-
-    override fun clearWebView() {
-        with(webview_auth_steam) {
-            clearHistory()
-            clearCache(true)
-            loadUrl("about:blank")
         }
     }
 }

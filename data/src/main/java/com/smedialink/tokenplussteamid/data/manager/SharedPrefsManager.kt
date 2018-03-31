@@ -2,6 +2,8 @@ package com.smedialink.tokenplussteamid.data.manager
 
 import android.content.SharedPreferences
 import com.smedialink.tokenplussteamid.manager.IPrefsManager
+import io.reactivex.functions.Action
+import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 /**

@@ -8,17 +8,21 @@ import javax.inject.Inject
 /**
  * Created by six_hundreds on 05.03.18.
  */
-class CommentMapper @Inject constructor() : Function<CommentModel, Comment> {
+class CommentMapper @Inject constructor() : DataMapper<CommentModel, Comment> {
 
-    override fun apply(t: CommentModel): Comment =
-            Comment(t.id,
-                    t.content,
-                    t.rating,
-                    t.createdAt,
-                    t.updatedAt,
-                    t.authorId,
-                    t.userId,
-                    t.replyTo?.let {
-                        Comment(it.id,it.content,it.rating,it.createdAt,it.updatedAt,it.authorId,it.userId,null)
+    override fun mapToDomain(input: CommentModel): Comment =
+            Comment(input.id,
+                    input.content,
+                    input.rating,
+                    input.createdAt,
+                    input.authorId,
+                    input.userId,
+                    input.replyTo?.let { parent ->
+                        Comment(parent.id,
+                                parent.content,
+                                parent.rating,
+                                parent.createdAt,
+                                parent.authorId,
+                                parent.userId)
                     })
 }

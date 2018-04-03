@@ -21,8 +21,10 @@ class ProfileContainerFragment : TabContainerFragment(), ProfileContainerView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    companion object {
+    override fun showLoading(show: Boolean) {
+    }
 
+    companion object {
         fun newInstance(containerTag: String) = ProfileContainerFragment().withArgs {
             putString(CONTAINER_TAG_KEY, containerTag)
         }

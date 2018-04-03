@@ -6,6 +6,7 @@ import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.OnResultCode
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
+import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.ProfileMapper
@@ -28,25 +29,28 @@ class MyProfilePresenter @Inject constructor(
     private var latestCommentId = -1
 
     init {
-        router.setResultListener(OnResultCode.REPLY_SUCCESS) {
-            getMyProfileUseCase.getMyComments()
-                    .doOnSuccess { latestCommentId = it.last().id }
-                    .map(commentsMapper)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { viewState.showLoading(true) }
-                    .doFinally { viewState.showLoading(false) }
-                    .subscribe({ viewState.showComments(it) },
-                            { viewState.showError(it.localizedMessage) })
-                    .addTo(disposables)
-        }
+        getMyProfileUseCase.getLiveComments()
+                .mapList(commentsMapper::mapToUi)
+                .subscribe({ viewState.showComments(it) })
+//        router.setResultListener(OnResultCode.REPLY_SUCCESS) {
+//            getMyProfileUseCase.getMyComments()
+//                    .doOnSuccess { latestCommentId = it.last().id }
+//                    .mapList(commentsMapper::mapToUi)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .doOnSubscribe { viewState.showLoading(true) }
+//                    .doFinally { viewState.showLoading(false) }
+//                    .subscribe({ viewState.showComments(it) },
+//                            { viewState.showError(it.localizedMessage) })
+//                    .addTo(disposables)
+//        }
     }
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         getMyProfileUseCase.getMyProfile()
                 .doOnSuccess { latestCommentId = it.second.last().id }
-                .map(profileMapper)
+                .map(profileMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
@@ -60,14 +64,10 @@ class MyProfilePresenter @Inject constructor(
 
     }
 
-    fun onCommentClicked(id: Int) {
-        router.navigateTo(AppScreens.REPLY_TO_COMMENT_SCREEN, id)
-    }
-
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
             getMyProfileUseCase.getMyComments(limit, latestCommentId)
                     .doOnSuccess { comments -> latestCommentId = comments.last().id }
-                    .map(commentsMapper)
+                    .mapList(commentsMapper::mapToUi)
 
     override fun onSuccess(items: List<HeterogeneousItem>) {
         viewState.appendComments(items)
@@ -85,7 +85,7 @@ class MyProfilePresenter @Inject constructor(
     fun refreshProfile() {
         getMyProfileUseCase.getMyProfile()
                 .doOnSuccess { latestCommentId = it.second.last().id }
-                .map(profileMapper)
+                .map(profileMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
@@ -95,5 +95,9 @@ class MyProfilePresenter @Inject constructor(
                 },
                         { viewState.showError(it.localizedMessage) })
                 .addTo(disposables)
+    }
+
+    fun onCommentClicked(id: Int) {
+        router.navigateTo(AppScreens.REPLY_TO_COMMENT_SCREEN, id)
     }
 }

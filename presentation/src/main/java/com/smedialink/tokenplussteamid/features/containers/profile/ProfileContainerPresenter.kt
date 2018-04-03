@@ -1,10 +1,13 @@
 package com.smedialink.tokenplussteamid.features.containers.profile
 
 import com.arellomobile.mvp.InjectViewState
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.data.manager.ProfileManager
 import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
-import com.smedialink.tokenplussteamid.app.AppScreens
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -13,9 +16,9 @@ import javax.inject.Inject
  */
 @InjectViewState
 class ProfileContainerPresenter @Inject constructor(
-        @LocalNavigation
-        private val router: Router,
-        private val sessionManager: SessionManager
+        private val sessionManager: SessionManager,
+        private val profileManager: ProfileManager, //todo move to usecase both
+        @LocalNavigation private val router: Router
 ) : BasePresenter<ProfileContainerView>() {
 
     init {
@@ -28,11 +31,14 @@ class ProfileContainerPresenter @Inject constructor(
                 })
     }
 
-
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         if (sessionManager.isSessionOpened()) {
-            router.newRootScreen(AppScreens.MY_PROFILE_SCREEN)
+            profileManager.initialFetch()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ router.newRootScreen(AppScreens.MY_PROFILE_SCREEN) },
+                            { router.newRootScreen(AppScreens.NO_USER_INFO_SCREEN) })
         } else {
             router.newRootScreen(AppScreens.STEAM_AUTH_SCREEN)
         }

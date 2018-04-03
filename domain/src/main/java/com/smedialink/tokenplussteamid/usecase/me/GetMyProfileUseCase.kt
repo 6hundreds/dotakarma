@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.usecase.me
 import com.smedialink.tokenplussteamid.entity.Comment
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.manager.IProfileManager
+import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import javax.inject.Inject
@@ -20,4 +21,7 @@ class GetMyProfileUseCase @Inject constructor(private val profileManager: IProfi
             Single.zip(profileManager.getMyProfile(),
                     profileManager.getMyComments(5, null),
                     BiFunction { user: User, comments: List<Comment> -> Pair(user, comments) })
+
+    fun getLiveComments(): Observable<List<Comment>> =
+            profileManager.getLiveComments()
 }

@@ -8,28 +8,28 @@ class UserMapper @Inject constructor() : DataMapper<UserModel, User> {
 
     override fun mapToData(input: User): UserModel =
             UserModel(
-                    id = input.id,
-                    steamId = input.steamId,
-                    karma = input.karma,
-                    personaName = input.personaName,
-                    avatar = input.avatar,
-                    avatarMedium = input.avatarMedium,
-                    avatarFull = input.avatarFull,
-                    personaState = input.personalState,
-                    realName = input.realName
+                    input.id,
+                    input.steamId,
+                    input.karma,
+                    input.personaName,
+                    input.avatar,
+                    input.avatarMedium,
+                    input.avatarFull,
+                    input.personalState,
+                    input.realName
             )
 
 
     override fun mapToDomain(input: UserModel): User =
             User(
-                    id = input.id,
-                    steamId = input.steamId,
-                    karma = input.karma,
-                    personaName = input.personaName,
-                    avatar = input.avatar,
-                    avatarMedium = input.avatarMedium,
-                    avatarFull = input.avatarFull,
-                    personalState = input.personaState,
-                    realName = input.realName
+                    input.id,
+                    input.steamId,
+                    input.karma,
+                    input.personaName,
+                    input.avatar,
+                    input.avatarMedium,
+                    input.avatarFull,
+                    input.personaState,
+                    input.realName
             )
 }

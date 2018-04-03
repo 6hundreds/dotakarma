@@ -22,13 +22,16 @@ import javax.inject.Inject
 class MatchDetailsPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getMatchDetailsUseCase: GetMatchDetailsUseCase,
-        @LocalNavigation private val router: Router,
-        private val mapper: MatchMapper)
+        private val mapper: MatchMapper,
+        @LocalNavigation private val router: Router)
     : BasePresenter<MatchDetailsView>(), HeroFactory {
+
+    override fun getHero(heroId: Int): Single<Hero> =
+            getHeroUseCase.getHero(heroId)
 
     fun getMatchDetails(matchId: Long) {
         getMatchDetailsUseCase.getMatchDetails(matchId)
-                .map(mapper)
+                .map(mapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
@@ -36,9 +39,6 @@ class MatchDetailsPresenter @Inject constructor(
                 .subscribe({ viewState.showMatchDetails(it) },
                         { viewState.showError(it.localizedMessage) })
     }
-
-    override fun getHero(heroId: Int): Single<Hero> =
-            getHeroUseCase.getHero(heroId)
 
     fun showPlayerProfile(id: Long) {
         router.navigateTo(AppScreens.USER_PROFILE_SCREEN, id)

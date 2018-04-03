@@ -8,9 +8,8 @@ import javax.inject.Inject
 /**
  * Created by six_hundreds on 31.01.18.
  */
-class HeroImageMapper @Inject constructor() : Function<HeroModel, Hero> {
+class HeroMapper @Inject constructor() : DataMapper<HeroModel, Hero> {
 
-    override fun apply(input: HeroModel): Hero =
+    override fun mapToDomain(input: HeroModel): Hero =
             Hero(input.id, input.name, input.imageUrl)
-
 }

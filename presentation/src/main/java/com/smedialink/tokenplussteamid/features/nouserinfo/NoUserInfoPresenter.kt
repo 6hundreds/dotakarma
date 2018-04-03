@@ -1,0 +1,29 @@
+package com.smedialink.tokenplussteamid.features.nouserinfo
+
+import com.smedialink.tokenplussteamid.app.AppScreens
+import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.data.manager.ProfileManager
+import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
+
+/**
+ * Created by six_hundreds on 02.04.18.
+ */
+class NoUserInfoPresenter @Inject constructor(
+        private val profileManager: ProfileManager, //todo move to usecase
+        @LocalNavigation private val router: Router)
+    : BasePresenter<NoUserInfoView>() {
+
+    fun fetchUser() {
+        profileManager.initialFetch()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { viewState.showLoading(true) }
+                .doFinally { viewState.showLoading(false) }
+                .subscribe({ router.newRootScreen(AppScreens.MY_PROFILE_SCREEN) },
+                        { viewState.showError(it.localizedMessage) })
+    }
+}

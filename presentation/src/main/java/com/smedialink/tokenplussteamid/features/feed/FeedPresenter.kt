@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
+import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.mapper.CommentFeedMapper
 import com.smedialink.tokenplussteamid.usecase.feed.GetFeedUseCase
 import io.reactivex.Single
@@ -23,7 +24,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
         super.onFirstViewAttach()
         useCase.getFeed(5)
                 .doOnSuccess { comments -> latestCommentId = comments.last().id }
-                .map(commentFeedMapper)
+                .mapList(commentFeedMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
@@ -36,7 +37,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
             useCase.getFeed(limit, latestCommentId)
                     .doOnSuccess { comments -> latestCommentId = comments.last().id }
-                    .map(commentFeedMapper)
+                    .mapList(commentFeedMapper::mapToUi)
 
 
     override fun onSuccess(items: List<HeterogeneousItem>) {
@@ -50,7 +51,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
     fun refreshFeed() {
         useCase.getFeed(5)
                 .doOnSuccess { comments -> latestCommentId = comments.last().id }
-                .map(commentFeedMapper)
+                .mapList(commentFeedMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }

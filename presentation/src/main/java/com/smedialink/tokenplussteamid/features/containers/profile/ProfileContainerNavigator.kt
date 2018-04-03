@@ -8,6 +8,7 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
 import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
+import com.smedialink.tokenplussteamid.features.nouserinfo.NoUserInfoFragment
 import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
@@ -27,6 +28,7 @@ class ProfileContainerNavigator @Inject constructor(fragment: ProfileContainerFr
         AppScreens.MY_PROFILE_SCREEN -> MyProfileFragment.newInstance()
         AppScreens.STEAM_AUTH_SCREEN -> SteamAuthFragment.newInstance()
         AppScreens.REPLY_TO_COMMENT_SCREEN -> ReplyToCommentFragment.newInstance(data as Int)
+        AppScreens.NO_USER_INFO_SCREEN -> NoUserInfoFragment.newInstance()
         else -> null
     }
 

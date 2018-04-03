@@ -24,4 +24,5 @@ class GetMyProfileUseCase @Inject constructor(private val profileManager: IProfi
 
     fun getLiveComments(): Observable<List<Comment>> =
             profileManager.getLiveComments()
+                    .map { it.sortedBy { it.id }.reversed() }
 }

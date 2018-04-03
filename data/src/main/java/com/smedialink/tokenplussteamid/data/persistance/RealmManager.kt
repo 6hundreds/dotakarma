@@ -3,16 +3,14 @@ package com.smedialink.tokenplussteamid.data.persistance
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.realm.Realm
-import io.realm.RealmChangeListener
 import io.realm.RealmModel
-import io.realm.RealmResults
 import io.realm.exceptions.RealmException
-import javax.inject.Inject
+import io.realm.kotlin.where
 
 /**
  * Created by six_hundreds on 03.04.18.
  */
-class RealmManager  {
+class RealmManager {
 
     fun saveOrUpdate(model: RealmModel) {
         with(Realm.getDefaultInstance()) {
@@ -28,49 +26,50 @@ class RealmManager  {
         }
     }
 
-    fun <T : RealmModel> findOneAsync(field: String, value: Int, clazz: Class<T>): Single<T> =
+    inline fun <reified T : RealmModel> findOneAsync(field: String, value: Int): Single<T> =
             Single.create { emitter ->
                 with(Realm.getDefaultInstance()) {
-                    where(clazz)
+                    where<T>()
                             .equalTo(field, value)
                             .findFirst()
                             ?.let { emitter.onSuccess(copyFromRealm(it)) }
-                            ?: emitter.onError(RealmException("Can't find $clazz with $field == $value in Realm"))
+                            ?: emitter.onError(RealmException("Can't find ${T::class} with $field == $value in Realm"))
                     close()
                 }
             }
 
-    fun <T : RealmModel> findOneAsync(field: String, value: Long, clazz: Class<T>): Single<T> =
+    inline fun <reified T : RealmModel> findOneAsync(field: String, value: Long): Single<T> =
             Single.create({ emitter ->
                 with(Realm.getDefaultInstance()) {
-                    where(clazz)
+                    where<T>()
                             .equalTo(field, value)
                             .findFirst()
                             ?.let { emitter.onSuccess(copyFromRealm(it)) }
-                            ?: emitter.onError(RealmException("Can't find $clazz with $field == $value in Realm"))
+                            ?: emitter.onError(RealmException("Can't find ${T::class} with $field == $value in Realm"))
                     close()
                 }
             })
 
-    fun <T : RealmModel> findOneAsync(field: String, value: String, clazz: Class<T>): Single<T> =
+    inline fun <reified T : RealmModel> findOneAsync(field: String, value: String): Single<T> =
             Single.create({ emitter ->
                 with(Realm.getDefaultInstance()) {
-                    where(clazz)
+                    where<T>()
                             .equalTo(field, value)
                             .findFirst()
                             ?.let { emitter.onSuccess(copyFromRealm(it)) }
-                            ?: emitter.onError(RealmException("Can't find $clazz with $field == $value in Realm"))
+                            ?: emitter.onError(RealmException("Can't find ${T::class} with $field == $value in Realm"))
                     close()
                 }
             })
 
-    fun <T : RealmModel> observableQuery(field: String, value: Int, clazz: Class<T>): Observable<List<T>> =
+    inline fun <reified T : RealmModel> observableQuery(field: String, value: Int): Observable<List<T>> =
             Observable.create({ emitter ->
                 with(Realm.getDefaultInstance()) {
-                    where(clazz)
+                    where<T>()
                             .equalTo(field, value)
                             .findAll()
-                            .addChangeListener(RealmChangeListener<RealmResults<T>> { emitter.onNext(copyFromRealm(it)) })
+                            .asChangesetObservable()
+                            .subscribe { emitter.onNext(copyFromRealm(it.collection)) }
                     close()
                 }
             })

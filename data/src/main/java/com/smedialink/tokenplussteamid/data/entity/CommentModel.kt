@@ -1,8 +1,8 @@
 package com.smedialink.tokenplussteamid.data.entity
 
-import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class CommentModel(
         @PrimaryKey

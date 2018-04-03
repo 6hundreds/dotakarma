@@ -22,7 +22,7 @@ class CommentRepository @Inject constructor(
             api.replyToComment(commentId, content)
 
     override fun getCommentById(commentId: Int): Single<Comment> =
-            realm.findOneAsync("id", commentId, CommentModel::class.java)
+            realm.findOneAsync<CommentModel>("id", commentId)
                     .map { mapper.mapToDomain(it) }
 
 

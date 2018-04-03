@@ -16,6 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
+import java.util.*
 import javax.inject.Inject
 
 @InjectViewState
@@ -29,21 +30,18 @@ class MyProfilePresenter @Inject constructor(
     private var latestCommentId = -1
 
     init {
-        getMyProfileUseCase.getLiveComments()
-                .mapList(commentsMapper::mapToUi)
-                .subscribe({ viewState.showComments(it) })
-//        router.setResultListener(OnResultCode.REPLY_SUCCESS) {
-//            getMyProfileUseCase.getMyComments()
-//                    .doOnSuccess { latestCommentId = it.last().id }
-//                    .mapList(commentsMapper::mapToUi)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .doOnSubscribe { viewState.showLoading(true) }
-//                    .doFinally { viewState.showLoading(false) }
-//                    .subscribe({ viewState.showComments(it) },
-//                            { viewState.showError(it.localizedMessage) })
-//                    .addTo(disposables)
-//        }
+        router.setResultListener(OnResultCode.REPLY_SUCCESS) {
+            getMyProfileUseCase.getMyComments()
+                    .doOnSuccess { latestCommentId = it.last().id }
+                    .mapList(commentsMapper::mapToUi)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { viewState.showLoading(true) }
+                    .doFinally { viewState.showLoading(false) }
+                    .subscribe({ viewState.showComments(it) },
+                            { viewState.showError(it.localizedMessage) })
+                    .addTo(disposables)
+        }
     }
 
     override fun onFirstViewAttach() {

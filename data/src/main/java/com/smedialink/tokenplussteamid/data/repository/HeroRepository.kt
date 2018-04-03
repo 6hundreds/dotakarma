@@ -12,7 +12,6 @@ import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.repository.IHeroRepository
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.realm.Realm
 import javax.inject.Inject
 
 /**
@@ -41,12 +40,12 @@ class HeroRepository @Inject constructor(
             }
 
     override fun getHero(heroId: Int): Single<Hero> {
-        return realm.findOneAsync("id", heroId, HeroModel::class.java)
+        return realm.findOneAsync<HeroModel>("id", heroId)
                 .onErrorResumeNext {
                     api.fetchHeroes()
                             .map(::transform)
                             .doOnSuccess { realm.saveOrUpdate(it) }
-                            .flatMap { realm.findOneAsync("id", heroId, HeroModel::class.java) }
+                            .flatMap { realm.findOneAsync<HeroModel>("id", heroId) }
                 }
                 .map { mapper.mapToDomain(it) }
     }

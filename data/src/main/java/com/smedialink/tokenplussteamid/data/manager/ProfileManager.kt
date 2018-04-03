@@ -50,8 +50,9 @@ class ProfileManager @Inject constructor(
 
     override fun getLiveComments(): Observable<List<Comment>> {
         val id = prefsManager.getInt(CURRENT_USER_ID_KEY)
-        return realm.observableQuery("userId", id, CommentModel::class.java)
-                .filter { comments -> comments.isNotEmpty() }
+        return realm.observableQuery<CommentModel>("userId", id)
+                .skip(1)
                 .mapList(commentMapper::mapToDomain)
     }
 }
+

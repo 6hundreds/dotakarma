@@ -1,9 +1,9 @@
 package com.smedialink.tokenplussteamid.data.entity
 
-import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmList
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 /**
  * Created by six_hundreds on 01.02.18.
@@ -29,7 +29,4 @@ open class MatchModel(
         @SerializedName("players")
         var players: RealmList<MatchPlayerModel> = RealmList()
 
-) : RealmObject() {
-
-
-}
+) : RealmObject()

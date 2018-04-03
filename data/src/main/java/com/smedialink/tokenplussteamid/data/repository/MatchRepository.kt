@@ -25,6 +25,6 @@ class MatchRepository @Inject constructor(
                     .mapList(mapper::mapToDomain)
 
     override fun getMatchById(matchId: Long): Single<Match> =
-            realm.findOneAsync("id", matchId, MatchModel::class.java)
+            realm.findOneAsync<MatchModel>("id", matchId)
                     .map(mapper::mapToDomain)
 }

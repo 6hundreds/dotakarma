@@ -1,9 +1,9 @@
 package com.smedialink.tokenplussteamid.data.entity
 
 import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 open class UserModel(
         @PrimaryKey
@@ -16,7 +16,6 @@ open class UserModel(
         var personaName: String = "",
         @SerializedName("avatar")
         var avatar: String = "",
-        @ColumnInfo(name = "avatar_medium")
         @SerializedName("avatarmedium")
         var avatarMedium: String = "",
         @SerializedName("avatarfull")

@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.data.entity
 
-import android.arch.persistence.room.PrimaryKey
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 
 /**
  * Created by six_hundreds on 31.01.18.

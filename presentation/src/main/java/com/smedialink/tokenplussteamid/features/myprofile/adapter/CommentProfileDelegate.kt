@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_feed_comment.view.*
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class CommentProfileDelegate(private val listener: ProfileAdapter.OnCommentClickListener)
+class CommentProfileDelegate(private val listener: ProfileAdapter.ItemClickListener)
     : AbsListItemAdapterDelegate<CommentProfileUiModel,
         HeterogeneousItem,
         CommentProfileDelegate.CommentViewHolder>() {
@@ -40,7 +40,7 @@ class CommentProfileDelegate(private val listener: ProfileAdapter.OnCommentClick
                 comment_author.text = comment.authorId.toString()
                 comment_date.text = comment.createdAt
                 comment_content.text = comment.content
-                setOnClickListener { listener.onCommentClick(rootView, comment.id) }
+                setOnClickListener { listener.onCommentClick(comment.id) }
             }
         }
     }

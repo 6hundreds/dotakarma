@@ -2,7 +2,6 @@ package com.smedialink.tokenplussteamid.features.myprofile
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
@@ -11,7 +10,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.User
@@ -22,7 +20,8 @@ import javax.inject.Inject
 
 @Layout(R.layout.fragment_profile)
 class MyProfileFragment
-    : TabNestedFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener, ProfileAdapter.OnCommentClickListener {
+    : TabNestedFragment(), MyProfileView, SwipeRefreshLayout.OnRefreshListener,
+        ProfileAdapter.ItemClickListener {
 
     private lateinit var glide: RequestManager
 
@@ -67,7 +66,13 @@ class MyProfileFragment
         presenter.refreshProfile()
     }
 
-    override fun onCommentClick(rootView: View, id: Int) {
+    override fun onParentClick(parentId: Int) {
+        profileAdapter.getPositionById(parentId.toLong())
+                ?.let { list_my_comments.smoothScrollToPosition(it) }
+                ?: showError("")
+    }
+
+    override fun onCommentClick(commentId: Int) {
         presenter.onCommentClicked(id)
     }
 

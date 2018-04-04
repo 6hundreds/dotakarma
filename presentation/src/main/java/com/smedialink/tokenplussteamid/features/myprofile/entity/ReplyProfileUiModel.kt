@@ -11,4 +11,7 @@ data class ReplyProfileUiModel(val id: Int,
                                val createdAt: String,
                                val authorId: Int,
                                val parentContent: String,
-                               val parentId: Int) : HeterogeneousItem
+                               val parentId: Int) : HeterogeneousItem {
+    override fun getItemId(): Long = id.toLong()
+
+}

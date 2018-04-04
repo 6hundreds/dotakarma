@@ -1,29 +1,30 @@
 package com.smedialink.tokenplussteamid.features.myprofile.adapter
 
-import android.view.View
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
 import com.smedialink.tokenplussteamid.common.lists.Paginator
-import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
-import com.smedialink.tokenplussteamid.features.myprofile.entity.ReplyProfileUiModel
 
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class ProfileAdapter(listener: OnCommentClickListener,
+class ProfileAdapter(itemClickListener: ItemClickListener,
                      paginator: Paginator<HeterogeneousItem>)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {
-        delegatesManager.addDelegate(CommentProfileDelegate(listener))
-        delegatesManager.addDelegate(ReplyProfileDelegate(listener))
+        delegatesManager.addDelegate(CommentProfileDelegate(itemClickListener))
+        delegatesManager.addDelegate(ReplyProfileDelegate(itemClickListener))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())
         setHasStableIds(true)
     }
+
+    override fun getItemId(position: Int): Long = items[position].getItemId()
+
+    fun getPositionById(id: Long): Int? =
+            items.find { it.getItemId() == id }?.let { items.indexOf(it) }
 
     fun appendItems(newItems: List<HeterogeneousItem>) {
         val oldSize = items.size
@@ -38,17 +39,8 @@ class ProfileAdapter(listener: OnCommentClickListener,
         notifyDataSetChanged()
     }
 
-    override fun getItemId(position: Int): Long {
-        val item = items[position]
-        return when (item) {
-            is CommentProfileUiModel -> item.id.toLong()
-            is ReplyProfileUiModel -> item.id.toLong()
-            is LoadMoreFooter -> R.layout.item_feed_load_more.toLong()
-            else -> -1L
-        }
-    }
-
-    interface OnCommentClickListener {
-        fun onCommentClick(rootView: View, id: Int)
+    interface ItemClickListener {
+        fun onCommentClick(commentId: Int)
+        fun onParentClick(parentId: Int)
     }
 }

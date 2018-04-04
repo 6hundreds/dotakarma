@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_profile_reply.view.*
 /**
  * Created by six_hundreds on 30.03.18.
  */
-class ReplyProfileDelegate(private val listener: ProfileAdapter.OnCommentClickListener)
+class ReplyProfileDelegate(private val listener: ProfileAdapter.ItemClickListener)
     : AbsListItemAdapterDelegate<ReplyProfileUiModel,
         HeterogeneousItem,
         ReplyProfileDelegate.ReplyViewHolder>() {
@@ -42,7 +42,8 @@ class ReplyProfileDelegate(private val listener: ProfileAdapter.OnCommentClickLi
                 comment_date.text = reply.createdAt
                 comment_content.text = reply.content
                 comment_parent.text = reply.parentContent
-                setOnClickListener { listener.onCommentClick(rootView, reply.id) }
+                setOnClickListener { listener.onCommentClick(reply.id) }
+                group_parent.setOnClickListener { listener.onParentClick(reply.parentId) }
             }
         }
     }

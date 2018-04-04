@@ -11,8 +11,7 @@ import javax.inject.Inject
 class MatchMapper @Inject constructor() : DataMapper<MatchModel, Match> {
 
     override fun mapToDomain(input: MatchModel): Match =
-            Match(
-                    input.matchId,
+            Match(input.matchId,
                     input.heroId,
                     input.duration,
                     input.startTime,

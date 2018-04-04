@@ -8,12 +8,13 @@ import javax.inject.Inject
  * Created by six_hundreds on 01.02.18.
  */
 class MatchMapper @Inject constructor() : UiMapper<MatchUiModel, Match> {
+
     private val radiantSlots = listOf(0, 1, 2, 3, 4)
 
     override fun mapToUi(input: Match): MatchUiModel =
             MatchUiModel(
                     input.matchId,
-                    input.startTime * 1000,
+                    input.startTime,
                     input.radiantWin,
                     input.duration,
                     input.radiantScore,

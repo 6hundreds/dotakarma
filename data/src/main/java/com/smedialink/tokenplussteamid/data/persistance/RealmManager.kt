@@ -5,6 +5,7 @@ import io.reactivex.Single
 import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.exceptions.RealmException
+import io.realm.kotlin.delete
 import io.realm.kotlin.where
 
 /**
@@ -22,6 +23,13 @@ class RealmManager {
     fun saveOrUpdate(models: Iterable<RealmModel>) {
         with(Realm.getDefaultInstance()) {
             executeTransaction { realm -> realm.copyToRealmOrUpdate(models) }
+            close()
+        }
+    }
+
+    inline fun <reified T : RealmModel> clearTable() {
+        with(Realm.getDefaultInstance()) {
+            executeTransaction { realm -> realm.delete<T>() }
             close()
         }
     }

@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.data.repository
 
 import com.smedialink.tokenplussteamid.data.entity.MatchModel
+import com.smedialink.tokenplussteamid.data.entity.MatchPlayerModel
 import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.data.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
@@ -21,10 +22,12 @@ class MatchRepository @Inject constructor(
 
     override fun getRecentMatches(): Single<List<Match>> =
             api.fetchMatches()
+                    .doOnSuccess { realm.clearTable<MatchPlayerModel>() }
+                    .doOnSuccess { realm.clearTable<MatchModel>() }
                     .doOnSuccess { realm.saveOrUpdate(it) }
                     .mapList(mapper::mapToDomain)
 
     override fun getMatchById(matchId: Long): Single<Match> =
-            realm.findOneAsync<MatchModel>("id", matchId)
+            realm.findOneAsync<MatchModel>("matchId", matchId)
                     .map(mapper::mapToDomain)
 }

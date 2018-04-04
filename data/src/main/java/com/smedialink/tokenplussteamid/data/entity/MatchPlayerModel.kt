@@ -8,7 +8,6 @@ import io.realm.annotations.PrimaryKey
  * Created by six_hundreds on 02.04.18.
  */
 open class MatchPlayerModel(
-        @PrimaryKey
         @SerializedName("account_id")
         var accountId: Long = 0,
         @SerializedName("hero_id")

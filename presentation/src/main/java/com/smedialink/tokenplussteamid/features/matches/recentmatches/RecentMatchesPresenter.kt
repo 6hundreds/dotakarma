@@ -12,6 +12,7 @@ import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
 import com.smedialink.tokenplussteamid.usecase.matches.GetRecentMatchesUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -34,9 +35,21 @@ class RecentMatchesPresenter @Inject constructor(
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.updateMatches(it) },
                         { viewState.showError(it.localizedMessage) })
+                .addTo(disposables)
     }
 
     override fun getHero(heroId: Int): Single<Hero> = getHeroUseCase.getHero(heroId)
+
+    fun refreshMatches() {
+        getRecentMatchesUseCase.getRecentMatches()
+                .mapList(mapper::mapToUi)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally { viewState.hideRefreshing() }
+                .subscribe({ viewState.updateMatches(it) },
+                        { viewState.showError(it.localizedMessage) })
+                .addTo(disposables)
+    }
 
     fun openMatchDetails(matchId: Long) {
         router.navigateTo(AppScreens.MATCH_DETAILS_SCREEN, matchId)

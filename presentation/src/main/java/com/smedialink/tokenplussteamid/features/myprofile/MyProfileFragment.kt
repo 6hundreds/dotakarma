@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
-import com.jakewharton.rxbinding2.view.scrollChangeEvents
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.common.ext.highlight
@@ -18,7 +17,6 @@ import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.features.myprofile.adapter.ProfileAdapter
 import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
-import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
@@ -87,7 +85,7 @@ class MyProfileFragment
     }
 
     override fun onCommentClick(commentId: Int) {
-        presenter.onCommentClicked(id)
+        presenter.onCommentClicked(commentId)
     }
 
     override fun showProfile(user: User) {

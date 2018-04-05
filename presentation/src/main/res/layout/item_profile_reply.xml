@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/group_parent"
+            app:layout_constraintTop_toBottomOf="@+id/parent_group"
             tools:text="@tools:sample/lorem/random" />
 
         <TextView
@@ -70,7 +70,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <android.support.v7.widget.CardView
-            android:id="@+id/group_parent"
+            android:id="@+id/parent_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/padding_common_normal"

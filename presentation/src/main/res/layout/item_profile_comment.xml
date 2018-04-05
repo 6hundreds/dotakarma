@@ -9,6 +9,8 @@
     app:cardBackgroundColor="@color/colorTest"
     app:cardElevation="8dp">
 
+    <include layout="@layout/layout_highlighter"/>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

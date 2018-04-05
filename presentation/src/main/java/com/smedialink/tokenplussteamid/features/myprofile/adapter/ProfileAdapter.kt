@@ -9,8 +9,7 @@ import com.smedialink.tokenplussteamid.common.lists.Paginator
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class ProfileAdapter(itemClickListener: ItemClickListener,
-                     paginator: Paginator<HeterogeneousItem>)
+class ProfileAdapter(itemClickListener: ItemClickListener, paginator: Paginator<HeterogeneousItem>)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {

@@ -2,19 +2,23 @@ package com.smedialink.tokenplussteamid.features.myprofile
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
+import com.jakewharton.rxbinding2.view.scrollChangeEvents
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
+import com.smedialink.tokenplussteamid.common.ext.highlight
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.features.myprofile.adapter.ProfileAdapter
 import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
+import io.reactivex.Single
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 
@@ -68,8 +72,18 @@ class MyProfileFragment
 
     override fun onParentClick(parentId: Int) {
         profileAdapter.getPositionById(parentId.toLong())
-                ?.let { list_my_comments.smoothScrollToPosition(it) }
-                ?: showError("")
+                ?.let { position ->
+                    list_my_comments.smoothScrollToPosition(position)
+                    list_my_comments.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                                list_my_comments.findViewHolderForAdapterPosition(position).highlight()
+                                list_my_comments.removeOnScrollListener(this)
+                            }
+                        }
+                    })
+                }
+                ?: showError("Please load more") //todo stub! Implement fetching function
     }
 
     override fun onCommentClick(commentId: Int) {

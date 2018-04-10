@@ -5,7 +5,7 @@ import com.smedialink.tokenplussteamid.data.entity.MatchPlayerModel
 import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.data.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
-import com.smedialink.tokenplussteamid.data.persistance.RealmManager
+import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import com.smedialink.tokenplussteamid.entity.Match
 import com.smedialink.tokenplussteamid.repository.IMatchRepository
 import io.reactivex.Single

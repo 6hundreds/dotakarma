@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.data.entity
 
-import android.arch.persistence.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
@@ -23,5 +23,7 @@ open class UserModel(
         @SerializedName("personastate")
         var personaState: Int = 0,
         @SerializedName("realname")
-        var realName: String? = ""
+        var realName: String? = "",
+        @SerializedName("comments")
+        var comments: RealmList<CommentModel> = RealmList()
 ) : RealmObject()

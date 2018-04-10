@@ -5,7 +5,7 @@ import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.data.mapper.CommentMapper
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
-import com.smedialink.tokenplussteamid.data.persistance.RealmManager
+import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import com.smedialink.tokenplussteamid.entity.Comment
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.manager.IProfileManager
@@ -46,6 +46,7 @@ class ProfileManager @Inject constructor(
     override fun getMyProfile(): Single<User> =
             api.fetchMyProfile()
                     .doOnSuccess { prefsManager.putInt(CURRENT_USER_ID_KEY, it.id) }
+                    .doOnSuccess { realm.saveOrUpdate(it) }
                     .map(userMapper::mapToDomain)
 
     override fun getLiveComments(): Observable<List<Comment>> {

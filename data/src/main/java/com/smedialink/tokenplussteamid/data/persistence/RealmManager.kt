@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.data.persistance
+package com.smedialink.tokenplussteamid.data.persistence
 
 import io.reactivex.Observable
 import io.reactivex.Single

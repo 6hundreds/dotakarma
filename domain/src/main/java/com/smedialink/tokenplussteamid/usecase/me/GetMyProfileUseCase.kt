@@ -5,7 +5,6 @@ import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.manager.IProfileManager
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 
@@ -17,10 +16,7 @@ class GetMyProfileUseCase @Inject constructor(private val profileManager: IProfi
     fun getMyComments(limit: Int? = 5, after: Int? = null): Single<List<Comment>> =
             profileManager.getMyComments(limit, after)
 
-    fun getMyProfile(): Single<Pair<User, List<Comment>>> =
-            Single.zip(profileManager.getMyProfile(),
-                    profileManager.getMyComments(5, null),
-                    BiFunction { user: User, comments: List<Comment> -> Pair(user, comments) })
+    fun getMyProfile(): Single<User> = profileManager.getMyProfile()
 
     fun getLiveComments(): Observable<List<Comment>> =
             profileManager.getLiveComments()

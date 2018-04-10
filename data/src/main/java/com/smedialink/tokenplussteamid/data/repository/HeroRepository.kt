@@ -7,7 +7,7 @@ import com.smedialink.tokenplussteamid.data.entity.HeroModel
 import com.smedialink.tokenplussteamid.data.manager.SharedPrefsManager
 import com.smedialink.tokenplussteamid.data.mapper.HeroMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
-import com.smedialink.tokenplussteamid.data.persistance.RealmManager
+import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.repository.IHeroRepository
 import io.reactivex.Completable

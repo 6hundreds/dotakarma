@@ -1,20 +1,20 @@
 package com.smedialink.tokenplussteamid.features.myprofile.adapter
 
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
-import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
-import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
-import com.smedialink.tokenplussteamid.common.lists.Paginator
+import com.smedialink.tokenplussteamid.common.lists.*
+import com.smedialink.tokenplussteamid.common.lists.delegates.CommentProfileDelegate
+import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
+import com.smedialink.tokenplussteamid.common.lists.delegates.ReplyToCommentDelegate
 
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class ProfileAdapter(itemClickListener: ItemClickListener, paginator: Paginator<HeterogeneousItem>)
+class MyProfileAdapter(commentClickListener: CommentClickListener, paginator: Paginator<HeterogeneousItem>)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {
-        delegatesManager.addDelegate(CommentProfileDelegate(itemClickListener))
-        delegatesManager.addDelegate(ReplyProfileDelegate(itemClickListener))
+        delegatesManager.addDelegate(CommentProfileDelegate(commentClickListener))
+        delegatesManager.addDelegate(ReplyToCommentDelegate(commentClickListener))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())
         setHasStableIds(true)
@@ -36,10 +36,5 @@ class ProfileAdapter(itemClickListener: ItemClickListener, paginator: Paginator<
         items.addAll(newItems)
         items.add(LoadMoreFooter())
         notifyDataSetChanged()
-    }
-
-    interface ItemClickListener {
-        fun onCommentClick(commentId: Int)
-        fun onParentClick(parentId: Int)
     }
 }

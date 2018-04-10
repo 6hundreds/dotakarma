@@ -41,7 +41,7 @@ class MatchDetailsPresenter @Inject constructor(
     }
 
     fun showPlayerProfile(id: Long) {
-        router.navigateTo(AppScreens.USER_PROFILE_SCREEN, id)
+        router.navigateTo(AppScreens.USER_DETAILS_SCREEN, id)
     }
 
     fun onBackPressed() {

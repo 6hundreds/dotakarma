@@ -18,12 +18,12 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
                                         private val commentFeedMapper: CommentFeedMapper)
     : BasePresenter<FeedView>(), Paginator<HeterogeneousItem> {
 
-    private var latestCommentId = -1
+    private var commentsOffset = -1
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         useCase.getFeed(5)
-                .doOnSuccess { comments -> latestCommentId = comments.last().id }
+                .doOnSuccess { comments -> commentsOffset = comments.last().id }
                 .mapList(commentFeedMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -35,8 +35,8 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
-            useCase.getFeed(limit, latestCommentId)
-                    .doOnSuccess { comments -> latestCommentId = comments.last().id }
+            useCase.getFeed(limit, commentsOffset)
+                    .doOnSuccess { comments -> commentsOffset = comments.last().id }
                     .mapList(commentFeedMapper::mapToUi)
 
 
@@ -50,7 +50,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
 
     fun refreshFeed() {
         useCase.getFeed(5)
-                .doOnSuccess { comments -> latestCommentId = comments.last().id }
+                .doOnSuccess { comments -> commentsOffset = comments.last().id }
                 .mapList(commentFeedMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

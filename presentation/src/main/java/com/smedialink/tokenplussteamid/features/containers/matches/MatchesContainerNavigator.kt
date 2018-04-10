@@ -8,7 +8,7 @@ import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
-import com.smedialink.tokenplussteamid.features.userprofile.UserProfileActivity
+import com.smedialink.tokenplussteamid.features.userdetails.UserDetailsActivity
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
@@ -22,9 +22,9 @@ class MatchesContainerNavigator @Inject constructor(fragment: MatchesContainerFr
 
     override fun createActivityIntent(context: Context?, screenKey: String?, data: Any?): Intent? =
             when (screenKey) {
-                AppScreens.USER_PROFILE_SCREEN -> {
-                    Intent(context, UserProfileActivity::class.java).apply {
-                        putExtra(UserProfileActivity.USER_ID_KEY, data as Long)
+                AppScreens.USER_DETAILS_SCREEN -> {
+                    Intent(context, UserDetailsActivity::class.java).apply {
+                        putExtra(UserDetailsActivity.USER_ID_KEY, data as Long)
                     }
                 }
                 else -> null

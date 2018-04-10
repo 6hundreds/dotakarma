@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.common.lists
+package com.smedialink.tokenplussteamid.common.lists.delegates
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -7,6 +7,9 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.ext.setVisible
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
+import com.smedialink.tokenplussteamid.common.lists.Paginator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_feed_load_more.view.*

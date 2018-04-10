@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.myprofile.adapter
+package com.smedialink.tokenplussteamid.common.lists.delegates
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.ext.inflate
+import com.smedialink.tokenplussteamid.common.lists.CommentClickListener
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.features.myprofile.adapter.MyProfileAdapter
 import com.smedialink.tokenplussteamid.features.myprofile.entity.ReplyProfileUiModel
 import kotlinx.android.synthetic.main.item_profile_reply.view.*
 
@@ -14,10 +16,10 @@ import kotlinx.android.synthetic.main.item_profile_reply.view.*
 /**
  * Created by six_hundreds on 30.03.18.
  */
-class ReplyProfileDelegate(private val listener: ProfileAdapter.ItemClickListener)
+class ReplyToCommentDelegate(private val listener: CommentClickListener)
     : AbsListItemAdapterDelegate<ReplyProfileUiModel,
         HeterogeneousItem,
-        ReplyProfileDelegate.ReplyViewHolder>() {
+        ReplyToCommentDelegate.ReplyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): ReplyViewHolder {
         val view = parent.inflate(R.layout.item_profile_reply)

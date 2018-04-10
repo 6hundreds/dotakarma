@@ -4,7 +4,8 @@ import com.smedialink.tokenplussteamid.data.entity.UserModel
 import com.smedialink.tokenplussteamid.entity.User
 import javax.inject.Inject
 
-class UserMapper @Inject constructor() : DataMapper<UserModel, User> {
+class UserMapper @Inject constructor(private val commentMapper: CommentMapper)
+    : DataMapper<UserModel, User> {
 
     override fun mapToData(input: User): UserModel =
             UserModel(
@@ -30,6 +31,7 @@ class UserMapper @Inject constructor() : DataMapper<UserModel, User> {
                     input.avatarMedium,
                     input.avatarFull,
                     input.personaState,
-                    input.realName
+                    input.realName,
+                    input.comments.map(commentMapper::mapToDomain)
             )
 }

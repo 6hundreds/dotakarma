@@ -1,19 +1,21 @@
-package com.smedialink.tokenplussteamid.features.myprofile.adapter
+package com.smedialink.tokenplussteamid.common.lists.delegates
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
-import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.ext.inflate
+import com.smedialink.tokenplussteamid.common.lists.CommentClickListener
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.features.myprofile.adapter.MyProfileAdapter
 import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
 import kotlinx.android.synthetic.main.item_feed_comment.view.*
 
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class CommentProfileDelegate(private val listener: ProfileAdapter.ItemClickListener)
+class CommentProfileDelegate(private val listener: CommentClickListener)
     : AbsListItemAdapterDelegate<CommentProfileUiModel,
         HeterogeneousItem,
         CommentProfileDelegate.CommentViewHolder>() {

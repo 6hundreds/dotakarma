@@ -5,7 +5,7 @@ import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.OnResultCode
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentByIdUseCase
-import com.smedialink.tokenplussteamid.usecase.comments.ReplyUseCase
+import com.smedialink.tokenplussteamid.usecase.comments.ReplyToCommentUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
@@ -16,7 +16,7 @@ import javax.inject.Inject
  */
 @InjectViewState
 class ReplyToCommentPresenter @Inject constructor(
-        private val replyUseCase: ReplyUseCase,
+        private val replyToCommentUseCase: ReplyToCommentUseCase,
         private val getCommentByIdUseCase: GetCommentByIdUseCase,
         private val currentCommentId: Int,
         @LocalNavigation private val router: Router)
@@ -32,7 +32,7 @@ class ReplyToCommentPresenter @Inject constructor(
     }
 
     fun replyToComment(content: String) {
-        replyUseCase.sendReply(content, currentCommentId)
+        replyToCommentUseCase.sendReply(content, currentCommentId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }

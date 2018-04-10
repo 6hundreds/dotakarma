@@ -4,10 +4,10 @@ import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
 import com.smedialink.tokenplussteamid.common.ext.weak
-import com.smedialink.tokenplussteamid.features.main.MainActivity
+import com.smedialink.tokenplussteamid.features.profile.user.UserProfileFragment
+import com.smedialink.tokenplussteamid.features.profile.user.di.UserProfileModule
 import com.smedialink.tokenplussteamid.features.userdetails.UserDetailsActivity
 import com.smedialink.tokenplussteamid.features.userdetails.UserDetailsNavigator
-import com.smedialink.tokenplussteamid.features.userprofile.UserProfileFragment
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -25,7 +25,7 @@ abstract class UserDetailsModule {
         @ActivityScope
         @Provides
         @JvmStatic
-        fun provideErrorDelegate(activity: MainActivity): ErrorMessageDelegate =
+        fun provideErrorDelegate(activity: UserDetailsActivity): ErrorMessageDelegate =
                 ErrorMessageDelegate(activity.weak())
 
         @Provides
@@ -40,6 +40,6 @@ abstract class UserDetailsModule {
     }
 
     @FragmentScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [UserProfileModule::class])
     abstract fun userProfileInjector(): UserProfileFragment
 }

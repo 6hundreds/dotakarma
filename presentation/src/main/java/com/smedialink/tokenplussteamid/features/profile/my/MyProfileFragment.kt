@@ -1,8 +1,7 @@
-package com.smedialink.tokenplussteamid.features.myprofile
+package com.smedialink.tokenplussteamid.features.profile.my
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.bumptech.glide.Glide
@@ -11,12 +10,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.common.ext.highlight
+import com.smedialink.tokenplussteamid.common.ext.highlightPosition
 import com.smedialink.tokenplussteamid.common.ext.setVisible
-import com.smedialink.tokenplussteamid.common.lists.CommentClickListener
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
-import com.smedialink.tokenplussteamid.features.myprofile.adapter.MyProfileAdapter
-import com.smedialink.tokenplussteamid.features.myprofile.entity.UserUiModel
+import com.smedialink.tokenplussteamid.features.profile.entity.UserUiModel
+import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListener
+import com.smedialink.tokenplussteamid.features.profile.my.adapter.MyProfileAdapter
 import com.smedialink.tokenplussteamid.subnavigation.TabNestedFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
@@ -71,17 +70,7 @@ class MyProfileFragment
 
     override fun onParentClick(parentId: Int) {
         adapter.getPositionById(parentId.toLong())
-                ?.let { position ->
-                    list_comments.smoothScrollToPosition(position)
-                    list_comments.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-                            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                                list_comments.findViewHolderForAdapterPosition(position).highlight()
-                                list_comments.removeOnScrollListener(this)
-                            }
-                        }
-                    })
-                }
+                ?.let { position -> list_comments.highlightPosition(position) }
                 ?: errorDelegate.showError("Please load more") //todo stub! Implement fetching function
     }
 

@@ -1,16 +1,17 @@
-package com.smedialink.tokenplussteamid.common.lists.delegates
+package com.smedialink.tokenplussteamid.features.profile.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.github.florent37.viewanimator.ViewAnimator
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.ext.inflate
-import com.smedialink.tokenplussteamid.common.lists.CommentClickListener
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
-import com.smedialink.tokenplussteamid.features.myprofile.adapter.MyProfileAdapter
-import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
+import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
 import kotlinx.android.synthetic.main.item_feed_comment.view.*
+import kotlinx.android.synthetic.main.layout_highlighter.view.*
 
 /**
  * Created by six_hundreds on 08.02.18.
@@ -35,7 +36,16 @@ class CommentProfileDelegate(private val listener: CommentClickListener)
                                   payloads: MutableList<Any>) =
             viewHolder.bind(item)
 
-    inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CommentViewHolder(itemView: View)
+        : RecyclerView.ViewHolder(itemView), HighlightableItem {
+
+        override fun highlight() {
+            ViewAnimator
+                    .animate(itemView.highlighter)
+                    .alpha(0f, 1f, 0f)
+                    .duration(1000)
+                    .start()
+        }
 
         fun bind(comment: CommentProfileUiModel) {
             with(itemView) {

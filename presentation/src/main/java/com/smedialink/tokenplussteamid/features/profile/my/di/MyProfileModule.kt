@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.myprofile.di
+package com.smedialink.tokenplussteamid.features.profile.my.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.data.manager.ProfileManager
@@ -7,7 +7,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-interface ProfileModule {
+interface MyProfileModule {
 
     @Binds
     @FragmentScope

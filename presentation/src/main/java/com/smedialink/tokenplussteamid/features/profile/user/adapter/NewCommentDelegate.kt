@@ -7,7 +7,7 @@ import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
-import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
 
 /**
  * Created by six_hundreds on 10.04.18.

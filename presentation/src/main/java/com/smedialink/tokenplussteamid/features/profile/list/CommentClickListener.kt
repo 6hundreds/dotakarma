@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.common.lists
+package com.smedialink.tokenplussteamid.features.profile.list
 
 /**
  * Created by six_hundreds on 10.04.18.

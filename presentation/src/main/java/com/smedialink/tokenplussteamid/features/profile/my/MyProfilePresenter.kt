@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.myprofile
+package com.smedialink.tokenplussteamid.features.profile.my
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.app.AppScreens

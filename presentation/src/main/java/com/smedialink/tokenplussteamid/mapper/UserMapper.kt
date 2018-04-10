@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.mapper
 
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.features.myprofile.entity.UserUiModel
+import com.smedialink.tokenplussteamid.features.profile.entity.UserUiModel
 import javax.inject.Inject
 
 /**

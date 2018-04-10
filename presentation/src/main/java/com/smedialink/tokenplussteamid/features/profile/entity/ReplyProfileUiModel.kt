@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.myprofile.entity
+package com.smedialink.tokenplussteamid.features.profile.entity
 
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 

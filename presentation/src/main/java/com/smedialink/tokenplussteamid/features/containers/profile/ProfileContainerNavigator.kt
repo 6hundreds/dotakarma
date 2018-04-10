@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
-import com.smedialink.tokenplussteamid.features.myprofile.MyProfileFragment
+import com.smedialink.tokenplussteamid.features.profile.my.MyProfileFragment
 import com.smedialink.tokenplussteamid.features.nouserinfo.NoUserInfoFragment
 import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator

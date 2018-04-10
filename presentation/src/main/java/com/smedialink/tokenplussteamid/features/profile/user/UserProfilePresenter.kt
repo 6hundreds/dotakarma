@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.userprofile
+package com.smedialink.tokenplussteamid.features.profile.user
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
@@ -27,7 +27,7 @@ class UserProfilePresenter @Inject constructor(
         private val commentsMapper: CommentProfileMapper)
     : BasePresenter<UserProfileView>(), Paginator<HeterogeneousItem> {
 
-    private var latestCommentId = -1
+    private var commentOffset = -1
 
     override fun onSuccess(items: List<HeterogeneousItem>) {
         viewState.appendComments(items)
@@ -38,13 +38,13 @@ class UserProfilePresenter @Inject constructor(
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
-            getCommentsForUserUseCase.getComments(currentUserId, limit, latestCommentId)
-                    .doOnSuccess { comments -> latestCommentId = comments.last().id }
+            getCommentsForUserUseCase.getComments(currentUserId, limit, commentOffset)
+                    .doOnSuccess { comments -> commentOffset = comments.last().id }
                     .mapList(commentsMapper::mapToUi)
 
     fun getUser() {
         getUserByIdUseCase.getById(currentUserId)
-                .doOnSuccess { latestCommentId = it.comments.last().id }
+                .doOnSuccess { commentOffset = it.comments.last().id }
                 .map(userMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

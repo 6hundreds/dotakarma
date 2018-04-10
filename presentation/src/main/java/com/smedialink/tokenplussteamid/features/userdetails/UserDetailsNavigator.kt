@@ -5,7 +5,7 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.AppScreens
-import com.smedialink.tokenplussteamid.features.userprofile.UserProfileFragment
+import com.smedialink.tokenplussteamid.features.profile.user.UserProfileFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
 import javax.inject.Inject
 

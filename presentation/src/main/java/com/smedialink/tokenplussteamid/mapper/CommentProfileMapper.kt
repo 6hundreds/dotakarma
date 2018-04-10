@@ -2,9 +2,8 @@ package com.smedialink.tokenplussteamid.mapper
 
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.entity.Comment
-import com.smedialink.tokenplussteamid.features.myprofile.entity.CommentProfileUiModel
-import com.smedialink.tokenplussteamid.features.myprofile.entity.ReplyProfileUiModel
-import io.reactivex.functions.Function
+import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
+import com.smedialink.tokenplussteamid.features.profile.entity.ReplyProfileUiModel
 import javax.inject.Inject
 
 /**

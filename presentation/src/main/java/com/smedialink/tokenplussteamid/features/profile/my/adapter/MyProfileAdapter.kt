@@ -1,10 +1,11 @@
-package com.smedialink.tokenplussteamid.features.myprofile.adapter
+package com.smedialink.tokenplussteamid.features.profile.my.adapter
 
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.smedialink.tokenplussteamid.common.lists.*
-import com.smedialink.tokenplussteamid.common.lists.delegates.CommentProfileDelegate
+import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDelegate
 import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
-import com.smedialink.tokenplussteamid.common.lists.delegates.ReplyToCommentDelegate
+import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListener
+import com.smedialink.tokenplussteamid.features.profile.list.ReplyToCommentDelegate
 
 /**
  * Created by six_hundreds on 08.02.18.

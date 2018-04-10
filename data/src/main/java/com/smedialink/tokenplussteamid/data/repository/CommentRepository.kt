@@ -24,8 +24,7 @@ class CommentRepository @Inject constructor(
             realm.findOneAsync<CommentModel>("id", commentId)
                     .map { mapper.mapToDomain(it) }
 
-
-    override fun getCommentsForUser(userId: Long, limit: Int, after: Int?): Single<List<Comment>> {
+    override fun getCommentsForUser(userId: Int, limit: Int, after: Int?): Single<List<Comment>> {
         return Single.error(Throwable())
     }
 

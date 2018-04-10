@@ -1,16 +1,17 @@
-package com.smedialink.tokenplussteamid.common.lists.delegates
+package com.smedialink.tokenplussteamid.features.profile.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.github.florent37.viewanimator.ViewAnimator
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.ext.inflate
-import com.smedialink.tokenplussteamid.common.lists.CommentClickListener
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
-import com.smedialink.tokenplussteamid.features.myprofile.adapter.MyProfileAdapter
-import com.smedialink.tokenplussteamid.features.myprofile.entity.ReplyProfileUiModel
+import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
+import com.smedialink.tokenplussteamid.features.profile.entity.ReplyProfileUiModel
 import kotlinx.android.synthetic.main.item_profile_reply.view.*
+import kotlinx.android.synthetic.main.layout_highlighter.view.*
 
 
 /**
@@ -37,7 +38,16 @@ class ReplyToCommentDelegate(private val listener: CommentClickListener)
         viewHolder.bind(item)
     }
 
-    inner class ReplyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ReplyViewHolder(itemView: View)
+        : RecyclerView.ViewHolder(itemView), HighlightableItem {
+
+        override fun highlight() {
+            ViewAnimator
+                    .animate(itemView.highlighter)
+                    .alpha(0f, 1f, 0f)
+                    .duration(1000)
+                    .start()
+        }
 
         fun bind(reply: ReplyProfileUiModel) {
             with(itemView) {

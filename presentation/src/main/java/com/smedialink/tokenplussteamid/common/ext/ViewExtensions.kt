@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import com.github.florent37.viewanimator.ViewAnimator
-import kotlinx.android.synthetic.main.layout_highlighter.view.*
+import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
+import java.lang.IllegalArgumentException
 
 fun ViewGroup.inflate(@LayoutRes layoutId: Int, attachToRoot: Boolean = false): View =
         LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
@@ -18,12 +18,19 @@ fun View.setVisible(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
 
-fun RecyclerView.ViewHolder.highlight() {
-    ViewAnimator
-            .animate(itemView.highlighter)
-            .alpha(0f, 1f, 0f)
-            .duration(1000)
-            .start()
+fun RecyclerView.highlightPosition(position: Int) {
+    smoothScrollToPosition(position)
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                (findViewHolderForAdapterPosition(position)
+                        as? HighlightableItem
+                        ?: throw IllegalArgumentException("")) //todo message
+                        .highlight()
+                removeOnScrollListener(this)
+            }
+        }
+    })
 }
 
 fun View.hideKeyboard() {

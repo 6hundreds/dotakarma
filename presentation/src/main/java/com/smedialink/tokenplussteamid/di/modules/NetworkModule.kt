@@ -16,7 +16,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = "https://55e07144.ngrok.io/api/"
+        private const val BASE_URL = "https://ab66a0cc.ngrok.io/api/"
     }
 
     @Provides

@@ -10,7 +10,8 @@ import com.smedialink.tokenplussteamid.features.profile.list.ReplyToCommentDeleg
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class MyProfileAdapter(commentClickListener: CommentClickListener, paginator: Paginator<HeterogeneousItem>)
+class MyProfileAdapter(commentClickListener: CommentClickListener,
+                       paginator: Paginator<HeterogeneousItem>)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {

@@ -32,7 +32,8 @@ class FeedPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ comments -> viewState.showFeed(comments) }, { errorHandler.proceed(it, viewState::showError) })
+                .subscribe({ comments -> viewState.showFeed(comments) },
+                        { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
     }
 
@@ -47,7 +48,7 @@ class FeedPresenter @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        viewState.showError(error.localizedMessage)
+        errorHandler.proceed(error, viewState::showError)
     }
 
     fun refreshFeed() {
@@ -57,7 +58,8 @@ class FeedPresenter @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
-                .subscribe({ comments -> viewState.showFeed(comments) }, { errorHandler.proceed(it, viewState::showError) })
+                .subscribe({ comments -> viewState.showFeed(comments) },
+                        { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
     }
 }

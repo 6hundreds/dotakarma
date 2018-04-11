@@ -7,4 +7,6 @@ interface IUserRepository {
 
     fun getUserById(id: Int): Single<User>
 
+    fun getUserByAccountId(accountId: Long): Single<User>
+
 }

@@ -70,7 +70,7 @@ class MyProfilePresenter @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        viewState.showError(error.localizedMessage)
+        errorHandler.proceed(error, viewState::showError)
     }
 
     override fun onDestroy() {

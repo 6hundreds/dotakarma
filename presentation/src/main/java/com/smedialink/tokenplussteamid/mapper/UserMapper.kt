@@ -18,5 +18,5 @@ class UserMapper @Inject constructor(private val commentMapper: CommentProfileMa
                     input.personaName,
                     input.avatarFull,
                     input.realName,
-                    input.comments.map { commentMapper.mapToUi(it) })
+                    input.comments.map(commentMapper::mapToUi))
 }

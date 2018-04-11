@@ -19,8 +19,8 @@ interface DotaKarmaApi {
                       @Query("after") after: Int?,
                       @Query("user_id") id: Int?): Single<List<CommentModel>>
 
-    @GET("users/{userId}")
-    fun fetchUserById(@Path("userId") userId: Int): Single<UserModel>
+    @GET("users/byAccountId/{accountId}")
+    fun fetchUserByAccountId(@Path("accountId") accountId: Long): Single<UserModel>
 
     @POST("comments/for-anonymous")
     @FormUrlEncoded

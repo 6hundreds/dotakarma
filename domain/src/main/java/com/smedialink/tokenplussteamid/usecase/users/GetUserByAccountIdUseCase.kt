@@ -8,8 +8,8 @@ import javax.inject.Inject
 /**
  * Created by six_hundreds on 09.04.18.
  */
-class GetUserByIdUseCase @Inject constructor(private val userRepository: IUserRepository) {
+class GetUserByAccountIdUseCase @Inject constructor(private val userRepository: IUserRepository) {
 
-    fun getById(userId: Int): Single<User> =
-            userRepository.getUserById(userId)
+    fun getByAccountId(accountId: Long): Single<User> =
+            userRepository.getUserByAccountId(accountId)
 }

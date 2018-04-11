@@ -1,6 +1,5 @@
 package com.smedialink.tokenplussteamid.data.repository
 
-import com.smedialink.tokenplussteamid.data.mapper.CommentMapper
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.User
@@ -13,13 +12,15 @@ import javax.inject.Inject
  */
 class UserRepository @Inject constructor(
         private val api: DotaKarmaApi,
-        private val commentMapper: CommentMapper,
         private val userMapper: UserMapper)
     : IUserRepository {
-
 
     override fun getUserById(id: Int): Single<User> {
         return Single.error(Throwable("ass"))
     }
+
+    override fun getUserByAccountId(accountId: Long): Single<User> =
+            api.fetchUserByAccountId(accountId)
+                    .map(userMapper::mapToDomain)
 
 }

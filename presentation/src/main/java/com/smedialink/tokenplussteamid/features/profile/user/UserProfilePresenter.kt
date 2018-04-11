@@ -9,7 +9,7 @@ import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.UserMapper
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsForUserUseCase
-import com.smedialink.tokenplussteamid.usecase.users.GetUserByIdUseCase
+import com.smedialink.tokenplussteamid.usecase.users.GetUserByAccountIdUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -21,7 +21,7 @@ import javax.inject.Inject
  */
 @InjectViewState
 class UserProfilePresenter @Inject constructor(
-        private val getUserByIdUseCase: GetUserByIdUseCase,
+        private val getUserByAccountIdUseCase: GetUserByAccountIdUseCase,
         private val getCommentsForUserUseCase: GetCommentsForUserUseCase,
         private val currentAccountId: Long,
         private val userMapper: UserMapper,
@@ -36,16 +36,17 @@ class UserProfilePresenter @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        viewState.showError(error.localizedMessage)
+        errorHandler.proceed(error, viewState::showError)
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
-            getCommentsForUserUseCase.getComments(1, limit, commentOffset)
+            getCommentsForUserUseCase.getComments(1, limit, commentOffset) //todo 1 is a stub
                     .doOnSuccess { comments -> commentOffset = comments.last().id }
                     .mapList(commentsMapper::mapToUi)
 
-    fun getUser() {
-        getUserByIdUseCase.getById(1)
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        getUserByAccountIdUseCase.getByAccountId(currentAccountId)
                 .doOnSuccess { commentOffset = it.comments.last().id }
                 .map(userMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
@@ -54,6 +55,10 @@ class UserProfilePresenter @Inject constructor(
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.showProfile(it) }, { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
+    }
+
+    fun getUser() {
+
     }
 
 }

@@ -41,15 +41,15 @@ class UserProfileFragment
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    lateinit var adapter: UserProfileAdapter
+    private lateinit var glide: RequestManager
 
-    lateinit var glide: RequestManager
+    private lateinit var commentsAdapter: UserProfileAdapter
 
     override fun initUi() {
         glide = Glide.with(this)
-        adapter = UserProfileAdapter(this, this, presenter)
+        commentsAdapter = UserProfileAdapter(this, this, presenter)
         with(list_comments) {
-            adapter = adapter
+            adapter = commentsAdapter
             layoutManager = android.support.v7.widget.LinearLayoutManager(context)
             setHasFixedSize(true)
         }
@@ -71,7 +71,7 @@ class UserProfileFragment
     }
 
     override fun onParentClick(parentId: Int) {
-        adapter.getPositionById(parentId.toLong())
+        commentsAdapter.getPositionById(parentId.toLong())
                 ?.let { position -> list_comments.highlightPosition(position) }
                 ?: errorDelegate.showError("Please load more") //todo stub! Implement fetching function
     }
@@ -90,14 +90,14 @@ class UserProfileFragment
                 .into(image_avatar)
         text_karma.text = "Karma ${user.karma}"
         text_personaname.text = user.personaName
-        adapter.refreshItems(user.comments)
+        commentsAdapter.refreshItems(user.comments)
     }
 
     override fun showComments(items: List<HeterogeneousItem>) {
-        adapter.refreshItems(items)
+        commentsAdapter.refreshItems(items)
     }
 
     override fun appendComments(items: List<HeterogeneousItem>) {
-        adapter.appendItems(items)
+        commentsAdapter.appendItems(items)
     }
 }

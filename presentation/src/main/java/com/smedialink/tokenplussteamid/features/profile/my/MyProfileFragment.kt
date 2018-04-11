@@ -38,13 +38,13 @@ class MyProfileFragment
 
     private lateinit var glide: RequestManager
 
-    private lateinit var adapter: MyProfileAdapter
+    private lateinit var commentsAdapter: MyProfileAdapter
 
     override fun initUi() {
         glide = Glide.with(this)
-        adapter = MyProfileAdapter(this, presenter)
+        commentsAdapter = MyProfileAdapter(this, presenter)
         with(list_comments) {
-            adapter = adapter
+            adapter = commentsAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
@@ -53,11 +53,11 @@ class MyProfileFragment
     }
 
     override fun refreshComments(items: List<HeterogeneousItem>) {
-        adapter.refreshItems(items)
+        commentsAdapter.refreshItems(items)
     }
 
     override fun appendComments(items: List<HeterogeneousItem>) {
-        adapter.appendItems(items)
+        commentsAdapter.appendItems(items)
     }
 
     override fun hideRefreshing() {
@@ -69,7 +69,7 @@ class MyProfileFragment
     }
 
     override fun onParentClick(parentId: Int) {
-        adapter.getPositionById(parentId.toLong())
+        commentsAdapter.getPositionById(parentId.toLong())
                 ?.let { position -> list_comments.highlightPosition(position) }
                 ?: errorDelegate.showError("Please load more") //todo stub! Implement fetching function
     }
@@ -84,7 +84,7 @@ class MyProfileFragment
                 .into(image_avatar)
         text_karma.text = "Karma ${user.karma}"
         text_personaname.text = user.personaName
-        adapter.refreshItems(user.comments)
+        commentsAdapter.refreshItems(user.comments)
     }
 
     override fun showError(error: String) {

@@ -28,11 +28,11 @@ class UserDetailsActivity : BaseActivity(), UserDetailsView {
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    val currentUserId: Int
+    val currentAccountId: Long
         get() {
-            val id = intent?.getIntExtra(USER_ID_KEY, -1)
+            val id = intent?.getLongExtra(USER_ID_KEY, -1L)
                     ?: throw  IllegalStateException("$this. Intent is null")
-            return if (id == -1) throw  IllegalArgumentException("UserId must be provided via extras for $this")
+            return if (id == -1L) throw  IllegalArgumentException("UserId must be provided via extras for $this")
             else id
         }
 

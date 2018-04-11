@@ -1,13 +1,12 @@
-package com.smedialink.tokenplussteamid.features.containers.di
+package com.smedialink.tokenplussteamid.features.main.containers.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
-import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerFragment
-import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerNavigator
+import com.smedialink.tokenplussteamid.features.main.containers.feed.FeedContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.feed.FeedContainerNavigator
 import com.smedialink.tokenplussteamid.features.feed.FeedFragment
 import com.smedialink.tokenplussteamid.features.feed.di.FeedModule
-import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector

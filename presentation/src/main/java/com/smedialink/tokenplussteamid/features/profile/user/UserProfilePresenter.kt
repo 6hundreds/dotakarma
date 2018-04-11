@@ -5,6 +5,7 @@ import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.data.ext.mapList
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.UserMapper
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsForUserUseCase
@@ -22,9 +23,10 @@ import javax.inject.Inject
 class UserProfilePresenter @Inject constructor(
         private val getUserByIdUseCase: GetUserByIdUseCase,
         private val getCommentsForUserUseCase: GetCommentsForUserUseCase,
-        private val currentUserId: Int,
+        private val currentAccountId: Long,
         private val userMapper: UserMapper,
-        private val commentsMapper: CommentProfileMapper)
+        private val commentsMapper: CommentProfileMapper,
+        private val errorHandler: ErrorHandler)
     : BasePresenter<UserProfileView>(), Paginator<HeterogeneousItem> {
 
     private var commentOffset = -1
@@ -38,20 +40,19 @@ class UserProfilePresenter @Inject constructor(
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
-            getCommentsForUserUseCase.getComments(currentUserId, limit, commentOffset)
+            getCommentsForUserUseCase.getComments(1, limit, commentOffset)
                     .doOnSuccess { comments -> commentOffset = comments.last().id }
                     .mapList(commentsMapper::mapToUi)
 
     fun getUser() {
-        getUserByIdUseCase.getById(currentUserId)
+        getUserByIdUseCase.getById(1)
                 .doOnSuccess { commentOffset = it.comments.last().id }
                 .map(userMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ viewState.showProfile(it) },
-                        { viewState.showError(it.localizedMessage) })
+                .subscribe({ viewState.showProfile(it) }, { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
     }
 

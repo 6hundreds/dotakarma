@@ -5,6 +5,7 @@ import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.data.ext.mapList
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.mapper.CommentFeedMapper
 import com.smedialink.tokenplussteamid.usecase.feed.GetFeedUseCase
 import io.reactivex.Single
@@ -14,8 +15,10 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @InjectViewState
-class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
-                                        private val commentFeedMapper: CommentFeedMapper)
+class FeedPresenter @Inject constructor(
+        private val useCase: GetFeedUseCase,
+        private val errorHandler: ErrorHandler,
+        private val commentFeedMapper: CommentFeedMapper)
     : BasePresenter<FeedView>(), Paginator<HeterogeneousItem> {
 
     private var commentsOffset = -1
@@ -29,8 +32,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ comments -> viewState.showFeed(comments) },
-                        { error -> viewState.showError(error.localizedMessage) })
+                .subscribe({ comments -> viewState.showFeed(comments) }, { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
     }
 
@@ -55,8 +57,7 @@ class FeedPresenter @Inject constructor(private val useCase: GetFeedUseCase,
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
-                .subscribe({ comments -> viewState.showFeed(comments) },
-                        { error -> viewState.showError(error.localizedMessage) })
+                .subscribe({ comments -> viewState.showFeed(comments) }, { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
     }
 }

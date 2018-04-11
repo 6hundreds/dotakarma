@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.containers.profile
+package com.smedialink.tokenplussteamid.features.main.containers.profile
 
 import android.content.Context
 import android.content.Intent

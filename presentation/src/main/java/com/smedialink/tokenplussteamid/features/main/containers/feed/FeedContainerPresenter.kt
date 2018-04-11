@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.containers.feed
+package com.smedialink.tokenplussteamid.features.main.containers.feed
 
 import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation

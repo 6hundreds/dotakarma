@@ -40,8 +40,8 @@ class MatchDetailsPresenter @Inject constructor(
                         { viewState.showError(it.localizedMessage) })
     }
 
-    fun showPlayerProfile(id: Long) {
-        router.navigateTo(AppScreens.USER_DETAILS_SCREEN, id)
+    fun showPlayerProfile(accountId: Long) {
+        router.navigateTo(AppScreens.USER_DETAILS_SCREEN, accountId)
     }
 
     fun onBackPressed() {

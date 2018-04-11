@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.containers.di
+package com.smedialink.tokenplussteamid.features.main.containers.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.data.manager.ProfileManager
@@ -6,8 +6,8 @@ import com.smedialink.tokenplussteamid.data.repository.CommentRepository
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
 import com.smedialink.tokenplussteamid.features.auth.SteamAuthFragment
-import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerFragment
-import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerNavigator
+import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerNavigator
 import com.smedialink.tokenplussteamid.features.profile.my.MyProfileFragment
 import com.smedialink.tokenplussteamid.features.reply.ReplyToCommentFragment
 import com.smedialink.tokenplussteamid.features.reply.di.ReplyToCommentModule

@@ -31,7 +31,7 @@ abstract class UserDetailsModule {
         @Provides
         @ActivityScope
         @JvmStatic
-        fun provideCurrentUserId(activity: UserDetailsActivity): Int = activity.currentUserId
+        fun provideCurrentUserId(activity: UserDetailsActivity): Long = activity.currentAccountId
 
         @ActivityScope
         @Provides

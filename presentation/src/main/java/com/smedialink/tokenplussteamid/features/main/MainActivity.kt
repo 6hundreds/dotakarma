@@ -12,9 +12,9 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.base.BaseActivity
 import com.smedialink.tokenplussteamid.common.ext.disableAnimations
 import com.smedialink.tokenplussteamid.common.ext.enableAnimations
-import com.smedialink.tokenplussteamid.features.containers.feed.FeedContainerFragment
-import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerFragment
-import com.smedialink.tokenplussteamid.features.containers.profile.ProfileContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.feed.FeedContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Back

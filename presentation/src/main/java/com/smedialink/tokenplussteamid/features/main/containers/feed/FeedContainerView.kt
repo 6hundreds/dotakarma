@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.containers.feed
+package com.smedialink.tokenplussteamid.features.main.containers.feed
 
 import com.arellomobile.mvp.MvpView
 

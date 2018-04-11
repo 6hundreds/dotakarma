@@ -1,12 +1,12 @@
-package com.smedialink.tokenplussteamid.features.containers.di
+package com.smedialink.tokenplussteamid.features.main.containers.di
 
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
 import com.smedialink.tokenplussteamid.data.repository.HeroRepository
 import com.smedialink.tokenplussteamid.data.repository.MatchRepository
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.di.scopes.ChildFragmentScope
-import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerFragment
-import com.smedialink.tokenplussteamid.features.containers.matches.MatchesContainerNavigator
+import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerFragment
+import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerNavigator
 import com.smedialink.tokenplussteamid.features.matches.matchdetails.MatchDetailsFragment
 import com.smedialink.tokenplussteamid.features.matches.recentmatches.RecentMatchesFragment
 import com.smedialink.tokenplussteamid.repository.IHeroRepository

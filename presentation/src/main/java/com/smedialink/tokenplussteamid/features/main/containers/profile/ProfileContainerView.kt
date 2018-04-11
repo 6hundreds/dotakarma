@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.containers.profile
+package com.smedialink.tokenplussteamid.features.main.containers.profile
 
 import com.arellomobile.mvp.MvpView
 import com.smedialink.tokenplussteamid.base.CanShowLoading

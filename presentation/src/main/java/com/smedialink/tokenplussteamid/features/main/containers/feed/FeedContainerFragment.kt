@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.features.containers.feed
+package com.smedialink.tokenplussteamid.features.main.containers.feed
 
 import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter

@@ -4,6 +4,7 @@ import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.data.manager.ProfileManager
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.terrakok.cicerone.Router
@@ -14,6 +15,7 @@ import javax.inject.Inject
  */
 class NoUserInfoPresenter @Inject constructor(
         private val profileManager: ProfileManager, //todo move to usecase
+        private val errorHandler: ErrorHandler,
         @LocalNavigation private val router: Router)
     : BasePresenter<NoUserInfoView>() {
 
@@ -23,7 +25,6 @@ class NoUserInfoPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ router.newRootScreen(AppScreens.MY_PROFILE_SCREEN) },
-                        { viewState.showError(it.localizedMessage) })
+                .subscribe({ router.newRootScreen(AppScreens.MY_PROFILE_SCREEN) }, { errorHandler.proceed(it, viewState::showError) })
     }
 }

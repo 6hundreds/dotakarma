@@ -82,8 +82,8 @@ class MatchDetailsFragment
         errorDelegate.showError(error)
     }
 
-    override fun onPlayerClick(id: Long) {
-        presenter.showPlayerProfile(id)
+    override fun onPlayerClick(accountId: Long) {
+        presenter.showPlayerProfile(accountId)
     }
 
     override fun showLoading(show: Boolean) {

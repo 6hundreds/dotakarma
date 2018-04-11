@@ -8,6 +8,7 @@ import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.UserMapper
 import com.smedialink.tokenplussteamid.usecase.me.GetMyProfileUseCase
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class MyProfilePresenter @Inject constructor(
         private val getMyProfileUseCase: GetMyProfileUseCase,
         private val commentsMapper: CommentProfileMapper,
+        private val errorHandler: ErrorHandler,
         private val userMapper: UserMapper,
         @LocalNavigation private val router: Router
 ) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
@@ -38,7 +40,7 @@ class MyProfilePresenter @Inject constructor(
                     .doOnSubscribe { viewState.showLoading(true) }
                     .doFinally { viewState.showLoading(false) }
                     .subscribe({ viewState.refreshComments(it) },
-                            { viewState.showError(it.localizedMessage) })
+                            { errorHandler.proceed(it, viewState::showError) })
                     .addTo(disposables)
         }
     }
@@ -53,7 +55,7 @@ class MyProfilePresenter @Inject constructor(
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.showProfile(it) },
-                        { viewState.showError(it.localizedMessage) })
+                        { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
 
     }
@@ -84,7 +86,7 @@ class MyProfilePresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
                 .subscribe({ viewState.showProfile(it) },
-                        { viewState.showError(it.localizedMessage) })
+                        { errorHandler.proceed(it, viewState::showError) })
                 .addTo(disposables)
     }
 

@@ -2,8 +2,9 @@ package com.smedialink.tokenplussteamid.features.userdetails.di
 
 import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
-import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
+import com.smedialink.tokenplussteamid.errorhandling.ErrorMessageDelegate
 import com.smedialink.tokenplussteamid.common.ext.weak
+import com.smedialink.tokenplussteamid.features.anonymous.walkthrough.AnonymousWalkthroughFragment
 import com.smedialink.tokenplussteamid.features.profile.user.UserProfileFragment
 import com.smedialink.tokenplussteamid.features.profile.user.di.UserProfileModule
 import com.smedialink.tokenplussteamid.features.unregistered.UnregisteredUserFragment
@@ -47,4 +48,8 @@ abstract class UserDetailsModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [])
     abstract fun userUnregisteredUserInjector(): UnregisteredUserFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [])
+    abstract fun anonymousWalkthroughInjector(): AnonymousWalkthroughFragment
 }

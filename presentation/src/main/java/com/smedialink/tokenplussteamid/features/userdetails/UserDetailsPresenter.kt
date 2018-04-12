@@ -13,8 +13,8 @@ import javax.inject.Inject
 class UserDetailsPresenter @Inject constructor(private val router: Router)
     : BasePresenter<UserDetailsView>() {
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        router.newRootScreen(AppScreens.USER_PROFILE_SCREEN)
+    fun showUserProfile(accountId: Long) {
+        if (accountId == 4294967295) router.newRootScreen(AppScreens.ANONYMOUS_WALKTHROUGHT_SCREEN) //todo move long to constants
+        else router.newRootScreen(AppScreens.USER_PROFILE_SCREEN)
     }
 }

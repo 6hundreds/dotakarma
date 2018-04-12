@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.features.userdetails
 
+import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
@@ -35,6 +36,13 @@ class UserDetailsActivity : BaseActivity(), UserDetailsView {
             return if (id == -1L) throw  IllegalArgumentException("UserId must be provided via extras for $this")
             else id
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            presenter.showUserProfile(currentAccountId)
+        }
+    }
 
     override fun onPause() {
         super.onPause()

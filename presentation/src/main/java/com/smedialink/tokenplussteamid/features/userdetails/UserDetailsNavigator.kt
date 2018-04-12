@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.AppScreens
+import com.smedialink.tokenplussteamid.features.anonymous.walkthrough.AnonymousWalkthroughFragment
 import com.smedialink.tokenplussteamid.features.profile.user.UserProfileFragment
 import com.smedialink.tokenplussteamid.features.unregistered.UnregisteredUserFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
@@ -22,6 +23,7 @@ class UserDetailsNavigator @Inject constructor(activity: UserDetailsActivity)
     override fun createFragment(screenKey: String?, data: Any?): Fragment? = when (screenKey) {
         AppScreens.USER_PROFILE_SCREEN -> UserProfileFragment.newInstance()
         AppScreens.USER_UNREGISTERED_SCREEN -> UnregisteredUserFragment.newInstance()
+        AppScreens.ANONYMOUS_WALKTHROUGHT_SCREEN -> AnonymousWalkthroughFragment.newInstance()
         else -> null
     }
 }

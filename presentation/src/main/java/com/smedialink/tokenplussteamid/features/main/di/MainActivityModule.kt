@@ -2,7 +2,7 @@ package com.smedialink.tokenplussteamid.features.main.di
 
 import com.smedialink.tokenplussteamid.app.scopes.ActivityScope
 import com.smedialink.tokenplussteamid.app.scopes.FragmentScope
-import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
+import com.smedialink.tokenplussteamid.errorhandling.ErrorMessageDelegate
 import com.smedialink.tokenplussteamid.common.ext.weak
 import com.smedialink.tokenplussteamid.features.main.containers.di.FeedTabModule
 import com.smedialink.tokenplussteamid.features.main.containers.di.MatchesTabModule

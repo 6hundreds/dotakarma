@@ -1,4 +1,4 @@
-package com.smedialink.tokenplussteamid.common.delegates
+package com.smedialink.tokenplussteamid.errorhandling
 
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity

@@ -3,9 +3,11 @@ package com.smedialink.tokenplussteamid.features.matches.recentmatches
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
 import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.Hero
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.mapper.MatchItemMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
@@ -22,8 +24,9 @@ class RecentMatchesPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getRecentMatchesUseCase: GetRecentMatchesUseCase,
         private val mapper: MatchItemMapper,
-        @LocalNavigation private val router: Router)
-    : BasePresenter<RecentMatchesView>(), HeroFactory {
+        @LocalNavigation private val router: Router,
+        override val errorHandler: ErrorHandler)
+    : ErrorHandlerPresenter<RecentMatchesView>(), HeroFactory {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -34,7 +37,7 @@ class RecentMatchesPresenter @Inject constructor(
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.updateMatches(it) },
-                        { viewState.showError(it.localizedMessage) })
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 
@@ -47,7 +50,7 @@ class RecentMatchesPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
                 .subscribe({ viewState.updateMatches(it) },
-                        { viewState.showError(it.localizedMessage) })
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 

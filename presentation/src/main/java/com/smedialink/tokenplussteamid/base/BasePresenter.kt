@@ -7,8 +7,6 @@ import io.reactivex.disposables.CompositeDisposable
 
 abstract class BasePresenter<View : MvpView> : MvpPresenter<View>() {
 
-    abstract val errorHandler: ErrorHandler
-
     protected var disposables = CompositeDisposable()
 
     override fun detachView(view: View?) {

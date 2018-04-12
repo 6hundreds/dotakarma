@@ -1,8 +1,7 @@
 package com.smedialink.tokenplussteamid.features.profile.user
 
 import com.arellomobile.mvp.InjectViewState
-import com.smedialink.tokenplussteamid.app.AppScreens
-import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.data.ext.mapList
@@ -31,7 +30,7 @@ class UserProfilePresenter @Inject constructor(
         private val commentsMapper: CommentProfileMapper,
         @LocalErrorHandler override val errorHandler: ErrorHandler,
         private val router: Router)
-    : BasePresenter<UserProfileView>(), Paginator<HeterogeneousItem> {
+    : ErrorHandlerPresenter<UserProfileView>(), Paginator<HeterogeneousItem> {
 
     private var commentOffset = -1
 
@@ -59,15 +58,5 @@ class UserProfilePresenter @Inject constructor(
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.showProfile(it) }, { errorHandler.proceed(it) })
                 .addTo(disposables)
-    }
-
-    override fun detachView(view: UserProfileView?) {
-        super.detachView(view)
-        errorHandler.detachView()
-    }
-
-    override fun attachView(view: UserProfileView) {
-        super.attachView(view)
-        errorHandler.attachView(view)
     }
 }

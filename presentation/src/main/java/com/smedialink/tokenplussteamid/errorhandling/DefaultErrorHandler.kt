@@ -8,11 +8,13 @@ import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 
 /**
  * Created by six_hundreds on 12.04.18.
  */
-class DefaultErrorHandler(private val resourceManager: ResourceManager) : ErrorHandler {
+class DefaultErrorHandler @Inject constructor(private val resourceManager: ResourceManager)
+    : ErrorHandler {
 
     private lateinit var view: WeakReference<CanShowError>
 
@@ -20,7 +22,7 @@ class DefaultErrorHandler(private val resourceManager: ResourceManager) : ErrorH
         Timber.e(error)
 
         val view = view.get()
-                ?: throw IllegalStateException("View must to be attached to ErrorHandler")
+                ?: throw IllegalStateException("View must be attached to ErrorHandler")
 
         val message = when (error) {
             is HttpException -> when (error.code()) {

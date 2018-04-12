@@ -6,6 +6,7 @@ import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
 import com.smedialink.tokenplussteamid.common.ext.weak
 import com.smedialink.tokenplussteamid.features.profile.user.UserProfileFragment
 import com.smedialink.tokenplussteamid.features.profile.user.di.UserProfileModule
+import com.smedialink.tokenplussteamid.features.unregistered.UnregisteredUserFragment
 import com.smedialink.tokenplussteamid.features.userdetails.UserDetailsActivity
 import com.smedialink.tokenplussteamid.features.userdetails.UserDetailsNavigator
 import dagger.Module
@@ -42,4 +43,8 @@ abstract class UserDetailsModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [UserProfileModule::class])
     abstract fun userProfileInjector(): UserProfileFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [])
+    abstract fun userUnregisteredUserInjector(): UnregisteredUserFragment
 }

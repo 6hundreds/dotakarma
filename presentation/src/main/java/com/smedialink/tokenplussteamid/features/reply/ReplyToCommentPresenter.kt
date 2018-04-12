@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.reply
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
 import com.smedialink.tokenplussteamid.common.OnResultCode
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
@@ -20,9 +21,9 @@ class ReplyToCommentPresenter @Inject constructor(
         private val replyToCommentUseCase: ReplyToCommentUseCase,
         private val getCommentByIdUseCase: GetCommentByIdUseCase,
         private val currentCommentId: Int,
-        private val errorHandler: ErrorHandler,
+        override val errorHandler: ErrorHandler,
         @LocalNavigation private val router: Router)
-    : BasePresenter<ReplyToCommentView>() {
+    : ErrorHandlerPresenter<ReplyToCommentView>() {
 
     fun getCommentById(commentId: Int) {
         getCommentByIdUseCase.getCommentById(commentId)
@@ -31,7 +32,7 @@ class ReplyToCommentPresenter @Inject constructor(
                 .doOnSuccess { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.showComment(it) },
-                        { errorHandler.proceed(it, viewState::showError) })
+                        { errorHandler.proceed(it) })
     }
 
     fun replyToComment(content: String) {
@@ -41,7 +42,7 @@ class ReplyToCommentPresenter @Inject constructor(
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ router.exitWithResult(OnResultCode.REPLY_SUCCESS, null) },
-                        { errorHandler.proceed(it, viewState::showError) })
+                        { errorHandler.proceed(it) })
     }
 
     fun onBackPressed() {

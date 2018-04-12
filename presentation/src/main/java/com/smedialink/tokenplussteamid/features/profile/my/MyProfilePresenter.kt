@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.features.profile.my
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
 import com.smedialink.tokenplussteamid.common.OnResultCode
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
@@ -23,10 +24,10 @@ import javax.inject.Inject
 class MyProfilePresenter @Inject constructor(
         private val getMyProfileUseCase: GetMyProfileUseCase,
         private val commentsMapper: CommentProfileMapper,
-        private val errorHandler: ErrorHandler,
+        override val errorHandler: ErrorHandler,
         private val userMapper: UserMapper,
-        @LocalNavigation private val router: Router
-) : BasePresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
+        @LocalNavigation private val router: Router)
+    : ErrorHandlerPresenter<MyProfileView>(), Paginator<HeterogeneousItem> {
 
     private var commentsOffset = -1
 
@@ -40,7 +41,7 @@ class MyProfilePresenter @Inject constructor(
                     .doOnSubscribe { viewState.showLoading(true) }
                     .doFinally { viewState.showLoading(false) }
                     .subscribe({ viewState.refreshComments(it) },
-                            { errorHandler.proceed(it, viewState::showError) })
+                            { errorHandler.proceed(it) })
                     .addTo(disposables)
         }
     }
@@ -55,7 +56,7 @@ class MyProfilePresenter @Inject constructor(
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.showProfile(it) },
-                        { errorHandler.proceed(it, viewState::showError) })
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
 
     }
@@ -70,7 +71,7 @@ class MyProfilePresenter @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        errorHandler.proceed(error, viewState::showError)
+        errorHandler.proceed(error)
     }
 
     override fun onDestroy() {
@@ -86,7 +87,7 @@ class MyProfilePresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
                 .subscribe({ viewState.showProfile(it) },
-                        { errorHandler.proceed(it, viewState::showError) })
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 

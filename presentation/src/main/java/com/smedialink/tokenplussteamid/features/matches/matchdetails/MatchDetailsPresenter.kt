@@ -5,6 +5,8 @@ import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.app.AppScreens
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
@@ -23,8 +25,9 @@ class MatchDetailsPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getMatchDetailsUseCase: GetMatchDetailsUseCase,
         private val mapper: MatchMapper,
-        @LocalNavigation private val router: Router)
-    : BasePresenter<MatchDetailsView>(), HeroFactory {
+        @LocalNavigation private val router: Router,
+        override val errorHandler: ErrorHandler)
+    : ErrorHandlerPresenter<MatchDetailsView>(), HeroFactory {
 
     override fun getHero(heroId: Int): Single<Hero> =
             getHeroUseCase.getHero(heroId)

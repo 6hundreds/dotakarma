@@ -57,7 +57,7 @@ class UserProfileFragment
     }
 
     override fun onRefresh() {
-        presenter.getUser()
+//        presenter.getUser()
     }
 
     override fun showError(error: String) {

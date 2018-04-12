@@ -1,7 +1,7 @@
 package com.smedialink.tokenplussteamid.features.nouserinfo
 
 import com.smedialink.tokenplussteamid.app.AppScreens
-import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
 import com.smedialink.tokenplussteamid.data.manager.ProfileManager
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
@@ -15,9 +15,9 @@ import javax.inject.Inject
  */
 class NoUserInfoPresenter @Inject constructor(
         private val profileManager: ProfileManager, //todo move to usecase
-        private val errorHandler: ErrorHandler,
+        override val errorHandler: ErrorHandler,
         @LocalNavigation private val router: Router)
-    : BasePresenter<NoUserInfoView>() {
+    : ErrorHandlerPresenter<NoUserInfoView>() {
 
     fun fetchUser() {
         profileManager.initialFetch()
@@ -25,6 +25,6 @@ class NoUserInfoPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ router.newRootScreen(AppScreens.MY_PROFILE_SCREEN) }, { errorHandler.proceed(it, viewState::showError) })
+                .subscribe({ router.newRootScreen(AppScreens.MY_PROFILE_SCREEN) }, { errorHandler.proceed(it) })
     }
 }

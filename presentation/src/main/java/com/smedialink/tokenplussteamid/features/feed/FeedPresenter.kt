@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.feed
 
 import com.arellomobile.mvp.InjectViewState
 import com.smedialink.tokenplussteamid.base.BasePresenter
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.data.ext.mapList
@@ -17,9 +18,9 @@ import javax.inject.Inject
 @InjectViewState
 class FeedPresenter @Inject constructor(
         private val useCase: GetFeedUseCase,
-        private val errorHandler: ErrorHandler,
+        override val errorHandler: ErrorHandler,
         private val commentFeedMapper: CommentFeedMapper)
-    : BasePresenter<FeedView>(), Paginator<HeterogeneousItem> {
+    : ErrorHandlerPresenter<FeedView>(), Paginator<HeterogeneousItem> {
 
     private var commentsOffset = -1
 
@@ -33,7 +34,7 @@ class FeedPresenter @Inject constructor(
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ comments -> viewState.showFeed(comments) },
-                        { errorHandler.proceed(it, viewState::showError) })
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 
@@ -48,7 +49,7 @@ class FeedPresenter @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        errorHandler.proceed(error, viewState::showError)
+        errorHandler.proceed(error)
     }
 
     fun refreshFeed() {
@@ -59,7 +60,7 @@ class FeedPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally { viewState.hideRefreshing() }
                 .subscribe({ comments -> viewState.showFeed(comments) },
-                        { errorHandler.proceed(it, viewState::showError) })
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 }

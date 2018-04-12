@@ -39,4 +39,11 @@
     <string name="title_radiant_win">Radiant win</string>
     <string name="title_dire_win">Dire win</string>
 
+
+    <!-- Errors messages -->
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_network">Check network connection</string>
+    <string name="error_unauthorized">Authorizations is needed</string>
+    <string name="error_server">Server side error</string>
+
 </resources>

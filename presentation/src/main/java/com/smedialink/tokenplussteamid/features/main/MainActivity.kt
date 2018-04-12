@@ -32,9 +32,9 @@ class MainActivity : BaseActivity(), MainView {
         private const val TAB_MATCHES = 2
     }
 
-    lateinit var matchContainer: MatchesContainerFragment
-    lateinit var feedContainer: FeedContainerFragment
-    lateinit var profileContainer: ProfileContainerFragment
+    private lateinit var matchContainer: MatchesContainerFragment
+    private lateinit var feedContainer: FeedContainerFragment
+    private lateinit var profileContainer: ProfileContainerFragment
 
     @Inject
     @InjectPresenter
@@ -97,30 +97,27 @@ class MainActivity : BaseActivity(), MainView {
     private fun initContainers() {
         with(supportFragmentManager) {
 
-            matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment? ?:
-                    MatchesContainerFragment.newInstance("matches_container").also {
-                        beginTransaction()
-                                .add(R.id.home_tabs_container, it, "matches_container")
-                                .detach(it)
-                                .commitNow()
-                    }
+            matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment? ?: MatchesContainerFragment.newInstance("matches_container").also {
+                beginTransaction()
+                        .add(R.id.home_tabs_container, it, "matches_container")
+                        .detach(it)
+                        .commitNow()
+            }
 
 
-            feedContainer = findFragmentByTag("feed_container") as FeedContainerFragment? ?:
-                    FeedContainerFragment.newInstance("feed_container").also {
-                        beginTransaction()
-                                .add(R.id.home_tabs_container, it, "feed_container")
-                                .detach(it)
-                                .commitNow()
-                    }
+            feedContainer = findFragmentByTag("feed_container") as FeedContainerFragment? ?: FeedContainerFragment.newInstance("feed_container").also {
+                beginTransaction()
+                        .add(R.id.home_tabs_container, it, "feed_container")
+                        .detach(it)
+                        .commitNow()
+            }
 
-            profileContainer = findFragmentByTag("profile_container") as ProfileContainerFragment? ?:
-                    ProfileContainerFragment.newInstance("profile_container").also {
-                        beginTransaction()
-                                .add(R.id.home_tabs_container, it, "profile_container")
-                                .detach(it)
-                                .commitNow()
-                    }
+            profileContainer = findFragmentByTag("profile_container") as ProfileContainerFragment? ?: ProfileContainerFragment.newInstance("profile_container").also {
+                beginTransaction()
+                        .add(R.id.home_tabs_container, it, "profile_container")
+                        .detach(it)
+                        .commitNow()
+            }
         }
     }
 

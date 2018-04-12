@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.subnavigation
 
 import android.app.Activity
+import android.content.Context
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.base.BaseFragment

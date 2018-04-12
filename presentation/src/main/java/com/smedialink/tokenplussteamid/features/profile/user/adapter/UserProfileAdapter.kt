@@ -6,6 +6,7 @@ import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDeleg
 import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListener
 import com.smedialink.tokenplussteamid.features.profile.list.ReplyToCommentDelegate
+import com.smedialink.tokenplussteamid.features.profile.user.adapter.NewCommentDelegate
 import com.smedialink.tokenplussteamid.features.userprofile.entity.NewCommentHeader
 
 /**

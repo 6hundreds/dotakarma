@@ -1,10 +1,12 @@
 package com.smedialink.tokenplussteamid.features.profile.user
 
 import com.arellomobile.mvp.InjectViewState
+import com.smedialink.tokenplussteamid.app.AppScreens
 import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.data.ext.mapList
+import com.smedialink.tokenplussteamid.di.qualifier.LocalErrorHandler
 import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.UserMapper
@@ -14,6 +16,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 /**
@@ -26,7 +29,8 @@ class UserProfilePresenter @Inject constructor(
         private val currentAccountId: Long,
         private val userMapper: UserMapper,
         private val commentsMapper: CommentProfileMapper,
-        private val errorHandler: ErrorHandler)
+        @LocalErrorHandler override val errorHandler: ErrorHandler,
+        private val router: Router)
     : BasePresenter<UserProfileView>(), Paginator<HeterogeneousItem> {
 
     private var commentOffset = -1
@@ -36,7 +40,7 @@ class UserProfilePresenter @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        errorHandler.proceed(error, viewState::showError)
+        errorHandler.proceed(error)
     }
 
     override fun onLoadMore(limit: Int): Single<List<HeterogeneousItem>> =
@@ -53,12 +57,17 @@ class UserProfilePresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
-                .subscribe({ viewState.showProfile(it) }, { errorHandler.proceed(it, viewState::showError) })
+                .subscribe({ viewState.showProfile(it) }, { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 
-    fun getUser() {
-
+    override fun detachView(view: UserProfileView?) {
+        super.detachView(view)
+        errorHandler.detachView()
     }
 
+    override fun attachView(view: UserProfileView) {
+        super.attachView(view)
+        errorHandler.attachView(view)
+    }
 }

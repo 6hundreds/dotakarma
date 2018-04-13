@@ -14,6 +14,6 @@ class AnonymousWalkthroughPresenter @Inject constructor(private val router: Rout
     : BasePresenter<AnonymousWalkthroughView>() {
 
     fun finish() {
-        router.replaceScreen(AppScreens.ANONYMOUS_WALKTHROUGHT_SCREEN)
+        router.replaceScreen(AppScreens.ANONYMOUS_COMMENT_SCREEN)
     }
 }

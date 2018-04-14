@@ -15,8 +15,9 @@ import javax.inject.Inject
  * Created by six_hundreds on 31.01.18.
  */
 @InjectViewState
-class SplashPresenter @Inject constructor(private val useCase: PrefetchHeroesImagesUseCase,
-                                          private val router: Router)
+class SplashPresenter @Inject constructor(
+        private val useCase: PrefetchHeroesImagesUseCase,
+        private val router: Router)
     : BasePresenter<SplashView>() {
 
     override fun onFirstViewAttach() {

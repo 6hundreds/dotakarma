@@ -107,6 +107,7 @@ ext {
             glide                : "com.github.bumptech.glide:glide:$GLIDE_VERSION",
             glideCompiler        : "com.github.bumptech.glide:compiler:$GLIDE_VERSION",
             rxBindings           : "com.jakewharton.rxbinding2:rxbinding-kotlin:$RX_BINDINGS_VERSION",
+            viewAnimator         : 'com.github.florent37:viewanimator:1.0.5',
             glideTransformations : "jp.wasabeef:glide-transformations:3.1.0",
             adapterDelegates     : "com.hannesdorfmann:adapterdelegates3:3.0.1",
             topSnackbar          : "com.androidadvance:topsnackbar:1.1.1"

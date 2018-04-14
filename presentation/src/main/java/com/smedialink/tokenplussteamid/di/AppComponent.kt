@@ -1,11 +1,7 @@
 package com.smedialink.tokenplussteamid.di
 
 import com.smedialink.tokenplussteamid.app.DotaKarma
-import com.smedialink.tokenplussteamid.di.modules.AppModule
-import com.smedialink.tokenplussteamid.di.modules.NavigationModule
-import com.smedialink.tokenplussteamid.di.modules.NetworkModule
-import com.smedialink.tokenplussteamid.di.modules.PersistenceModule
-import com.smedialink.tokenplussteamid.di.modules.ActivityBinderModule
+import com.smedialink.tokenplussteamid.di.modules.*
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector

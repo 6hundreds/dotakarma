@@ -2,12 +2,12 @@ package com.smedialink.tokenplussteamid.data.repository
 
 import com.smedialink.tokenplussteamid.PrefsKeys
 import com.smedialink.tokenplussteamid.PrefsKeys.KEY_HEROES_FETCHED
-import com.smedialink.tokenplussteamid.data.dao.HeroDao
 import com.smedialink.tokenplussteamid.data.entity.HeroDto
 import com.smedialink.tokenplussteamid.data.entity.HeroModel
 import com.smedialink.tokenplussteamid.data.manager.SharedPrefsManager
-import com.smedialink.tokenplussteamid.data.mapper.HeroImageMapper
+import com.smedialink.tokenplussteamid.data.mapper.HeroMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
+import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.repository.IHeroRepository
 import io.reactivex.Completable
@@ -18,9 +18,9 @@ import javax.inject.Inject
  * Created by six_hundreds on 31.01.18.
  */
 class HeroRepository @Inject constructor(
-        private val dao: HeroDao,
         private val api: DotaKarmaApi,
-        private val mapper: HeroImageMapper,
+        private val realm: RealmManager,
+        private val mapper: HeroMapper,
         private val prefsManager: SharedPrefsManager
 ) : IHeroRepository {
 
@@ -33,22 +33,21 @@ class HeroRepository @Inject constructor(
                 Completable.complete()
             } else {
                 api.fetchHeroes()
-                        .map { transform(it) }
+                        .map(::transform)
                         .doOnSuccess { prefsManager.putBoolean(PrefsKeys.KEY_HEROES_FETCHED, true) }
-                        .doOnSuccess { dao.insert(it) }
+                        .doOnSuccess { realm.saveOrUpdate(it) }
                         .toCompletable()
             }
 
-
     override fun getHero(heroId: Int): Single<Hero> {
-        return dao.getById(heroId)
+        return realm.findOneAsync<HeroModel>("id", heroId)
                 .onErrorResumeNext {
                     api.fetchHeroes()
-                            .map { transform(it) }
-                            .doOnSuccess { dao.insert(it) }
-                            .flatMap { dao.getById(heroId) }
+                            .map(::transform)
+                            .doOnSuccess { realm.saveOrUpdate(it) }
+                            .flatMap { realm.findOneAsync<HeroModel>("id", heroId) }
                 }
-                .map(mapper)
+                .map { mapper.mapToDomain(it) }
     }
 
     private fun transform(input: List<HeroDto>): List<HeroModel> =

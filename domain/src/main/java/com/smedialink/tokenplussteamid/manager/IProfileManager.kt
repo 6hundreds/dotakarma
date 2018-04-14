@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.manager
 import com.smedialink.tokenplussteamid.entity.Comment
 import com.smedialink.tokenplussteamid.entity.User
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -15,4 +16,6 @@ interface IProfileManager {
     fun getMyProfile(): Single<User>
 
     fun getMyComments(limit: Int? = 5, after: Int? = null): Single<List<Comment>>
+
+    fun getLiveComments() : Observable<List<Comment>>
 }

@@ -1,11 +1,13 @@
 package com.smedialink.tokenplussteamid.data.repository
 
-import com.smedialink.tokenplussteamid.data.dao.MatchDao
+import com.smedialink.tokenplussteamid.data.entity.MatchModel
+import com.smedialink.tokenplussteamid.data.entity.MatchPlayerModel
+import com.smedialink.tokenplussteamid.data.ext.mapList
 import com.smedialink.tokenplussteamid.data.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
+import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import com.smedialink.tokenplussteamid.entity.Match
 import com.smedialink.tokenplussteamid.repository.IMatchRepository
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -14,19 +16,18 @@ import javax.inject.Inject
  */
 class MatchRepository @Inject constructor(
         private val api: DotaKarmaApi,
-        private val dao: MatchDao,
+        private val realm: RealmManager,
         private val mapper: MatchMapper)
     : IMatchRepository {
 
     override fun getRecentMatches(): Single<List<Match>> =
             api.fetchMatches()
-                    .doOnSuccess { dao.insert(it) }
-                    .flatMapObservable { Observable.fromIterable(it) }
-                    .map(mapper)
-                    .toList()
+                    .doOnSuccess { realm.clearTable<MatchPlayerModel>() }
+                    .doOnSuccess { realm.clearTable<MatchModel>() }
+                    .doOnSuccess { realm.saveOrUpdate(it) }
+                    .mapList(mapper::mapToDomain)
 
     override fun getMatchById(matchId: Long): Single<Match> =
-            dao.getById(matchId)
-                    .map(mapper)
-
+            realm.findOneAsync<MatchModel>("matchId", matchId)
+                    .map(mapper::mapToDomain)
 }

@@ -1,14 +1,16 @@
 package com.smedialink.tokenplussteamid.data.manager
 
-import com.smedialink.tokenplussteamid.data.dao.CommentDao
-import com.smedialink.tokenplussteamid.data.dao.UserDao
-import com.smedialink.tokenplussteamid.data.mapper.CommentListMapper
+import com.smedialink.tokenplussteamid.data.entity.CommentModel
+import com.smedialink.tokenplussteamid.data.ext.mapList
+import com.smedialink.tokenplussteamid.data.mapper.CommentMapper
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
+import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import com.smedialink.tokenplussteamid.entity.Comment
 import com.smedialink.tokenplussteamid.entity.User
 import com.smedialink.tokenplussteamid.manager.IProfileManager
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -17,30 +19,41 @@ import javax.inject.Inject
  */
 class ProfileManager @Inject constructor(
         private val api: DotaKarmaApi,
-        private val userDao: UserDao,
-        private val commentsDao: CommentDao,
-        private val commentListMapper: CommentListMapper,
+        private val realm: RealmManager,
+        private val commentMapper: CommentMapper,
         private val userMapper: UserMapper,
-        private val prefsManager: SharedPrefsManager) : IProfileManager {
+        private val prefsManager: SharedPrefsManager)
+    : IProfileManager {
 
     companion object {
         private const val CURRENT_USER_ID_KEY = "current_user_id"
     }
 
     override fun initialFetch(): Completable =
-            if (prefsManager.getInt(CURRENT_USER_ID_KEY) == -1) {
+            if (prefsManager.getInt(CURRENT_USER_ID_KEY) != -1) {
+                Completable.complete()
+            } else {
                 api.fetchMyProfile()
                         .doOnSuccess { prefsManager.putInt(CURRENT_USER_ID_KEY, it.id) }
                         .toCompletable()
-            } else Completable.complete()
-
+            }
 
     override fun getMyComments(limit: Int?, after: Int?): Single<List<Comment>> =
             api.fetchMyComments(limit, after)
-                    .doOnSuccess { commentsDao.insert(it) }
-                    .map { commentListMapper.mapToDomain(it) }
+                    .doOnSuccess { realm.saveOrUpdate(it) }
+                    .mapList(commentMapper::mapToDomain)
 
     override fun getMyProfile(): Single<User> =
             api.fetchMyProfile()
-                    .map { userMapper.mapToDomain(it) }
+                    .doOnSuccess { prefsManager.putInt(CURRENT_USER_ID_KEY, it.id) }
+                    .doOnSuccess { realm.saveOrUpdate(it) }
+                    .map(userMapper::mapToDomain)
+
+    override fun getLiveComments(): Observable<List<Comment>> {
+        val id = prefsManager.getInt(CURRENT_USER_ID_KEY)
+        return realm.observableQuery<CommentModel>("userId", id)
+                .skip(1)
+                .mapList(commentMapper::mapToDomain)
+    }
 }
+

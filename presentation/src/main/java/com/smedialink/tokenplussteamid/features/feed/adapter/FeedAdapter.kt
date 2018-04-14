@@ -3,7 +3,7 @@ package com.smedialink.tokenplussteamid.features.feed.adapter
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
-import com.smedialink.tokenplussteamid.common.lists.LoadMoreDelegate
+import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
 import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.features.feed.entity.CommentFeedUiModel

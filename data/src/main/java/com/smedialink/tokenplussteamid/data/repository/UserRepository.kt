@@ -1,31 +1,26 @@
 package com.smedialink.tokenplussteamid.data.repository
 
-import com.smedialink.tokenplussteamid.data.dao.UserDao
 import com.smedialink.tokenplussteamid.data.mapper.UserMapper
 import com.smedialink.tokenplussteamid.data.network.DotaKarmaApi
 import com.smedialink.tokenplussteamid.entity.User
-import com.smedialink.tokenplussteamid.CachePolicy
 import com.smedialink.tokenplussteamid.repository.IUserRepository
-import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
+/**
+ * Created by six_hundreds on 09.04.18.
+ */
 class UserRepository @Inject constructor(
         private val api: DotaKarmaApi,
-        private val dao: UserDao,
-        private val mapper: UserMapper
-) : IUserRepository {
+        private val userMapper: UserMapper)
+    : IUserRepository {
 
-    override fun getUser(policy: CachePolicy): Single<User> =
-            when (policy) {
-                CachePolicy.LOCAL -> api.fetchMyProfile()
-                CachePolicy.REMOTE -> dao.getUser()
-            }.map { mapper.mapToDomain(it) }
+    override fun getUserById(id: Int): Single<User> {
+        return Single.error(Throwable("ass"))
+    }
 
+    override fun getUserByAccountId(accountId: Long): Single<User> =
+            api.fetchUserByAccountId(accountId)
+                    .map(userMapper::mapToDomain)
 
-    override fun storeUser(user: User): Completable =
-            Completable.fromAction {
-                mapper.mapToData(user)
-                        .let { dao.insert(it) }
-            }
 }

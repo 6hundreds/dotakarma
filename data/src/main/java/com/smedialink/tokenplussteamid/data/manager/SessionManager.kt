@@ -24,6 +24,10 @@ class SessionManager @Inject constructor(private val preferences: SharedPrefsMan
 
     fun getSessionState(): Observable<State> = subject
 
+    fun closeSession() {
+        subject.onNext(State.CLOSED)
+    }
+
     sealed class State {
         object OPENED : State()
         object CLOSED : State()

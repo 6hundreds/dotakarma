@@ -9,5 +9,6 @@ data class User(
         val avatarMedium: String,
         val avatarFull: String,
         val personalState: Int,
-        val realName: String?
+        val realName: String?,
+        val comments: List<Comment>
 )

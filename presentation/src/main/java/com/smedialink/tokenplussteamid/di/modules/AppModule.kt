@@ -7,6 +7,9 @@ import android.preference.PreferenceManager
 import com.smedialink.tokenplussteamid.app.DotaKarma
 import com.smedialink.tokenplussteamid.data.manager.SessionManager
 import com.smedialink.tokenplussteamid.data.manager.SharedPrefsManager
+import com.smedialink.tokenplussteamid.errorhandling.DefaultErrorHandler
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
+import com.smedialink.tokenplussteamid.features.profile.user.UserProfileErrorHandler
 import com.smedialink.tokenplussteamid.manager.IPrefsManager
 import dagger.Binds
 import dagger.Module
@@ -42,6 +45,10 @@ abstract class AppModule {
     @Binds
     @Singleton
     abstract fun providePrefsManager(manager: SharedPrefsManager): IPrefsManager
+
+    @Binds
+    @Singleton
+    abstract fun provideGlobalErrorHandler(handler: DefaultErrorHandler): ErrorHandler
 
     @Binds
     abstract fun application(app: DotaKarma): Application

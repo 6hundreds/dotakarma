@@ -5,6 +5,8 @@ import com.smedialink.tokenplussteamid.base.BasePresenter
 import com.smedialink.tokenplussteamid.di.qualifier.LocalNavigation
 import com.smedialink.tokenplussteamid.entity.Hero
 import com.smedialink.tokenplussteamid.app.AppScreens
+import com.smedialink.tokenplussteamid.base.ErrorHandlerPresenter
+import com.smedialink.tokenplussteamid.errorhandling.ErrorHandler
 import com.smedialink.tokenplussteamid.features.matches.HeroFactory
 import com.smedialink.tokenplussteamid.mapper.MatchMapper
 import com.smedialink.tokenplussteamid.usecase.heroes.GetHeroUseCase
@@ -22,13 +24,17 @@ import javax.inject.Inject
 class MatchDetailsPresenter @Inject constructor(
         private val getHeroUseCase: GetHeroUseCase,
         private val getMatchDetailsUseCase: GetMatchDetailsUseCase,
+        private val mapper: MatchMapper,
         @LocalNavigation private val router: Router,
-        private val mapper: MatchMapper)
-    : BasePresenter<MatchDetailsView>(), HeroFactory {
+        override val errorHandler: ErrorHandler)
+    : ErrorHandlerPresenter<MatchDetailsView>(), HeroFactory {
+
+    override fun getHero(heroId: Int): Single<Hero> =
+            getHeroUseCase.getHero(heroId)
 
     fun getMatchDetails(matchId: Long) {
         getMatchDetailsUseCase.getMatchDetails(matchId)
-                .map(mapper)
+                .map(mapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { viewState.showLoading(true) }
@@ -37,11 +43,8 @@ class MatchDetailsPresenter @Inject constructor(
                         { viewState.showError(it.localizedMessage) })
     }
 
-    override fun getHero(heroId: Int): Single<Hero> =
-            getHeroUseCase.getHero(heroId)
-
-    fun showPlayerProfile(id: Long) {
-        router.navigateTo(AppScreens.USER_PROFILE_SCREEN, id)
+    fun showPlayerProfile(accountId: Long) {
+        router.navigateTo(AppScreens.USER_DETAILS_SCREEN, accountId)
     }
 
     fun onBackPressed() {

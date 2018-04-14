@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.smedialink.tokenplussteamid.app.Layout
-import com.smedialink.tokenplussteamid.common.delegates.ErrorMessageDelegate
+import com.smedialink.tokenplussteamid.errorhandling.ErrorMessageDelegate
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection

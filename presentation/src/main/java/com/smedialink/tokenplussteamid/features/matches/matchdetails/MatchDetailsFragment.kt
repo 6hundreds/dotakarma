@@ -63,7 +63,7 @@ class MatchDetailsFragment
         val matchId = arguments?.getLong(MATCH_ID_KEY, -1L)
                 ?: throw  IllegalArgumentException("matchId must be provided via arguments")
         if (matchId != -1L) {
-            presenter.getMatchDetails(matchId)
+            presenter.getMatchDetails(matchId) //todo move to module
         }
     }
 
@@ -82,8 +82,8 @@ class MatchDetailsFragment
         errorDelegate.showError(error)
     }
 
-    override fun onPlayerClick(id: Long) {
-        presenter.showPlayerProfile(id)
+    override fun onPlayerClick(accountId: Long) {
+        presenter.showPlayerProfile(accountId)
     }
 
     override fun showLoading(show: Boolean) {

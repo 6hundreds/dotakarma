@@ -8,6 +8,8 @@ import com.smedialink.tokenplussteamid.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -22,6 +24,12 @@ class DotaKarma : Application(), HasActivityInjector {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
             Stetho.initializeWithDefaults(this)
+            Realm.init(this)
+
+            val configuration = RealmConfiguration.Builder()
+                    .deleteRealmIfMigrationNeeded()
+                    .build()
+            Realm.setDefaultConfiguration(configuration)
         }
 
         DaggerAppComponent.builder().create(this).inject(this)

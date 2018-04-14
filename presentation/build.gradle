@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'realm-android'
+
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -62,7 +65,7 @@ dependencies {
     implementation presentationDependencies.glideTransformations
     implementation presentationDependencies.topSnackbar
     implementation presentationDependencies.rxBindings
-
+    implementation presentationDependencies.viewAnimator
 
     implementation developmentDependencies.timber
     implementation developmentDependencies.stetho

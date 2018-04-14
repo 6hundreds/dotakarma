@@ -2,4 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tab_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/loader"
+        layout="@layout/layout_loader" />
+
+</FrameLayout>

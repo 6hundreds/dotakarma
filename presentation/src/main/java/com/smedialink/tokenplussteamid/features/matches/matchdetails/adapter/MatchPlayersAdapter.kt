@@ -24,6 +24,6 @@ class MatchPlayersAdapter(onPlayerClickListener: OnPlayerClickListener,
 
     interface OnPlayerClickListener {
 
-        fun onPlayerClick(id: Long)
+        fun onPlayerClick(accountId: Long)
     }
 }

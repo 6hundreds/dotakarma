@@ -8,9 +8,9 @@ import javax.inject.Inject
 /**
  * Created by six_hundreds on 01.02.18.
  */
-class MatchMapper @Inject constructor() : Function<MatchModel, Match> {
+class MatchMapper @Inject constructor() : DataMapper<MatchModel, Match> {
 
-    override fun apply(input: MatchModel): Match =
+    override fun mapToDomain(input: MatchModel): Match =
             Match(input.matchId,
                     input.heroId,
                     input.duration,
@@ -28,5 +28,4 @@ class MatchMapper @Inject constructor() : Function<MatchModel, Match> {
                                 player.personaName)
                     }
             )
-
 }

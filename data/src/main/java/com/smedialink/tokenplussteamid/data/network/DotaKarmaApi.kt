@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.data.network
 
 import com.smedialink.tokenplussteamid.data.entity.*
+import com.smedialink.tokenplussteamid.entity.AnonymousUser
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
@@ -22,9 +23,12 @@ interface DotaKarmaApi {
     @GET("users/byAccountId/{accountId}")
     fun fetchUserByAccountId(@Path("accountId") accountId: Long): Single<UserModel>
 
+    @GET("dota/players/{accountId}")
+    fun findAnonymousUser(@Path("accountId") accountId: Long): Single<AnonymousUser>
+
     @POST("comments/for-anonymous")
     @FormUrlEncoded
-    fun sendCommentForAnonymous(@Field("steam_id") steamId: Long,
+    fun sendCommentForAnonymous(@Field("accountId") accountId: Long,
                                 @Field("content") content: String): Completable
 
     @POST("comments/{commentId}/reply")

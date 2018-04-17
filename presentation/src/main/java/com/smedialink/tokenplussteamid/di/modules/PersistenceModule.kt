@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.di.modules
 
+import com.smedialink.tokenplussteamid.data.caching.CacheManager
 import com.smedialink.tokenplussteamid.data.persistence.RealmManager
 import dagger.Module
 import dagger.Provides
@@ -14,5 +15,9 @@ class PersistenceModule {
     @Provides
     @Singleton
     fun provideDbManager(): RealmManager = RealmManager()
+
+    @Provides
+    @Singleton
+    fun provideCacheManager(): CacheManager = CacheManager()
 
 }

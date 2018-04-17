@@ -33,7 +33,7 @@ class DefaultErrorHandler @Inject constructor(private val resourceManager: Resou
             is IOException -> {
                 resourceManager.getString(R.string.error_network)
             }
-            else -> resourceManager.getString(R.string.error_unknown)
+            else -> error.localizedMessage
         }
 
         view.showError(message)

@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorTest"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_common_normal">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -19,7 +18,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/padding_common_normal"
+        android:paddingStart="@dimen/padding_common_normal">
 
         <EditText
             android:id="@+id/field_account_id"
@@ -35,36 +36,60 @@
             android:paddingTop="@dimen/padding_common_small"
             android:textSize="24sp" />
 
-        <ImageButton
-            android:id="@+id/button_validate"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/padding_common_normal"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_send_message" />
+            android:layout_marginStart="@dimen/padding_common_normal">
+
+            <ImageButton
+                android:id="@+id/button_validate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_send_message" />
+
+            <include
+                android:id="@+id/loader_validation"
+                layout="@layout/layout_loader" />
+
+        </FrameLayout>
+
 
     </LinearLayout>
 
-
-    <EditText
-        android:id="@+id/field_comment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/padding_common_large"
-        android:layout_marginTop="@dimen/padding_common_large"
-        android:layout_weight="1"
-        android:alpha="0.5"
-        android:background="@drawable/bg_rounded_rectangle"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/button_send"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.5"
-        android:text="Send comment" />
+        android:layout_marginTop="@dimen/padding_common_large"
+        android:gravity="center"
+        android:text="Now you can leave the comment for this guy" />
+
+    <ImageView
+        android:id="@+id/image_avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/padding_common_large" />
+
+    <TextView
+        android:id="@+id/text_personaname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/padding_common_large" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.smedialink.tokenplussteamid.views.InputCommentView
+        android:id="@+id/field_comment_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
 
 </LinearLayout>

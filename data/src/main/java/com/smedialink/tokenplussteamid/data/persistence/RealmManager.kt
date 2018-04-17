@@ -70,6 +70,18 @@ class RealmManager {
                 }
             })
 
+    inline fun <reified T : RealmModel> findAllAsync(): Single<List<T>> =
+            Single.create({ emitter ->
+                with(Realm.getDefaultInstance()) {
+                    where<T>()
+                            .findAll()
+                            ?.let { emitter.onSuccess(copyFromRealm(it)) }
+                            ?: emitter.onError(RealmException("Can't find ${T::class} in Realm"))
+                    close()
+                }
+            })
+
+
     inline fun <reified T : RealmModel> observableQuery(field: String, value: Int): Observable<List<T>> =
             Observable.create({ emitter ->
                 with(Realm.getDefaultInstance()) {

@@ -8,6 +8,8 @@ import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListene
 import com.smedialink.tokenplussteamid.features.profile.list.ReplyToCommentDelegate
 import com.smedialink.tokenplussteamid.features.profile.user.adapter.NewCommentDelegate
 import com.smedialink.tokenplussteamid.features.userprofile.entity.NewCommentHeader
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by six_hundreds on 08.02.18.
@@ -18,8 +20,9 @@ class UserProfileAdapter(commentClickListener: CommentClickListener,
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {
-        delegatesManager.addDelegate(CommentProfileDelegate(commentClickListener))
-        delegatesManager.addDelegate(ReplyToCommentDelegate(commentClickListener))
+        val dateFormat = SimpleDateFormat("dd MMM yyyy hh:mm", Locale.getDefault())
+        delegatesManager.addDelegate(CommentProfileDelegate(commentClickListener, dateFormat))
+        delegatesManager.addDelegate(ReplyToCommentDelegate(commentClickListener, dateFormat))
         delegatesManager.addDelegate(NewCommentDelegate(newCommentClickListener))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())

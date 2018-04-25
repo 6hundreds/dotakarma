@@ -15,6 +15,12 @@ interface DotaKarmaApi {
     fun fetchMyComments(@Query("limit") limit: Int?,
                         @Query("after") after: Int?): Single<List<CommentModel>>
 
+    @PUT("users/{accountId}/karmaUp")
+    fun karmaUp(@Path("accountId") accountId: Long): Completable
+
+    @PUT("users/{accountId}/karmaDown")
+    fun karmaDown(@Path("accountId") accountId: Long): Completable
+
     @GET("comments")
     fun fetchComments(@Query("limit") limit: Int?,
                       @Query("after") after: Int?,

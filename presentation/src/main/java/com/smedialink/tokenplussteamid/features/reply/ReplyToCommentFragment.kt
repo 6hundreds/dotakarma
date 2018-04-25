@@ -60,7 +60,7 @@ class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView {
     override fun showComment(comment: Comment) {
         comment_author.text = comment.authorId.toString()
         comment_content.text = comment.content
-        comment_date.text = comment.createdAt
+        comment_date.text = comment.createdAt.toString()
     }
 
     override fun initUi() {

@@ -27,5 +27,9 @@ class UserRepository @Inject constructor(
 
     override fun findAnonymousUser(accountId: Long): Single<AnonymousUser> = api.findAnonymousUser(accountId)
 
+    override fun incrementKarma(accountId: Long): Completable = api.karmaUp(accountId)
+
+    override fun decrementKarma(accountId: Long): Completable = api.karmaDown(accountId)
+
 
 }

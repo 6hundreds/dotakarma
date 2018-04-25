@@ -11,6 +11,7 @@ import com.smedialink.tokenplussteamid.mapper.CommentProfileMapper
 import com.smedialink.tokenplussteamid.mapper.UserMapper
 import com.smedialink.tokenplussteamid.usecase.comments.GetCommentsForUserUseCase
 import com.smedialink.tokenplussteamid.usecase.users.GetUserByAccountIdUseCase
+import com.smedialink.tokenplussteamid.usecase.users.KarmaUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -25,6 +26,7 @@ import javax.inject.Inject
 class UserProfilePresenter @Inject constructor(
         private val getUserByAccountIdUseCase: GetUserByAccountIdUseCase,
         private val getCommentsForUserUseCase: GetCommentsForUserUseCase,
+        private val karmaUseCase: KarmaUseCase,
         private val currentAccountId: Long,
         private val userMapper: UserMapper,
         private val commentsMapper: CommentProfileMapper,
@@ -57,6 +59,17 @@ class UserProfilePresenter @Inject constructor(
                 .doOnSubscribe { viewState.showLoading(true) }
                 .doFinally { viewState.showLoading(false) }
                 .subscribe({ viewState.showProfile(it) }, { errorHandler.proceed(it) })
+                .addTo(disposables)
+    }
+
+    fun karmaUp() {
+        karmaUseCase.karmaUp(currentAccountId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { viewState.showLoading(true) }
+                .doFinally { viewState.showLoading(false) }
+                .subscribe({ viewState.showError("Ok") },
+                        { errorHandler.proceed(it) })
                 .addTo(disposables)
     }
 }

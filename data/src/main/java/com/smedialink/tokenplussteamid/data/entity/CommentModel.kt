@@ -12,7 +12,7 @@ open class CommentModel(
         @SerializedName("rating")
         var rating: Int = 0,
         @SerializedName("createdAt")
-        var createdAt: String = "",
+        var createdAt: Long = 0,
         @SerializedName("author_id")
         var authorId: Int = 0,
         @SerializedName("user_id")

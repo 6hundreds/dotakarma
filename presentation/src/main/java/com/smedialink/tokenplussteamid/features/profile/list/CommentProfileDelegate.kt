@@ -12,11 +12,15 @@ import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
 import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
 import kotlinx.android.synthetic.main.item_feed_comment.view.*
 import kotlinx.android.synthetic.main.layout_highlighter.view.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by six_hundreds on 08.02.18.
  */
-class CommentProfileDelegate(private val listener: CommentClickListener)
+class CommentProfileDelegate(private val listener: CommentClickListener,
+                             private val dateFormat: DateFormat)
     : AbsListItemAdapterDelegate<CommentProfileUiModel,
         HeterogeneousItem,
         CommentProfileDelegate.CommentViewHolder>() {
@@ -50,11 +54,10 @@ class CommentProfileDelegate(private val listener: CommentClickListener)
         fun bind(comment: CommentProfileUiModel) {
             with(itemView) {
                 comment_author.text = comment.authorId.toString()
-                comment_date.text = comment.createdAt
+                comment_date.text = dateFormat.format(comment.createdAt)
                 comment_content.text = comment.content
                 setOnClickListener { listener.onCommentClick(comment.id) }
             }
         }
     }
-
 }

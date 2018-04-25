@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.errorhandling
 
+import com.google.gson.Gson
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.CanShowError
 import com.smedialink.tokenplussteamid.common.ext.weak
@@ -28,12 +29,12 @@ class DefaultErrorHandler @Inject constructor(private val resourceManager: Resou
             is HttpException -> when (error.code()) {
                 401 -> resourceManager.getString(R.string.error_unauthorized)
                 500 -> resourceManager.getString(R.string.error_server)
-                else -> resourceManager.getString(R.string.error_unknown)
+                else -> extractErrorMessage(error)
             }
             is IOException -> {
                 resourceManager.getString(R.string.error_network)
             }
-            else -> error.localizedMessage
+            else -> resourceManager.getString(R.string.error_unknown)
         }
 
         view.showError(message)
@@ -46,4 +47,9 @@ class DefaultErrorHandler @Inject constructor(private val resourceManager: Resou
     override fun detachView() {
         view.clear()
     }
+
+    private fun extractErrorMessage(error: HttpException): String =
+            error.response().errorBody()?.let { body ->
+                Gson().fromJson(body.string(), ServerError::class.java).message
+            } ?: resourceManager.getString(R.string.error_unknown)
 }

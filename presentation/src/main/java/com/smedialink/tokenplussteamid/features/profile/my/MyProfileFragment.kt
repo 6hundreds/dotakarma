@@ -13,6 +13,7 @@ import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.common.ext.highlightPosition
 import com.smedialink.tokenplussteamid.common.ext.setVisible
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.VerticalSpaceDecoration
 import com.smedialink.tokenplussteamid.features.profile.entity.UserUiModel
 import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListener
 import com.smedialink.tokenplussteamid.features.profile.my.adapter.MyProfileAdapter
@@ -46,6 +47,7 @@ class MyProfileFragment
         with(list_comments) {
             adapter = commentsAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(VerticalSpaceDecoration(R.dimen.padding_common_normal))
             setHasFixedSize(true)
         }
 

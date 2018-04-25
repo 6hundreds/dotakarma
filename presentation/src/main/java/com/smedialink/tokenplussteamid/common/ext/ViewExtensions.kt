@@ -21,7 +21,7 @@ fun View.setVisible(visible: Boolean) {
 fun RecyclerView.highlightPosition(position: Int) {
     smoothScrollToPosition(position)
     addOnScrollListener(object : RecyclerView.OnScrollListener() {
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 (findViewHolderForAdapterPosition(position)
                         as? HighlightableItem

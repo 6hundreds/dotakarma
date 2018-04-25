@@ -12,12 +12,14 @@ import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
 import com.smedialink.tokenplussteamid.features.profile.entity.ReplyProfileUiModel
 import kotlinx.android.synthetic.main.item_profile_reply.view.*
 import kotlinx.android.synthetic.main.layout_highlighter.view.*
+import java.text.DateFormat
 
 
 /**
  * Created by six_hundreds on 30.03.18.
  */
-class ReplyToCommentDelegate(private val listener: CommentClickListener)
+class ReplyToCommentDelegate(private val listener: CommentClickListener,
+                             private val dateFormat: DateFormat)
     : AbsListItemAdapterDelegate<ReplyProfileUiModel,
         HeterogeneousItem,
         ReplyToCommentDelegate.ReplyViewHolder>() {
@@ -52,11 +54,11 @@ class ReplyToCommentDelegate(private val listener: CommentClickListener)
         fun bind(reply: ReplyProfileUiModel) {
             with(itemView) {
                 comment_author.text = reply.authorId.toString()
-                comment_date.text = reply.createdAt
+                comment_date.text = dateFormat.format(reply.createdAt)
                 comment_content.text = reply.content
                 comment_parent.text = reply.parentContent
                 setOnClickListener { listener.onCommentClick(reply.id) }
-                parent_group.setOnClickListener { listener.onParentClick(reply.parentId) }
+                comment_parent.setOnClickListener { listener.onParentClick(reply.parentId) }
             }
         }
     }

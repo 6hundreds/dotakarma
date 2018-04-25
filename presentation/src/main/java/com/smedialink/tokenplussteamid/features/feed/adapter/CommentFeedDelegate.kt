@@ -9,6 +9,8 @@ import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.features.feed.entity.CommentFeedUiModel
 import kotlinx.android.synthetic.main.item_feed_comment.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by six_hundreds on 28.01.18.
@@ -21,6 +23,8 @@ class CommentFeedDelegate
         return CommentViewHolder(view)
     }
 
+
+
     override fun isForViewType(item: HeterogeneousItem,
                                items: MutableList<HeterogeneousItem>,
                                position: Int): Boolean =
@@ -32,13 +36,14 @@ class CommentFeedDelegate
             viewHolder.bind(item)
 
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val dateFormat = SimpleDateFormat("dd-MMM-yy hh:mm", Locale.getDefault())
 
-        fun bind(commentFeedUiModel: CommentFeedUiModel) {
+        fun bind(comment: CommentFeedUiModel) {
             with(itemView) {
-                comment_author.text = String.format("%s about ", commentFeedUiModel.authorId.toString())
-                commented_user.text = commentFeedUiModel.userId.toString()
-                comment_date.text = commentFeedUiModel.createdAt
-                comment_content.text = commentFeedUiModel.content
+                comment_author.text = String.format("%s about ", comment.authorId.toString())
+                commented_user.text = comment.userId.toString()
+                comment_date.text = dateFormat.format(comment.createdAt)
+                comment_content.text = comment.content
             }
         }
     }

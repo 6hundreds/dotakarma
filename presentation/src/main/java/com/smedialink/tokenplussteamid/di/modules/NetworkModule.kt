@@ -16,25 +16,25 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = "https://aa0efc55.ngrok.io/api/"
+        private const val BASE_URL = "https://48d83308.ngrok.io/api/"
     }
 
     @Provides
     @Singleton
     fun provideClient(settingsManager: SessionManager): OkHttpClient =
-        OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
-            .addInterceptor(AuthInterceptor(settingsManager))
-            .build()
+            OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
+                    .addInterceptor(AuthInterceptor(settingsManager))
+                    .build()
 
     @Provides
     @Singleton
     fun provideDotaKarmaApi(client: OkHttpClient): DotaKarmaApi =
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(client)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(DotaKarmaApi::class.java)
+            Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(client)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(DotaKarmaApi::class.java)
 }

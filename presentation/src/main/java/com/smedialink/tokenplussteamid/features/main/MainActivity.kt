@@ -97,30 +97,35 @@ class MainActivity : BaseActivity(), MainView {
     private fun initContainers() {
         with(supportFragmentManager) {
 
-            matchContainer = findFragmentByTag("matches_container") as MatchesContainerFragment? ?: MatchesContainerFragment.newInstance("matches_container").also {
+            matchContainer = findFragmentByTag("matches_container")
+                    as MatchesContainerFragment?
+                    ?: MatchesContainerFragment.newInstance("matches_container").also { container ->
                 beginTransaction()
-                        .add(R.id.home_tabs_container, it, "matches_container")
-                        .detach(it)
+                        .add(R.id.home_tabs_container, container, container.containerTag)
+                        .detach(container)
                         .commitNow()
             }
 
-
-            feedContainer = findFragmentByTag("feed_container") as FeedContainerFragment? ?: FeedContainerFragment.newInstance("feed_container").also {
+            feedContainer = findFragmentByTag("feed_container")
+                    as FeedContainerFragment?
+                    ?: FeedContainerFragment.newInstance("feed_container").also { container ->
                 beginTransaction()
-                        .add(R.id.home_tabs_container, it, "feed_container")
-                        .detach(it)
+                        .add(R.id.home_tabs_container, container, container.containerTag)
+                        .detach(container)
                         .commitNow()
             }
 
-            profileContainer = findFragmentByTag("profile_container") as ProfileContainerFragment? ?: ProfileContainerFragment.newInstance("profile_container").also {
+            profileContainer = findFragmentByTag("profile_container")
+                    as ProfileContainerFragment?
+                    ?: ProfileContainerFragment.newInstance("profile_container").also { container ->
                 beginTransaction()
-                        .add(R.id.home_tabs_container, it, "profile_container")
-                        .detach(it)
+                        .add(R.id.home_tabs_container, container, container.containerTag)
+                        .detach(container)
                         .commitNow()
             }
+
         }
     }
-
 
     override fun onPause() {
         super.onPause()
@@ -134,11 +139,11 @@ class MainActivity : BaseActivity(), MainView {
 
     private fun initUi() {
 
-        home_bottom_navigation.setDefaultBackgroundResource(R.drawable.bg_purple_gradient)
+        home_bottom_navigation.setDefaultBackgroundResource(R.color.colorPrimary)
 
-        val tabItemFeed = AHBottomNavigationItem(getString(R.string.action_feed), R.drawable.ic_comment)
+        val tabItemFeed = AHBottomNavigationItem(getString(R.string.action_feed), R.drawable.ic_feed)
         val tabItemProfile = AHBottomNavigationItem(getString(R.string.action_profile), R.drawable.ic_person)
-        val tabItemPMatches = AHBottomNavigationItem(getString(R.string.action_matches), R.drawable.ic_star)
+        val tabItemPMatches = AHBottomNavigationItem(getString(R.string.action_matches), R.drawable.ic_dota)
 
         home_bottom_navigation.addItems(listOf(tabItemFeed, tabItemProfile, tabItemPMatches))
         home_bottom_navigation.titleState = AHBottomNavigation.TitleState.SHOW_WHEN_ACTIVE

@@ -8,7 +8,7 @@ import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 data class ReplyProfileUiModel(val id: Int,
                                val content: String,
                                val rating: Int,
-                               val createdAt: String,
+                               val createdAt: Long,
                                val authorId: Int,
                                val parentContent: String,
                                val parentId: Int) : HeterogeneousItem {

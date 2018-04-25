@@ -19,6 +19,10 @@ import javax.inject.Inject
 @Layout(R.layout.fragment_tab_container)
 abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
 
+    protected companion object {
+        const val CONTAINER_TAG_KEY = "container_tag"
+    }
+
     @Inject
     lateinit var navigatorHolder: LocalNavigatorHolder
 
@@ -28,19 +32,15 @@ abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
-    private val containerTag: String
+    val router: Router
+        get() = cicerone.router
+
+    val containerTag: String
         get() = arguments?.getString(CONTAINER_TAG_KEY)
                 ?: throw IllegalArgumentException("Container tag must be provided via arguments")
 
     private val cicerone: Cicerone<Router>
         get() = navigatorHolder.getCicerone(containerTag)
-
-    val router: Router
-        get() = cicerone.router
-
-    protected companion object {
-        const val CONTAINER_TAG_KEY = "container_tag"
-    }
 
     override fun onResume() {
         super.onResume()
@@ -53,5 +53,4 @@ abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector
-
 }

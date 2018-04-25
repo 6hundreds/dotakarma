@@ -12,4 +12,8 @@ interface IUserRepository {
     fun getUserByAccountId(accountId: Long): Single<User>
 
     fun findAnonymousUser(accountId: Long): Single<AnonymousUser>
+
+    fun incrementKarma(accountId: Long): Completable
+
+    fun decrementKarma(accountId: Long): Completable
 }

@@ -20,6 +20,7 @@ class UserProfileErrorHandler @Inject constructor(
         when (error) {
             is HttpException -> when (error.code()) {
                 404 -> router.replaceScreen(AppScreens.USER_UNREGISTERED_SCREEN)
+                else -> defaultErrorHandler.proceed(error)
             }
             else -> defaultErrorHandler.proceed(error)
         }

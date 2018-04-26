@@ -13,8 +13,8 @@ open class CommentModel(
         var rating: Int = 0,
         @SerializedName("createdAt")
         var createdAt: Long = 0,
-        @SerializedName("author_id")
-        var authorId: Int = 0,
+        @SerializedName("author")
+        var author: CommentAuthorModel? = null,
         @SerializedName("user_id")
         var userId: Int = 0,
         @SerializedName("replyTo")

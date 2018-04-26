@@ -9,7 +9,8 @@ data class CommentFeedUiModel(val id: Int,
                               val content: String,
                               val rating: Int,
                               val createdAt: Long,
-                              val authorId: Int,
+                              val authorName: String,
+                              val authorAvatar: String,
                               val userId: Int) : HeterogeneousItem {
     override fun getItemId(): Long = id.toLong()
 }

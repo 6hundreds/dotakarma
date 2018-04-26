@@ -9,6 +9,7 @@ data class CommentProfileUiModel(val id: Int,
                                  val content: String,
                                  val rating: Int,
                                  val createdAt: Long,
-                                 val authorId: Int) : HeterogeneousItem {
+                                 val authorName: String,
+                                 val authorAvatar: String) : HeterogeneousItem {
     override fun getItemId(): Long = id.toLong()
 }

@@ -17,7 +17,8 @@ class CommentProfileMapper @Inject constructor() : UiMapper<HeterogeneousItem, C
                         input.content,
                         input.rating,
                         input.createdAt,
-                        input.authorId,
+                        input.authorName,
+                        input.authorAvatar,
                         parent.content,
                         parent.id
                 )
@@ -26,7 +27,6 @@ class CommentProfileMapper @Inject constructor() : UiMapper<HeterogeneousItem, C
                     input.content,
                     input.rating,
                     input.createdAt,
-                    input.authorId)
-
-
+                    input.authorName,
+                    input.authorAvatar)
 }

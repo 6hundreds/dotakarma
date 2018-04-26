@@ -15,14 +15,16 @@ class CommentMapper @Inject constructor() : DataMapper<CommentModel, Comment> {
                     input.content,
                     input.rating,
                     input.createdAt,
-                    input.authorId,
+                    input.author?.name ?: "Anonymous",
+                    input.author?.avatar ?: "",
                     input.userId,
                     input.replyTo?.let { parent ->
                         Comment(parent.id,
                                 parent.content,
                                 parent.rating,
                                 parent.createdAt,
-                                parent.authorId,
+                                input.author?.name ?: "Anonymous",
+                                input.author?.avatar ?: "",
                                 parent.userId)
                     })
 }

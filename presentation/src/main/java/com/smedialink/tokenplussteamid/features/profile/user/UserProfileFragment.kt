@@ -50,7 +50,7 @@ class UserProfileFragment
 
     override fun initUi() {
         glide = Glide.with(this)
-        commentsAdapter = UserProfileAdapter(this, this, presenter)
+        commentsAdapter = UserProfileAdapter(this, this, presenter, glide)
         with(list_comments) {
             adapter = commentsAdapter
             layoutManager = LinearLayoutManager(context)

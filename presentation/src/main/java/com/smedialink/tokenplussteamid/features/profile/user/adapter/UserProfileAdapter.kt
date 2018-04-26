@@ -1,5 +1,6 @@
 package com.smedialink.tokenplussteamid.features.userprofile.adapter
 
+import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.smedialink.tokenplussteamid.common.lists.*
 import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDelegate
@@ -16,13 +17,14 @@ import java.util.*
  */
 class UserProfileAdapter(commentClickListener: CommentClickListener,
                          newCommentClickListener: NewCommentClickListener,
-                         paginator: Paginator<HeterogeneousItem>)
+                         paginator: Paginator<HeterogeneousItem>,
+                         glide: RequestManager)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {
-        val dateFormat = SimpleDateFormat("dd MMM yyyy hh:mm", Locale.getDefault())
-        delegatesManager.addDelegate(CommentProfileDelegate(commentClickListener, dateFormat))
-        delegatesManager.addDelegate(ReplyToCommentDelegate(commentClickListener, dateFormat))
+        val dateFormat = SimpleDateFormat("dd MMM yyyy hh:mm", Locale.US)
+        delegatesManager.addDelegate(CommentProfileDelegate(commentClickListener, dateFormat, glide))
+        delegatesManager.addDelegate(ReplyToCommentDelegate(commentClickListener, dateFormat, glide))
         delegatesManager.addDelegate(NewCommentDelegate(newCommentClickListener))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))
         setItems(mutableListOf())

@@ -16,7 +16,8 @@ class CommentFeedMapper @Inject constructor() : UiMapper<CommentFeedUiModel, Com
                     input.content,
                     input.rating,
                     input.createdAt,
-                    input.authorId,
+                    input.authorName,
+                    input.authorAvatar,
                     input.userId)
 
 }

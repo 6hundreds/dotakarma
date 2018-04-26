@@ -3,6 +3,9 @@ package com.smedialink.tokenplussteamid.features.profile.list
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.github.florent37.viewanimator.ViewAnimator
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
@@ -10,17 +13,16 @@ import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
 import com.smedialink.tokenplussteamid.features.profile.entity.CommentProfileUiModel
-import kotlinx.android.synthetic.main.item_feed_comment.view.*
+import kotlinx.android.synthetic.main.item_profile_comment.view.*
 import kotlinx.android.synthetic.main.layout_highlighter.view.*
 import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by six_hundreds on 08.02.18.
  */
 class CommentProfileDelegate(private val listener: CommentClickListener,
-                             private val dateFormat: DateFormat)
+                             private val dateFormat: DateFormat,
+                             private val glide: RequestManager)
     : AbsListItemAdapterDelegate<CommentProfileUiModel,
         HeterogeneousItem,
         CommentProfileDelegate.CommentViewHolder>() {
@@ -53,10 +55,17 @@ class CommentProfileDelegate(private val listener: CommentClickListener,
 
         fun bind(comment: CommentProfileUiModel) {
             with(itemView) {
-                comment_author.text = comment.authorId.toString()
+                comment_author.text = comment.authorAvatar
                 comment_date.text = dateFormat.format(comment.createdAt)
                 comment_content.text = comment.content
+
+                glide.load(comment.authorAvatar)
+                        .apply(RequestOptions.bitmapTransform(
+                                RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_common))))
+                        .into(comment_author_avatar)
+
                 setOnClickListener { listener.onCommentClick(comment.id) }
+
             }
         }
     }

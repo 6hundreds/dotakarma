@@ -4,7 +4,12 @@
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
             android:shape="rectangle">
             <solid android:color="#19ffffff" />
-            <corners android:radius="@dimen/corner_radius_common" />
+            <corners
+                android:topLeftRadius="@dimen/corner_radius_half"
+                android:bottomLeftRadius="@dimen/corner_radius_half"
+                android:topRightRadius="@dimen/corner_radius_half"
+                android:bottomRightRadius="@dimen/corner_radius_half"
+                 />
         </shape>
     </item>
 
@@ -14,7 +19,7 @@
             <solid android:color="#65a64a" />
             <corners android:topLeftRadius="@dimen/corner_radius_common"
                 android:bottomLeftRadius="@dimen/corner_radius_common"/>
-            <size android:width="@dimen/corner_radius_common"/>
+            <size android:width="@dimen/corner_radius_half"/>
         </shape>
     </item>
 </layer-list>

@@ -40,7 +40,7 @@ class CommentFeedDelegate
 
         fun bind(comment: CommentFeedUiModel) {
             with(itemView) {
-                comment_author.text = String.format("%s about ", comment.authorId.toString())
+                comment_author.text = String.format("%s about ", comment.authorName)
                 commented_user.text = comment.userId.toString()
                 comment_date.text = dateFormat.format(comment.createdAt)
                 comment_content.text = comment.content

@@ -3,12 +3,12 @@ package com.smedialink.tokenplussteamid.features.profile.list
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.github.florent37.viewanimator.ViewAnimator
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.app.GlideRequests
 import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
@@ -22,7 +22,7 @@ import java.text.DateFormat
  */
 class CommentProfileDelegate(private val listener: CommentClickListener,
                              private val dateFormat: DateFormat,
-                             private val glide: RequestManager)
+                             private val glide: GlideRequests)
     : AbsListItemAdapterDelegate<CommentProfileUiModel,
         HeterogeneousItem,
         CommentProfileDelegate.CommentViewHolder>() {
@@ -55,13 +55,14 @@ class CommentProfileDelegate(private val listener: CommentClickListener,
 
         fun bind(comment: CommentProfileUiModel) {
             with(itemView) {
-                comment_author.text = comment.authorAvatar
+                comment_author.text = comment.authorName
                 comment_date.text = dateFormat.format(comment.createdAt)
                 comment_content.text = comment.content
 
                 glide.load(comment.authorAvatar)
                         .apply(RequestOptions.bitmapTransform(
                                 RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_common))))
+                        .placeholder(R.drawable.ic_dota)
                         .into(comment_author_avatar)
 
                 setOnClickListener { listener.onCommentClick(comment.id) }

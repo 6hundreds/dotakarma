@@ -9,6 +9,8 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.app.GlideApp
+import com.smedialink.tokenplussteamid.app.GlideRequests
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.common.ext.highlightPosition
 import com.smedialink.tokenplussteamid.common.ext.setVisible
@@ -37,12 +39,12 @@ class MyProfileFragment
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    private lateinit var glide: RequestManager
+    private lateinit var glide: GlideRequests
 
     private lateinit var commentsAdapter: MyProfileAdapter
 
     override fun initUi() {
-        glide = Glide.with(this)
+        glide = GlideApp.with(this)
         commentsAdapter = MyProfileAdapter(this, presenter, glide)
         with(list_comments) {
             adapter = commentsAdapter

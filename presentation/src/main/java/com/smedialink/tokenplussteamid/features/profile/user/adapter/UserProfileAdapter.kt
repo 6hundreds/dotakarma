@@ -2,6 +2,7 @@ package com.smedialink.tokenplussteamid.features.userprofile.adapter
 
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
+import com.smedialink.tokenplussteamid.app.GlideRequests
 import com.smedialink.tokenplussteamid.common.lists.*
 import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDelegate
 import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
@@ -18,7 +19,7 @@ import java.util.*
 class UserProfileAdapter(commentClickListener: CommentClickListener,
                          newCommentClickListener: NewCommentClickListener,
                          paginator: Paginator<HeterogeneousItem>,
-                         glide: RequestManager)
+                         glide: GlideRequests)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {

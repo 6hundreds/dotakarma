@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.github.florent37.viewanimator.ViewAnimator
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
 import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.app.GlideRequests
 import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.common.lists.HighlightableItem
@@ -23,7 +24,7 @@ import java.text.DateFormat
  */
 class ReplyToCommentDelegate(private val listener: CommentClickListener,
                              private val dateFormat: DateFormat,
-                             private val glide: RequestManager)
+                             private val glide: GlideRequests)
     : AbsListItemAdapterDelegate<ReplyProfileUiModel,
         HeterogeneousItem,
         ReplyToCommentDelegate.ReplyViewHolder>() {
@@ -65,6 +66,7 @@ class ReplyToCommentDelegate(private val listener: CommentClickListener,
                 glide.load(reply.authorAvatar)
                         .apply(RequestOptions.bitmapTransform(
                                 RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_half))))
+                        .placeholder(R.drawable.ic_dota)
                         .into(comment_author_avatar)
 
                 setOnClickListener { listener.onCommentClick(reply.id) }

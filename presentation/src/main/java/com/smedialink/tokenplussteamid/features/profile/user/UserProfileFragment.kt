@@ -10,6 +10,8 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.smedialink.tokenplussteamid.R
+import com.smedialink.tokenplussteamid.app.GlideApp
+import com.smedialink.tokenplussteamid.app.GlideRequests
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.base.BaseFragment
 import com.smedialink.tokenplussteamid.common.ext.highlightPosition
@@ -44,12 +46,12 @@ class UserProfileFragment
     @ProvidePresenter
     fun providePresenter() = presenter
 
-    private lateinit var glide: RequestManager
+    private lateinit var glide: GlideRequests
 
     private lateinit var commentsAdapter: UserProfileAdapter
 
     override fun initUi() {
-        glide = Glide.with(this)
+        glide = GlideApp.with(this)
         commentsAdapter = UserProfileAdapter(this, this, presenter, glide)
         with(list_comments) {
             adapter = commentsAdapter

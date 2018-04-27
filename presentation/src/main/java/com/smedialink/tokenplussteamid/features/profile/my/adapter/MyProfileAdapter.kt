@@ -1,11 +1,13 @@
 package com.smedialink.tokenplussteamid.features.profile.my.adapter
 
-import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
-import com.smedialink.tokenplussteamid.common.lists.*
-import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDelegate
+import com.smedialink.tokenplussteamid.app.GlideRequests
+import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
+import com.smedialink.tokenplussteamid.common.lists.LoadMoreFooter
+import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListener
+import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDelegate
 import com.smedialink.tokenplussteamid.features.profile.list.ReplyToCommentDelegate
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,7 +17,7 @@ import java.util.*
  */
 class MyProfileAdapter(commentClickListener: CommentClickListener,
                        paginator: Paginator<HeterogeneousItem>,
-                       glide: RequestManager)
+                       glide: GlideRequests)
     : ListDelegationAdapter<MutableList<HeterogeneousItem>>() {
 
     init {

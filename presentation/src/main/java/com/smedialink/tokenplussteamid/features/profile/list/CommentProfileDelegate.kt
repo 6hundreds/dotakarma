@@ -61,7 +61,7 @@ class CommentProfileDelegate(private val listener: CommentClickListener,
 
                 glide.load(comment.authorAvatar)
                         .apply(RequestOptions.bitmapTransform(
-                                RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_common))))
+                                RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_half))))
                         .placeholder(R.drawable.ic_dota)
                         .into(comment_author_avatar)
 

@@ -66,6 +66,7 @@ dependencies {
     implementation presentationDependencies.topSnackbar
     implementation presentationDependencies.rxBindings
     implementation presentationDependencies.viewAnimator
+    implementation presentationDependencies.spark
 
     implementation developmentDependencies.timber
     implementation developmentDependencies.stetho

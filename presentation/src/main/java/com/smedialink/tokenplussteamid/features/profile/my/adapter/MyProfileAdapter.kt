@@ -8,6 +8,7 @@ import com.smedialink.tokenplussteamid.common.lists.Paginator
 import com.smedialink.tokenplussteamid.common.lists.delegates.LoadMoreDelegate
 import com.smedialink.tokenplussteamid.features.profile.list.CommentClickListener
 import com.smedialink.tokenplussteamid.features.profile.list.CommentProfileDelegate
+import com.smedialink.tokenplussteamid.features.profile.list.ProfileHeaderDelegate
 import com.smedialink.tokenplussteamid.features.profile.list.ReplyToCommentDelegate
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +23,7 @@ class MyProfileAdapter(commentClickListener: CommentClickListener,
 
     init {
         val dateFormat = SimpleDateFormat("dd MMM yyyy hh:mm", Locale.US)
+        delegatesManager.addDelegate(ProfileHeaderDelegate(glide))
         delegatesManager.addDelegate(CommentProfileDelegate(commentClickListener, dateFormat, glide))
         delegatesManager.addDelegate(ReplyToCommentDelegate(commentClickListener, dateFormat, glide))
         delegatesManager.addDelegate(LoadMoreDelegate(paginator))

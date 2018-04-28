@@ -94,12 +94,7 @@ class UserProfileFragment
     }
 
     override fun showProfile(user: UserUiModel) {
-        glide.load(user.avatarFull)
-                .apply(RequestOptions.bitmapTransform(RoundedCorners(20)))
-                .into(image_avatar)
-        text_karma.text = "Karma ${user.karma}"
-        text_personaname.text = user.personaName
-        commentsAdapter.refreshItems(user.comments)
+        commentsAdapter.refreshItems(user.meta)
     }
 
     override fun showComments(items: List<HeterogeneousItem>) {

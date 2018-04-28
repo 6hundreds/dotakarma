@@ -4,10 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.GlideApp
 import com.smedialink.tokenplussteamid.app.GlideRequests
@@ -83,12 +79,7 @@ class MyProfileFragment
     }
 
     override fun showProfile(user: UserUiModel) {
-        glide.load(user.avatarFull)
-                .apply(bitmapTransform(RoundedCorners(20)))
-                .into(image_avatar)
-        text_karma.text = "Karma ${user.karma}"
-        text_personaname.text = user.personaName
-        commentsAdapter.refreshItems(user.comments)
+        commentsAdapter.refreshItems(user.meta)
     }
 
     override fun showError(error: String) {

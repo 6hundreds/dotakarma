@@ -1,12 +1,13 @@
 package com.smedialink.tokenplussteamid.views
 
 import android.content.Context
+import android.graphics.drawable.AnimationDrawable
+import android.support.annotation.DrawableRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.smedialink.tokenplussteamid.R
-import io.github.tonnyl.spark.Spark
-import kotlinx.android.synthetic.main.item_profile_header.view.*
+import kotlinx.android.synthetic.main.view_compound_karma_value.view.*
 
 /**
  * Created by six_hundreds on 27.04.18.
@@ -14,24 +15,44 @@ import kotlinx.android.synthetic.main.item_profile_header.view.*
 class KarmaValueView(context: Context, attributeSet: AttributeSet)
     : FrameLayout(context, attributeSet) {
 
-    private lateinit var spark: Spark
+    var karma: Int? = null
 
-    var karma: Int = 0
-        set(value) {
-            spark = Spark.Builder()
-                    .setView(header_karma) // View or view group
-                    .setDuration(4000)
-                    .setAnimList(Spark.ANIM_GREEN_PURPLE)
-                    .build()
-            spark.startAnimation()
-        }
+    private val duration = 4000
+
+    private lateinit var animatedBackground: AnimationDrawable
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.view_compound_input_comment, this)
+        LayoutInflater.from(context).inflate(R.layout.view_compound_karma_value, this)
+    }
+
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        karma?.let { value ->
+            text_karma.text = karma.toString()
+            resolveGradient(value).let { resource -> setBackgroundResource(resource) }
+            animatedBackground = background as AnimationDrawable
+            animatedBackground.setEnterFadeDuration(duration)
+            animatedBackground.setExitFadeDuration(duration)
+            background = animatedBackground
+            post {
+                animatedBackground.start()
+            }
+        } ?: throw IllegalStateException("Karma value should be provided for $this")
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        spark.stopAnimation()
+        if (animatedBackground.isRunning) {
+            animatedBackground.stop()
+        }
     }
+
+    @DrawableRes
+    private fun resolveGradient(karma: Int): Int =
+            when (karma) {
+                in Int.MIN_VALUE..-500 -> R.drawable.bg_karma_low
+                in 7501..Int.MAX_VALUE -> R.drawable.bg_karma_high
+                else -> R.drawable.bg_karma_medium
+            }
 }

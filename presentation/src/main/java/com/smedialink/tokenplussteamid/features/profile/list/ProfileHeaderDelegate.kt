@@ -11,7 +11,6 @@ import com.smedialink.tokenplussteamid.app.GlideRequests
 import com.smedialink.tokenplussteamid.common.ext.inflate
 import com.smedialink.tokenplussteamid.common.lists.HeterogeneousItem
 import com.smedialink.tokenplussteamid.features.profile.entity.ProfileMetaUiModel
-import io.github.tonnyl.spark.Spark
 import kotlinx.android.synthetic.main.item_profile_header.view.*
 
 /**
@@ -42,7 +41,7 @@ class ProfileHeaderDelegate(private val glide: GlideRequests)
         fun bind(meta: ProfileMetaUiModel) {
             with(itemView) {
                 header_name.text = meta.name
-                header_karma.text = meta.karma.toString()
+                header_karma.karma = meta.karma
                 glide.load(meta.avatar)
                         .apply(RequestOptions.bitmapTransform(
                                 RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_common))))

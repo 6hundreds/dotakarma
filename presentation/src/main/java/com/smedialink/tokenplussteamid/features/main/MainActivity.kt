@@ -1,6 +1,8 @@
 package com.smedialink.tokenplussteamid.features.main
 
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -15,6 +17,7 @@ import com.smedialink.tokenplussteamid.common.ext.enableAnimations
 import com.smedialink.tokenplussteamid.features.main.containers.feed.FeedContainerFragment
 import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerFragment
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
+import com.smedialink.tokenplussteamid.subnavigation.BottomBarController
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Back
@@ -24,9 +27,9 @@ import ru.terrakok.cicerone.commands.SystemMessage
 import javax.inject.Inject
 
 @Layout(R.layout.activity_main)
-class MainActivity : BaseActivity(), MainView {
-
+class MainActivity : BaseActivity(), MainView, BottomBarController {
     companion object {
+
         private const val TAB_FEED = 0
         private const val TAB_PROFILE = 1
         private const val TAB_MATCHES = 2
@@ -83,7 +86,6 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initUi()
@@ -92,6 +94,25 @@ class MainActivity : BaseActivity(), MainView {
         if (savedInstanceState == null) {
             home_bottom_navigation.currentItem = 0
         }
+    }
+
+
+    override fun hideBottomBar() {
+        home_bottom_navigation.visibility = GONE
+    }
+
+    override fun showBottomBar() {
+        home_bottom_navigation.visibility = VISIBLE
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigatorHolder.removeNavigator()
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        navigatorHolder.setNavigator(navigator)
     }
 
     private fun initContainers() {
@@ -125,16 +146,6 @@ class MainActivity : BaseActivity(), MainView {
             }
 
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        navigatorHolder.removeNavigator()
-    }
-
-    override fun onResumeFragments() {
-        super.onResumeFragments()
-        navigatorHolder.setNavigator(navigator)
     }
 
     private fun initUi() {

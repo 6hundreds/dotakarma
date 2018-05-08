@@ -2,6 +2,8 @@ package com.smedialink.tokenplussteamid.subnavigation
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
+import android.view.View
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
 import com.smedialink.tokenplussteamid.base.BaseFragment
@@ -30,6 +32,9 @@ abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
     lateinit var localNavigator: Navigator
 
     @Inject
+    lateinit var bottomBarController: BottomBarController
+
+    @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     val router: Router
@@ -42,6 +47,21 @@ abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
     private val cicerone: Cicerone<Router>
         get() = navigatorHolder.getCicerone(containerTag)
 
+    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState != null) {
+            childFragmentManager.addOnBackStackChangedListener {
+                if (childFragmentManager.backStackEntryCount > 0) {
+                    bottomBarController.hideBottomBar()
+                } else {
+                    bottomBarController.showBottomBar()
+                }
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         cicerone.navigatorHolder.setNavigator(localNavigator)
@@ -51,6 +71,4 @@ abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
         cicerone.navigatorHolder.removeNavigator()
         super.onPause()
     }
-
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
 }

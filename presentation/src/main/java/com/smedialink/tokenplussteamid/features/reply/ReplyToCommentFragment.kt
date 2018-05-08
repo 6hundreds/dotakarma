@@ -1,7 +1,5 @@
 package com.smedialink.tokenplussteamid.features.reply
 
-import android.os.Bundle
-import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
@@ -20,7 +18,7 @@ import javax.inject.Inject
  * Created by six_hundreds on 24.02.18.
  */
 @Layout(R.layout.fragment_reply_to_comment)
-class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView, View.OnLayoutChangeListener {
+class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView {
 
     companion object {
 
@@ -43,15 +41,6 @@ class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView, View.OnL
 
     private val dateFormat = SimpleDateFormat("dd MMM yyyy hh:mm", Locale.US)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val commentId = arguments?.getInt(COMMENT_ID_KEY, -1)
-                ?: throw  IllegalArgumentException("CommentId must be provided via arguments for $this")
-        if (commentId != -1) {
-            presenter.getCommentById(commentId)
-        }
-    }
-
     override fun showError(error: String) {
         errorDelegate.showError(error)
     }
@@ -70,19 +59,6 @@ class ReplyToCommentFragment : TabNestedFragment(), ReplyToCommentView, View.OnL
         toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
         toolbar.title = getString(R.string.title_send_comment)
         field_comment.clickAction = { comment -> presenter.replyToComment(comment) }
-        scrolling_container.addOnLayoutChangeListener(this)
 
-    }
-
-    override fun onLayoutChange(view: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
-        val oldHeight = oldBottom - oldTop
-        val newHeight = bottom - top
-
-        if (oldHeight == newHeight) return
-        if (oldHeight > newHeight) {
-            //todo show bottom nav here
-        } else {
-            //todo hide bottom nav here
-        }
     }
 }

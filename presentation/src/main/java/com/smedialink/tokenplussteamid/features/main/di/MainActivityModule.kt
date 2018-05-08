@@ -11,6 +11,8 @@ import com.smedialink.tokenplussteamid.features.main.containers.feed.FeedContain
 import com.smedialink.tokenplussteamid.features.main.containers.matches.MatchesContainerFragment
 import com.smedialink.tokenplussteamid.features.main.containers.profile.ProfileContainerFragment
 import com.smedialink.tokenplussteamid.features.main.MainActivity
+import com.smedialink.tokenplussteamid.subnavigation.BottomBarController
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
@@ -25,8 +27,13 @@ abstract class MainActivityModule {
         @JvmStatic
         fun provideErrorDelegate(activity: MainActivity): ErrorMessageDelegate =
                 ErrorMessageDelegate(activity.weak())
+
+
     }
 
+    @ActivityScope
+    @Binds
+    abstract fun provideBottomBarController(activity: MainActivity): BottomBarController
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [ProfileTabModule::class])

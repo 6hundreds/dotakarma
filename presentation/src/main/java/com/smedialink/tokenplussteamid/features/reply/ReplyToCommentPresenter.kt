@@ -25,8 +25,9 @@ class ReplyToCommentPresenter @Inject constructor(
         @LocalNavigation private val router: Router)
     : ErrorHandlerPresenter<ReplyToCommentView>() {
 
-    fun getCommentById(commentId: Int) {
-        getCommentByIdUseCase.getCommentById(commentId)
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        getCommentByIdUseCase.getCommentById(currentCommentId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess { viewState.showLoading(true) }

@@ -32,6 +32,10 @@ abstract class BaseActivity :
         setContentView(layout)
     }
 
+
+
+
+
     override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentInjector
 
 

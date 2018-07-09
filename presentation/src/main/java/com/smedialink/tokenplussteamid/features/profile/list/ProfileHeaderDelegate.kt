@@ -3,6 +3,7 @@ package com.smedialink.tokenplussteamid.features.profile.list
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
@@ -41,12 +42,9 @@ class ProfileHeaderDelegate(private val glide: GlideRequests)
         fun bind(meta: ProfileMetaUiModel) {
             with(itemView) {
                 header_name.text = meta.name
-                header_karma.karma = meta.karma
-                glide.load(meta.avatar)
-                        .apply(RequestOptions.bitmapTransform(
-                                RoundedCorners(itemView.resources.getDimensionPixelSize(R.dimen.corner_radius_common))))
-                        .placeholder(R.drawable.ic_dota)
-                        .into(header_avatar)
+                header_karma.text = meta.karma.toString()
+                header_avatar.setAvatar(meta.avatar)
+                header_avatar.setKarma(meta.karma)
             }
         }
     }

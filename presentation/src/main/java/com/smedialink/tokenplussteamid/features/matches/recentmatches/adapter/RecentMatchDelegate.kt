@@ -12,7 +12,7 @@ import com.smedialink.tokenplussteamid.features.matches.recentmatches.entity.Mat
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_matches_recent_match.view.*
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.util.*
 
 /**
@@ -20,6 +20,7 @@ import java.util.*
  */
 class RecentMatchDelegate(private val heroFactory: HeroFactory,
                           private val glide: RequestManager,
+                          private val dateFormat: DateFormat,
                           private val listener: MatchesAdapter.OnMatchClickListener)
     : AbsListItemAdapterDelegate<MatchItemUiModel, MatchItemUiModel, RecentMatchDelegate.RecentMatchViewHolder>() {
 
@@ -41,8 +42,6 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
 
     inner class RecentMatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
-
         fun bind(match: MatchItemUiModel) {
 
             with(itemView) {
@@ -61,11 +60,11 @@ class RecentMatchDelegate(private val heroFactory: HeroFactory,
                 heroFactory.getHero(match.heroId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ hero ->
+                        .subscribe { hero ->
                             text_hero.text = hero.name
                             glide.load(hero.imageUrl)
                                     .into(image_hero)
-                        })
+                        }
 
             }
         }

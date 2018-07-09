@@ -34,7 +34,11 @@ class MyProfilePresenter @Inject constructor(
     init {
         router.setResultListener(OnResultCode.REPLY_SUCCESS) {
             getMyProfileUseCase.getMyComments()
-                    .doOnSuccess { commentsOffset = it.last().id }
+                    .doOnSuccess {
+                        if (it.isNotEmpty()) {
+                            commentsOffset = it.last().id
+                        }
+                    }
                     .mapList(commentsMapper::mapToUi)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +53,11 @@ class MyProfilePresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         getMyProfileUseCase.getMyProfile()
-                .doOnSuccess { commentsOffset = it.comments.last().id }
+                .doOnSuccess {
+                    if (it.comments.isNotEmpty()) {
+                        commentsOffset = it.comments.last().id
+                    }
+                }
                 .map(userMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -81,7 +89,11 @@ class MyProfilePresenter @Inject constructor(
 
     fun refreshProfile() {
         getMyProfileUseCase.getMyProfile()
-                .doOnSuccess { commentsOffset = it.comments.last().id }
+                .doOnSuccess {
+                    if (it.comments.isNotEmpty()) {
+                        commentsOffset = it.comments.last().id
+                    }
+                }
                 .map(userMapper::mapToUi)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

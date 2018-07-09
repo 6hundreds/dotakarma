@@ -1,10 +1,10 @@
 package com.smedialink.tokenplussteamid.features.main.containers.feed
 
-import android.os.Bundle
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.app.Layout
+import com.smedialink.tokenplussteamid.common.ext.withArgs
 import com.smedialink.tokenplussteamid.subnavigation.TabContainerFragment
 import javax.inject.Inject
 
@@ -22,10 +22,8 @@ class FeedContainerFragment : TabContainerFragment(), FeedContainerView {
     fun providePresenter() = presenter
 
     companion object {
-        fun newInstance(containerTag: String) = FeedContainerFragment().apply {
-            arguments = Bundle().apply {
-                putString(CONTAINER_TAG_KEY, containerTag)
-            }
+        fun newInstance(containerTag: String) = FeedContainerFragment().withArgs {
+            putString(CONTAINER_TAG_KEY, containerTag)
         }
     }
 

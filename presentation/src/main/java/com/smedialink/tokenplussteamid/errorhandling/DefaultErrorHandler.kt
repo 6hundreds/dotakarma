@@ -1,6 +1,7 @@
 package com.smedialink.tokenplussteamid.errorhandling
 
 import com.google.gson.Gson
+import com.google.gson.JsonParseException
 import com.smedialink.tokenplussteamid.R
 import com.smedialink.tokenplussteamid.base.CanShowError
 import com.smedialink.tokenplussteamid.common.ext.weak
@@ -50,6 +51,10 @@ class DefaultErrorHandler @Inject constructor(private val resourceManager: Resou
 
     private fun extractErrorMessage(error: HttpException): String =
             error.response().errorBody()?.let { body ->
-                Gson().fromJson(body.string(), ServerError::class.java).message
+                try {
+                    Gson().fromJson(body.string(), ServerError::class.java).message
+                } catch (e: JsonParseException) {
+                    resourceManager.getString(R.string.error_unknown)
+                }
             } ?: resourceManager.getString(R.string.error_unknown)
 }

@@ -51,7 +51,7 @@ abstract class TabContainerFragment : BaseFragment(), HasActivityInjector {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
             childFragmentManager.addOnBackStackChangedListener {
                 if (childFragmentManager.backStackEntryCount > 0) {
                     bottomBarController.hideBottomBar()
